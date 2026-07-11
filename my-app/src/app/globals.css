@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Kinetiq design tokens (brief §2) — PLACEHOLDER monochrome
+   palette; swap here (one place) if brand colors arrive later.
+   Exposed as Tailwind utilities: bg-background, bg-surface,
+   text-ink, text-ink-soft, text-muted, border-line,
+   font-heading, font-body.
+   ============================================================ */
+@theme {
+  --color-background: #fafafa;
+  --color-surface: #f4f4f5;
+  --color-ink: #111113;
+  --color-ink-soft: #2a2a2e;
+  --color-muted: #6b6b70;
+  --color-line: #e4e4e7;
+
+  --font-heading: var(--font-space-grotesk), ui-sans-serif, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-background);
+}
+
+/* ===== Marquee (CSS-driven so it costs no JS per frame) ===== */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll var(--marquee-duration, 30s) linear infinite;
+}
+
+.marquee-track.reverse {
+  animation-direction: reverse;
+}
+
+.marquee-hover-pause:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* per brief §5: marquee moves very slowly instead of scrolling */
+  .marquee-track {
+    animation-duration: 400s;
+  }
+}

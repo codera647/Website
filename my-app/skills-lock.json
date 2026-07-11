@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "meshy-3d-agent": {
+      "source": "meshy-dev/meshy-3d-agent",
+      "sourceType": "github",
+      "skillPath": "skills/meshy-openclaw/SKILL.md",
+      "computedHash": "0a43667c51283b64af42e3578bd4516e84445919ee9750099c64591f3d15b4aa"
+    }
+  }
+}

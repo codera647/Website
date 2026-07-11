@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kinetiq City
 
-## Getting Started
+A cinematic, scroll-driven journey through a low-poly robotic city — the
+marketing/portfolio site for **Kinetiq** (AI Automation · Web Development ·
+Generative AI). As the visitor scrolls, the camera flies through "Kinetiq
+City" along a fixed path; each district landmark is a milestone where a
+content panel fades in.
 
-First, run the development server:
+## Stack
+
+- Next.js (App Router, TypeScript)
+- React Three Fiber + drei (`ScrollControls` drives the camera; `Scroll html`
+  keeps milestone copy in real DOM)
+- Tailwind CSS v4 + CSS variables for the theme
+- Meshy AI for 3D landmark generation (build-time only)
+- gltf-transform + Draco for asset compression
+
+## Commands
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev              # dev server
+npm run build            # production build
+npm run generate:assets  # (re)generate Meshy landmarks — spends API credits!
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Content editing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All milestone copy, project cards, and testimonials live in
+[`app/data/milestones.ts`](app/data/milestones.ts) — editable without touching
+any 3D code. City geometry/camera positions live in
+[`app/data/cityLayout.ts`](app/data/cityLayout.ts).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> ⚠️ Milestone eyebrow/title/body copy is still the DRAFT text from the
+> project brief. Projects and testimonials are real.
 
-## Learn More
+## 3D assets (Meshy)
 
-To learn more about Next.js, take a look at the following resources:
+- Manifest: [`assets.manifest.json`](assets.manifest.json) — prompts, task
+  ids, status, triangle counts. The generation script resumes from it and
+  never regenerates a completed asset unless `--force` is passed.
+- `MESHY_API_KEY` lives in `.env` and is read **only** by
+  `scripts/generate-assets.mjs` (Node, build-time). It is never imported by
+  app code and never exposed via `NEXT_PUBLIC_*`.
+- Downloaded GLBs land in `public/models/<district>/` and are Draco-compressed
+  in place.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Accessibility & fallbacks (decisions)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **`prefers-reduced-motion: reduce` → full static page.** Rather than
+  keeping WebGL with snap-scrolling, reduced-motion visitors get
+  `StaticExperience`: a normal scrolling document with the identical
+  milestone content. Same fallback serves browsers without WebGL.
+- **SEO / screen readers:** when the 3D city is active, the complete static
+  version stays in the DOM inside an `sr-only` container, and a
+  "Skip to content" link jumps to it.
+- **Mobile:** the 3D city runs with reduced instancing density, capped DPR,
+  and antialiasing off. If real-device testing shows low-end phones still
+  struggle, switch `CityExperience` to serve `StaticExperience` on small
+  screens.

@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // allow dev access from the LAN IP (silences the cross-origin warning)
+  allowedDevOrigins: ["192.168.18.112"],
 };
 
 export default nextConfig;

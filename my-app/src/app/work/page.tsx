@@ -29,7 +29,11 @@ export default function WorkPage() {
             </section>
 
             <section className="mx-auto max-w-6xl px-6 pb-24 pt-10 md:pb-32">
-                <StaggerList className="grid gap-6 md:grid-cols-2 lg:grid-cols-3" stagger={0.1}>
+                <StaggerList
+                    className="grid gap-6 transition-[padding-bottom] duration-500 ease-out md:grid-cols-2 md:has-[:hover]:pb-64 lg:grid-cols-3"
+                    itemClassName="h-full"
+                    stagger={0.1}
+                >
                     {caseStudies.map((cs) => (
                         <WorkCard key={cs.slug} {...cs} />
                     ))}

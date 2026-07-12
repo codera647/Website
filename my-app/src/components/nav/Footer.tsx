@@ -1,13 +1,17 @@
 import Link from "next/link";
 
-/** TODO(user): real social URLs + confirm public email. */
-const CONTACT_EMAIL = "nex.gen.3023@gmail.com";
+const CONTACT_EMAIL = "info@thekinetiq.solutions";
+const LINKEDIN_URL = "https://www.linkedin.com/company/kinetiq-site/";
+/** opens Gmail's web compose (logged-in browser tab) instead of the
+ *  OS default mail app, pre-addressed to us */
+const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}`;
 
 const sitemap = [
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
     { href: "/work", label: "Work" },
     { href: "/about", label: "About" },
+    { href: "/careers", label: "Careers" },
     { href: "/contact", label: "Contact" },
 ];
 
@@ -53,19 +57,26 @@ export default function Footer() {
                     </p>
                     <ul className="mt-4 space-y-2.5 font-heading text-sm font-medium">
                         <li>
-                            <a href={`mailto:${CONTACT_EMAIL}`} className="text-ink-soft hover:text-ink">
+                            <a
+                                href={GMAIL_COMPOSE_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-ink-soft hover:text-ink"
+                            >
                                 {CONTACT_EMAIL}
                             </a>
                         </li>
-                        <li className="text-muted">LinkedIn [TODO]</li>
-                        <li className="text-muted">GitHub [TODO]</li>
+                        <li>
+                            <a
+                                href={LINKEDIN_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-ink-soft hover:text-ink"
+                            >
+                                LinkedIn
+                            </a>
+                        </li>
                     </ul>
-                </div>
-            </div>
-            <div className="border-t border-line">
-                <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-6 py-6 text-xs text-muted">
-                    <p>© {new Date().getFullYear()} Kinetiq. All rights reserved.</p>
-                    <p>Engineered by Kinetiq — naturally.</p>
                 </div>
             </div>
         </footer>

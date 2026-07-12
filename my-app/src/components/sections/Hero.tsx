@@ -3,13 +3,11 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import DemoLoop from "@/components/motion/DemoLoop";
-import FloatingLabels from "@/components/motion/FloatingLabels";
 
 /** ⚠️ DRAFT copy (brief §4 Home #1) */
 const HEADLINE = "We engineer intelligent systems.";
 const SUBHEAD =
     "An AI automation, web development, and generative AI studio building the software that powers what's next.";
-const FLOATING = ["automate", "ship faster", "always-on agents", "scale smart"];
 
 /** small animated "ops console" mockup as the hero visual */
 function HeroConsole() {
@@ -34,7 +32,7 @@ function HeroConsole() {
                         animate={row.status === "running" ? { opacity: [1, 0.3, 1] } : undefined}
                         transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
                     />
-                    <span className="truncate font-heading text-sm text-ink-soft">{row.text}</span>
+                    <span className="min-w-0 truncate font-heading text-sm text-ink-soft">{row.text}</span>
                     <span
                         className={`ml-auto shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
                             row.status === "done"
@@ -54,7 +52,7 @@ export default function Hero() {
     return (
         <section className="relative overflow-hidden">
             <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 pb-24 pt-36 lg:grid-cols-[1.1fr_1fr] lg:pt-44">
-                <div>
+                <div className="min-w-0">
                     <motion.p
                         className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted"
                         initial={{ opacity: 0, y: 16 }}
@@ -98,12 +96,11 @@ export default function Hero() {
                 </div>
 
                 <motion.div
-                    className="relative"
+                    className="relative min-w-0"
                     initial={{ opacity: 0, y: 28 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
                 >
-                    <FloatingLabels labels={FLOATING} />
                     <DemoLoop label="kinetiq — systems console">
                         <HeroConsole />
                     </DemoLoop>

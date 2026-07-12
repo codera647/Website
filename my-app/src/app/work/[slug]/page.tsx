@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
-import StaggerList from "@/components/motion/StaggerList";
-import ParallaxImage from "@/components/motion/ParallaxImage";
+import ProjectAssistantSketch from "@/components/sections/ProjectAssistantSketch";
 import { caseStudies } from "@/data/work";
 
 export function generateStaticParams() {
@@ -24,12 +23,6 @@ export async function generateMetadata({
     };
 }
 
-const narrative = [
-    { key: "challenge", label: "The challenge" },
-    { key: "solution", label: "The solution" },
-    { key: "result", label: "The result" },
-] as const;
-
 export default async function CaseStudyPage({
     params,
 }: {
@@ -42,9 +35,17 @@ export default async function CaseStudyPage({
     const index = caseStudies.findIndex((c) => c.slug === slug);
     const next = caseStudies[(index + 1) % caseStudies.length];
 
+    const suggestedQuestions = [
+        `What problem did ${cs.title} solve?`,
+        `What's the tech stack behind it?`,
+        "How long did it take to build?",
+        "What did the client say about it?",
+    ];
+
     return (
         <main>
-            {/* header */}
+            {/* header — page identity only; the rest of the page is being
+                rebuilt around the project-assistant chatbot (see brief) */}
             <section className="mx-auto max-w-5xl px-6 pb-12 pt-36 md:pt-44">
                 <FadeInWhenVisible>
                     <Link
@@ -68,61 +69,15 @@ export default async function CaseStudyPage({
                 </FadeInWhenVisible>
             </section>
 
-            {/* hero image */}
-            <section className="mx-auto max-w-6xl px-6">
+            {/* project assistant — design sketch only, not wired up yet */}
+            <section className="mx-auto max-w-5xl px-6 pb-20 md:pb-28">
                 <FadeInWhenVisible y={32}>
-                    <ParallaxImage
-                        src={cs.thumbnail}
-                        alt={cs.title}
-                        className="aspect-[21/10] rounded-2xl border border-line"
-                        sizes="(max-width: 1200px) 100vw, 1152px"
-                        priority
+                    <ProjectAssistantSketch
+                        projectTitle={cs.title}
+                        suggestedQuestions={suggestedQuestions}
                     />
                 </FadeInWhenVisible>
             </section>
-
-            {/* metrics */}
-            <section className="mx-auto max-w-5xl px-6 pt-16">
-                <StaggerList className="grid gap-4 sm:grid-cols-3" stagger={0.1}>
-                    {cs.metrics.map((m) => (
-                        <div key={m.label} className="rounded-2xl bg-surface p-7 text-center">
-                            <p className="font-heading text-3xl font-bold">{m.value}</p>
-                            <p className="mt-1.5 text-sm text-muted">{m.label}</p>
-                        </div>
-                    ))}
-                </StaggerList>
-            </section>
-
-            {/* narrative */}
-            <section className="mx-auto max-w-5xl space-y-16 px-6 py-20 md:py-28">
-                {narrative.map((section, i) => (
-                    <FadeInWhenVisible key={section.key}>
-                        <div className="grid gap-6 md:grid-cols-[220px_1fr]">
-                            <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
-                                0{i + 1} — {section.label}
-                            </p>
-                            <p className="max-w-2xl text-lg leading-relaxed text-ink-soft">
-                                {cs[section.key]}
-                            </p>
-                        </div>
-                    </FadeInWhenVisible>
-                ))}
-            </section>
-
-            {/* client quote */}
-            {cs.quote && (
-                <section className="bg-surface">
-                    <div className="mx-auto max-w-4xl px-6 py-20 text-center md:py-24">
-                        <FadeInWhenVisible>
-                            <p className="font-heading text-2xl font-medium leading-relaxed md:text-3xl">
-                                &ldquo;{cs.quote.text}&rdquo;
-                            </p>
-                            <p className="mt-8 font-heading font-semibold">{cs.quote.name}</p>
-                            <p className="text-sm text-muted">{cs.quote.role}</p>
-                        </FadeInWhenVisible>
-                    </div>
-                </section>
-            )}
 
             {/* next project */}
             <section className="border-t border-line">

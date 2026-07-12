@@ -7,20 +7,28 @@ interface Props {
     className?: string;
 }
 
-/** anchor slots around the parent container (max 6 labels) */
+/**
+ * Corner anchor slots (max 4 labels). Each sits mostly *outside* the
+ * card's own box (large negative offsets) so it only ever peeks past
+ * an edge — never overlaps the card's own content — and the float
+ * animation's small drift amplitude keeps it from drifting back in.
+ */
 const SLOTS: React.CSSProperties[] = [
-    { top: "8%", left: "-4%" },
-    { top: "18%", right: "-6%" },
-    { bottom: "30%", left: "-8%" },
-    { bottom: "12%", right: "-2%" },
-    { top: "-6%", right: "20%" },
-    { bottom: "-8%", left: "24%" },
+    { top: "-8%", left: "-12%" },
+    { top: "-10%", right: "-8%" },
+    { bottom: "-9%", left: "-10%" },
+    { bottom: "-11%", right: "-11%" },
 ];
 
 /**
  * invoko.ai-style kinetic value-prop tags floating gently around a
  * hero visual. Each fades in independently then drifts on its own
  * slow loop. Static pills under reduced motion (brief §5).
+ *
+ * Only rendered at `lg`+ — that's the breakpoint where Hero switches
+ * to its two-column layout and actually has gutter space for these to
+ * float in without covering the card's own content or the console
+ * getting clipped on narrower/tablet screens.
  */
 export default function FloatingLabels({ labels, className }: Props) {
     const reduced = useReducedMotion();
@@ -28,7 +36,7 @@ export default function FloatingLabels({ labels, className }: Props) {
     return (
         <div
             aria-hidden="true"
-            className={`pointer-events-none absolute inset-0 hidden md:block ${className ?? ""}`}
+            className={`pointer-events-none absolute inset-0 z-20 hidden lg:block ${className ?? ""}`}
         >
             {labels.slice(0, SLOTS.length).map((label, i) => (
                 <motion.span

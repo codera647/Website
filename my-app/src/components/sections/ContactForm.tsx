@@ -4,9 +4,9 @@ import { useState } from "react";
 
 /**
  * Contact form with client-side validation (brief §4 Contact).
- * ⚠️ TODO(user): the submit handler is a PLACEHOLDER — wire a real
- * backend (e.g. Resend, Formspree, or an /api/contact route) once
- * the email service choice is confirmed (brief §10).
+ * Submits to /api/contact, which sends via Resend to
+ * contact@thekinetiq.solutions with the visitor's own email set as
+ * reply-to, so replying goes straight back to them.
  */
 
 const projectTypes = [
@@ -28,7 +28,8 @@ const empty: Fields = { name: "", email: "", projectType: "", message: "" };
 export default function ContactForm() {
     const [fields, setFields] = useState<Fields>(empty);
     const [errors, setErrors] = useState<Partial<Fields>>({});
-    const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+    const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+    const [serverError, setServerError] = useState<string | null>(null);
 
     const validate = (): boolean => {
         const next: Partial<Fields> = {};
@@ -44,10 +45,28 @@ export default function ContactForm() {
         e.preventDefault();
         if (!validate()) return;
         setStatus("submitting");
-        // TODO(user): replace with real submission (email service / API route)
-        await new Promise((r) => setTimeout(r, 900));
-        setStatus("success");
-        setFields(empty);
+        setServerError(null);
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(fields),
+            });
+            const data = await res.json().catch(() => ({ ok: false }));
+
+            if (!res.ok || !data.ok) {
+                setServerError(data.error || "Something went wrong. Please try again.");
+                setStatus("error");
+                return;
+            }
+
+            setStatus("success");
+            setFields(empty);
+        } catch {
+            setServerError("Could not reach the server. Please try again.");
+            setStatus("error");
+        }
     };
 
     const set = (key: keyof Fields) => (
@@ -90,6 +109,7 @@ export default function ContactForm() {
                         placeholder="Jane Doe"
                         value={fields.name}
                         onChange={set("name")}
+                        required
                         aria-invalid={!!errors.name}
                         aria-describedby={errors.name ? "name-error" : undefined}
                         className={inputClass}
@@ -110,6 +130,7 @@ export default function ContactForm() {
                         placeholder="jane@company.com"
                         value={fields.email}
                         onChange={set("email")}
+                        required
                         aria-invalid={!!errors.email}
                         aria-describedby={errors.email ? "email-error" : undefined}
                         className={inputClass}
@@ -130,6 +151,7 @@ export default function ContactForm() {
                     id="projectType"
                     value={fields.projectType}
                     onChange={set("projectType")}
+                    required
                     aria-invalid={!!errors.projectType}
                     aria-describedby={errors.projectType ? "projectType-error" : undefined}
                     className={`${inputClass} ${fields.projectType ? "" : "text-muted/60"}`}
@@ -160,6 +182,7 @@ export default function ContactForm() {
                     placeholder="Tell us about the system you have in mind…"
                     value={fields.message}
                     onChange={set("message")}
+                    required
                     aria-invalid={!!errors.message}
                     aria-describedby={errors.message ? "message-error" : undefined}
                     className={inputClass}
@@ -170,6 +193,12 @@ export default function ContactForm() {
                     </p>
                 )}
             </div>
+
+            {status === "error" && serverError && (
+                <p role="alert" className="text-sm font-medium text-red-600">
+                    {serverError}
+                </p>
+            )}
 
             <button
                 type="submit"

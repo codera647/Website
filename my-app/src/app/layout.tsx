@@ -4,6 +4,7 @@ import "./globals.css";
 import MotionProvider from "@/components/motion/MotionProvider";
 import Nav from "@/components/nav/Nav";
 import Footer from "@/components/nav/Footer";
+import BrandOutro from "@/components/nav/BrandOutro";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({
           <Nav />
           {children}
           <Footer />
+          <BrandOutro />
         </MotionProvider>
       </body>
     </html>

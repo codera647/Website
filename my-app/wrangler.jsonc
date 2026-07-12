@@ -1,0 +1,33 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  "name": "kinetiq-website",
+  "compatibility_date": "2025-01-01",
+  "compatibility_flags": [
+    // Enable Node.js API (required — our /api/contact and /api/careers/apply
+    // routes use Buffer and File, both Node APIs)
+    "nodejs_compat",
+    // Allow fetching public URLs (used by Resend's SDK)
+    "global_fetch_strictly_public"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      // must match "name" above
+      "service": "kinetiq-website"
+    }
+  ],
+  "r2_buckets": [
+    // TODO(user): optional — add an R2 bucket binding named
+    // NEXT_INC_CACHE_R2_BUCKET here later to enable ISR/data-cache
+    // persistence across requests. Not required for launch.
+  ],
+  "images": {
+    // enables Cloudflare's image optimization for next/image
+    "binding": "IMAGES"
+  }
+}

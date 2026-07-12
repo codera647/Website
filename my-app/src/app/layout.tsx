@@ -5,6 +5,7 @@ import MotionProvider from "@/components/motion/MotionProvider";
 import Nav from "@/components/nav/Nav";
 import Footer from "@/components/nav/Footer";
 import BrandOutro from "@/components/nav/BrandOutro";
+import SiteChatWidget from "@/components/chat/SiteChatWidget";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -39,6 +40,7 @@ export default function RootLayout({
           {children}
           <Footer />
           <BrandOutro />
+          <SiteChatWidget />
         </MotionProvider>
       </body>
     </html>

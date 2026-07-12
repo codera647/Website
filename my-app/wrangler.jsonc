@@ -29,5 +29,10 @@
   "images": {
     // enables Cloudflare's image optimization for next/image
     "binding": "IMAGES"
+  },
+  "ai": {
+    // enables Workers AI + AI Search (used by /api/chat for the
+    // site-wide and per-project assistants)
+    "binding": "AI"
   }
 }

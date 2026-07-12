@@ -7,8 +7,11 @@ export const metadata: Metadata = {
     description: "Tell us about the system you have in mind — we reply within one business day.",
 };
 
-/** TODO(user): confirm the public contact email + add real social links. */
-const CONTACT_EMAIL = "nex.gen.3023@gmail.com";
+const CONTACT_EMAIL = "info@thekinetiq.solutions";
+const LINKEDIN_URL = "https://www.linkedin.com/company/kinetiq-site/";
+/** opens Gmail's web compose (logged-in browser tab) instead of the
+ *  OS default mail app, pre-addressed to us — mirrors the footer link */
+const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}`;
 const CALENDLY_URL = "https://calendly.com/nex-gen-3023/meeting";
 
 export default function ContactPage() {
@@ -40,7 +43,9 @@ export default function ContactPage() {
                                     Email
                                 </p>
                                 <a
-                                    href={`mailto:${CONTACT_EMAIL}`}
+                                    href={GMAIL_COMPOSE_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="mt-3 block font-heading text-lg font-semibold underline-offset-4 hover:underline"
                                 >
                                     {CONTACT_EMAIL}
@@ -63,10 +68,15 @@ export default function ContactPage() {
                                 <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
                                     Elsewhere
                                 </p>
-                                {/* TODO(user): real social links */}
                                 <div className="mt-3 flex gap-5 font-heading text-sm font-medium text-muted">
-                                    <span>LinkedIn [TODO]</span>
-                                    <span>GitHub [TODO]</span>
+                                    <a
+                                        href={LINKEDIN_URL}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-ink"
+                                    >
+                                        LinkedIn
+                                    </a>
                                 </div>
                             </div>
                         </div>

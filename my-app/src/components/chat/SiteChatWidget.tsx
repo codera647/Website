@@ -10,6 +10,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import MarkdownLite from "@/components/chat/MarkdownLite";
 
 interface ChatMessage {
     role: "user" | "assistant";
@@ -111,18 +112,22 @@ export default function SiteChatWidget() {
                                 </div>
                             )}
 
-                            {messages.map((m, i) => (
-                                <div
-                                    key={i}
-                                    className={
-                                        m.role === "user"
-                                            ? "ml-auto max-w-[85%] rounded-2xl rounded-br-sm bg-white px-4 py-2.5 text-sm text-ink"
-                                            : "mr-auto max-w-[85%] rounded-2xl rounded-bl-sm bg-white/10 px-4 py-2.5 text-sm text-white/90"
-                                    }
-                                >
-                                    {m.text}
-                                </div>
-                            ))}
+                            {messages.map((m, i) =>
+                                m.role === "user" ? (
+                                    <div
+                                        key={i}
+                                        className="ml-auto max-w-[85%] rounded-2xl rounded-br-sm bg-white px-4 py-2.5 text-sm text-ink"
+                                    >
+                                        {m.text}
+                                    </div>
+                                ) : (
+                                    <MarkdownLite
+                                        key={i}
+                                        text={m.text}
+                                        className="mr-auto max-w-[85%] space-y-2 rounded-2xl rounded-bl-sm bg-white/10 px-4 py-2.5 text-sm leading-relaxed text-white/90"
+                                    />
+                                )
+                            )}
 
                             {pending && (
                                 <div className="mr-auto max-w-[85%] rounded-2xl rounded-bl-sm bg-white/10 px-4 py-2.5 text-sm text-white/50">

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import NavAvatar from "@/components/nav/NavAvatar";
 
 const links = [
     { href: "/", label: "Home" },
@@ -14,6 +13,29 @@ const links = [
     { href: "/careers", label: "Careers" },
     { href: "/contact", label: "Contact" },
 ];
+
+/** The three brand "motion circles" from the logo, gently pulsing in sequence. */
+function BrandDots() {
+    const dots = ["#B5B5B5", "#888888", "#555555"];
+    return (
+        <span aria-hidden="true" className="ml-1.5 inline-flex items-center gap-1">
+            {dots.map((color, i) => (
+                <motion.span
+                    key={color}
+                    className="size-1.5 rounded-full"
+                    style={{ backgroundColor: color }}
+                    animate={{ opacity: [0.35, 1, 0.35], scale: [0.85, 1.15, 0.85] }}
+                    transition={{
+                        duration: 1.8,
+                        repeat: Infinity,
+                        delay: i * 0.25,
+                        ease: "easeInOut",
+                    }}
+                />
+            ))}
+        </span>
+    );
+}
 
 export default function Nav() {
     const pathname = usePathname();
@@ -58,12 +80,17 @@ export default function Nav() {
                 }`}
             >
                 <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between px-6">
-                    <div className="flex items-center gap-3">
-                        <NavAvatar />
-                        <Link href="/" className="font-heading text-xl font-bold tracking-tight text-white">
-                            kinet<span className="text-white/45">iq</span>
-                        </Link>
-                    </div>
+                    {/* Prominent wordmark — the brand IS the navbar's anchor */}
+                    <Link
+                        href="/"
+                        className="group flex items-baseline font-heading text-[1.7rem] font-bold leading-none tracking-tight text-white transition-opacity hover:opacity-90"
+                    >
+                        kinet
+                        <span className="text-white/45 transition-colors duration-300 group-hover:text-white/70">
+                            iq
+                        </span>
+                        <BrandDots />
+                    </Link>
 
                     <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
                         {links.map((link) => (
@@ -71,18 +98,27 @@ export default function Nav() {
                                 key={link.href}
                                 href={link.href}
                                 aria-current={isActive(link.href) ? "page" : undefined}
-                                className={`rounded-full px-4 py-2 font-heading text-sm font-medium transition-colors ${
+                                className={`group relative rounded-full px-4 py-2 font-heading text-sm font-medium transition-colors ${
                                     isActive(link.href)
                                         ? "text-white"
                                         : "text-white/50 hover:text-white"
                                 }`}
                             >
                                 {link.label}
+                                {/* animated underline: grows from center on hover, stays for active */}
+                                <span
+                                    aria-hidden="true"
+                                    className={`absolute inset-x-4 -bottom-0.5 h-px origin-center bg-white transition-transform duration-300 ease-out ${
+                                        isActive(link.href)
+                                            ? "scale-x-100"
+                                            : "scale-x-0 group-hover:scale-x-100"
+                                    }`}
+                                />
                             </Link>
                         ))}
                         <Link
                             href="/contact"
-                            className="ml-3 rounded-full bg-white px-5 py-2.5 font-heading text-sm font-semibold text-ink transition-colors hover:bg-white/85"
+                            className="ml-3 rounded-full bg-white px-5 py-2.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/85 hover:shadow-[0_8px_24px_-8px_rgba(255,255,255,0.35)]"
                         >
                             Let&apos;s talk
                         </Link>

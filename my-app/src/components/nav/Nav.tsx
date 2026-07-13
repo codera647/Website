@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import BracketButton from "@/components/motion/BracketButton";
 
 const links = [
     { href: "/", label: "Home" },
@@ -68,7 +69,7 @@ export default function Nav() {
         <>
             <a
                 href="#main"
-                className="fixed left-4 top-[-56px] z-[60] rounded-full bg-ink px-5 py-2.5 font-heading text-sm font-semibold text-white transition-all focus:top-4"
+                className="fixed left-4 top-[-56px] z-[60] rounded-none bg-ink px-5 py-2.5 font-heading text-sm font-semibold text-white transition-all focus:top-4"
             >
                 Skip to content
             </a>
@@ -79,7 +80,7 @@ export default function Nav() {
                         : "border-b border-white/0"
                 }`}
             >
-                <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between px-6">
+                <div className="container-wide flex h-[72px] items-center justify-between">
                     {/* Prominent wordmark — the brand IS the navbar's anchor */}
                     <Link
                         href="/"
@@ -98,7 +99,7 @@ export default function Nav() {
                                 key={link.href}
                                 href={link.href}
                                 aria-current={isActive(link.href) ? "page" : undefined}
-                                className={`group relative rounded-full px-4 py-2 font-heading text-sm font-medium transition-colors ${
+                                className={`group relative rounded-none px-4 py-2 font-heading text-sm font-medium transition-colors ${
                                     isActive(link.href)
                                         ? "text-white"
                                         : "text-white/50 hover:text-white"
@@ -116,12 +117,9 @@ export default function Nav() {
                                 />
                             </Link>
                         ))}
-                        <Link
-                            href="/contact"
-                            className="ml-3 rounded-full bg-white px-5 py-2.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/85 hover:shadow-[0_8px_24px_-8px_rgba(255,255,255,0.35)]"
-                        >
+                        <BracketButton href="/contact" className="ml-4">
                             Let&apos;s talk
-                        </Link>
+                        </BracketButton>
                     </nav>
 
                     <button

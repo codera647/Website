@@ -1,11 +1,11 @@
-import Link from "next/link";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
+import BracketButton from "@/components/motion/BracketButton";
 
 /** Strong closing CTA (brief §4 Home #8) — inverted monochrome section. */
 export default function ClosingCTA() {
     return (
         <section className="bg-ink text-white">
-            <div className="mx-auto max-w-6xl px-6 py-28 text-center md:py-36">
+            <div className="container-wide py-28 text-center md:py-36">
                 <FadeInWhenVisible>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-white/50">
                         Ready when you are
@@ -17,12 +17,9 @@ export default function ClosingCTA() {
                         A process to automate, a platform to ship, or an idea to prototype —
                         let&apos;s talk it through.
                     </p>
-                    <Link
-                        href="/contact"
-                        className="mt-10 inline-block rounded-full bg-white px-8 py-4 font-heading text-sm font-semibold text-ink transition-colors hover:bg-white/85"
-                    >
+                    <BracketButton href="/contact" className="mt-10">
                         Let&apos;s talk
-                    </Link>
+                    </BracketButton>
                 </FadeInWhenVisible>
             </div>
         </section>

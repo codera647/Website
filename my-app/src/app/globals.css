@@ -17,10 +17,46 @@
 
   --font-heading: var(--font-space-grotesk), ui-sans-serif, sans-serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Rectangular design language (CURA reference): zero out the box
+     radius scale so every rounded-lg/xl/2xl/3xl card, input, and panel
+     goes sharp-cornered site-wide from this one spot. rounded-full is
+     left intact — it draws the circular brand dots and avatars. */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
 }
 
 html {
   overflow-x: hidden;
+}
+
+/* ============================================================
+   Site container — fluid, near full-bleed (CURA-style gutters).
+   One knob for the whole site: every section wraps in this
+   instead of Tailwind's max-w-6xl. Gutter grows with viewport;
+   capped at 120rem so ultra-wide monitors don't over-stretch.
+   ============================================================ */
+.container-wide {
+  width: 100%;
+  max-width: 120rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-wide {
+    padding-inline: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-wide {
+    padding-inline: 4rem;
+  }
 }
 
 body {

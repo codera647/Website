@@ -17,7 +17,7 @@ const CALENDLY_URL = "https://calendly.com/nex-gen-3023/meeting";
 export default function ContactPage() {
     return (
         <main>
-            <section className="mx-auto max-w-6xl px-6 pb-24 pt-36 md:pb-32 md:pt-44">
+            <section className="container-wide pb-24 pt-36 md:pb-32 md:pt-44">
                 <FadeInWhenVisible>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
                         Contact
@@ -59,7 +59,7 @@ export default function ContactPage() {
                                     href={CALENDLY_URL}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="mt-3 inline-block rounded-full border border-line px-6 py-3 font-heading text-sm font-semibold transition-colors hover:border-ink"
+                                    className="mt-3 inline-block rounded-none border border-line px-6 py-3 font-heading text-sm font-semibold transition-colors hover:border-ink"
                                 >
                                     Book a 30-minute call →
                                 </a>

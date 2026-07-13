@@ -41,7 +41,7 @@ export function WorkCard({
                 </div>
 
                 {/* always-visible affordance for the compact state; hides once the reveal panel takes over on hover. Pinned via absolute (not the flex flow) so it can't disturb the title/reveal spacing above. */}
-                <span className="absolute bottom-7 right-7 flex size-9 items-center justify-center rounded-full border border-line font-heading text-sm text-muted md:group-hover:hidden">
+                <span className="absolute bottom-7 right-7 flex size-9 items-center justify-center rounded-none border border-line font-heading text-sm text-muted md:group-hover:hidden">
                     →
                 </span>
 
@@ -53,7 +53,7 @@ export function WorkCard({
                             {tags.slice(0, 3).map((tag) => (
                                 <span
                                     key={tag}
-                                    className="rounded-full border border-white/20 px-2.5 py-1 text-xs text-white/60"
+                                    className="rounded-none border border-white/20 px-2.5 py-1 text-xs text-white/60"
                                 >
                                     {tag}
                                 </span>
@@ -74,7 +74,7 @@ export function WorkCard({
 
 export default function FeaturedWork() {
     return (
-        <section className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+        <section className="container-wide py-24 md:py-32">
             <FadeInWhenVisible>
                 <div className="flex flex-wrap items-end justify-between gap-6">
                     <div>

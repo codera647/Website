@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function WorkPage() {
     return (
         <main>
-            <section className="mx-auto max-w-6xl px-6 pb-10 pt-36 md:pt-44">
+            <section className="container-wide pb-10 pt-36 md:pt-44">
                 <FadeInWhenVisible>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
                         Work
@@ -28,7 +28,7 @@ export default function WorkPage() {
                 </FadeInWhenVisible>
             </section>
 
-            <section className="mx-auto max-w-6xl px-6 pb-24 pt-10 md:pb-32">
+            <section className="container-wide pb-24 pt-10 md:pb-32">
                 <StaggerList
                     className="grid gap-6 transition-[padding-bottom] duration-500 ease-out md:grid-cols-2 md:has-[:hover]:pb-64 lg:grid-cols-3"
                     itemClassName="h-full"

@@ -167,7 +167,7 @@ export default function ApplicationForm({ roleTitle }: Props) {
                     }}
                     aria-invalid={!!errors.cv}
                     aria-describedby={errors.cv ? "app-cv-error" : undefined}
-                    className="block w-full text-sm text-white/70 file:mr-4 file:rounded-full file:border file:border-white/15 file:bg-white/10 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white file:transition-colors hover:file:bg-white/15"
+                    className="block w-full text-sm text-white/70 file:mr-4 file:rounded-none file:border file:border-white/15 file:bg-white/10 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white file:transition-colors hover:file:bg-white/15"
                 />
                 {errors.cv && (
                     <p id="app-cv-error" role="alert" className="mt-1.5 text-sm text-white/70">
@@ -213,7 +213,7 @@ export default function ApplicationForm({ roleTitle }: Props) {
             <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-colors hover:bg-white/85 disabled:opacity-60"
+                className="inline-flex items-center gap-2 rounded-none bg-white px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-colors hover:bg-white/85 disabled:opacity-60"
             >
                 {status === "submitting" ? "Sending…" : "Submit application"}
                 {status !== "submitting" && <span aria-hidden="true">→</span>}

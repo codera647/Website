@@ -21,7 +21,7 @@ export function RoleCard({ role }: { role: Role }) {
                     </h3>
                 </div>
 
-                <span className="absolute bottom-7 right-7 flex size-9 items-center justify-center rounded-full border border-line font-heading text-sm text-muted md:group-hover:hidden">
+                <span className="absolute bottom-7 right-7 flex size-9 items-center justify-center rounded-none border border-line font-heading text-sm text-muted md:group-hover:hidden">
                     →
                 </span>
 

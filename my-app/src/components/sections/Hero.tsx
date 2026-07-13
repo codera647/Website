@@ -45,7 +45,7 @@ function HeroDots() {
 export default function Hero() {
     return (
         <section className="relative overflow-hidden">
-            <div className="mx-auto max-w-6xl px-6 pb-20 pt-32 md:pt-40">
+            <div className="container-wide pb-20 pt-32 md:pt-40">
                 {/* eyebrow — the three disciplines, immediately visible */}
                 <motion.p
                     className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted"
@@ -91,13 +91,13 @@ export default function Hero() {
                     >
                         <Link
                             href="/work"
-                            className="rounded-full bg-ink px-7 py-3.5 font-heading text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink-soft hover:shadow-[0_12px_32px_-12px_rgba(0,0,0,0.45)]"
+                            className="rounded-none bg-ink px-7 py-3.5 font-heading text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink-soft hover:shadow-[0_12px_32px_-12px_rgba(0,0,0,0.45)]"
                         >
                             See our work
                         </Link>
                         <Link
                             href="/contact"
-                            className="rounded-full border border-line bg-white px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
+                            className="rounded-none border border-line bg-white px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
                         >
                             Start a project
                         </Link>
@@ -166,7 +166,7 @@ export default function Hero() {
                         <Link
                             key={value}
                             href="/about"
-                            className="rounded-full border border-line bg-surface px-4 py-1.5 font-heading text-xs font-medium text-ink-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-ink hover:bg-ink hover:text-white"
+                            className="rounded-none border border-line bg-surface px-4 py-1.5 font-heading text-xs font-medium text-ink-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-ink hover:bg-ink hover:text-white"
                         >
                             {value}
                         </Link>

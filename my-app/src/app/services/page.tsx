@@ -15,7 +15,7 @@ export default function ServicesPage() {
     return (
         <main>
             {/* intro */}
-            <section className="mx-auto max-w-6xl px-6 pb-10 pt-36 md:pt-44">
+            <section className="container-wide pb-10 pt-36 md:pt-44">
                 <FadeInWhenVisible>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
                         Services
@@ -38,7 +38,7 @@ export default function ServicesPage() {
                     className={`scroll-mt-28 ${i % 2 === 1 ? "bg-surface" : ""}`}
                 >
                     <div
-                        className={`mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 md:py-28 lg:grid-cols-2 ${
+                        className={`container-wide grid items-center gap-12 py-20 md:py-28 lg:grid-cols-2 ${
                             i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
                         }`}
                     >
@@ -62,7 +62,7 @@ export default function ServicesPage() {
                                 {service.stack.map((tech) => (
                                     <span
                                         key={tech}
-                                        className="rounded-full border border-line bg-white px-3 py-1 text-xs text-muted"
+                                        className="rounded-none border border-line bg-white px-3 py-1 text-xs text-muted"
                                     >
                                         {tech}
                                     </span>
@@ -78,7 +78,7 @@ export default function ServicesPage() {
             ))}
 
             {/* how we work */}
-            <section className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+            <section className="container-wide py-24 md:py-32">
                 <FadeInWhenVisible>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
                         How we work

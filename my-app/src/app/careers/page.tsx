@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function CareersPage() {
     return (
         <main>
-            <section className="mx-auto max-w-6xl px-6 pb-10 pt-36 md:pt-44">
+            <section className="container-wide pb-10 pt-36 md:pt-44">
                 <FadeInWhenVisible>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
                         Careers
@@ -30,7 +30,7 @@ export default function CareersPage() {
             </section>
 
             {roles.length > 0 ? (
-                <section className="mx-auto max-w-6xl px-6 pb-24 pt-10 md:pb-32">
+                <section className="container-wide pb-24 pt-10 md:pb-32">
                     <StaggerList
                         className="grid gap-6 transition-[padding-bottom] duration-500 ease-out md:grid-cols-2 md:has-[:hover]:pb-64"
                         itemClassName="h-full"
@@ -42,7 +42,7 @@ export default function CareersPage() {
                     </StaggerList>
                 </section>
             ) : (
-                <section className="mx-auto max-w-6xl px-6 pb-24 md:pb-28">
+                <section className="container-wide pb-24 md:pb-28">
                     <FadeInWhenVisible y={24}>
                         <div className="rounded-2xl border border-line bg-surface px-8 py-14 text-center md:py-16">
                             <p className="font-heading text-2xl font-semibold text-ink md:text-3xl">
@@ -55,7 +55,7 @@ export default function CareersPage() {
                             </p>
                             <a
                                 href="#send-cv"
-                                className="mt-7 inline-flex items-center gap-1.5 rounded-full bg-ink px-6 py-3 font-heading text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink-soft hover:shadow-[0_12px_32px_-12px_rgba(0,0,0,0.45)]"
+                                className="mt-7 inline-flex items-center gap-1.5 rounded-none bg-ink px-6 py-3 font-heading text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink-soft hover:shadow-[0_12px_32px_-12px_rgba(0,0,0,0.45)]"
                             >
                                 Send your CV
                                 <span aria-hidden="true">↓</span>

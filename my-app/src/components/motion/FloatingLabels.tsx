@@ -42,7 +42,7 @@ export default function FloatingLabels({ labels, className }: Props) {
                 <motion.span
                     key={label}
                     style={SLOTS[i]}
-                    className="absolute rounded-full border border-line bg-white/85 px-3.5 py-1.5 font-heading text-xs font-medium text-ink-soft shadow-sm backdrop-blur"
+                    className="absolute rounded-none border border-line bg-white/85 px-3.5 py-1.5 font-heading text-xs font-medium text-ink-soft shadow-sm backdrop-blur"
                     initial={{ opacity: 0, y: 8 }}
                     animate={
                         reduced

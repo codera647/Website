@@ -61,7 +61,7 @@ export default async function CaseStudyPage({
                     <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{cs.summary}</p>
                     <div className="mt-6 flex flex-wrap gap-2">
                         {cs.tags.map((tag) => (
-                            <span key={tag} className="rounded-full border border-line px-3 py-1 text-xs text-muted">
+                            <span key={tag} className="rounded-none border border-line px-3 py-1 text-xs text-muted">
                                 {tag}
                             </span>
                         ))}

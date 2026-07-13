@@ -313,7 +313,7 @@ export default function OpenApplicationForm({ openRoles }: Props) {
                     }}
                     aria-invalid={!!errors.cv}
                     aria-describedby={errors.cv ? "open-cv-error" : undefined}
-                    className="block w-full text-sm text-white/70 file:mr-4 file:rounded-full file:border file:border-white/15 file:bg-white/10 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white file:transition-colors hover:file:bg-white/15"
+                    className="block w-full text-sm text-white/70 file:mr-4 file:rounded-none file:border file:border-white/15 file:bg-white/10 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white file:transition-colors hover:file:bg-white/15"
                 />
                 {errors.cv && (
                     <p id="open-cv-error" role="alert" className="mt-1.5 text-sm text-white/70">
@@ -345,7 +345,7 @@ export default function OpenApplicationForm({ openRoles }: Props) {
             <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/85 hover:shadow-[0_12px_32px_-12px_rgba(255,255,255,0.35)] disabled:opacity-60"
+                className="inline-flex items-center gap-2 rounded-none bg-white px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/85 hover:shadow-[0_12px_32px_-12px_rgba(255,255,255,0.35)] disabled:opacity-60"
             >
                 {status === "submitting" ? "Sending…" : "Send CV"}
                 {status !== "submitting" && <span aria-hidden="true">→</span>}

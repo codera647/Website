@@ -31,7 +31,7 @@ export default function FounderSection() {
 
     return (
         <section className="bg-ink">
-            <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+            <div className="container-wide py-24 md:py-32">
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -108,7 +108,7 @@ export default function FounderSection() {
                             {FOCUS_AREAS.map((area) => (
                                 <span
                                     key={area}
-                                    className="rounded-full border border-white/15 px-4 py-1.5 font-heading text-xs font-medium text-white/70 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/50 hover:bg-white hover:text-ink"
+                                    className="rounded-none border border-white/15 px-4 py-1.5 font-heading text-xs font-medium text-white/70 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/50 hover:bg-white hover:text-ink"
                                 >
                                     {area}
                                 </span>

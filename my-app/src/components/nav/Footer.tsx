@@ -18,7 +18,7 @@ const sitemap = [
 export default function Footer() {
     return (
         <footer className="border-t border-line bg-surface">
-            <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:grid-cols-[1.5fr_1fr_1fr] md:py-20">
+            <div className="container-wide grid gap-12 py-16 md:grid-cols-[1.5fr_1fr_1fr] md:py-20">
                 <div>
                     <p className="font-heading text-2xl font-bold tracking-tight">
                         kinet<span className="text-muted">iq</span>

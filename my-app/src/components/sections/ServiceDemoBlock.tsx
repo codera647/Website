@@ -41,7 +41,7 @@ function AutomationDemo() {
                     <span className="truncate font-heading text-sm text-ink-soft">{step}</span>
                     {i === steps.length - 1 && (
                         <motion.span
-                            className="ml-auto shrink-0 rounded-full bg-ink px-2.5 py-0.5 text-xs font-medium text-white"
+                            className="ml-auto shrink-0 rounded-none bg-ink px-2.5 py-0.5 text-xs font-medium text-white"
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: [0, 1] }}
                             viewport={{ once: false, margin: "-15%" }}
@@ -64,7 +64,7 @@ function CodeDemo() {
                 {lines.map((width, i) => (
                     <motion.div
                         key={i}
-                        className="h-2.5 origin-left rounded-full bg-line"
+                        className="h-2.5 origin-left rounded-none bg-line"
                         style={{ width: `${width}%`, marginLeft: i % 3 === 0 ? 0 : "8%" }}
                         initial={{ scaleX: 0 }}
                         whileInView={{ scaleX: [0, 1] }}
@@ -80,7 +80,7 @@ function CodeDemo() {
                 viewport={{ once: false, margin: "-15%" }}
                 transition={{ duration: 0.4, delay: lines.length * 0.45 + 0.3, ...LOOP }}
             >
-                <span className="flex size-5 items-center justify-center rounded-full bg-ink text-xs text-white">
+                <span className="flex size-5 items-center justify-center rounded-none bg-ink text-xs text-white">
                     ✓
                 </span>
                 Build passed — deployed to production
@@ -98,7 +98,7 @@ function RagDemo() {
     return (
         <div className="space-y-3 p-5">
             <motion.div
-                className="flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2.5"
+                className="flex items-center gap-2 rounded-none border border-line bg-surface px-4 py-2.5"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: [0, 1] }}
                 viewport={{ once: false, margin: "-15%" }}
@@ -120,9 +120,9 @@ function RagDemo() {
                 >
                     <p className="truncate font-heading text-sm text-ink-soft">{r.text}</p>
                     <div className="mt-2 flex items-center gap-2">
-                        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-line">
+                        <div className="h-1.5 flex-1 overflow-hidden rounded-none bg-line">
                             <motion.div
-                                className="h-full origin-left rounded-full bg-ink"
+                                className="h-full origin-left rounded-none bg-ink"
                                 initial={{ scaleX: 0 }}
                                 whileInView={{ scaleX: [0, r.score / 100] }}
                                 viewport={{ once: false, margin: "-15%" }}

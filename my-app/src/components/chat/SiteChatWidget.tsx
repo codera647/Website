@@ -90,7 +90,7 @@ export default function SiteChatWidget() {
                                 type="button"
                                 aria-label="Close assistant"
                                 onClick={() => setOpen(false)}
-                                className="flex size-7 shrink-0 items-center justify-center rounded-full text-white/50 hover:bg-white/10 hover:text-white"
+                                className="flex size-7 shrink-0 items-center justify-center rounded-none text-white/50 hover:bg-white/10 hover:text-white"
                             >
                                 ✕
                             </button>
@@ -104,7 +104,7 @@ export default function SiteChatWidget() {
                                             key={q}
                                             type="button"
                                             onClick={() => send(q)}
-                                            className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-left text-xs text-white/70 hover:bg-white/10"
+                                            className="rounded-none border border-white/15 bg-white/5 px-3 py-1.5 text-left text-xs text-white/70 hover:bg-white/10"
                                         >
                                             {q}
                                         </button>
@@ -150,13 +150,13 @@ export default function SiteChatWidget() {
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 placeholder="Ask a question…"
-                                className="flex-1 rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/40 focus:border-white/30 focus:outline-none"
+                                className="flex-1 rounded-none border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/40 focus:border-white/30 focus:outline-none"
                             />
                             <button
                                 type="submit"
                                 disabled={pending || !input.trim()}
                                 aria-label="Send"
-                                className="flex size-9 shrink-0 items-center justify-center rounded-full bg-white font-heading text-sm text-ink disabled:opacity-40"
+                                className="flex size-9 shrink-0 items-center justify-center rounded-none bg-white font-heading text-sm text-ink disabled:opacity-40"
                             >
                                 →
                             </button>
@@ -170,7 +170,7 @@ export default function SiteChatWidget() {
                 onClick={() => setOpen((o) => !o)}
                 aria-label={open ? "Close assistant" : "Open Kinetiq assistant"}
                 aria-expanded={open}
-                className="flex size-14 items-center justify-center rounded-full bg-ink font-heading text-sm text-white shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] transition-transform hover:scale-105"
+                className="flex size-14 items-center justify-center rounded-none bg-ink font-heading text-sm text-white shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] transition-transform hover:scale-105"
             >
                 {open ? "✕" : "Ask"}
             </button>

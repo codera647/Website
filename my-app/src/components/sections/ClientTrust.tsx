@@ -26,7 +26,7 @@ export default function ClientTrust() {
                 ))}
             </Marquee>
 
-            <div className="mx-auto max-w-6xl px-6 pt-20">
+            <div className="container-wide pt-20">
                 <FadeInWhenVisible>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
                         Client trust

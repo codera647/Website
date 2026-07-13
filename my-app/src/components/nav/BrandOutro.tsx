@@ -1,46 +1,93 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 /**
  * Dark brand band that closes out every page after the Footer — a giant
- * outlined "kinetiq" watermark. Two layered motions, both tied to scroll:
- * a one-shot reveal (fade + scale + slide up) that fires the moment the
- * user scrolls down far enough for the section to enter view, then a
- * continuous, subtle sideways drift for as long as it's on screen (fits
- * the "always in motion" tagline). Reference: agency-style oversized
- * wordmark footers.
+ * ALL-CAPS "KINETIQ" spanning the full viewport width (CURA-footer
+ * reference). Two effects:
+ *
+ * 1. Text doubling: layered offset copies behind each letter ("HEY! YOU"
+ *    reference) — instead of neon cyan/magenta we extrude with the three
+ *    brand motion-circle grays (#B5B5B5 → #888 → #555), so the doubling
+ *    IS the logo's motion trail. Offsets are in em so they scale with
+ *    the viewport-sized type.
+ *
+ * 2. Scroll reveal (video reference: assets/kinetiq-footer-text-animation
+ *    .mp4): each letter is clipped by an overflow-hidden mask and slides
+ *    up from below with a slight rotation, staggered left → right, the
+ *    moment the band scrolls into view. Letters also lift on hover.
  */
+
+const LETTERS = "KINETIQ".split("");
+
+/** brand-gray doubling: exactly two offset layers, scales with font size */
+const DOUBLING_SHADOW = "0.035em 0.035em 0 #B5B5B5, 0.07em 0.07em 0 #555555";
+
 export default function BrandOutro() {
     const ref = useRef<HTMLDivElement>(null);
     const reduced = useReducedMotion();
 
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["start end", "end start"],
-    });
-
-    const x = useTransform(scrollYProgress, [0, 1], reduced ? ["0%", "0%"] : ["-6%", "6%"]);
+    /* in-view detection lives on the PARENT line (always visible) and the
+       letters animate via variants. Putting whileInView on the letters
+       themselves deadlocks: they start translated 115% down inside an
+       overflow-hidden mask, so they're fully clipped, the observer never
+       sees them enter view, and the reveal never fires. */
+    const line = {
+        hidden: {},
+        visible: {
+            transition: { staggerChildren: 0.07, delayChildren: 0.1 },
+        },
+    };
+    const letterVariant = reduced
+        ? {
+              hidden: { y: "0%", rotate: 0, opacity: 1 },
+              visible: { y: "0%", rotate: 0, opacity: 1 },
+          }
+        : {
+              hidden: { y: "115%", rotate: 8, opacity: 0.6 },
+              visible: {
+                  y: "0%",
+                  rotate: 0,
+                  opacity: 1,
+                  transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const },
+              },
+          };
 
     return (
         <section ref={ref} className="relative overflow-hidden bg-ink">
-            <div className="flex justify-center py-14 md:py-20">
+            <div className="px-3 pb-8 pt-14 md:px-5 md:pb-10 md:pt-20">
                 <motion.p
                     aria-hidden="true"
-                    style={{ x }}
-                    initial={{ opacity: 0, y: reduced ? 0 : 40, scale: reduced ? 1 : 0.9 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: true, margin: "-15%" }}
-                    transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-                    className="select-none whitespace-nowrap font-heading text-[20vw] font-bold leading-none tracking-tight text-transparent [-webkit-text-stroke:1.5px_rgba(255,255,255,0.35)] md:text-[15vw]"
+                    className="flex w-full select-none items-end justify-between font-heading font-bold leading-none"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                    variants={line}
                 >
-                    kinetiq
+                    {LETTERS.map((letter, i) => (
+                        <span
+                            key={i}
+                            /* mask: clips the slide-up reveal from the top; padding
+                               on the right/bottom keeps the extrusion shadow visible */
+                            className="inline-block overflow-hidden pb-[0.14em] pr-[0.09em] pt-[0.06em] text-[16vw] leading-none"
+                        >
+                            <motion.span
+                                className="inline-block cursor-default text-white"
+                                style={{ textShadow: DOUBLING_SHADOW }}
+                                variants={letterVariant}
+                                whileHover={reduced ? undefined : { y: "-4%", transition: { duration: 0.25 } }}
+                            >
+                                {letter}
+                            </motion.span>
+                        </span>
+                    ))}
                 </motion.p>
             </div>
 
             <div className="relative border-t border-white/10">
-                <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-6 font-heading text-xs text-white/50">
+                <div className="container-wide flex flex-wrap items-center justify-between gap-3 py-6 font-heading text-xs text-white/50">
                     <p>&copy; {new Date().getFullYear()} Kinetiq. All rights reserved.</p>
                     <p className="uppercase tracking-[0.28em] text-white/35">Always in motion</p>
                     <a href="#main" className="text-white/50 underline-offset-4 hover:text-white hover:underline">

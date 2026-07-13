@@ -121,7 +121,7 @@ function ProofStat({ stat }: { stat: ProofStatData }) {
                                 <li key={item.text}>
                                     <Link
                                         href={item.href ?? "#"}
-                                        className="flex h-12 items-center justify-between gap-3 rounded-full border border-line bg-white px-4 text-left transition-colors hover:border-ink hover:shadow-[0_8px_20px_-12px_rgba(17,17,19,0.25)]"
+                                        className="flex h-12 items-center justify-between gap-3 rounded-none border border-line bg-white px-4 text-left transition-colors hover:border-ink hover:shadow-[0_8px_20px_-12px_rgba(17,17,19,0.25)]"
                                     >
                                         <span className="min-w-0 truncate font-heading text-sm font-semibold text-ink">
                                             {item.text}
@@ -140,7 +140,7 @@ function ProofStat({ stat }: { stat: ProofStatData }) {
                             {stat.proof.map((item) => (
                                 <li
                                     key={item.text}
-                                    className="rounded-full border border-line bg-white px-3.5 py-1.5 text-xs font-medium text-ink-soft"
+                                    className="rounded-none border border-line bg-white px-3.5 py-1.5 text-xs font-medium text-ink-soft"
                                 >
                                     {item.text}
                                 </li>
@@ -157,7 +157,7 @@ export default function ProofBand() {
     return (
         <section className="bg-surface">
             <FadeInWhenVisible>
-                <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+                <div className="container-wide py-16 md:py-20">
                     <div className="grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-10">
                         {stats.map((stat) => (
                             <ProofStat key={stat.label} stat={stat} />

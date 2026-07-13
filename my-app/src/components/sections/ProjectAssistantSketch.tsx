@@ -22,7 +22,7 @@ export default function ProjectAssistantSketch({
         <DemoLoop label="kinetiq — project assistant">
             <div className="space-y-6 p-6 md:p-8">
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1 font-heading text-xs font-medium uppercase tracking-[0.14em] text-muted">
+                    <span className="inline-flex items-center gap-1.5 rounded-none border border-line px-3 py-1 font-heading text-xs font-medium uppercase tracking-[0.14em] text-muted">
                         <span className="size-1.5 rounded-full bg-ink" />
                         AI project assistant — preview
                     </span>
@@ -45,18 +45,18 @@ export default function ProjectAssistantSketch({
                             key={q}
                             type="button"
                             disabled
-                            className="cursor-not-allowed rounded-full border border-line bg-surface px-4 py-2 text-left text-sm text-ink-soft"
+                            className="cursor-not-allowed rounded-none border border-line bg-surface px-4 py-2 text-left text-sm text-ink-soft"
                         >
                             {q}
                         </button>
                     ))}
                 </div>
 
-                <div className="flex items-center gap-3 rounded-full border border-line bg-surface px-5 py-3.5">
+                <div className="flex items-center gap-3 rounded-none border border-line bg-surface px-5 py-3.5">
                     <span className="flex-1 truncate text-sm text-muted">
                         Ask a question about this project…
                     </span>
-                    <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-ink font-heading text-sm text-white">
+                    <span className="flex size-9 shrink-0 items-center justify-center rounded-none bg-ink font-heading text-sm text-white">
                         →
                     </span>
                 </div>

@@ -5,7 +5,7 @@ import { services } from "@/data/services";
 
 export default function ExpertiseGrid() {
     return (
-        <section className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+        <section className="container-wide py-24 md:py-32">
             <FadeInWhenVisible>
                 <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
                     What we do

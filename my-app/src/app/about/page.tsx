@@ -54,7 +54,7 @@ const process = [
 export default function AboutPage() {
     return (
         <main>
-            <section className="mx-auto max-w-6xl px-6 pb-16 pt-36 md:pt-44">
+            <section className="container-wide pb-16 pt-36 md:pt-44">
                 <FadeInWhenVisible>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
                         About
@@ -65,7 +65,7 @@ export default function AboutPage() {
                 </FadeInWhenVisible>
             </section>
 
-            <section className="mx-auto max-w-6xl px-6 pb-20">
+            <section className="container-wide pb-20">
                 <div className="grid gap-10 md:grid-cols-[220px_1fr]">
                     <FadeInWhenVisible>
                         <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
@@ -103,7 +103,7 @@ export default function AboutPage() {
             <ProofBand />
 
             {/* how we work */}
-            <section className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+            <section className="container-wide py-24 md:py-32">
                 <FadeInWhenVisible>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
                         How we work
@@ -134,7 +134,7 @@ export default function AboutPage() {
             </section>
 
             {/* values */}
-            <section className="mx-auto max-w-6xl px-6 pb-24 md:pb-32">
+            <section className="container-wide pb-24 md:pb-32">
                 <FadeInWhenVisible>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
                         Values

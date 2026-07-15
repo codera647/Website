@@ -14,8 +14,8 @@ export default function ClosingCTA() {
                         Have a system worth building?
                     </h2>
                     <p className="mx-auto mt-6 max-w-md text-lg text-white/60">
-                        A process to automate, a platform to ship, or an idea to prototype —
-                        let&apos;s talk it through.
+                        A process to automate, a platform to ship, or an idea to
+                        prototype. Let&apos;s talk it through.
                     </p>
                     <BracketButton href="/contact" className="mt-10">
                         Let&apos;s talk

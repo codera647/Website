@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
-import StaggerList from "@/components/motion/StaggerList";
 import ServiceDemoBlock from "@/components/sections/ServiceDemoBlock";
+import ProcessSection from "@/components/sections/ProcessSection";
 import ClosingCTA from "@/components/sections/ClosingCTA";
-import { services, process } from "@/data/services";
+import { services } from "@/data/services";
 
 export const metadata: Metadata = {
     title: "Services — Kinetiq",
@@ -77,26 +77,8 @@ export default function ServicesPage() {
                 </section>
             ))}
 
-            {/* how we work */}
-            <section className="container-wide py-24 md:py-32">
-                <FadeInWhenVisible>
-                    <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
-                        How we work
-                    </p>
-                    <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-                        Four steps, no surprises.
-                    </h2>
-                </FadeInWhenVisible>
-                <StaggerList className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" stagger={0.12}>
-                    {process.map((p) => (
-                        <div key={p.step} className="rounded-2xl border border-line bg-white p-7">
-                            <p className="font-heading text-sm font-semibold text-muted">{p.step}</p>
-                            <h3 className="mt-3 font-heading text-xl font-semibold">{p.title}</h3>
-                            <p className="mt-3 text-sm leading-relaxed text-muted">{p.text}</p>
-                        </div>
-                    ))}
-                </StaggerList>
-            </section>
+            {/* how we work — same section as the About page */}
+            <ProcessSection title="Four steps, no surprises." />
 
             <ClosingCTA />
         </main>

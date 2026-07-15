@@ -6,7 +6,7 @@ import { services } from "@/data/services";
 
 const TAGLINE = "Always in motion.";
 const SUBHEAD =
-    "A studio engineering intelligent systems — AI automation, web development, and generative AI that power what's next.";
+    "A studio engineering intelligent systems. We deliver AI automation, web development, and generative AI that power what's next.";
 
 /** value keywords surfaced right in the hero (full cards live on /about) */
 const VALUE_CHIPS = [
@@ -128,7 +128,7 @@ export default function Hero() {
                         >
                             <Link
                                 href={`/services#${service.anchor}`}
-                                className="group flex h-full flex-col rounded-2xl border border-line bg-white p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-ink hover:shadow-[0_20px_48px_-24px_rgba(0,0,0,0.35)]"
+                                className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-white p-6"
                             >
                                 <div className="flex items-center justify-between">
                                     <span className="font-heading text-sm font-semibold text-muted transition-colors group-hover:text-ink">

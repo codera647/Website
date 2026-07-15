@@ -20,7 +20,7 @@ export default function ExpertiseGrid() {
                     <Link
                         key={service.id}
                         href={`/services#${service.anchor}`}
-                        className="group flex h-full flex-col rounded-2xl border border-line bg-white p-8 transition-colors hover:border-ink"
+                        className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-white p-8"
                     >
                         <h3 className="font-heading text-xl font-semibold">{service.title}</h3>
                         <p className="mt-1 font-heading text-sm text-muted">{service.tagline}</p>

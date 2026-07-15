@@ -59,6 +59,53 @@ html {
   }
 }
 
+/* ============================================================
+   Standard card hover — one class for every content card on the
+   site (work/project cards keep their own invert-hover instead).
+   Lift + ink border + soft shadow + a progress line that sweeps
+   along the bottom edge (drawn with ::after, no extra markup).
+   ============================================================ */
+.card-hover {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card-hover::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--color-ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-ink);
+  box-shadow: 0 20px 48px -24px rgba(0, 0, 0, 0.35);
+}
+
+.card-hover:hover::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-hover,
+  .card-hover::after {
+    transition: none;
+  }
+  .card-hover:hover {
+    transform: none;
+  }
+}
+
 body {
   background: var(--color-background);
   color: var(--color-ink);

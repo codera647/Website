@@ -14,9 +14,9 @@ import TypingText from "@/components/motion/TypingText";
 const NAME = "Abdul Moiz";
 const ROLE = "Co-founder & CTO";
 const INTRO =
-    "Leads engineering across production-grade LLM, RAG, and agentic AI — from multi-tenant retrieval platforms to real-time computer vision and robotics.";
+    "Leads engineering across production-grade LLM, RAG, and agentic AI, from multi-tenant retrieval platforms to real-time computer vision and robotics.";
 const BIO_EXTENDED =
-    "Kinetiq started from a simple frustration: too much AI that demos well and too little that survives production. Abdul builds the kind that survives — systems with tests, monitoring, and documentation, shipped by a small team that stays hands-on from first architecture sketch to the last deploy.";
+    "Kinetiq began with a simple observation: plenty of AI demos well, and far less of it survives production. Abdul builds the kind that survives. Every system ships with tests, monitoring, and documentation, delivered by a small team that stays hands-on from the first architecture sketch to the final deploy.";
 
 const FOCUS_AREAS = [
     "LLM & RAG systems",

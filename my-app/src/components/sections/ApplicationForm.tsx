@@ -92,7 +92,7 @@ export default function ApplicationForm({ roleTitle }: Props) {
             <div className="rounded-2xl border border-white/10 bg-white/5 p-10 text-center">
                 <p className="font-heading text-2xl font-semibold text-white">Application sent.</p>
                 <p className="mt-3 text-white/60">
-                    Thanks for applying to {roleTitle} — a real person reads every
+                    Thanks for applying to {roleTitle}. A real person reads every
                     application and will get back to you.
                 </p>
                 <button

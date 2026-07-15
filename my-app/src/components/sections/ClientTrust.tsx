@@ -44,7 +44,7 @@ export default function ClientTrust() {
                     {testimonials.map((t) => (
                         <figure
                             key={t.name}
-                            className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-white p-8 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-ink hover:shadow-[0_32px_64px_-32px_rgba(17,17,19,0.35)] md:p-10"
+                            className="card-hover group flex h-full flex-col rounded-3xl border border-line bg-white p-8 md:p-10"
                         >
                             <span
                                 aria-hidden="true"

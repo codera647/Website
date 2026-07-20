@@ -1,7 +1,9 @@
 import Link from "next/link";
+import FooterMaps from "@/components/nav/FooterMaps";
 
 const CONTACT_EMAIL = "info@thekinetiq.solutions";
 const LINKEDIN_URL = "https://www.linkedin.com/company/kinetiq-site/";
+const INSTAGRAM_URL = "https://www.instagram.com/thekinetiq.solutions/";
 /** opens Gmail's web compose (logged-in browser tab) instead of the
  *  OS default mail app, pre-addressed to us */
 const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}`;
@@ -13,6 +15,29 @@ const sitemap = [
     { href: "/about", label: "About" },
     { href: "/careers", label: "Careers" },
     { href: "/contact", label: "Contact" },
+];
+
+const socials = [
+    {
+        href: LINKEDIN_URL,
+        label: "LinkedIn",
+        icon: (
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-[18px]">
+                <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.59 0 4.25 2.36 4.25 5.44v6.3zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
+            </svg>
+        ),
+    },
+    {
+        href: INSTAGRAM_URL,
+        label: "Instagram",
+        icon: (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true" className="size-[18px]">
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+            </svg>
+        ),
+    },
 ];
 
 export default function Footer() {
@@ -66,17 +91,24 @@ export default function Footer() {
                                 {CONTACT_EMAIL}
                             </a>
                         </li>
-                        <li>
+                    </ul>
+
+                    <div className="mt-5 flex items-center gap-3">
+                        {socials.map((social) => (
                             <a
-                                href={LINKEDIN_URL}
+                                key={social.label}
+                                href={social.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-ink-soft hover:text-ink"
+                                aria-label={social.label}
+                                className="flex size-9 items-center justify-center rounded-none border border-line text-ink-soft transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-white"
                             >
-                                LinkedIn
+                                {social.icon}
                             </a>
-                        </li>
-                    </ul>
+                        ))}
+                    </div>
+
+                    <FooterMaps />
                 </div>
             </div>
         </footer>

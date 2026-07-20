@@ -70,7 +70,7 @@ export default function SiteChatWidget() {
                 {open && (
                     <motion.div
                         role="dialog"
-                        aria-label="Kinetiq assistant"
+                        aria-label="Motion — Kinetiq assistant"
                         initial={{ opacity: 0, y: 16, scale: 0.97 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 16, scale: 0.97 }}
@@ -80,15 +80,15 @@ export default function SiteChatWidget() {
                         <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
                             <div>
                                 <p className="font-heading text-sm font-semibold text-white">
-                                    Kinetiq assistant
+                                    Motion
                                 </p>
                                 <p className="font-heading text-xs text-white/45">
-                                    Ask about services, process, or past work
+                                    Kinetiq&apos;s assistant — ask about services, process, or past work
                                 </p>
                             </div>
                             <button
                                 type="button"
-                                aria-label="Close assistant"
+                                aria-label="Close Motion"
                                 onClick={() => setOpen(false)}
                                 className="flex size-7 shrink-0 items-center justify-center rounded-none text-white/50 hover:bg-white/10 hover:text-white"
                             >
@@ -112,28 +112,53 @@ export default function SiteChatWidget() {
                                 </div>
                             )}
 
-                            {messages.map((m, i) =>
-                                m.role === "user" ? (
-                                    <div
+                            <AnimatePresence initial={false}>
+                                {messages.map((m, i) => (
+                                    <motion.div
                                         key={i}
-                                        className="ml-auto max-w-[85%] rounded-2xl rounded-br-sm bg-white px-4 py-2.5 text-sm text-ink"
+                                        initial={{ opacity: 0, y: 8 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                                        className={
+                                            m.role === "user"
+                                                ? "ml-auto max-w-[85%] rounded-2xl rounded-br-sm bg-white px-4 py-2.5 text-sm text-ink"
+                                                : "mr-auto max-w-[85%] rounded-2xl rounded-bl-sm bg-white/10 px-4 py-2.5 text-sm leading-relaxed text-white/90"
+                                        }
                                     >
-                                        {m.text}
-                                    </div>
-                                ) : (
-                                    <MarkdownLite
-                                        key={i}
-                                        text={m.text}
-                                        className="mr-auto max-w-[85%] space-y-2 rounded-2xl rounded-bl-sm bg-white/10 px-4 py-2.5 text-sm leading-relaxed text-white/90"
-                                    />
-                                )
-                            )}
+                                        {m.role === "user" ? (
+                                            m.text
+                                        ) : (
+                                            <MarkdownLite text={m.text} className="space-y-2" />
+                                        )}
+                                    </motion.div>
+                                ))}
 
-                            {pending && (
-                                <div className="mr-auto max-w-[85%] rounded-2xl rounded-bl-sm bg-white/10 px-4 py-2.5 text-sm text-white/50">
-                                    Thinking…
-                                </div>
-                            )}
+                                {pending && (
+                                    <motion.div
+                                        key="typing"
+                                        initial={{ opacity: 0, y: 8 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 0.2 }}
+                                        aria-label="Motion is typing"
+                                        className="mr-auto flex max-w-[85%] items-center gap-1.5 rounded-2xl rounded-bl-sm bg-white/10 px-4 py-3.5"
+                                    >
+                                        {[0, 1, 2].map((dot) => (
+                                            <motion.span
+                                                key={dot}
+                                                className="size-1.5 rounded-full bg-white/60"
+                                                animate={{ y: [0, -4, 0], opacity: [0.4, 1, 0.4] }}
+                                                transition={{
+                                                    duration: 0.9,
+                                                    repeat: Infinity,
+                                                    ease: "easeInOut",
+                                                    delay: dot * 0.15,
+                                                }}
+                                            />
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                             {error && (
                                 <p className="text-xs text-red-300">{error}</p>
                             )}
@@ -165,15 +190,27 @@ export default function SiteChatWidget() {
                 )}
             </AnimatePresence>
 
-            <button
-                type="button"
-                onClick={() => setOpen((o) => !o)}
-                aria-label={open ? "Close assistant" : "Open Kinetiq assistant"}
-                aria-expanded={open}
-                className="flex size-14 items-center justify-center rounded-none bg-ink font-heading text-sm text-white shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] transition-transform hover:scale-105"
-            >
-                {open ? "✕" : "Ask"}
-            </button>
+            <div className="relative">
+                {/* pulsing halo — draws the eye to the assistant without
+                    introducing an off-brand accent color */}
+                {!open && (
+                    <motion.span
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 rounded-none border-2 border-white"
+                        animate={{ scale: [1, 1.4, 1], opacity: [0.7, 0, 0.7] }}
+                        transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                )}
+                <button
+                    type="button"
+                    onClick={() => setOpen((o) => !o)}
+                    aria-label={open ? "Close Motion" : "Open Motion, the Kinetiq assistant"}
+                    aria-expanded={open}
+                    className="relative flex size-14 items-center justify-center rounded-none border-2 border-white bg-ink font-heading text-sm text-white shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] transition-transform hover:scale-105"
+                >
+                    {open ? "✕" : "Ask"}
+                </button>
+            </div>
         </div>
     );
 }

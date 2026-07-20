@@ -63,28 +63,26 @@ export default function Hero() {
                     <HeroDots />
                 </h1>
 
-                <div className="mt-8 flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
-                    <div className="max-w-xl">
-                        <motion.p
-                            className="font-heading text-xl font-semibold text-ink md:text-2xl"
-                            initial={{ opacity: 0, y: 16 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                        >
-                            {TAGLINE}
-                        </motion.p>
-                        <motion.p
-                            className="mt-4 text-lg leading-relaxed text-muted"
-                            initial={{ opacity: 0, y: 16 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.42 }}
-                        >
-                            {SUBHEAD}
-                        </motion.p>
-                    </div>
+                <div className="mt-8 max-w-xl">
+                    <motion.p
+                        className="font-heading text-xl font-semibold text-ink md:text-2xl"
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                    >
+                        {TAGLINE}
+                    </motion.p>
+                    <motion.p
+                        className="mt-4 text-lg leading-relaxed text-muted"
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.42 }}
+                    >
+                        {SUBHEAD}
+                    </motion.p>
 
                     <motion.div
-                        className="flex shrink-0 flex-wrap items-center gap-4"
+                        className="mt-8 flex flex-wrap items-center gap-4"
                         initial={{ opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.55 }}

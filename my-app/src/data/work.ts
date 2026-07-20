@@ -35,11 +35,11 @@ export const caseStudies: CaseStudy[] = [
         year: "2025",
         featured: true,
         challenge:
-            "Organizations sit on huge document collections — drives, wikis, reports — that are effectively unsearchable. Keyword search misses context; manual review doesn't scale. [DRAFT]",
+            "Organizations sit on vast document collections spread across drives, wikis, and reports that are effectively unsearchable. Keyword search misses context, and manual review does not scale.",
         solution:
-            "Synapse connects data sources like Google Drive, processes thousands of documents into secure per-tenant libraries, and combines keyword, semantic, and contextual retrieval with a reasoning layer that produces answers, summaries, charts, and reports. [DRAFT]",
+            "Synapse connects data sources such as Google Drive, processes thousands of documents into secure per-tenant libraries, and combines keyword, semantic, and contextual retrieval with a reasoning layer that produces answers, summaries, charts, and reports.",
         result:
-            "Enterprise-ready knowledge search with strict data isolation and GPU-accelerated processing — answers in seconds instead of hours of manual digging. [DRAFT]",
+            "Enterprise-ready knowledge search with strict data isolation and GPU-accelerated processing. Teams get answers in seconds instead of spending hours digging by hand.",
         metrics: [
             { value: "1000s", label: "documents indexed per library" },
             { value: "3", label: "retrieval modes combined" },
@@ -52,18 +52,18 @@ export const caseStudies: CaseStudy[] = [
         category: "Web Development",
         tags: ["EdTech", "Platform", "Payments"],
         summary:
-            "An online academy platform connecting students with qualified Quran teachers worldwide — scheduling, progress tracking, and payments included.",
+            "An online academy platform connecting students with qualified Quran teachers worldwide, with scheduling, progress tracking, and payments built in.",
         // TODO(user): provide /thumbnails/learn-quran-global.png like Synapse's
         thumbnail: "/lqg/lqfg-1.png",
         images: ["/lqg/lqfg-1.png", "/lqg/lqg-2.png", "/lqg/lqg-3.png"],
         year: "2025",
         featured: true,
         challenge:
-            "The academy needed a reliable platform serving students and teachers across time zones, intuitive enough for users of all ages. [DRAFT]",
+            "The academy needed a reliable platform serving students and teachers across time zones, intuitive enough for users of all ages.",
         solution:
-            "A full platform with student registration, teacher profiles, real-time class booking, progress tracking, and secure payment integration — built for clarity and reliability. [DRAFT]",
+            "A complete platform with student registration, teacher profiles, real-time class booking, progress tracking, and secure payment integration, built for clarity and reliability.",
         result:
-            "A stable production platform students and teachers use daily, delivered in a two-month engagement. [DRAFT]",
+            "A stable production platform that students and teachers use daily, delivered in a two-month engagement.",
         metrics: [
             { value: "2", label: "months to launch" },
             { value: "2-sided", label: "student + teacher platform" },
@@ -88,11 +88,11 @@ export const caseStudies: CaseStudy[] = [
         year: "2025",
         featured: true,
         challenge:
-            "Daily credit/debit bookkeeping was manual and error-prone — and the business needed software shaped around how khata actually works. [DRAFT]",
+            "Daily credit and debit bookkeeping was manual and error-prone, and the business needed software shaped around how khata records actually work.",
         solution:
-            "A desktop app built with input from actual jewelry business owners: customer profiles, transaction tracking, automatic balance updates, reporting, and backup/recovery. [DRAFT]",
+            "A desktop application built with input from working jewelry business owners, covering customer profiles, transaction tracking, automatic balance updates, reporting, and backup with recovery.",
         result:
-            "Cleaner records, fewer manual errors, and daily operations that take minutes instead of hours. [DRAFT]",
+            "Cleaner records, fewer manual errors, and daily operations that take minutes instead of hours.",
         metrics: [
             { value: "2", label: "months to delivery" },
             { value: "Auto", label: "balance calculation" },

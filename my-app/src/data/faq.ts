@@ -11,17 +11,17 @@ export const faqItems: FAQItem[] = [
     {
         question: "Do you work with startups or only enterprises?",
         answer:
-            "Both. We've shipped for solo founders, small businesses, and larger organizations. What matters is that the problem is real — if software or AI genuinely pays off for your workflow, we're interested.",
+            "Both. We've shipped for solo founders, small businesses, and larger organizations. What matters is that the problem is real. If software or AI genuinely pays off for your workflow, we're interested.",
     },
     {
         question: "How fast can you ship?",
         answer:
-            "A focused MVP typically ships in 4–8 weeks. We work in short iterations with honest demos of real progress, so you see working software from the first weeks — not a big reveal at the end.",
+            "A focused MVP typically ships in 4 to 8 weeks. We work in short iterations with honest demos of real progress, so you see working software from the first weeks rather than a single reveal at the end.",
     },
     {
         question: "Can you work with our existing systems and team?",
         answer:
-            "Yes. We regularly integrate with existing databases, APIs, and internal tools, and we're comfortable working alongside in-house engineers — including handing over clean, documented code your team can own.",
+            "Yes. We regularly integrate with existing databases, APIs, and internal tools, and we're comfortable working alongside in-house engineers. Every engagement ends with clean, documented code your team can own.",
     },
     {
         question: "How do you handle confidentiality and data security?",

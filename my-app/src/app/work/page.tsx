@@ -6,7 +6,7 @@ import ClosingCTA from "@/components/sections/ClosingCTA";
 import { caseStudies } from "@/data/work";
 
 export const metadata: Metadata = {
-    title: "Work — Kinetiq",
+    title: "Work | Kinetiq",
     description: "Selected projects designed, built, and shipped by Kinetiq.",
 };
 
@@ -22,8 +22,8 @@ export default function WorkPage() {
                         Built and shipped.
                     </h1>
                     <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-                        A selection of systems in production — across AI automation, web
-                        platforms, and generative AI.
+                        A selection of systems in production across AI automation,
+                        web platforms, and generative AI.
                     </p>
                 </FadeInWhenVisible>
             </section>

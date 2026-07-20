@@ -19,12 +19,12 @@ export default function ProjectAssistantSketch({
     suggestedQuestions,
 }: Props) {
     return (
-        <DemoLoop label="kinetiq — project assistant">
+        <DemoLoop label="kinetiq: project assistant">
             <div className="space-y-6 p-6 md:p-8">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                     <span className="inline-flex items-center gap-1.5 rounded-none border border-line px-3 py-1 font-heading text-xs font-medium uppercase tracking-[0.14em] text-muted">
                         <span className="size-1.5 rounded-full bg-ink" />
-                        AI project assistant — preview
+                        AI project assistant preview
                     </span>
                     <span className="font-heading text-xs text-muted">Coming soon</span>
                 </div>
@@ -34,8 +34,9 @@ export default function ProjectAssistantSketch({
                         Ask anything about {projectTitle}
                     </h3>
                     <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted">
-                        Grounded in the real build — architecture, decisions, and
-                        outcomes. Not a generic chatbot: it only knows this project.
+                        Grounded in the real build, including its architecture,
+                        decisions, and outcomes. This is not a generic chatbot. It
+                        only knows this project.
                     </p>
                 </div>
 

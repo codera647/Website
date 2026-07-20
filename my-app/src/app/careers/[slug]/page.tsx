@@ -18,7 +18,7 @@ export async function generateMetadata({
     const role = roles.find((r) => r.slug === slug);
     if (!role) return {};
     return {
-        title: `${role.title} — Careers at Kinetiq`,
+        title: `${role.title} | Careers at Kinetiq`,
         description: role.summary,
     };
 }
@@ -125,8 +125,8 @@ export default async function RolePage({
                                 Ready to apply for {role.title}?
                             </h2>
                             <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/60">
-                                Send your CV and a short note on why you&apos;re a fit —
-                                a real person reads every application.
+                                Send your CV and a short note on why you&apos;re a fit.
+                                A real person reads every application.
                             </p>
                         </div>
                         <div className="mt-10">

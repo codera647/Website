@@ -3,8 +3,8 @@ import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import ContactForm from "@/components/sections/ContactForm";
 
 export const metadata: Metadata = {
-    title: "Contact — Kinetiq",
-    description: "Tell us about the system you have in mind — we reply within one business day.",
+    title: "Contact | Kinetiq",
+    description: "Tell us about the system you have in mind. We reply within one business day.",
 };
 
 const CONTACT_EMAIL = "info@thekinetiq.solutions";
@@ -26,7 +26,7 @@ export default function ContactPage() {
                         Let&apos;s talk.
                     </h1>
                     <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-                        Tell us what you&apos;re building — or what&apos;s slowing you down.
+                        Tell us what you&apos;re building, or what&apos;s slowing you down.
                         We reply within one business day.
                     </p>
                 </FadeInWhenVisible>

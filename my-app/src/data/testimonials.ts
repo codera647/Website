@@ -30,11 +30,11 @@ export const testimonials: Testimonial[] = [
 
 /** short snippets for the fast marquee ticker */
 export const testimonialSnippets: string[] = [
-    "“Smooth and reassuring experience” — Learn Quran Global",
-    "“Simplified our daily operations” — Records",
-    "“Responsive throughout the process” — Learn Quran Global",
-    "“Practical, stable software” — Records",
-    "“Attention to detail and quality” — Learn Quran Global",
+    "“Smooth and reassuring experience” · Learn Quran Global",
+    "“Simplified our daily operations” · Records",
+    "“Responsive throughout the process” · Learn Quran Global",
+    "“Practical, stable software” · Records",
+    "“Attention to detail and quality” · Learn Quran Global",
 ];
 
 /** grayscale logo wall — TODO(user): real client logos */

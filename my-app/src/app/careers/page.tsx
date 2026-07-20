@@ -6,8 +6,8 @@ import OpenApplicationForm from "@/components/sections/OpenApplicationForm";
 import { roles } from "@/data/careers";
 
 export const metadata: Metadata = {
-    title: "Careers — Kinetiq",
-    description: "Open roles at Kinetiq — an AI automation, web development, and generative AI studio.",
+    title: "Careers | Kinetiq",
+    description: "Open roles at Kinetiq, an AI automation, web development, and generative AI studio.",
 };
 
 export default function CareersPage() {
@@ -22,9 +22,9 @@ export default function CareersPage() {
                         Build what&apos;s next, with us.
                     </h1>
                     <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-                        We&apos;re a small studio that ships real, production systems —
-                        not decks. If that&apos;s the kind of work you want to do, see
-                        what&apos;s open below.
+                        We&apos;re a small studio that ships real production systems,
+                        not slide decks. If that&apos;s the kind of work you want to
+                        do, see what&apos;s open below.
                     </p>
                 </FadeInWhenVisible>
             </section>
@@ -51,7 +51,7 @@ export default function CareersPage() {
                             <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted">
                                 We&apos;re not actively hiring, but we&apos;re always glad
                                 to hear from people doing great work. If that&apos;s you,
-                                drop your CV below — we read every one.
+                                drop your CV below. We read every one.
                             </p>
                             <a
                                 href="#send-cv"
@@ -77,7 +77,7 @@ export default function CareersPage() {
                                 Don&apos;t see your role? Send your CV.
                             </h2>
                             <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/60">
-                                Pick one of our openings — or tell us the role you think
+                                Pick one of our openings, or tell us the role you think
                                 we need. A real person reads every application.
                             </p>
                         </div>

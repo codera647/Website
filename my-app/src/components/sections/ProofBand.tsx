@@ -164,8 +164,8 @@ export default function ProofBand() {
                         ))}
                     </div>
                     <p className="mt-10 text-center text-xs text-muted/70">
-                        Every figure above is read straight from our case studies —
-                        nothing rounded up.
+                        Every figure above is read straight from our case studies.
+                        Nothing is rounded up.
                     </p>
                 </div>
             </FadeInWhenVisible>

@@ -137,7 +137,7 @@ export default function OpenApplicationForm({ openRoles }: Props) {
             >
                 <p className="font-heading text-2xl font-semibold text-white">CV received.</p>
                 <p className="mt-3 text-white/60">
-                    Thanks for reaching out — a real person reads every application
+                    Thanks for reaching out. A real person reads every application
                     and will get back to you if there&apos;s a fit.
                 </p>
                 <button
@@ -204,7 +204,7 @@ export default function OpenApplicationForm({ openRoles }: Props) {
                     <span className="text-white/40">
                         {openRoles.length > 0
                             ? "(pick an opening or type your own)"
-                            : "(no openings right now — type the role you want)"}
+                            : "(no openings right now, type the role you want)"}
                     </span>
                 </label>
                 <div className="relative">
@@ -284,8 +284,8 @@ export default function OpenApplicationForm({ openRoles }: Props) {
                                 ))
                             ) : (
                                 <li className="px-4 py-3 text-sm text-white/50">
-                                    No match — keep typing, we&apos;ll take your CV for
-                                    &ldquo;{fields.jobTitle.trim()}&rdquo; anyway.
+                                    No matching opening. Keep typing and we&apos;ll accept
+                                    your CV for &ldquo;{fields.jobTitle.trim()}&rdquo; anyway.
                                 </li>
                             )}
                         </motion.ul>

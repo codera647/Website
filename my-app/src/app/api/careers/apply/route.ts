@@ -67,7 +67,7 @@ export async function POST(request: Request) {
             from: FROM_EMAIL,
             to: CAREERS_TO,
             replyTo: email,
-            subject: `New application: ${title} — ${name}`,
+            subject: `New application: ${title} from ${name}`,
             text: bodyLines.join("\n"),
             attachments: [{ filename: cv.name || "resume", content: buffer }],
         });

@@ -14,11 +14,11 @@ const LOOP = { repeat: Infinity, repeatDelay: 5.5 };
 
 function AutomationDemo() {
     const steps = [
-        "Trigger — new order received",
-        "Agent — verify inventory & pricing",
-        "Agent — draft confirmation email",
-        "Action — update ledger + CRM",
-        "Notify — #operations",
+        "Trigger: new order received",
+        "Agent: verify inventory and pricing",
+        "Agent: draft confirmation email",
+        "Action: update ledger and CRM",
+        "Notify: #operations",
     ];
     return (
         <div className="space-y-2.5 p-5">
@@ -83,7 +83,7 @@ function CodeDemo() {
                 <span className="flex size-5 items-center justify-center rounded-none bg-ink text-xs text-white">
                     ✓
                 </span>
-                Build passed — deployed to production
+                Build passed. Deployed to production
             </motion.div>
         </div>
     );
@@ -91,9 +91,9 @@ function CodeDemo() {
 
 function RagDemo() {
     const results = [
-        { text: "Q3 supplier report — §4 delivery delays", score: 96 },
-        { text: "Ops review notes — schedule risks", score: 88 },
-        { text: "Procurement email thread — revised ETAs", score: 81 },
+        { text: "Q3 supplier report: delivery delays", score: 96 },
+        { text: "Ops review notes: schedule risks", score: 88 },
+        { text: "Procurement email thread: revised ETAs", score: 81 },
     ];
     return (
         <div className="space-y-3 p-5">

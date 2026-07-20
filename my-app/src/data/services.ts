@@ -26,7 +26,7 @@ export const services: Service[] = [
         title: "AI Automation",
         tagline: "Systems that work while you don't.",
         description:
-            "We design agentic workflows and automation pipelines that take repetitive work off your team's plate — from task automation to autonomous multi-step agents that reason, decide, and act.",
+            "We design agentic workflows and automation pipelines that take repetitive work off your team's plate, from task automation to autonomous agents that reason, decide, and act.",
         capabilities: [
             "Workflow automation",
             "Agentic systems",
@@ -43,7 +43,7 @@ export const services: Service[] = [
         title: "Web Development",
         tagline: "Production-grade, from day one.",
         description:
-            "From marketing sites to complex internal platforms, we build fast, scalable, production-ready web applications — engineered with the same rigor we bring to our AI systems.",
+            "From marketing sites to complex internal platforms, we build fast, scalable, production-ready web applications, engineered with the same rigor we bring to our AI systems.",
         capabilities: [
             "Full-stack engineering",
             "Next.js & React",
@@ -52,7 +52,7 @@ export const services: Service[] = [
         ],
         stack: ["TypeScript", "Next.js", "React", "Node.js", "Supabase", "Tailwind"],
         demoMockup: "code",
-        demoLabel: "deploy — production",
+        demoLabel: "deploy: production",
     },
     {
         id: "generative-ai",
@@ -60,7 +60,7 @@ export const services: Service[] = [
         title: "Generative AI",
         tagline: "Real products, not demos.",
         description:
-            "We build with the models shaping the next decade of software — retrieval-augmented systems, custom LLM pipelines, computer vision, and generative tools built for real problems, not demos.",
+            "We build with the models shaping the next decade of software: retrieval systems, custom LLM pipelines, computer vision, and generative tools built for real problems rather than demos.",
         capabilities: [
             "RAG systems",
             "LLM integration",
@@ -69,7 +69,7 @@ export const services: Service[] = [
         ],
         stack: ["Python", "LangChain", "LlamaIndex", "OpenCV", "Flask", "AWS"],
         demoMockup: "rag",
-        demoLabel: "search — knowledge base",
+        demoLabel: "search: knowledge base",
     },
 ];
 
@@ -78,7 +78,7 @@ export const process = [
     {
         step: "01",
         title: "Discover",
-        text: "We map your workflows, constraints, and goals — and find where software or AI actually pays off.",
+        text: "We map your workflows, constraints, and goals, and find where software or AI actually pays off.",
     },
     {
         step: "02",

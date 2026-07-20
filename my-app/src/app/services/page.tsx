@@ -6,9 +6,9 @@ import ClosingCTA from "@/components/sections/ClosingCTA";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
-    title: "Services — Kinetiq",
+    title: "Services | Kinetiq",
     description:
-        "AI automation, web development, and generative AI — designed, built, and shipped by Kinetiq.",
+        "AI automation, web development, and generative AI, designed, built, and shipped by Kinetiq.",
 };
 
 export default function ServicesPage() {
@@ -24,8 +24,9 @@ export default function ServicesPage() {
                         What we build.
                     </h1>
                     <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-                        Three disciplines, one standard: production-grade systems that hold up
-                        in the real world — shown below actually working, not just described.
+                        Three disciplines, one standard: production-grade systems that
+                        hold up in the real world. Each one is shown below actually
+                        working, not just described.
                     </p>
                 </FadeInWhenVisible>
             </section>
@@ -44,7 +45,7 @@ export default function ServicesPage() {
                     >
                         <FadeInWhenVisible>
                             <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
-                                0{i + 1} — {service.tagline}
+                                0{i + 1} · {service.tagline}
                             </p>
                             <h2 className="mt-4 text-4xl font-bold md:text-5xl">{service.title}</h2>
                             <p className="mt-5 max-w-md text-lg leading-relaxed text-muted">

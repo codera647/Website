@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { services } from "@/data/services";
+import HeroVideo from "@/components/motion/HeroVideo";
 
 const TAGLINE = "Always in motion.";
 const SUBHEAD =
@@ -45,7 +46,8 @@ function HeroDots() {
 export default function Hero() {
     return (
         <section className="relative overflow-hidden">
-            <div className="container-wide pb-20 pt-32 md:pt-40">
+            <HeroVideo />
+            <div className="container-wide relative z-10 pb-20 pt-32 md:pt-40">
                 {/* eyebrow — the three disciplines, immediately visible */}
                 <motion.p
                     className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted"

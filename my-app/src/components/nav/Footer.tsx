@@ -1,5 +1,7 @@
 import Link from "next/link";
 import FooterMaps from "@/components/nav/FooterMaps";
+import { services } from "@/data/services";
+import { featuredCaseStudies } from "@/data/work";
 
 const CONTACT_EMAIL = "info@thekinetiq.solutions";
 const LINKEDIN_URL = "https://www.linkedin.com/company/kinetiq-site/";
@@ -12,12 +14,26 @@ const TWITTER_URL = "#";
  *  OS default mail app, pre-addressed to us */
 const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}`;
 
-const sitemap = [
-    { href: "/", label: "Home" },
-    { href: "/services", label: "Services" },
-    { href: "/work", label: "Work" },
+/**
+ * Three topical link columns (Services / Work / Company) instead of one
+ * flat sitemap list — same idea as a typical agency footer (lots of
+ * scannable, categorized links), built from our own real content rather
+ * than copied labels: service anchors from data/services.ts and actual
+ * case studies from data/work.ts, so this stays correct as either changes.
+ */
+const serviceLinks = [
+    { href: "/services", label: "Services overview" },
+    ...services.map((s) => ({ href: `/services#${s.anchor}`, label: s.title })),
+];
+
+const workLinks = [
+    ...featuredCaseStudies.slice(0, 4).map((c) => ({ href: `/work/${c.slug}`, label: c.title })),
+    { href: "/work", label: "All work" },
+];
+
+const companyLinks = [
+    { href: "/about", label: "About Kinetiq" },
     { href: "/blog", label: "Blog" },
-    { href: "/about", label: "About" },
     { href: "/careers", label: "Careers" },
     { href: "/contact", label: "Contact" },
 ];
@@ -79,8 +95,8 @@ const socials = [
 export default function Footer() {
     return (
         <footer className="border-t border-line bg-surface">
-            <div className="container-wide grid gap-12 py-16 md:grid-cols-[1.5fr_1fr_1fr] md:py-20">
-                <div>
+            <div className="container-wide grid gap-x-8 gap-y-14 py-16 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.85fr_0.85fr_0.85fr_1fr] md:py-20">
+                <div className="sm:col-span-2 lg:col-span-1">
                     <p className="font-heading text-2xl font-bold tracking-tight">
                         kinet<span className="text-muted">iq</span>
                     </p>
@@ -94,16 +110,52 @@ export default function Footer() {
                     </p>
                 </div>
 
-                <nav aria-label="Footer">
+                <nav aria-label="Services">
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.24em] text-muted">
-                        Site
+                        Services
                     </p>
                     <ul className="mt-4 space-y-2.5">
-                        {sitemap.map((link) => (
+                        {serviceLinks.map((link) => (
                             <li key={link.href}>
                                 <Link
                                     href={link.href}
-                                    className="font-heading text-sm font-medium text-ink-soft hover:text-ink"
+                                    className="font-heading text-sm font-medium text-ink-soft underline-offset-4 transition-colors duration-300 hover:text-ink hover:underline"
+                                >
+                                    {link.label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+
+                <nav aria-label="Work">
+                    <p className="font-heading text-xs font-medium uppercase tracking-[0.24em] text-muted">
+                        Work
+                    </p>
+                    <ul className="mt-4 space-y-2.5">
+                        {workLinks.map((link) => (
+                            <li key={link.href}>
+                                <Link
+                                    href={link.href}
+                                    className="font-heading text-sm font-medium text-ink-soft underline-offset-4 transition-colors duration-300 hover:text-ink hover:underline"
+                                >
+                                    {link.label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+
+                <nav aria-label="Company">
+                    <p className="font-heading text-xs font-medium uppercase tracking-[0.24em] text-muted">
+                        Company
+                    </p>
+                    <ul className="mt-4 space-y-2.5">
+                        {companyLinks.map((link) => (
+                            <li key={link.href}>
+                                <Link
+                                    href={link.href}
+                                    className="font-heading text-sm font-medium text-ink-soft underline-offset-4 transition-colors duration-300 hover:text-ink hover:underline"
                                 >
                                     {link.label}
                                 </Link>
@@ -122,7 +174,7 @@ export default function Footer() {
                                 href={GMAIL_COMPOSE_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-ink-soft hover:text-ink"
+                                className="text-ink-soft underline-offset-4 transition-colors duration-300 hover:text-ink hover:underline"
                             >
                                 {CONTACT_EMAIL}
                             </a>

@@ -1,0 +1,34 @@
+The Humanoid Robot Race: From Pilot Programs to Production Floors
+
+Humanoid robots spent years as a research curiosity — a demo that looked great on a conference stage and did little else. That changed fast. Through 2025 and into 2026, humanoid platforms moved out of controlled pilots and into paid deployments. Tesla's Optimus Gen 2 is being iterated on the factory floor. 1X's NEO is shipping into people's actual homes instead of staying in a lab. And at CES 2026, Boston Dynamics unveiled its all-new **Electric Atlas**, an enterprise-grade humanoid built specifically for industrial work rather than research demos.
+
+## The Numbers Behind the Shift
+
+The global robotics market reached roughly **$38 billion in 2026**, up 34% year-over-year, and industry forecasts put global humanoid shipments above 510,000 units by 2030 — a compound annual growth rate approaching 95%.
+
+## What Actually Changed Isn't Just the Hardware
+
+Actuators, batteries, and manufacturing costs have all improved, sure. But the bigger unlock is the software stack: vision-language-action models and, increasingly, the world models covered in this blog's companion piece, which let one general-purpose control policy handle a much wider range of tasks than the hand-tuned, single-purpose robot programs of a decade ago. That's the real reason humanoids are commercially interesting now. A robot that needs reprogramming for every new task is a research project. A robot that doesn't is a product.
+
+## Pilot to Platform, Not Pilot to Solved
+
+The honest state of the industry is "pilot to platform," not "solved." Most commercial humanoid deployments today are still narrow — one pick-and-place task, one logistics loop, one inspection route — running on a general-purpose body because the hardware is finally reusable, even where the software isn't fully general yet. That's still real progress: the same physical robot can be retasked as the software improves, instead of the hardware going obsolete every time the job changes. Anyone evaluating humanoids in 2026 should keep that distinction in mind — what's running unsupervised on a factory floor today looks a lot less flashy than the demo reel.
+
+## Cost and Reliability, Not Looks, Decide Adoption
+
+Industrial buyers don't care how humanlike a robot looks. They care about **uptime, mean time between failures, and total cost of ownership** compared to a purpose-built machine or a human worker. That's pushing early adoption toward structured, repetitive environments — warehouses, manufacturing lines, controlled indoor spaces — where the perception and planning problem is more contained, well ahead of the messier environments (homes, public spaces, construction sites) that tend to dominate the headlines.
+
+## Build vs. Integrate — Sooner Than You'd Think
+
+For teams wondering whether humanoid robotics is relevant to their operations, here's the honest framing: this is already a build-vs-integrate decision, earlier than most people expect. Full in-house humanoid development is out of reach for the vast majority of businesses. But integrating an existing platform — its perception stack, its safety layer, its fleet management — into an existing workflow is a real, near-term systems integration problem. Not a decade-out one.
+
+## Our Take
+
+We approach humanoid and general-purpose robotics the way we approach every fast-moving frontier: worth understanding in depth, and worth being honest about where it's actually production-ready versus where it's still a pilot. As these platforms mature, the deciding factor for most businesses won't be the robot itself. It'll be the software, the data pipelines, and the integration work that ties it to everything else already running.
+
+Resources & further reading:
+- NVIDIA newsroom on physical AI models and partner humanoid platforms: https://nvidianews.nvidia.com/news/nvidia-releases-new-physical-ai-models-as-global-partners-unveil-next-generation-robots
+- State of Robotics 2026 report ($38B market, VLA adoption): https://www.roboticscenter.ai/state-of-robotics-2026
+- Humanoid Robotics In 2026: The Race From Pilot To Platform: https://kraneshares.com/humanoid-robotics-in-2026-the-race-from-pilot-to-platform/
+- Humanoid World Models — 2026 Report & Directory: https://humanoid.guide/the-humanoid-foundation-model-report/
+- Unitree Robotics open-source SDK and documentation (reference for evaluating open humanoid platforms): https://github.com/unitreerobotics

@@ -1,0 +1,35 @@
+From Vision-Language-Action to World Models: The New Architecture Behind General-Purpose Robots
+
+For the past few years, "robot intelligence" has mostly meant one thing: **vision-language-action (VLA) models**, systems that take a camera feed and a spoken instruction and turn them straight into motor commands. VLAs are what finally made general-purpose robot control feel possible. But 2025 and 2026 have brought a real shift in how the field thinks about the problem. Instead of mapping perception directly to action, the leading labs are now building world models — learned simulators that let a robot imagine what happens next before it commits to a move.
+
+## Teaching a Robot to Imagine
+
+The idea is easy to say and hard to build: give a robot an internal model of physics good enough that it can play out "what happens if I do this" a few steps into the future, then pick whichever action leads somewhere useful. NVIDIA's Cosmos and Google's Genie 2 are the two most visible examples. Both have shown that physical dynamics — gravity, friction, contact, the fact that objects don't just vanish — can be learned from raw video at a level of fidelity that's actually useful for planning, not just for making a convincing-looking clip. Early benchmarks suggest these predictive, world-model architectures more than double generalization compared to VLA baselines on tasks the robot was never explicitly trained on.
+
+## Why This Actually Matters
+
+Here's the thing people miss: **generalization**, not motor control, is robotics' real bottleneck. Building a warehouse robot that can pick up a box isn't hard anymore. Building one that can pick up a box it's never seen, sitting somewhere no engineer planned for, still is. A study published in early 2026 (known as EgoScale) gave the first solid evidence that robot foundation models follow the same data-driven scaling laws large language models do — performance improves predictably as pretraining data grows, instead of flatlining the way narrow, task-specific robot learning used to.
+
+## The Architecture Taking Shape
+
+A hierarchical stack is emerging as the default pattern:
+
+- A high-level reasoning layer, often a large vision-language model, handles task planning and breaks a spoken instruction into sub-goals
+- A lower-level control policy, increasingly informed by a world model, turns each sub-goal into precise motor commands
+
+Splitting the problem this way means teams can swap in a better reasoning model or a better control policy independently, instead of retraining one giant network every time either half improves.
+
+## Where to Start
+
+For teams building on this today, NVIDIA's **Isaac GR00T** is the easiest entry point — an open reference platform bundling a foundation VLA model, simulation tooling, and a runtime for real-time inference on Jetson-class hardware. Post-training and fine-tuning are now integrated directly into Hugging Face's LeRobot, so adapting it to your own robot doesn't mean starting from scratch.
+
+## Our Take
+
+We treat this the way we treat any fast-moving AI subfield: as infrastructure worth integrating thoughtfully, not chasing for its own sake. Robotics foundation models are turning into a real building block, closer to how the industry already thinks about large language models. The businesses that benefit will be the ones pairing them with solid data pipelines, honest evaluation, and a clear sense of where autonomy actually adds value versus where it just adds risk.
+
+Resources & further reading:
+- NVIDIA Isaac GR00T (open foundation model for generalist robots): https://github.com/NVIDIA/Isaac-GR00T
+- Isaac GR00T integration with Hugging Face LeRobot: https://huggingface.co/blog/nvidia/nvidia-isaac-gr00t-in-lerobot
+- Curated list of 2025-2026 robot foundation model research: https://github.com/jinruih2/Awesome-Robot-Foundation-Models-2025-2026
+- NVIDIA on physical AI and world models (National Robotics Week 2026): https://blogs.nvidia.com/blog/national-robotics-week-2026/
+- State of Robotics 2026 report (market size, VLA adoption): https://www.roboticscenter.ai/state-of-robotics-2026

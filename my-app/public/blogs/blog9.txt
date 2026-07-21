@@ -1,0 +1,36 @@
+Eyes in the Sky: How Edge AI Is Making Drones Truly Autonomous
+
+A drone that needs a remote pilot watching a video feed and steering it around every obstacle isn't really autonomous. It's remote-controlled. The meaningful shift happening in the drone industry through 2025 and 2026 is real intelligence moving onto the aircraft itself — onboard processors and **edge AI** systems that let a drone perceive its environment, avoid obstacles, navigate GPS-denied terrain, and coordinate with other drones in a swarm, all with minimal latency and without a human making every single call.
+
+## Why Perception Has to Run Onboard
+
+This is a direct consequence of the same forces reshaping computer vision more broadly. Object detection models efficient enough to run on small, power-constrained hardware — the kind covered in this blog's piece on YOLO26 — are exactly what makes real-time obstacle avoidance possible on a drone with limited compute, limited battery, and zero tolerance for network latency. A drone can't wait 300 milliseconds for a cloud inference call before deciding whether it's about to hit a power line. The model has to run locally, in real time, on the aircraft. That constraint has driven serious investment in lightweight, edge-optimized vision models, and drones (along with mobile robotics generally) are one of the clearest commercial cases forcing the tradeoff between model size and model accuracy.
+
+## Obstacle Avoidance Is Already Mature
+
+This is the most developed application of the shift. Open-source projects like PX4's Avoidance stack fuse depth sensor data with planning algorithms — a local planner for immediate, reactive dodging and a global planner for route-level path planning — running as ROS nodes directly on the flight computer. What used to require a human pilot's judgment and reaction time is now handled by onboard perception and planning software making the same call in a fraction of the time. That's a big part of why regulators have gotten comfortable relaxing visual-line-of-sight requirements, which this blog covers in more detail in a companion piece on the FAA's incoming Part 108 rule.
+
+## Swarm Coordination Is the Next Frontier
+
+Instead of one autonomous drone, the goal here is a fleet that shares situational awareness, splits up a task — covering a search area, mapping a site, inspecting a long stretch of infrastructure — and adapts as conditions change or individual units drop out, without a ground operator micromanaging every aircraft. Multi-agent coordination stacks are increasingly built on the same open flight-stack foundations as single-drone autonomy, since both PX4 and ArduPilot support multi-vehicle simulation and deployment, extended with communication and task-allocation layers on top. This is still less mature than single-drone obstacle avoidance. But it's the direction agricultural monitoring, search and rescue, and large-scale inspection are all heading — covering wide areas efficiently is fundamentally a multi-agent problem.
+
+## The Discipline Edge AI Still Needs
+
+None of this replaces good engineering judgment. Edge AI models have to be validated against real failure modes:
+
+- Sensor dropout
+- Unusual lighting
+- Terrain the model was never trained on
+
+A drone making a bad call about an obstacle has real physical consequences — nothing like a misclassified image sitting quietly in an offline dataset. The teams getting the most reliable results in 2026 pair capable edge models with conservative fallback behaviors, like hover-and-hold or return-to-home, instead of trusting perception models unconditionally. It's the same lesson generative AI and agentic systems have taught in every other domain: know when the model might be wrong, and build for that.
+
+## Our Take
+
+Drone autonomy sits right at the intersection of two things we already build: computer vision systems that have to run reliably on constrained hardware, and AI automation that has to make good decisions without constant supervision. As BVLOS regulation opens up and onboard AI keeps improving, we expect the gap between "drone with a camera" and "genuinely autonomous aerial system" to keep closing — and the software layer, not the airframe, is where most of that value actually gets built.
+
+Resources & further reading:
+- PX4-Avoidance: onboard obstacle detection and avoidance (ROS nodes): https://github.com/PX4/PX4-Avoidance
+- PX4 Autopilot main flight stack: https://github.com/PX4/PX4-Autopilot
+- Multi-drone swarm mission example (PX4/ArduPilot, ROS2, YOLO, LiDAR): https://github.com/JacopoPan/aerial-autonomy-stack
+- Autonomous UAV swarm mission reference implementation: https://github.com/AlexJinlei/Autonomous_UAVs_Swarm_Mission
+- 2026 autonomous drone technology overview: https://astral.us/blog/what-are-autonomous-drones-the-complete-2025-2026-guide/

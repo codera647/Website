@@ -1,0 +1,30 @@
+Part 108 Is Coming: What the FAA's New BVLOS Rules Mean for Autonomous Drones
+
+For years, the biggest constraint on commercial drone operations in the US wasn't the technology. It was the paperwork. Flying beyond visual line of sight (BVLOS) has required a case-by-case FAA waiver under Part 107 — slow, unpredictable, and enough of a headache that scaled operations like delivery, long-range inspection, or wide-area agricultural monitoring stayed commercially impractical for most companies. That's finally changing. The FAA's proposed **Part 108** rule, released in 2025, is expected to be finalized by spring 2026, with implementation beginning late 2026 into 2027 — replacing the waiver system with performance-based standards for routine BVLOS operations at low altitude.
+
+## The Scope of the Change
+
+This isn't a minor tweak. Under the proposed rule, drones weighing up to **1,320 pounds** could operate beyond visual line of sight — a huge jump from the 55-pound limit that's defined most commercial drone regulation under Part 107. That weight class opens the door to larger, more capable aircraft carrying better sensors, more redundant safety systems, and heavier payloads, operating routinely instead of under a special exemption. The commercial drone market reached roughly $38.2 billion in 2025 and is projected to grow to $189.9 billion by 2034. The delivery segment alone is expected to hit $6.8 billion by 2026, and that growth is tied directly to BVLOS becoming normal instead of exceptional.
+
+## It's Not Just the US
+
+The European Union Aviation Safety Agency (EASA) has kept developing its **U-Space** framework — standardized digital air traffic management for drones, the same idea as conventional air traffic control but built for uncrewed aircraft, aiming for a cohesive, cross-border system across member states. Companies operating internationally will need to design for both regimes at once, since the technical requirements around detect-and-avoid, remote identification, and airspace deconfliction aren't identical between the US and EU approaches, even as both are heading the same direction.
+
+## Regulation Is Catching Up to Autonomy
+
+Performance-based BVLOS rules exist because onboard AI has gotten good enough to make the safety case. Modern drones with edge AI can perceive their surroundings, detect and avoid obstacles and other aircraft, and hold a stable flight path without a remote pilot maintaining constant visual or radio contact. Part 108 is, in a real sense, regulatory catch-up with technology that's already been running under waivers for years — the rule change just makes it economical to deploy that technology at scale instead of one exemption at a time.
+
+## Why the Timing Matters
+
+For businesses weighing a drone program in 2026, timing is the whole story. Building or expanding a BVLOS-dependent operation — delivery, pipeline or powerline inspection, large-scale agricultural monitoring, search and rescue — makes far more sense to plan now, ahead of the implementation window, than to wait and scramble once every competitor is trying to scale at the same moment. The technical building blocks — detect-and-avoid, remote ID, flight stack — are already mature, open-source and commercial. The bottleneck has been regulatory, and that bottleneck is about to loosen.
+
+## Our Take
+
+We build the software layer that sits on top of drone hardware and flight stacks: mission planning, data pipelines, computer vision for inspection and monitoring, and the integration work that turns a capable airframe into something operationally useful. Regulatory shifts like Part 108 are exactly what turns a technically-possible drone use case into a commercially viable one — and we expect 2026-2027 to be a real inflection point between who builds actual BVLOS operations and who's still waiting for permission.
+
+Resources & further reading:
+- FAA Part 108 BVLOS proposed rule overview: https://uavcoach.com/inside-bvlos/
+- 2026 BVLOS market and regulatory analysis: https://droneintelligence.ai/intelligence/bvlos-drones-market
+- Drone industry 2026 trends (regulation, tech, market growth): https://www.thedroneu.com/blog/future-of-drones/
+- PX4 open-source autopilot (flight stack used across many BVLOS-capable platforms): https://github.com/PX4/PX4-Autopilot
+- ArduPilot open-source autopilot project: https://github.com/ArduPilot/ardupilot

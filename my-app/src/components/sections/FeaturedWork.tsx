@@ -19,18 +19,18 @@ export function WorkCard({
     return (
         <Link href={`/work/${slug}`} className="group relative block h-full">
             {/*
-              Compact by default on every screen (title + a persistent arrow
-              so it doesn't read as empty). At md+, hovering detaches this
-              box from the grid via `md:group-hover:absolute` so it can grow
-              downward and overlay the page — instead of growing the shared
-              CSS grid row track, which used to inflate every sibling card
-              in that row too. Below md there's no real hover, so the reveal
-              block is simply not rendered — mobile stays a plain, static,
-              tap-to-navigate card.
+              Grows IN FLOW on hover (no position:absolute detach), via the
+              grid-rows-[0fr]->[1fr] height trick below. Because the card
+              stays a normal grid item, CSS Grid's own row-sizing does the
+              "reposition" work for free: the row the hovered card sits in
+              grows to fit it, which pushes every row after it further down
+              the page — no manual repositioning, and nothing can overlap
+              the row below since that row simply moves. Cards sharing the
+              hovered card's row stretch to match (default grid behaviour),
+              which reads as the whole row responding together rather than
+              one card overlapping its neighbours.
             */}
-            <div
-                className="relative z-10 flex h-full min-h-[190px] flex-col justify-between overflow-hidden rounded-2xl border border-line bg-white p-7 pb-16 transition-colors duration-500 ease-out md:p-8 md:pb-16 md:group-hover:absolute md:group-hover:inset-x-0 md:group-hover:top-0 md:group-hover:z-20 md:group-hover:h-auto md:group-hover:min-h-[190px] md:group-hover:border-ink md:group-hover:bg-ink md:group-hover:shadow-[0_32px_64px_-24px_rgba(17,17,19,0.45)]"
-            >
+            <div className="relative z-10 flex h-full min-h-[190px] flex-col justify-between overflow-hidden rounded-2xl border border-line bg-white p-7 pb-16 transition-colors duration-500 ease-out md:p-8 md:pb-16 md:group-hover:border-ink md:group-hover:bg-ink md:group-hover:shadow-[0_32px_64px_-24px_rgba(17,17,19,0.45)]">
                 <div>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.18em] text-muted transition-colors duration-500 ease-out md:group-hover:text-white/50">
                         {category}
@@ -40,12 +40,12 @@ export function WorkCard({
                     </h3>
                 </div>
 
-                {/* always-visible affordance for the compact state; hides once the reveal panel takes over on hover. Pinned via absolute (not the flex flow) so it can't disturb the title/reveal spacing above. */}
-                <span className="absolute bottom-7 right-7 flex size-9 items-center justify-center rounded-none border border-line font-heading text-sm text-muted md:group-hover:hidden">
+                {/* always-visible affordance for the compact state; fades out once the reveal panel takes over on hover. */}
+                <span className="absolute bottom-7 right-7 flex size-9 items-center justify-center rounded-none border border-line font-heading text-sm text-muted transition-opacity duration-300 ease-out md:group-hover:opacity-0">
                     →
                 </span>
 
-                {/* hover reveal — md+ only: summary, tags, CTA. 0fr -> 1fr grid-row trick animates height with plain CSS */}
+                {/* hover reveal — md+ only: summary, tags, CTA. 0fr -> 1fr grid-row trick animates height smoothly */}
                 <div className="hidden md:grid md:grid-rows-[0fr] md:transition-[grid-template-rows] md:duration-500 md:ease-out md:group-hover:grid-rows-[1fr]">
                     <div className="overflow-hidden">
                         <p className="mt-5 text-sm leading-relaxed text-white/70">{summary}</p>
@@ -92,14 +92,8 @@ export default function FeaturedWork() {
                 </div>
             </FadeInWhenVisible>
 
-            {/*
-              has-[:hover]:pb-* reserves extra space below the grid whenever
-              any card inside is hovered, so the expanding card's overlay has
-              room to grow into without visually overlapping whatever section
-              comes next on the page.
-            */}
             <StaggerList
-                className="mt-14 grid gap-6 transition-[padding-bottom] duration-500 ease-out md:grid-cols-3 md:has-[:hover]:pb-64"
+                className="mt-14 grid gap-6 md:grid-cols-3"
                 itemClassName="h-full"
                 stagger={0.12}
             >

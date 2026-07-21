@@ -1,0 +1,35 @@
+Segment Anything Grows Up: How SAM 3 Changes What's Possible in Computer Vision
+
+Computer vision has quietly gone through the same shift language models went through a few years back: from narrow, task-specific models trained on a fixed list of labels, to general-purpose foundation models that respond to whatever you type at them. Meta's **Segment Anything Model** line is the clearest example of that shift. SAM 3, released in November 2025, added text-prompt segmentation that earlier versions simply didn't have. You can now ask it to segment "all yellow school buses" or "the player in the red jersey" in plain language, instead of clicking points or drawing boxes to steer it.
+
+## The Numbers Behind the Jump
+
+SAM 3 handles more than **270,000 unique concepts** in zero-shot settings — meaning it was never explicitly trained to recognize most of them — and scores 48.5 AP on the LVIS benchmark against roughly 38.5 for the previous best approach. That gap is the difference between a model that's fun in a demo and one that can actually hold up in a production pipeline, where whatever shows up in front of the camera has to be handled, not just the categories an engineering team happened to anticipate.
+
+## What Changed Under the Hood
+
+Two architectural choices explain most of the improvement:
+
+- A **presence token** that helps the model tell closely related prompts apart. Distinguishing "a player in white" from "a player in red" sounds trivial and isn't — earlier open-vocabulary models routinely got it wrong.
+- A **decoupled detector-tracker design**, which separates finding an object in a single frame from following it across video frames. That split reduces task interference and lets each half scale independently as more data comes in.
+
+A follow-up release, SAM 3.1, shipped in March 2026 with a shared-memory approach to multi-object tracking that's noticeably faster without giving up accuracy — worth knowing if you're running segmentation on live video rather than static images.
+
+## Everything Is Converging
+
+The bigger trend SAM 3 represents: detection, segmentation, grounding, and pointing — historically four separate computer vision tasks with four separate models — are merging into single models that handle all of it from one prompt. That has real engineering consequences. Teams that used to maintain three or four specialized models per pipeline can increasingly consolidate onto one foundation model, and spend their remaining effort on the parts of the problem that are actually specific to their product instead of on training yet another detector.
+
+## Foundation Models Aren't the Whole Story
+
+That doesn't mean foundation models replace every specialized model. For latency-critical, edge-deployed work, a purpose-built model is often still the right call — that's the subject of a companion piece on this blog about YOLO26. But for the early, exploratory stages of a computer vision project — figuring out what's even feasible, getting a first pipeline running, handling long-tail categories a fixed-label detector was never trained on — general vision foundation models have genuinely changed the economics of getting started.
+
+## Our Take
+
+We track shifts like this closely because they change what's realistic to build for a client on a real timeline. A capability that used to mean months of dataset labeling and model training can now, in the right cases, start from a foundation model and a well-written prompt instead — which frees up budget and engineering time for the integration work that actually determines whether a computer vision feature survives contact with production.
+
+Resources & further reading:
+- Official SAM 3 repository (inference, fine-tuning, checkpoints): https://github.com/facebookresearch/sam3
+- SAM 3 release notes and SAM 3.1 update: https://github.com/facebookresearch/sam3/releases
+- Predecessor model for comparison, SAM 2: https://github.com/facebookresearch/sam2
+- Roboflow's 2026 vision model rankings (SAM 3 benchmark scores): https://blog.roboflow.com/best-multimodal-models/
+- Overview of 2026 computer vision foundation model landscape: https://www.cluedotech.com/post/computer-vision-in-2026-foundation-models-locate-anything-and-what-actually-changed

@@ -104,6 +104,78 @@ export const caseStudies: CaseStudy[] = [
             role: "Records",
         },
     },
+    {
+        slug: "fo-intelligence",
+        title: "FO Intelligence",
+        category: "AI Automation",
+        tags: ["AI Pipeline", "RAG", "Data Enrichment"],
+        summary:
+            "An automated intelligence pipeline that discovers, enriches, and scores family office records from public sources, then serves them through a RAG-powered chat and search interface.",
+        // TODO(user): add real screenshots to /public/fo-intelligence/ and update these paths
+        thumbnail: "/fo-intelligence/1.png",
+        images: ["/fo-intelligence/1.png", "/fo-intelligence/2.png"],
+        year: "2026",
+        featured: false,
+        challenge:
+            "Family offices are a notoriously sparse research target — entity and contact data scattered across a single directory listing and hundreds of individual websites, none of it structured. Building a usable, current dataset by hand would take a research team weeks, and it would be stale again within a month.",
+        solution:
+            "A six-stage, resumable pipeline: discovery from a directory source, website crawling with GPT-4o-mini extraction, contact discovery through search-API queries and email-pattern inference, an enrichment pass that verifies domains and de-duplicates records, an analytical scoring stage that selects a curated top set, and finally embedding into a Qdrant vector database behind a FastAPI RAG service so the whole dataset can be queried in plain language through a React interface.",
+        result:
+            "A self-contained pipeline that goes from zero to a scored, searchable 28-column dataset with a working chat interface, deployed end-to-end — every stage writes its own JSON checkpoint, so any step can be re-run on its own without losing prior work.",
+        metrics: [
+            { value: "6", label: "pipeline stages" },
+            { value: "28", label: "data columns per record" },
+            { value: "50", label: "curated records served" },
+        ],
+    },
+    {
+        slug: "autobg",
+        title: "AutoBG",
+        category: "Generative AI",
+        tags: ["Computer Vision", "Diffusion Models", "Image Compositing"],
+        summary:
+            "An AI-powered studio tool that lifts a car cleanly off its background with GPU-accelerated matting, then composites it onto a photorealistic studio scene — either a built-in template or a fully AI-generated backdrop.",
+        // TODO(user): add real screenshots to /public/autobg/ and update these paths
+        thumbnail: "/autobg/1.png",
+        images: ["/autobg/1.png", "/autobg/2.png"],
+        year: "2026",
+        featured: false,
+        challenge:
+            "Professional car photography for dealerships and online listings normally means a physical studio, controlled lighting, and manual retouching — too slow and expensive for a seller who just wants one clean, consistent photo.",
+        solution:
+            "A FastAPI backend runs RMBG-2.0 on a GPU for a crisp, full-resolution alpha matte, then renders the result through one of three modes: composite onto a hand-built studio template with a generated floor reflection and contact shadow, generate the backdrop from scratch with an SDXL ControlNet inpainting pipeline guided by the car's edges, or blend an AI-relit reflection over an exact template floor. A deterministic realism pass — white-balance harmonization, edge light-wrap, floor-bounce relighting, and film grain — knits the cutout into the scene so it stops reading as pasted in.",
+        result:
+            "One upload produces a dealership-ready studio shot in seconds, on any car angle, because the pipeline grounds the reflection and shadow from the actual contact line in the alpha mask rather than a fixed bounding box.",
+        metrics: [
+            { value: "3", label: "render modes: template, AI, reflect-AI" },
+            { value: "2048px", label: "full-resolution GPU matting" },
+            { value: "GPU", label: "accelerated end-to-end pipeline" },
+        ],
+    },
+    {
+        slug: "queuecare",
+        title: "QueueCare",
+        category: "Web Development",
+        tags: ["Healthcare", "Firebase", "Real-time Queue"],
+        summary:
+            "A clinic queue and appointment platform that lets patients book, track, and get notified about their visit in real time, while clinics manage doctors, walk-ins, and queue flow from a live dashboard.",
+        // TODO(user): add real screenshots to /public/queuecare/ and update these paths
+        thumbnail: "/queuecare/1.png",
+        images: ["/queuecare/1.png", "/queuecare/2.png"],
+        year: "2026",
+        featured: false,
+        challenge:
+            "Clinic waiting rooms run on guesswork — patients have no visibility into how long they'll wait, and staff juggle doctor schedules, walk-ins, and appointment status changes by hand across paper and phone calls.",
+        solution:
+            "A Next.js web app built as a companion to an existing mobile app, sharing one Firebase project across both. Patients browse clinics, book by doctor, service, date, and slot, and follow a live active-booking tracker with push notifications. Clinics get doctor switching, a selected-date dashboard, walk-in intake, queue start/pause/resume/close controls, and weekly availability management, with cancellation rules kept consistent with the mobile app.",
+        result:
+            "A production web companion to the mobile app with real-time booking, live queue state, and Firebase Cloud Functions driving appointment reminders and status-update push notifications.",
+        metrics: [
+            { value: "2", label: "linked apps: patient + clinic" },
+            { value: "Real-time", label: "queue and booking state" },
+            { value: "Shared", label: "Firebase backend with mobile" },
+        ],
+    },
 ];
 
 export const featuredCaseStudies = caseStudies.filter((c) => c.featured);

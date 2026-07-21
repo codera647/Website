@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 
 /**
@@ -90,9 +91,25 @@ export default function BrandOutro() {
                 <div className="container-wide flex flex-wrap items-center justify-between gap-3 py-6 font-heading text-xs text-white/50">
                     <p>&copy; {new Date().getFullYear()} Kinetiq. All rights reserved.</p>
                     <p className="uppercase tracking-[0.28em] text-white/35">Always in motion</p>
-                    <a href="#main" className="text-white/50 underline-offset-4 hover:text-white hover:underline">
-                        Back to top
-                    </a>
+                    <div className="flex items-center gap-4">
+                        <Link
+                            href="/terms"
+                            className="text-white/50 underline-offset-4 hover:text-white hover:underline"
+                        >
+                            Terms
+                        </Link>
+                        <span aria-hidden="true" className="h-3 w-px bg-white/15" />
+                        <Link
+                            href="/privacy"
+                            className="text-white/50 underline-offset-4 hover:text-white hover:underline"
+                        >
+                            Privacy
+                        </Link>
+                        <span aria-hidden="true" className="h-3 w-px bg-white/15" />
+                        <a href="#main" className="text-white/50 underline-offset-4 hover:text-white hover:underline">
+                            Back to top
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>

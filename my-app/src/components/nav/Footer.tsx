@@ -4,6 +4,10 @@ import FooterMaps from "@/components/nav/FooterMaps";
 const CONTACT_EMAIL = "info@thekinetiq.solutions";
 const LINKEDIN_URL = "https://www.linkedin.com/company/kinetiq-site/";
 const INSTAGRAM_URL = "https://www.instagram.com/thekinetiq.solutions/";
+// TODO: swap in the real profile URLs once these are live.
+const FACEBOOK_URL = "#";
+const YOUTUBE_URL = "#";
+const TWITTER_URL = "#";
 /** opens Gmail's web compose (logged-in browser tab) instead of the
  *  OS default mail app, pre-addressed to us */
 const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}`;
@@ -36,6 +40,37 @@ const socials = [
                 <rect x="3" y="3" width="18" height="18" rx="5" />
                 <circle cx="12" cy="12" r="4" />
                 <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+            </svg>
+        ),
+    },
+    {
+        href: FACEBOOK_URL,
+        label: "Facebook",
+        icon: (
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-[18px]">
+                <path d="M13.5 21v-7.5h2.52l.38-3H13.5V8.5c0-.87.24-1.46 1.49-1.46h1.6V4.34c-.28-.04-1.22-.12-2.32-.12-2.3 0-3.87 1.4-3.87 3.98V10.5H8.2v3h2.7V21h2.6z" />
+            </svg>
+        ),
+    },
+    {
+        href: TWITTER_URL,
+        label: "X (Twitter)",
+        icon: (
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-[18px]">
+                <path d="M13.6 10.6 20.3 3h-1.6l-5.8 6.6L8.3 3H3l7.3 10.4L3 21h1.6l6.1-7 5 7H21zM11 12.6l-.7-1L4.8 4.2h2.4l4.5 6.4.7 1 5.9 8.4h-2.4L11 12.6z" />
+            </svg>
+        ),
+    },
+    {
+        href: YOUTUBE_URL,
+        label: "YouTube",
+        icon: (
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-[18px]">
+                <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M21.58 7.2a2.27 2.27 0 0 0-1.6-1.6C18.25 5.2 12 5.2 12 5.2s-6.25 0-7.98.4a2.27 2.27 0 0 0-1.6 1.6A23.7 23.7 0 0 0 2 12a23.7 23.7 0 0 0 .42 4.8c.22.78.82 1.38 1.6 1.6 1.73.4 7.98.4 7.98.4s6.25 0 7.98-.4a2.27 2.27 0 0 0 1.6-1.6c.28-1.58.41-3.19.42-4.8a23.7 23.7 0 0 0-.42-4.8zM10 15.2V8.8l5.5 3.2z"
+                />
             </svg>
         ),
     },

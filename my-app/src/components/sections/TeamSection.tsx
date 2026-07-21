@@ -10,7 +10,7 @@ import { team } from "@/data/team";
  */
 export default function TeamSection() {
     return (
-        <section className="bg-ink">
+        <section id="team" className="scroll-mt-24 bg-ink">
             <div className="container-wide py-24 md:py-32">
                 <FadeInWhenVisible>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-white/45">

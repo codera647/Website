@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { services } from "@/data/services";
-import HeroVideo from "@/components/motion/HeroVideo";
+import { team } from "@/data/team";
 
 const TAGLINE = "Always in motion.";
 const SUBHEAD =
@@ -43,11 +43,76 @@ function HeroDots() {
     );
 }
 
+/**
+ * Small "peek" of the team, pinned to the hero's right margin next to the
+ * empty space beside the wordmark. At rest it's just the two avatars,
+ * overlapping like a stacked-avatar CTA; on hover a text bar unfurls to
+ * their left (grid-template-columns 0fr→1fr — same width-reveal trick the
+ * work cards use for height) and the avatars themselves nudge left a touch,
+ * so the whole thing reads as "dragging open." Links to the team section
+ * on the About page. Desktop-only — there's no equivalent empty space
+ * beside the wordmark once it wraps on smaller screens.
+ */
+function HeroTeamPeek() {
+    return (
+        <motion.div
+            className="pointer-events-auto absolute right-0 top-40 z-10 hidden lg:top-48 xl:flex"
+            initial={{ opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+        >
+            <Link
+                href="/about#team"
+                aria-label="View the Kinetiq team"
+                className="group flex items-center rounded-full border border-ink-soft/60 bg-ink py-1.5 pl-1.5 pr-1.5 shadow-[0_8px_24px_-16px_rgba(17,17,19,0.5)] backdrop-blur-md transition-colors duration-300 ease-out hover:border-white/40"
+            >
+                {/* text bar — collapsed to zero width until hover */}
+                <span className="grid grid-cols-[0fr] transition-[grid-template-columns] duration-500 ease-out group-hover:grid-cols-[1fr]">
+                    <span className="overflow-hidden">
+                        <span className="flex items-center gap-1 whitespace-nowrap pl-3 pr-2 font-heading text-xs font-semibold text-white">
+                            View team
+                            <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-x-0.5">
+                                →
+                            </span>
+                        </span>
+                    </span>
+                </span>
+
+                {/* avatar stack — stays pinned to the margin, drifts left a touch on hover */}
+                <span className="flex -space-x-3 transition-transform duration-500 ease-out group-hover:-translate-x-1">
+                    {team.map((member, i) => (
+                        <span
+                            key={member.name}
+                            className="size-11 overflow-hidden rounded-full border-2 border-ink bg-ink-soft shadow-sm ring-1 ring-white/15 transition-transform duration-500 ease-out"
+                            style={{
+                                transitionDelay: `${i * 40}ms`,
+                                zIndex: team.length - i,
+                            }}
+                        >
+                            <img
+                                src={member.image}
+                                alt={member.name}
+                                loading="lazy"
+                                className="size-full object-cover object-top"
+                            />
+                        </span>
+                    ))}
+                </span>
+            </Link>
+        </motion.div>
+    );
+}
+
 export default function Hero() {
     return (
         <section className="relative overflow-hidden">
-            <HeroVideo />
-            <div className="container-wide relative z-10 pb-20 pt-32 md:pt-40">
+            {/* relative + the peek's right-0 anchors it to container-wide's own
+                right edge (its padding-box), i.e. the same gutter line every
+                other right-aligned element on the site respects — not the raw
+                viewport edge, which would drift away from the content on
+                ultra-wide screens once container-wide hits its max-width. */}
+            <div className="container-wide relative pb-20 pt-32 md:pt-40">
+                <HeroTeamPeek />
                 {/* eyebrow — the three disciplines, immediately visible */}
                 <motion.p
                     className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted"

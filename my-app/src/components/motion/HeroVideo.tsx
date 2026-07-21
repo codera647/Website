@@ -6,13 +6,21 @@ import { useReducedMotion } from "framer-motion";
 /**
  * Full-bleed hero background video (/hero_video.mp4) with a seamless
  * loop. The clip's first and last frames don't match, so a native
- * `loop` restart would visibly jump. Instead two players run the same
- * clip and crossfade: ~1s before the active copy ends, the standby
- * copy starts from frame 0 and fades in (with a light blur ramp on
- * the outgoing copy), so the restart reads as one continuous shot.
+ * loop alone would visibly jump. Two players run the same clip and
+ * crossfade near the end; the incoming copy starts from frame 0 so
+ * the restart reads as one continuous shot.
  *
- * A light veil sits on top so the hero's dark text stays readable.
- * Respects prefers-reduced-motion by not rendering the video at all.
+ * Robustness details:
+ * - the swap point is watched with requestAnimationFrame (timeupdate
+ *   only fires ~4x/second, which triggered the fade late and let the
+ *   outgoing copy freeze on its last frame mid-fade)
+ * - both players also carry the native `loop` attribute as a safety
+ *   net: if the fade outlasts the remaining footage, the outgoing
+ *   copy wraps to frame 0 and matches the incoming copy instead of
+ *   freezing, so the cut stays invisible
+ *
+ * A light veil sits on top for text readability. Respects
+ * prefers-reduced-motion by not rendering the video at all.
  */
 
 const CROSSFADE_S = 2.0;
@@ -33,9 +41,13 @@ export default function HeroVideo() {
 
         current.play().catch(() => {});
 
-        const onTime = () => {
-            if (swapping.current || !current.duration) return;
-            if (current.duration - current.currentTime <= CROSSFADE_S) {
+        let raf = 0;
+        const watch = () => {
+            if (
+                !swapping.current &&
+                current.duration &&
+                current.duration - current.currentTime <= CROSSFADE_S
+            ) {
                 swapping.current = true;
                 standby.currentTime = 0;
                 standby.play().catch(() => {});
@@ -45,19 +57,21 @@ export default function HeroVideo() {
                     current.pause();
                     current.currentTime = 0;
                     swapping.current = false;
-                }, CROSSFADE_S * 1000 + 100);
+                }, CROSSFADE_S * 1000 + 200);
+                return;
             }
+            raf = requestAnimationFrame(watch);
         };
+        raf = requestAnimationFrame(watch);
 
-        current.addEventListener("timeupdate", onTime);
-        return () => current.removeEventListener("timeupdate", onTime);
+        return () => cancelAnimationFrame(raf);
     }, [active, reduced]);
 
     if (reduced) return null;
 
     const videoClass = (isActive: boolean) =>
-        `absolute inset-0 h-full w-full object-cover transition-[opacity,filter] duration-[2000ms] ease-in-out ${
-            isActive ? "opacity-100 blur-0" : "opacity-0 blur-[6px]"
+        `absolute inset-0 h-full w-full object-cover transition-opacity duration-[2000ms] ease-in-out ${
+            isActive ? "opacity-100" : "opacity-0"
         }`;
 
     return (
@@ -66,6 +80,7 @@ export default function HeroVideo() {
                 ref={refA}
                 src="/hero_video.mp4"
                 muted
+                loop
                 playsInline
                 preload="auto"
                 className={videoClass(active === 0)}
@@ -74,6 +89,7 @@ export default function HeroVideo() {
                 ref={refB}
                 src="/hero_video.mp4"
                 muted
+                loop
                 playsInline
                 preload="auto"
                 className={videoClass(active === 1)}

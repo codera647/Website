@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import StaggerList from "@/components/motion/StaggerList";
 import ProofBand from "@/components/sections/ProofBand";
-import FounderSection from "@/components/sections/FounderSection";
+import TeamSection from "@/components/sections/TeamSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import ClosingCTA from "@/components/sections/ClosingCTA";
 
@@ -109,7 +109,7 @@ export default function AboutPage() {
                 </StaggerList>
             </section>
 
-            <FounderSection />
+            <TeamSection />
 
             <ClosingCTA />
         </main>

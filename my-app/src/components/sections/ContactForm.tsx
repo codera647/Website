@@ -53,7 +53,10 @@ export default function ContactForm() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(fields),
             });
-            const data = await res.json().catch(() => ({ ok: false }));
+            const data = (await res.json().catch(() => ({ ok: false }))) as {
+                ok: boolean;
+                error?: string;
+            };
 
             if (!res.ok || !data.ok) {
                 setServerError(data.error || "Something went wrong. Please try again.");

@@ -100,7 +100,10 @@ export default function OpenApplicationForm({ openRoles }: Props) {
             formData.set("cv", cv);
 
             const res = await fetch("/api/careers/apply", { method: "POST", body: formData });
-            const data = await res.json().catch(() => ({ ok: false }));
+            const data = (await res.json().catch(() => ({ ok: false }))) as {
+                ok: boolean;
+                error?: string;
+            };
 
             if (!res.ok || !data.ok) {
                 setServerError(data.error || "Something went wrong. Please try again.");

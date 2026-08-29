@@ -6,15 +6,19 @@ import FeaturedWork from "@/components/sections/FeaturedWork";
 import ClientTrust from "@/components/sections/ClientTrust";
 import FAQ from "@/components/sections/FAQ";
 import ClosingCTA from "@/components/sections/ClosingCTA";
+import { getAllProjects } from "@/lib/data";
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getAllProjects();
+  const featuredProjects = projects.filter((p) => p.featured);
+
   return (
     <main>
       <Hero />
-      <ProofBand />
+      <ProofBand projects={projects} />
       <ExpertiseGrid />
       <MarqueeBand />
-      <FeaturedWork />
+      <FeaturedWork projects={featuredProjects} />
       <ClientTrust />
       <FAQ />
       <ClosingCTA />

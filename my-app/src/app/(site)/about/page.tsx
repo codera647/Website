@@ -5,6 +5,7 @@ import ProofBand from "@/components/sections/ProofBand";
 import TeamSection from "@/components/sections/TeamSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import ClosingCTA from "@/components/sections/ClosingCTA";
+import { getAllProjects } from "@/lib/data";
 
 export const metadata: Metadata = {
     title: "About | Kinetiq",
@@ -32,7 +33,9 @@ const values = [
     },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+    const projects = await getAllProjects();
+
     return (
         <main>
             <section className="container-wide pb-16 pt-36 md:pt-44">
@@ -81,7 +84,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            <ProofBand />
+            <ProofBand projects={projects} />
 
             <ProcessSection />
 

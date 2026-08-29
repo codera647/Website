@@ -3,11 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import ProjectAssistantSketch from "@/components/sections/ProjectAssistantSketch";
-import { caseStudies } from "@/data/work";
-
-export function generateStaticParams() {
-    return caseStudies.map((c) => ({ slug: c.slug }));
-}
+import { getAllProjects, getProjectBySlug } from "@/lib/data";
 
 export async function generateMetadata({
     params,
@@ -15,7 +11,7 @@ export async function generateMetadata({
     params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
     const { slug } = await params;
-    const cs = caseStudies.find((c) => c.slug === slug);
+    const cs = await getProjectBySlug(slug);
     if (!cs) return {};
     return {
         title: `${cs.title} | Kinetiq Work`,
@@ -29,11 +25,12 @@ export default async function CaseStudyPage({
     params: Promise<{ slug: string }>;
 }) {
     const { slug } = await params;
-    const cs = caseStudies.find((c) => c.slug === slug);
+    const cs = await getProjectBySlug(slug);
     if (!cs) notFound();
 
-    const index = caseStudies.findIndex((c) => c.slug === slug);
-    const next = caseStudies[(index + 1) % caseStudies.length];
+    const allProjects = await getAllProjects();
+    const index = allProjects.findIndex((c) => c.slug === slug);
+    const next = allProjects[(index + 1) % allProjects.length];
 
     const suggestedQuestions = [
         `What problem did ${cs.title} solve?`,

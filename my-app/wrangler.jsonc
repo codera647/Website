@@ -21,10 +21,25 @@
       "service": "kinetiq-website"
     }
   ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "kinetiq-db",
+      "database_id": "7c73c09c-4849-42e9-9bb0-340046d1f70b"
+    }
+  ],
   "r2_buckets": [
-    // TODO(user): optional — add an R2 bucket binding named
-    // NEXT_INC_CACHE_R2_BUCKET here later to enable ISR/data-cache
-    // persistence across requests. Not required for launch.
+    {
+      "binding": "BUCKET",
+      "bucket_name": "kinetiq-rag-sources"
+    },
+    {
+      "binding": "IMAGES_BUCKET",
+      // separate from BUCKET (RAG sources auto-reindex into AI Search) —
+      // this one holds admin-uploaded project thumbnails/screenshots,
+      // served publicly via /api/images/[...path]
+      "bucket_name": "kinetiq-images"
+    }
   ],
   "images": {
     // enables Cloudflare's image optimization for next/image

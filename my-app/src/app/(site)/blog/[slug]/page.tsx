@@ -6,12 +6,8 @@ import StaggerList from "@/components/motion/StaggerList";
 import BlogCard from "@/components/blog/BlogCard";
 import RichText from "@/components/blog/RichText";
 import ClosingCTA from "@/components/sections/ClosingCTA";
-import { blogPosts, getPostBySlug, getRelatedPosts } from "@/data/blog";
-import { getBlogContent } from "@/lib/blog";
-
-export function generateStaticParams() {
-    return blogPosts.map((p) => ({ slug: p.slug }));
-}
+import { getBlogBySlug, getRelatedBlogPosts } from "@/lib/data";
+import { parseBlogBody } from "@/lib/blog";
 
 export async function generateMetadata({
     params,
@@ -19,7 +15,7 @@ export async function generateMetadata({
     params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
     const { slug } = await params;
-    const post = getPostBySlug(slug);
+    const post = await getBlogBySlug(slug);
     if (!post) return {};
     return {
         title: `${post.title} | Kinetiq Blog`,
@@ -41,11 +37,11 @@ export default async function BlogPostPage({
     params: Promise<{ slug: string }>;
 }) {
     const { slug } = await params;
-    const post = getPostBySlug(slug);
+    const post = await getBlogBySlug(slug);
     if (!post) notFound();
 
-    const { blocks, resources } = getBlogContent(post.file);
-    const related = getRelatedPosts(slug, 4);
+    const { blocks, resources } = parseBlogBody(post.content);
+    const related = await getRelatedBlogPosts(slug, 4);
 
     return (
         <main>

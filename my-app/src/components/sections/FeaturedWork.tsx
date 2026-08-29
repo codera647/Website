@@ -1,7 +1,7 @@
 import Link from "next/link";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import StaggerList from "@/components/motion/StaggerList";
-import { featuredCaseStudies } from "@/data/work";
+import type { Project } from "@/lib/data";
 
 export function WorkCard({
     slug,
@@ -72,7 +72,7 @@ export function WorkCard({
     );
 }
 
-export default function FeaturedWork() {
+export default function FeaturedWork({ projects }: { projects: Project[] }) {
     return (
         <section className="container-wide py-24 md:py-32">
             <FadeInWhenVisible>
@@ -97,7 +97,7 @@ export default function FeaturedWork() {
                 itemClassName="h-full"
                 stagger={0.12}
             >
-                {featuredCaseStudies.map((cs) => (
+                {projects.map((cs) => (
                     <WorkCard key={cs.slug} {...cs} />
                 ))}
             </StaggerList>

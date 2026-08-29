@@ -1,23 +1,17 @@
 /**
- * Reads + parses the blog articles in public/blogs/*.txt.
+ * Parses a blog post body (Markdown-ish plain text, stored in D1's
+ * `blogs.content` column) into render blocks + a resources list.
  *
- * Import this ONLY from server components (it uses `node:fs`). File format:
- *   line 1                          -> title (kept for validation; display
- *                                      title comes from src/data/blog.ts)
- *   blank-line-separated blocks, each one of:
- *     "## Heading text"             -> heading block
- *     several lines starting "- "   -> bullet list block
- *     anything else                 -> paragraph block
- *   inline "**bold**"               -> emphasis, parsed by RichText at render time
- *   "Resources & further reading:"  -> marks the start of the source list
- *   - Label: https://...              (one link per line, "- " prefixed)
+ * Format, blank-line-separated blocks, each one of:
+ *   "## Heading text"             -> heading block
+ *   several lines starting "- "   -> bullet list block
+ *   anything else                 -> paragraph block
+ * inline "**bold**"               -> emphasis, parsed by RichText at render time
+ * "Resources & further reading:"  -> marks the start of the source list
+ * - Label: https://...              (one link per line, "- " prefixed)
  *
- * Reading happens inside generateStaticParams-backed pages, so it runs at
- * build time (Node), not on the Cloudflare Workers runtime.
+ * Pure string parsing — safe to call from any server context (no `fs`).
  */
-
-import fs from "node:fs";
-import path from "node:path";
 
 const RESOURCES_HEADING = "Resources & further reading:";
 
@@ -32,7 +26,6 @@ export type BlogBlock =
     | { type: "list"; items: string[] };
 
 export interface BlogContent {
-    title: string;
     blocks: BlogBlock[];
     resources: BlogResourceLink[];
 }
@@ -68,17 +61,14 @@ function parseBodyBlocks(body: string): BlogBlock[] {
     });
 }
 
-export function getBlogContent(file: string): BlogContent {
-    const filePath = path.join(process.cwd(), "public", "blogs", file);
-    const raw = fs.readFileSync(filePath, "utf-8").replace(/\r\n/g, "\n");
+export function parseBlogBody(raw: string): BlogContent {
+    const normalized = raw.replace(/\r\n/g, "\n");
 
-    const resourcesIndex = raw.indexOf(RESOURCES_HEADING);
-    const bodyRaw = resourcesIndex === -1 ? raw : raw.slice(0, resourcesIndex);
-    const resourcesRaw = resourcesIndex === -1 ? "" : raw.slice(resourcesIndex + RESOURCES_HEADING.length);
+    const resourcesIndex = normalized.indexOf(RESOURCES_HEADING);
+    const bodyRaw = resourcesIndex === -1 ? normalized : normalized.slice(0, resourcesIndex);
+    const resourcesRaw = resourcesIndex === -1 ? "" : normalized.slice(resourcesIndex + RESOURCES_HEADING.length);
 
-    const bodyLines = bodyRaw.split("\n");
-    const title = (bodyLines[0] ?? "").trim();
-    const blocks = parseBodyBlocks(bodyLines.slice(1).join("\n"));
+    const blocks = parseBodyBlocks(bodyRaw);
 
     const resources = resourcesRaw
         .split("\n")
@@ -86,5 +76,5 @@ export function getBlogContent(file: string): BlogContent {
         .filter((l) => l.startsWith("-"))
         .map(parseResourceLine);
 
-    return { title, blocks, resources };
+    return { blocks, resources };
 }

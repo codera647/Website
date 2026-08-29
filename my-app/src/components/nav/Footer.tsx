@@ -1,7 +1,7 @@
 import Link from "next/link";
 import FooterMaps from "@/components/nav/FooterMaps";
 import { services } from "@/data/services";
-import { featuredCaseStudies } from "@/data/work";
+import type { Project } from "@/lib/data";
 
 const CONTACT_EMAIL = "info@thekinetiq.solutions";
 const LINKEDIN_URL = "https://www.linkedin.com/company/kinetiq-site/";
@@ -24,11 +24,6 @@ const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTA
 const serviceLinks = [
     { href: "/services", label: "Services overview" },
     ...services.map((s) => ({ href: `/services#${s.anchor}`, label: s.title })),
-];
-
-const workLinks = [
-    ...featuredCaseStudies.slice(0, 4).map((c) => ({ href: `/work/${c.slug}`, label: c.title })),
-    { href: "/work", label: "All work" },
 ];
 
 const companyLinks = [
@@ -92,7 +87,12 @@ const socials = [
     },
 ];
 
-export default function Footer() {
+export default function Footer({ featuredProjects }: { featuredProjects: Project[] }) {
+    const workLinks = [
+        ...featuredProjects.slice(0, 4).map((c) => ({ href: `/work/${c.slug}`, label: c.title })),
+        { href: "/work", label: "All work" },
+    ];
+
     return (
         <footer className="border-t border-line bg-surface">
             <div className="container-wide grid gap-x-8 gap-y-14 py-16 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.85fr_0.85fr_0.85fr_1fr] md:py-20">

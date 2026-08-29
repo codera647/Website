@@ -3,7 +3,7 @@ import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import StaggerList from "@/components/motion/StaggerList";
 import BlogCard from "@/components/blog/BlogCard";
 import ClosingCTA from "@/components/sections/ClosingCTA";
-import { getAllPosts } from "@/data/blog";
+import { getAllBlogPosts } from "@/lib/data";
 
 export const metadata: Metadata = {
     title: "Blog | Kinetiq",
@@ -11,8 +11,8 @@ export const metadata: Metadata = {
         "Notes on AI automation, robotics, computer vision, drones, and modern software engineering from the Kinetiq team.",
 };
 
-export default function BlogPage() {
-    const posts = getAllPosts();
+export default async function BlogPage() {
+    const posts = await getAllBlogPosts();
 
     return (
         <main>

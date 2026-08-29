@@ -1,15 +1,18 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts } from "@/data/blog";
-import { caseStudies } from "@/data/work";
+import { getAllBlogPosts, getAllProjects } from "@/lib/data";
 
 const BASE_URL = "https://thekinetiq.solutions";
 
+// projects/blogs are read live from D1 — no static generation here.
+export const dynamic = "force-dynamic";
+
 /**
- * Next.js sitemap generation — produces /sitemap.xml at build time.
+ * Next.js sitemap generation — produces /sitemap.xml at request time.
  * Covers all static pages, blog posts, and case study detail pages.
  */
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const now = new Date();
+    const [posts, projects] = await Promise.all([getAllBlogPosts(), getAllProjects()]);
 
     /* ── Static pages ─────────────────────────────────────────── */
     const staticPages: MetadataRoute.Sitemap = [
@@ -25,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ];
 
     /* ── Blog posts ───────────────────────────────────────────── */
-    const blogPages: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
+    const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
         url: `${BASE_URL}/blog/${post.slug}`,
         lastModified: new Date(post.date),
         changeFrequency: "monthly" as const,
@@ -33,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
 
     /* ── Case studies ─────────────────────────────────────────── */
-    const workPages: MetadataRoute.Sitemap = caseStudies.map((cs) => ({
+    const workPages: MetadataRoute.Sitemap = projects.map((cs) => ({
         url: `${BASE_URL}/work/${cs.slug}`,
         lastModified: now,
         changeFrequency: "monthly" as const,
@@ -42,4 +45,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     return [...staticPages, ...blogPages, ...workPages];
 }
-

@@ -4,8 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import Counter from "@/components/motion/Counter";
-import { caseStudies } from "@/data/work";
 import { services } from "@/data/services";
+import type { Project } from "@/lib/data";
 
 /**
  * Proof band — every number here is computed straight from the site's
@@ -29,46 +29,48 @@ interface ProofStatData {
     proof: ProofItem[];
 }
 
-const techStack = Array.from(new Set(services.flatMap((s) => s.stack)));
-const quotedCaseStudies = caseStudies.filter((cs) => cs.quote);
+function buildStats(projects: Project[]): ProofStatData[] {
+    const techStack = Array.from(new Set(services.flatMap((s) => s.stack)));
+    const quotedProjects = projects.filter((cs) => cs.quote);
 
-const stats: ProofStatData[] = [
-    {
-        to: caseStudies.length,
-        label:
-            caseStudies.length === 1
-                ? "system shipped to production"
-                : "systems shipped to production",
-        proofLabel: "the systems",
-        layout: "list",
-        proof: caseStudies.map((cs) => ({
-            text: cs.title,
-            sub: cs.category,
-            href: `/work/${cs.slug}`,
-        })),
-    },
-    {
-        to: quotedCaseStudies.length,
-        label:
-            quotedCaseStudies.length === 1
-                ? "client testimonial on record"
-                : "client testimonials on record",
-        proofLabel: "the clients",
-        layout: "list",
-        proof: quotedCaseStudies.map((cs) => ({
-            text: cs.quote!.name,
-            sub: cs.quote!.role,
-            href: `/work/${cs.slug}`,
-        })),
-    },
-    {
-        to: techStack.length,
-        label: "technologies in active use",
-        proofLabel: "the stack",
-        layout: "chips",
-        proof: techStack.map((tech) => ({ text: tech })),
-    },
-];
+    return [
+        {
+            to: projects.length,
+            label:
+                projects.length === 1
+                    ? "system shipped to production"
+                    : "systems shipped to production",
+            proofLabel: "the systems",
+            layout: "list",
+            proof: projects.map((cs) => ({
+                text: cs.title,
+                sub: cs.category,
+                href: `/work/${cs.slug}`,
+            })),
+        },
+        {
+            to: quotedProjects.length,
+            label:
+                quotedProjects.length === 1
+                    ? "client testimonial on record"
+                    : "client testimonials on record",
+            proofLabel: "the clients",
+            layout: "list",
+            proof: quotedProjects.map((cs) => ({
+                text: cs.quote!.name,
+                sub: cs.quote!.role,
+                href: `/work/${cs.slug}`,
+            })),
+        },
+        {
+            to: techStack.length,
+            label: "technologies in active use",
+            proofLabel: "the stack",
+            layout: "chips",
+            proof: techStack.map((tech) => ({ text: tech })),
+        },
+    ];
+}
 
 function ProofStat({ stat }: { stat: ProofStatData }) {
     const [open, setOpen] = useState(false);
@@ -153,7 +155,9 @@ function ProofStat({ stat }: { stat: ProofStatData }) {
     );
 }
 
-export default function ProofBand() {
+export default function ProofBand({ projects }: { projects: Project[] }) {
+    const stats = buildStats(projects);
+
     return (
         <section className="bg-surface">
             <FadeInWhenVisible>

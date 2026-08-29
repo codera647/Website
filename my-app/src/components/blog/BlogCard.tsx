@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { BlogPost } from "@/data/blog";
+import type { BlogPost } from "@/lib/data";
 
 function formatMonthYear(iso: string) {
     return new Date(iso).toLocaleDateString("en-US", { month: "long", year: "numeric" });

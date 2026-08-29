@@ -3,14 +3,15 @@ import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import StaggerList from "@/components/motion/StaggerList";
 import { WorkCard } from "@/components/sections/FeaturedWork";
 import ClosingCTA from "@/components/sections/ClosingCTA";
-import { caseStudies } from "@/data/work";
+import { getAllProjects } from "@/lib/data";
 
 export const metadata: Metadata = {
     title: "Work | Kinetiq",
     description: "Selected projects designed, built, and shipped by Kinetiq.",
 };
 
-export default function WorkPage() {
+export default async function WorkPage() {
+    const caseStudies = await getAllProjects();
     return (
         <main>
             <section className="container-wide pb-10 pt-36 md:pt-44">

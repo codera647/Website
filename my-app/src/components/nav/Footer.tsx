@@ -182,7 +182,7 @@ export default function Footer() {
                     </ul>
 
                     <div className="mt-5 flex items-center gap-3">
-                        {socials.map((social) => (
+                        {socials.filter((s) => s.href !== "#").map((social) => (
                             <a
                                 key={social.label}
                                 href={social.href}

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { services } from "@/data/services";
 import { team } from "@/data/team";
@@ -83,17 +84,18 @@ function HeroTeamPeek() {
                     {team.map((member, i) => (
                         <span
                             key={member.name}
-                            className="size-11 overflow-hidden rounded-full border-2 border-ink bg-ink-soft shadow-sm ring-1 ring-white/15 transition-transform duration-500 ease-out"
+                            className="relative size-11 overflow-hidden rounded-full border-2 border-ink bg-ink-soft shadow-sm ring-1 ring-white/15 transition-transform duration-500 ease-out"
                             style={{
                                 transitionDelay: `${i * 40}ms`,
                                 zIndex: team.length - i,
                             }}
                         >
-                            <img
+                            <Image
                                 src={member.image}
                                 alt={member.name}
-                                loading="lazy"
-                                className="size-full object-cover object-top"
+                                fill
+                                sizes="44px"
+                                className="object-cover object-top"
                             />
                         </span>
                     ))}

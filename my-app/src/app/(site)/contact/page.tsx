@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import ContactForm from "@/components/sections/ContactForm";
+import BookCallButton from "@/components/booking/BookCallButton";
 
 export const metadata: Metadata = {
     title: "Contact | Kinetiq",
@@ -12,7 +13,8 @@ const LINKEDIN_URL = "https://www.linkedin.com/company/kinetiq-site/";
 /** opens Gmail's web compose (logged-in browser tab) instead of the
  *  OS default mail app, pre-addressed to us — mirrors the footer link */
 const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}`;
-const CALENDLY_URL = "https://calendly.com/nex-gen-3023/meeting";
+const CAL_LINK_30MIN = "abdul-moiz/30min";
+const CAL_LINK_15MIN = "abdul-moiz/15min";
 
 export default function ContactPage() {
     return (
@@ -55,14 +57,20 @@ export default function ContactPage() {
                                 <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
                                     Prefer to talk?
                                 </p>
-                                <a
-                                    href={CALENDLY_URL}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="mt-3 inline-block rounded-none border border-line px-6 py-3 font-heading text-sm font-semibold transition-colors hover:border-ink"
-                                >
-                                    Book a 30-minute call →
-                                </a>
+                                <div className="mt-3 flex flex-wrap gap-3">
+                                    <BookCallButton
+                                        calLink={CAL_LINK_30MIN}
+                                        className="inline-block rounded-none border border-line px-6 py-3 font-heading text-sm font-semibold transition-colors hover:border-ink"
+                                    >
+                                        Book a 30-minute call →
+                                    </BookCallButton>
+                                    <BookCallButton
+                                        calLink={CAL_LINK_15MIN}
+                                        className="inline-block rounded-none border border-line px-6 py-3 font-heading text-sm font-semibold text-muted transition-colors hover:border-ink hover:text-ink"
+                                    >
+                                        Or a quick 15 minutes →
+                                    </BookCallButton>
+                                </div>
                             </div>
                             <div>
                                 <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">

@@ -37,7 +37,7 @@ const TIERS: PricingTier[] = [
         id: "foundation",
         name: "Foundation",
         setupOriginal: "$1,997",
-        setupFounding: "$997",
+        setupFounding: "$497",
         monthlyOriginal: "$697",
         monthlyFounding: "$497",
         tagline:
@@ -59,7 +59,7 @@ const TIERS: PricingTier[] = [
         badge: "Most Popular · Flagship",
         isPopular: true,
         setupOriginal: "$2,997",
-        setupFounding: "$1,497",
+        setupFounding: "$797",
         monthlyOriginal: "$1,297",
         monthlyFounding: "$897",
         tagline:
@@ -80,7 +80,7 @@ const TIERS: PricingTier[] = [
         id: "momentum-pro",
         name: "Momentum Pro",
         setupOriginal: "$4,997",
-        setupFounding: "$2,497",
+        setupFounding: "$1,297",
         monthlyOriginal: "$2,197",
         monthlyFounding: "$1,497",
         tagline:

@@ -56,13 +56,13 @@ PRICING & TIERS (/pricing):
 - Model: Outcome-priced software model — a smaller one-time setup/build fee plus a predictable monthly fee covering hosting, maintenance, automated workflows, and continuous search growth.
 - Founding Client Pricing (Limited to First 10 Businesses Total, locked in for life):
   1. Foundation Tier:
-     * Setup Fee: $997 (regular $1,997) | Monthly: $497/mo (regular $697/mo)
+     * Setup Fee: $497 (regular $1,997) | Monthly: $497/mo (regular $697/mo)
      * Includes: Modern mobile-first website, Google Business Profile optimization, 2 core automations (booking confirmation + post-service review request), 1 service territory local SEO, managed hosting & monthly report.
   2. Momentum Tier (⭐ Flagship / Recommended / Most Popular):
-     * Setup Fee: $1,497 (regular $2,997) | Monthly: $897/mo (regular $1,297/mo)
+     * Setup Fee: $797 (regular $2,997) | Monthly: $897/mo (regular $1,297/mo)
      * Includes: Everything in Foundation + Customer & Member Portal, full automated SMS/email library (reminders, win-backs, seasonal maintenance nudges), programmatic SEO across up to 8 towns, monthly 30-min strategy call, and full attribution dashboard.
   3. Momentum Pro Tier:
-     * Setup Fee: $2,497 (regular $4,997) | Monthly: $1,497/mo (regular $2,197/mo)
+     * Setup Fee: $1,297 (regular $4,997) | Monthly: $1,497/mo (regular $2,197/mo)
      * Includes: Everything in Momentum + Unlimited service-area pages, AI-assisted lead qualification & auto-booking chat agent, field-service / CRM integration (Housecall Pro, ServiceTitan, Jobber), monthly A/B conversion testing, priority SLA.
 - Terms & Guarantees:
   * No Long-Term Lock-In: Month-to-month after an initial 3-month ramp period.

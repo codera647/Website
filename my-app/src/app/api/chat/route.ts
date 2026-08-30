@@ -22,6 +22,7 @@ Formatting guidelines:
 - Use bullet lists (- item) or numbered lists (1. 2.) when listing features, steps, or metrics.
 - Keep paragraphs compact (1-3 sentences).
 - Never use markdown headings (#).
+- You can embed relevant project image artifacts or diagrams using standard Markdown image syntax \`![Caption / Description](/path/to/image.png)\` whenever visual architectures, workflows, or demo previews add value to the answer.
 - Answer accurately based on the provided project context. If something isn't covered in the context, be honest and suggest reaching out via the contact form.`;
 
 interface ChatRequestBody {
@@ -104,9 +105,14 @@ export async function POST(request: Request) {
             try {
                 const project = await getProjectBySlug(slug);
                 if (project) {
-                    sourcesList = [`${project.title} Knowledge Base`];
+                    sourcesList = [`${project.title} Documentation`];
                     const metricsStr = project.metrics?.map((m) => `${m.label}: ${m.value}`).join(", ") || "";
                     const tagsStr = project.tags?.join(", ") || "";
+
+                    const imagesList = Array.isArray(project.images) ? project.images : [];
+                    const imagesGuide = imagesList.length > 0
+                        ? `\n\nAVAILABLE IMAGE ARTIFACTS & DIAGRAMS:\n${imagesList.map((img) => `- ${img}`).join("\n")}\n\nIMAGE INSTRUCTION:\nWhen the user asks about the system architecture, ingestion pipeline, UI, or demo results, embed the relevant image artifact using \`![Clear Description](${imagesList[0]})\` syntax with the matching URL from the list above. Do not fabricate unlisted URLs.`
+                        : "";
 
                     contextualSystemPrompt += `\n\nYou are answering specifically about the project: "${project.title}".
 PROJECT DETAILS & CONTEXT:
@@ -117,8 +123,9 @@ PROJECT DETAILS & CONTEXT:
 - Architecture & Solution: ${project.solution || "N/A"}
 - Results & Impact: ${project.result || "N/A"}
 - Key Metrics: ${metricsStr}
+${imagesGuide}
 
-Use these project details as ground truth to answer the user's question thoroughly and accurately.`;
+Use these project details as ground truth to answer the user's question thoroughly, visually (when relevant), and accurately.`;
                 }
             } catch (dbErr) {
                 console.warn("Could not fetch project context from D1:", dbErr);

@@ -1,17 +1,19 @@
 /**
- * Minimal markdown renderer for chat responses — handles just what LLM
- * answers actually use: **bold**, `code`, *italic*, numbered lists, and
- * bullet lists, split into paragraphs. Deliberately not pulling in a full
- * markdown library (react-markdown, etc.) here to avoid adding another
- * dependency to a deploy pipeline that's already been fragile around
- * package versions on Cloudflare Workers.
+ * Minimal markdown renderer for chat responses — handles:
+ * **bold**, `code`, *italic*, numbered lists, bullet lists, and
+ * inline/block image artifacts ![alt](url) with captions.
  */
 
 import type { ReactNode } from "react";
 
+const IMAGE_BLOCK_RE = /^\s*!\[(.*?)\]\((.*?)\)\s*$/;
+const ORDERED_RE = /^\s*\d+\.\s+/;
+const BULLET_RE = /^\s*[-*]\s+/;
+
 function parseInline(text: string): ReactNode[] {
     const nodes: ReactNode[] = [];
-    const regex = /(\*\*([^*]+)\*\*)|(`([^`]+)`)|(\*([^*]+)\*)/g;
+    // Match inline images, bold, code, and italic
+    const regex = /(!\[(.*?)\]\((.*?)\))|(\*\*([^*]+)\*\*)|(`([^`]+)`)|(\*([^*]+)\*)/g;
     let lastIndex = 0;
     let match: RegExpExecArray | null;
     let key = 0;
@@ -20,29 +22,46 @@ function parseInline(text: string): ReactNode[] {
         if (match.index > lastIndex) {
             nodes.push(text.slice(lastIndex, match.index));
         }
-        if (match[2] !== undefined) {
+
+        if (match[1] !== undefined && match[2] !== undefined && match[3] !== undefined) {
+            // Inline image ![alt](url)
+            const alt = match[2];
+            const src = match[3];
             nodes.push(
-                <strong key={key++} className="font-semibold">
-                    {match[2]}
+                <span key={key++} className="my-2 block overflow-hidden rounded-none border border-line bg-surface shadow-sm">
+                    <img
+                        src={src}
+                        alt={alt || "Project visual"}
+                        loading="lazy"
+                        className="max-h-[300px] w-full object-contain bg-ink-soft p-1"
+                    />
+                    {alt && (
+                        <span className="block border-t border-line bg-white px-3 py-1.5 font-heading text-[11px] text-muted">
+                            {alt}
+                        </span>
+                    )}
+                </span>
+            );
+        } else if (match[5] !== undefined) {
+            nodes.push(
+                <strong key={key++} className="font-semibold text-ink">
+                    {match[5]}
                 </strong>
             );
-        } else if (match[4] !== undefined) {
+        } else if (match[7] !== undefined) {
             nodes.push(
-                <code key={key++} className="rounded bg-white/10 px-1 py-0.5 text-[0.85em]">
-                    {match[4]}
+                <code key={key++} className="rounded border border-line/60 bg-surface px-1 py-0.5 text-[0.85em] font-mono">
+                    {match[7]}
                 </code>
             );
-        } else if (match[6] !== undefined) {
-            nodes.push(<em key={key++}>{match[6]}</em>);
+        } else if (match[9] !== undefined) {
+            nodes.push(<em key={key++}>{match[9]}</em>);
         }
         lastIndex = regex.lastIndex;
     }
     if (lastIndex < text.length) nodes.push(text.slice(lastIndex));
     return nodes;
 }
-
-const ORDERED_RE = /^\s*\d+\.\s+/;
-const BULLET_RE = /^\s*[-*]\s+/;
 
 export default function MarkdownLite({ text, className }: { text: string; className?: string }) {
     const lines = text.split("\n");
@@ -52,6 +71,32 @@ export default function MarkdownLite({ text, className }: { text: string; classN
 
     while (i < lines.length) {
         const line = lines[i];
+
+        // Standalone Image line
+        const imgMatch = line.match(IMAGE_BLOCK_RE);
+        if (imgMatch) {
+            const alt = imgMatch[1];
+            const src = imgMatch[2];
+            blocks.push(
+                <figure key={key++} className="my-3 overflow-hidden rounded-none border border-line bg-surface shadow-sm">
+                    <div className="flex max-h-[340px] w-full items-center justify-center bg-ink-soft p-1">
+                        <img
+                            src={src}
+                            alt={alt || "Project visual"}
+                            loading="lazy"
+                            className="max-h-[320px] w-auto max-w-full object-contain"
+                        />
+                    </div>
+                    {alt && (
+                        <figcaption className="border-t border-line bg-white px-3.5 py-1.5 font-heading text-[11px] text-muted">
+                            {alt}
+                        </figcaption>
+                    )}
+                </figure>
+            );
+            i++;
+            continue;
+        }
 
         if (ORDERED_RE.test(line)) {
             const items: string[] = [];
@@ -91,7 +136,13 @@ export default function MarkdownLite({ text, className }: { text: string; classN
         }
 
         const paraLines: string[] = [];
-        while (i < lines.length && lines[i].trim() !== "" && !ORDERED_RE.test(lines[i]) && !BULLET_RE.test(lines[i])) {
+        while (
+            i < lines.length &&
+            lines[i].trim() !== "" &&
+            !ORDERED_RE.test(lines[i]) &&
+            !BULLET_RE.test(lines[i]) &&
+            !IMAGE_BLOCK_RE.test(lines[i])
+        ) {
             paraLines.push(lines[i]);
             i++;
         }

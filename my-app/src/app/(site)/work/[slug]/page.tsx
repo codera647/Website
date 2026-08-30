@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import ProjectChatPanel from "@/components/chat/ProjectChatPanel";
 import { getAllProjects, getProjectBySlug } from "@/lib/data";
@@ -35,9 +34,9 @@ export default async function CaseStudyPage({
 
     const suggestedQuestions = [
         `What problem did ${cs.title} solve?`,
-        `What's the tech stack and architecture?`,
+        `Show me the architecture and technical pipeline.`,
         `What were the key results or metrics achieved?`,
-        `How was the retrieval and data pipeline designed?`,
+        `How does it work under the hood?`,
     ];
 
     return (
@@ -151,35 +150,6 @@ export default async function CaseStudyPage({
                             </div>
                         </FadeInWhenVisible>
                     )}
-                </section>
-            )}
-
-            {/* Images & Diagrams Gallery */}
-            {cs.images && cs.images.length > 0 && (
-                <section className="border-t border-line bg-surface/50">
-                    <div className="mx-auto max-w-5xl px-6 py-16 md:py-24">
-                        <h2 className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-muted mb-8">
-                            Visuals & Architecture
-                        </h2>
-                        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                            {cs.images.map((img, i) => (
-                                <div
-                                    key={i}
-                                    className="overflow-hidden border border-line bg-white shadow-sm"
-                                >
-                                    <div className="relative aspect-[16/10] w-full bg-ink-soft">
-                                        <Image
-                                            src={img}
-                                            alt={`${cs.title} preview ${i + 1}`}
-                                            fill
-                                            sizes="(max-width: 768px) 100vw, 50vw"
-                                            className="object-contain p-2"
-                                        />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
                 </section>
             )}
 

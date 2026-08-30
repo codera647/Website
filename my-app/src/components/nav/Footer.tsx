@@ -24,7 +24,6 @@ const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTA
  */
 const serviceLinks = [
     { href: "/services", label: "Services overview" },
-    { href: "/momentum-systems", label: "Momentum Systems" },
     ...services.map((s) => ({ href: `/services#${s.anchor}`, label: s.title })),
 ];
 
@@ -106,9 +105,24 @@ export default function Footer({ featuredProjects }: { featuredProjects: Project
                         the software that powers what&apos;s next.
                     </p>
                     {/* the small brand flourish (brief §2) — the original tagline, kept in motion */}
-                    <p className="mt-8 font-heading text-xs uppercase tracking-[0.3em] text-muted">
+                    <p className="mt-6 font-heading text-xs uppercase tracking-[0.3em] text-muted">
                         ⟳ always in motion
                     </p>
+
+                    {/* Prominent Systems Block Button in Footer */}
+                    <div className="mt-6">
+                        <Link
+                            href="/momentum-systems"
+                            className="group inline-flex items-center gap-2.5 rounded-none border border-ink bg-ink px-4 py-2.5 font-heading text-xs font-bold uppercase tracking-[0.18em] text-white shadow-sm transition-all duration-300 hover:bg-white hover:text-ink hover:border-ink hover:shadow-[0_8px_24px_-12px_rgba(17,17,19,0.35)] hover:-translate-y-0.5"
+                        >
+                            <span className="relative flex size-2 shrink-0">
+                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white group-hover:bg-ink opacity-75 duration-1000" />
+                                <span className="relative inline-flex size-2 rounded-full bg-white group-hover:bg-ink transition-colors" />
+                            </span>
+                            <span>Momentum Systems</span>
+                            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+                        </Link>
+                    </div>
                 </div>
 
                 <nav aria-label="Services">

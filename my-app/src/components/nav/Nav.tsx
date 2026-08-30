@@ -9,7 +9,6 @@ import BracketButton from "@/components/motion/BracketButton";
 const links = [
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
-    { href: "/momentum-systems", label: "Systems" },
     { href: "/work", label: "Work" },
     { href: "/blog", label: "Blog" },
     { href: "/about", label: "About" },
@@ -82,17 +81,32 @@ export default function Nav() {
                 }`}
             >
                 <div className="container-wide flex h-[72px] items-center justify-between">
-                    {/* Prominent wordmark — the brand IS the navbar's anchor */}
-                    <Link
-                        href="/"
-                        className="group flex items-baseline font-heading text-[1.7rem] font-bold leading-none tracking-tight text-white transition-opacity hover:opacity-90"
-                    >
-                        kinet
-                        <span className="text-white/45 transition-colors duration-300 group-hover:text-white/70">
-                            iq
-                        </span>
-                        <BrandDots />
-                    </Link>
+                    {/* Brand wordmark + Prominent Highlighted Systems Block */}
+                    <div className="flex items-center gap-3 sm:gap-4">
+                        <Link
+                            href="/"
+                            className="group flex items-baseline font-heading text-[1.7rem] font-bold leading-none tracking-tight text-white transition-opacity hover:opacity-90"
+                        >
+                            kinet
+                            <span className="text-white/45 transition-colors duration-300 group-hover:text-white/70">
+                                iq
+                            </span>
+                            <BrandDots />
+                        </Link>
+
+                        {/* Prominent Highlighted Systems block with flashing/pulsing beacon */}
+                        <Link
+                            href="/momentum-systems"
+                            className="group relative inline-flex items-center gap-1.5 rounded-none border border-white/30 bg-white/[0.08] px-2.5 py-1 text-[11px] font-heading font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-white hover:text-ink shadow-[0_0_15px_rgba(255,255,255,0.08)] hover:shadow-[0_0_22px_rgba(255,255,255,0.3)] hover:-translate-y-0.5"
+                        >
+                            <span className="relative flex size-2 shrink-0">
+                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75 duration-1000" />
+                                <span className="relative inline-flex size-2 rounded-full bg-white group-hover:bg-ink transition-colors" />
+                            </span>
+                            <span className="font-semibold">Systems</span>
+                            <span className="text-[9px] opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+                        </Link>
+                    </div>
 
                     <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
                         {links.map((link) => (
@@ -148,6 +162,22 @@ export default function Nav() {
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.25 }}
                     >
+                        <div className="mb-4">
+                            <Link
+                                href="/momentum-systems"
+                                onClick={() => setOpen(false)}
+                                className="group flex items-center justify-between rounded-none border border-white/30 bg-white/[0.08] p-4 text-sm font-heading font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:bg-white hover:text-ink transition-all"
+                            >
+                                <span className="flex items-center gap-2.5">
+                                    <span className="relative flex size-2.5">
+                                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75 duration-1000" />
+                                        <span className="relative inline-flex size-2.5 rounded-full bg-white group-hover:bg-ink transition-colors" />
+                                    </span>
+                                    <span>Momentum Systems</span>
+                                </span>
+                                <span>→</span>
+                            </Link>
+                        </div>
                         <nav aria-label="Mobile" className="space-y-2">
                             {links.map((link, i) => (
                                 <motion.div

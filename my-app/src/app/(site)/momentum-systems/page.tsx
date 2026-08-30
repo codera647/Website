@@ -134,8 +134,11 @@ export default function MomentumSystemsPage() {
             {/* 1. Hero Section */}
             <section className="container-wide pb-20 pt-36 md:pb-28 md:pt-44">
                 <FadeInWhenVisible>
-                    <div className="inline-flex items-center gap-2 rounded-none border border-line bg-surface px-3.5 py-1.5 font-heading text-xs font-medium uppercase tracking-[0.24em] text-muted">
-                        <span className="size-1.5 rounded-full bg-ink" />
+                    <div className="inline-flex items-center gap-2.5 rounded-none border border-line bg-surface px-3.5 py-1.5 font-heading text-xs font-medium uppercase tracking-[0.24em] text-muted shadow-sm">
+                        <span className="relative flex size-2">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ink opacity-75 duration-1000" />
+                            <span className="relative inline-flex size-2 rounded-full bg-ink" />
+                        </span>
                         Momentum Systems · For Growing Service Businesses
                     </div>
                     <h1 className="mt-6 max-w-4xl font-heading text-5xl font-bold tracking-tight text-ink md:text-7xl">

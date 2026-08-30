@@ -1,5 +1,6 @@
 import Link from "next/link";
 import FooterMaps from "@/components/nav/FooterMaps";
+import BookCallButton from "@/components/booking/BookCallButton";
 import { services } from "@/data/services";
 import type { Project } from "@/lib/data";
 
@@ -30,7 +31,6 @@ const companyLinks = [
     { href: "/about", label: "About Kinetiq" },
     { href: "/blog", label: "Blog" },
     { href: "/careers", label: "Careers" },
-    { href: "/contact", label: "Contact" },
 ];
 
 const socials = [
@@ -169,6 +169,14 @@ export default function Footer({ featuredProjects }: { featuredProjects: Project
                         Get in touch
                     </p>
                     <ul className="mt-4 space-y-2.5 font-heading text-sm font-medium">
+                        <li>
+                            <BookCallButton
+                                calLink="abdul-moiz/30min"
+                                className="cursor-pointer text-ink font-semibold underline-offset-4 transition-colors duration-300 hover:underline"
+                            >
+                                Book a call →
+                            </BookCallButton>
+                        </li>
                         <li>
                             <a
                                 href={GMAIL_COMPOSE_URL}

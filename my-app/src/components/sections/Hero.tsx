@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import BookCallButton from "@/components/booking/BookCallButton";
 import { services } from "@/data/services";
 import { team } from "@/data/team";
 
@@ -162,12 +163,12 @@ export default function Hero() {
                         >
                             See our work
                         </Link>
-                        <Link
-                            href="/contact"
-                            className="rounded-none border border-line bg-white px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
+                        <BookCallButton
+                            calLink="abdul-moiz/30min"
+                            className="cursor-pointer rounded-none border border-line bg-white px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
                         >
-                            Start a project
-                        </Link>
+                            Let&apos;s talk
+                        </BookCallButton>
                     </motion.div>
                 </div>
 

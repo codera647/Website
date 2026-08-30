@@ -13,7 +13,6 @@ const links = [
     { href: "/blog", label: "Blog" },
     { href: "/about", label: "About" },
     { href: "/careers", label: "Careers" },
-    { href: "/contact", label: "Contact" },
 ];
 
 /** The three brand "motion circles" from the logo, gently pulsing in sequence. */
@@ -118,7 +117,7 @@ export default function Nav() {
                                 />
                             </Link>
                         ))}
-                        <BracketButton href="/contact" className="ml-4">
+                        <BracketButton calLink="abdul-moiz/30min" className="ml-4">
                             Let&apos;s talk
                         </BracketButton>
                     </nav>
@@ -166,6 +165,15 @@ export default function Nav() {
                                     </Link>
                                 </motion.div>
                             ))}
+                            <div className="pt-6">
+                                <BracketButton
+                                    calLink="abdul-moiz/30min"
+                                    onClick={() => setOpen(false)}
+                                    className="w-full text-center"
+                                >
+                                    Let&apos;s talk
+                                </BracketButton>
+                            </div>
                         </nav>
                     </motion.div>
                 )}

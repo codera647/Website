@@ -10,11 +10,11 @@ import { getCalApi } from "@calcom/embed-react";
  * embed docs: https://cal.com/docs/embeds
  */
 export default function BookCallButton({
-    calLink,
+    calLink = "abdul-moiz/30min",
     className,
     children,
 }: {
-    calLink: string;
+    calLink?: string;
     className?: string;
     children: React.ReactNode;
 }) {

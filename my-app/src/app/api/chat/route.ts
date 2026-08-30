@@ -1,42 +1,28 @@
 import { NextResponse } from "next/server";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { getAllProjects, getProjectBySlug } from "@/lib/data";
 
 /**
- * Chat endpoint backing both the site-wide assistant (floating widget,
- * every page) and the per-project assistant (project detail pages).
+ * Chat endpoint backing both the site-wide assistant (floating widget)
+ * and per-project assistants (project detail pages).
  *
- * Powered by Cloudflare AI Search (managed RAG) — see rag-content/ for the
- * source documents and README.md there for the full setup checklist.
- *
- * Requires an AI Search instance named exactly `kinetiq-knowledge` to
- * exist in the Cloudflare account, backed by an R2 bucket whose content is
- * organized as:
- *   site/...              -> general company content (site-wide assistant)
- *   projects/<slug>/...   -> per-project material (that project's assistant)
+ * Multi-layer architecture:
+ * 1. Primary: Cloudflare AI Search (AutoRAG instance `kinetiq-knowledge`)
+ * 2. Fallback: Cloudflare Workers AI model directly with dynamic project context from D1
  */
 
 const AI_SEARCH_INSTANCE = "kinetiq-knowledge";
-const GENERATION_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
+const PRIMARY_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
+const FALLBACK_MODEL = "@cf/meta/llama-3.1-8b-instruct";
 
-const SYSTEM_PROMPT = `You are Motion, the AI assistant for Kinetiq — a software studio
-building AI automation, web development, and generative AI systems. You are
-helpful, direct, and concise, and you never break character or mention that
-you are an AI language model.
+const BASE_SYSTEM_PROMPT = `You are Motion, the expert AI assistant for Kinetiq — a high-performance software studio specializing in AI Automation, Web Development, and Generative AI systems. You are direct, technical, clear, and professional.
 
-Answer only from the provided context. If the context doesn't contain the
-answer, say you don't have that information and suggest the visitor use the
-contact form instead of guessing — never invent details.
-
-Format every response in Markdown, matching this style:
-- Use **bold** for key terms, service names, and anything you want to stand
-  out — not entire sentences.
-- Use a numbered list (1. 2. 3.) when listing sequential steps or multiple
-  distinct items (e.g. services, features).
-- Use a bullet list (- item) for non-sequential groups of related points.
-- Keep paragraphs short — 1-3 sentences each.
-- Default to a brief answer (2-5 sentences, or a short list). Only go longer
-  if the question explicitly asks for depth or detail.
-- Never use headings (#) — this renders in a small chat panel, not a page.`;
+Formatting guidelines:
+- Use **bold** for important terms and highlights.
+- Use bullet lists (- item) or numbered lists (1. 2.) when listing features, steps, or metrics.
+- Keep paragraphs compact (1-3 sentences).
+- Never use markdown headings (#).
+- Answer accurately based on the provided project context. If something isn't covered in the context, be honest and suggest reaching out via the contact form.`;
 
 interface ChatRequestBody {
     message?: unknown;
@@ -65,44 +51,142 @@ export async function POST(request: Request) {
     try {
         const { env } = getCloudflareContext();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const ai = (env as Record<string, any>).AI;
+        const ai = (env as Record<string, any>)?.AI;
 
         if (!ai) {
             return NextResponse.json(
-                { ok: false, error: "The assistant is not configured yet." },
+                {
+                    ok: false,
+                    error: "Cloudflare AI binding (env.AI) is not configured in this environment.",
+                },
                 { status: 503 }
             );
         }
 
-        // Narrow retrieval to one project's docs when asked from a project
-        // page; otherwise search the whole knowledge base (site + all
-        // projects) for the site-wide assistant.
-        const filters = slug
-            ? { folder: { $gte: `projects/${slug}/`, $lt: `projects/${slug}0` } }
-            : undefined;
+        // 1. Try AutoRAG / AI Search first
+        try {
+            if (typeof ai.autorag === "function") {
+                const filters = slug
+                    ? { folder: { $gte: `projects/${slug}/`, $lt: `projects/${slug}0` } }
+                    : undefined;
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const result = await (ai as any).autorag(AI_SEARCH_INSTANCE).aiSearch({
-            query: message,
-            model: GENERATION_MODEL,
-            system_prompt: SYSTEM_PROMPT,
-            rewrite_query: true,
-            max_num_results: 5,
-            ranking_options: { score_threshold: 0.25 },
-            ...(filters ? { filters } : {}),
-        });
+                const autoRagResult = await ai.autorag(AI_SEARCH_INSTANCE).aiSearch({
+                    query: message,
+                    model: PRIMARY_MODEL,
+                    system_prompt: BASE_SYSTEM_PROMPT,
+                    rewrite_query: true,
+                    max_num_results: 5,
+                    ranking_options: { score_threshold: 0.25 },
+                    ...(filters ? { filters } : {}),
+                });
+
+                if (autoRagResult?.response) {
+                    return NextResponse.json({
+                        ok: true,
+                        answer: autoRagResult.response,
+                        sources: Array.isArray(autoRagResult.data)
+                            ? autoRagResult.data
+                                  .map((d: { filename?: string }) => d.filename)
+                                  .filter(Boolean)
+                            : [],
+                    });
+                }
+            }
+        } catch (ragErr) {
+            console.warn("AutoRAG query skipped or failed, falling back to direct Workers AI:", ragErr);
+        }
+
+        // 2. Direct Workers AI with rich D1 project context fallback
+        let contextualSystemPrompt = BASE_SYSTEM_PROMPT;
+        let sourcesList: string[] = [];
+
+        if (slug) {
+            try {
+                const project = await getProjectBySlug(slug);
+                if (project) {
+                    sourcesList = [`${project.title} Knowledge Base`];
+                    const metricsStr = project.metrics?.map((m) => `${m.label}: ${m.value}`).join(", ") || "";
+                    const tagsStr = project.tags?.join(", ") || "";
+
+                    contextualSystemPrompt += `\n\nYou are answering specifically about the project: "${project.title}".
+PROJECT DETAILS & CONTEXT:
+- Category: ${project.category} (${project.year})
+- Tags / Tech: ${tagsStr}
+- Summary: ${project.summary}
+- Challenge: ${project.challenge || "N/A"}
+- Architecture & Solution: ${project.solution || "N/A"}
+- Results & Impact: ${project.result || "N/A"}
+- Key Metrics: ${metricsStr}
+
+Use these project details as ground truth to answer the user's question thoroughly and accurately.`;
+                }
+            } catch (dbErr) {
+                console.warn("Could not fetch project context from D1:", dbErr);
+            }
+        } else {
+            try {
+                const allProjects = await getAllProjects();
+                const projectSummaries = allProjects
+                    .map((p) => `- ${p.title} (${p.category}): ${p.summary}`)
+                    .join("\n");
+
+                contextualSystemPrompt += `\n\nKINETIQ PORTFOLIO CONTEXT:
+${projectSummaries}
+- Company: Kinetiq (Always in Motion) — Full-stack AI automation, web development, and generative AI studio.
+- Email: info@thekinetiq.solutions`;
+            } catch {
+                // Ignore DB error for prompt building
+            }
+        }
+
+        // Call Workers AI directly
+        let aiResponse: unknown;
+        try {
+            aiResponse = await ai.run(PRIMARY_MODEL, {
+                messages: [
+                    { role: "system", content: contextualSystemPrompt },
+                    { role: "user", content: message },
+                ],
+                max_tokens: 1024,
+            });
+        } catch (primaryModelErr) {
+            console.warn("Primary model failed, trying fallback model:", primaryModelErr);
+            aiResponse = await ai.run(FALLBACK_MODEL, {
+                messages: [
+                    { role: "system", content: contextualSystemPrompt },
+                    { role: "user", content: message },
+                ],
+                max_tokens: 1024,
+            });
+        }
+
+        // Handle various response shapes from Workers AI
+        let answerText = "";
+        if (typeof aiResponse === "string") {
+            answerText = aiResponse;
+        } else if (aiResponse && typeof aiResponse === "object") {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const obj = aiResponse as Record<string, any>;
+            answerText = obj.response || obj.text || obj.result || JSON.stringify(obj);
+        }
+
+        if (!answerText) {
+            answerText = "I don't have an answer for that yet. Feel free to contact our team!";
+        }
 
         return NextResponse.json({
             ok: true,
-            answer: result?.response ?? "I don't have an answer for that yet.",
-            sources: Array.isArray(result?.data)
-                ? result.data.map((d: { filename?: string }) => d.filename).filter(Boolean)
-                : [],
+            answer: answerText,
+            sources: sourcesList,
         });
     } catch (err) {
-        console.error("AI Search query failed:", err);
+        const errorDetails = err instanceof Error ? err.message : String(err);
+        console.error("AI Assistant error:", err);
         return NextResponse.json(
-            { ok: false, error: "The assistant is temporarily unavailable. Please try again." },
+            {
+                ok: false,
+                error: `The assistant is currently unavailable: ${errorDetails}`,
+            },
             { status: 502 }
         );
     }

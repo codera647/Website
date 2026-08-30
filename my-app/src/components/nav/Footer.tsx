@@ -28,6 +28,7 @@ const serviceLinks = [
 ];
 
 const companyLinks = [
+    { href: "/pricing", label: "Pricing" },
     { href: "/about", label: "About Kinetiq" },
     { href: "/blog", label: "Blog" },
     { href: "/careers", label: "Careers" },

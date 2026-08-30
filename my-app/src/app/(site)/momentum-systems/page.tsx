@@ -156,10 +156,16 @@ export default function MomentumSystemsPage() {
                             Get your free growth audit
                         </BracketButton>
                         <Link
+                            href="/pricing"
+                            className="rounded-none bg-ink px-7 py-3.5 font-heading text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink-soft shadow-sm"
+                        >
+                            View Pricing &amp; Tiers →
+                        </Link>
+                        <Link
                             href="#pillars"
                             className="rounded-none border border-line bg-white px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
                         >
-                            See how it works →
+                            How it works
                         </Link>
                     </div>
                 </FadeInWhenVisible>
@@ -357,6 +363,26 @@ export default function MomentumSystemsPage() {
                             </tbody>
                         </table>
                     </div>
+
+                    {/* Direct Pricing Link Banner */}
+                    <FadeInWhenVisible delay={0.2} className="mt-8">
+                        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-line bg-white p-6 sm:p-8">
+                            <div>
+                                <h3 className="font-heading text-lg font-bold text-ink">
+                                    Ready to see exact setup and monthly fees?
+                                </h3>
+                                <p className="mt-1 text-xs leading-relaxed text-muted">
+                                    Explore our 3 transparent tiers (Foundation, Momentum, Momentum Pro) and limited Founding Client cohort discounts.
+                                </p>
+                            </div>
+                            <Link
+                                href="/pricing"
+                                className="inline-block rounded-none bg-ink px-6 py-3 font-heading text-xs font-bold uppercase tracking-wider text-white hover:bg-ink-soft transition-colors shrink-0 shadow-sm"
+                            >
+                                View Pricing &amp; Tiers →
+                            </Link>
+                        </div>
+                    </FadeInWhenVisible>
                 </div>
             </section>
 

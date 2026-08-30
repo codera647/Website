@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import ServiceDemoBlock from "@/components/sections/ServiceDemoBlock";
 import ProcessSection from "@/components/sections/ProcessSection";
@@ -77,6 +78,35 @@ export default function ServicesPage() {
                     </div>
                 </section>
             ))}
+
+            {/* Momentum Systems Packaged Offering Callout */}
+            <section className="border-t border-line bg-ink text-white py-20 md:py-24">
+                <div className="container-wide grid gap-8 lg:grid-cols-12 lg:items-center">
+                    <div className="lg:col-span-8">
+                        <FadeInWhenVisible>
+                            <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-white/50">
+                                Packaged Growth Engine
+                            </p>
+                            <h2 className="mt-3 font-heading text-3xl font-bold md:text-4xl text-white">
+                                For local &amp; growing businesses: Momentum Systems.
+                            </h2>
+                            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70">
+                                We combine all three disciplines — full-stack customer portals, automated email/SMS follow-up, and programmatic local SEO — into a unified, outcome-priced growth engine that keeps bringing customers back automatically.
+                            </p>
+                        </FadeInWhenVisible>
+                    </div>
+                    <div className="lg:col-span-4 lg:text-right">
+                        <FadeInWhenVisible delay={0.1}>
+                            <Link
+                                href="/momentum-systems"
+                                className="inline-block rounded-none border border-white/20 bg-white px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:bg-white/85 hover:-translate-y-0.5 shadow-sm"
+                            >
+                                Explore Momentum Systems →
+                            </Link>
+                        </FadeInWhenVisible>
+                    </div>
+                </div>
+            </section>
 
             {/* how we work — same section as the About page */}
             <ProcessSection title="Four steps, no surprises." />

@@ -9,6 +9,7 @@ import BracketButton from "@/components/motion/BracketButton";
 const links = [
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
+    { href: "/momentum-systems", label: "Momentum Systems" },
     { href: "/work", label: "Work" },
     { href: "/blog", label: "Blog" },
     { href: "/about", label: "About" },

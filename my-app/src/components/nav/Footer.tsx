@@ -24,6 +24,7 @@ const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTA
  */
 const serviceLinks = [
     { href: "/services", label: "Services overview" },
+    { href: "/momentum-systems", label: "Momentum Systems" },
     ...services.map((s) => ({ href: `/services#${s.anchor}`, label: s.title })),
 ];
 

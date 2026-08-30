@@ -1,27 +1,37 @@
-/** FAQ content (brief §4 Home) — DRAFT copy, TODO(user): review/edit. */
+/** FAQ content (brief §4 Home) */
 
 import type { FAQItem } from "@/components/motion/FAQAccordion";
 
 export const faqItems: FAQItem[] = [
     {
+        question: "Do you just build websites?",
+        answer:
+            "No. A website is one piece of what we call a Momentum System — a portal, automated follow-up, and search-optimized growth pages combined into one system that keeps working after launch, not a static page that sits there.",
+    },
+    {
+        question: "How is a Momentum System priced?",
+        answer:
+            "A smaller build fee covers the initial engineering, and an ongoing monthly fee covers the system running, monitoring, and improving — closer to a software subscription than a typical one-time website invoice.",
+    },
+    {
         question: "What does a typical engagement look like?",
         answer:
-            "Most projects follow our four-step process: a short discovery phase to map your workflows and goals, a design phase with a concrete build plan, iterative development with working software every week, and a production deployment with documentation and handover. Typical engagements run from 4 weeks for a focused build to several months for a full platform.",
+            "Most custom engineering projects follow our four-step process: a short discovery phase to map your workflows and goals, a design phase with a concrete build plan, iterative development with working software every week, and a production deployment with documentation and handover. Typical engagements run from 4 weeks for a focused build to several months for a full platform.",
     },
     {
         question: "Do you work with startups or only enterprises?",
         answer:
-            "Both. We've shipped for solo founders, small businesses, and larger organizations. What matters is that the problem is real. If software or AI genuinely pays off for your workflow, we're interested.",
+            "Both. We've shipped for solo founders, local service businesses, and larger enterprise teams. What matters is that the problem is real. If software, automation, or a Momentum System genuinely pays off for your workflow, we're interested.",
     },
     {
         question: "How fast can you ship?",
         answer:
-            "A focused MVP typically ships in 4 to 8 weeks. We work in short iterations with honest demos of real progress, so you see working software from the first weeks rather than a single reveal at the end.",
+            "A focused MVP or core Momentum System typically ships in 3 to 8 weeks. We work in short iterations with honest demos of real progress, so you see working software from the first weeks rather than a single reveal at the end.",
     },
     {
         question: "Can you work with our existing systems and team?",
         answer:
-            "Yes. We regularly integrate with existing databases, APIs, and internal tools, and we're comfortable working alongside in-house engineers. Every engagement ends with clean, documented code your team can own.",
+            "Yes. We regularly integrate with existing databases, APIs, CRMs, and internal tools, and we're comfortable working alongside in-house engineers. Every engagement ends with clean, documented code your team can own.",
     },
     {
         question: "How do you handle confidentiality and data security?",

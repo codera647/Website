@@ -15,9 +15,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Kinetiq | We Engineer Intelligent Systems",
+  title: "Kinetiq | AI Automation, Web Development & Momentum Systems",
   description:
-    "Kinetiq is an AI automation, web development, and generative AI studio building the software that powers what's next.",
+    "Kinetiq engineers intelligent systems — AI automation, web development, generative AI, and Momentum Systems: growth systems that turn local businesses' online presence into a system that books more customers automatically.",
 };
 
 export default function RootLayout({

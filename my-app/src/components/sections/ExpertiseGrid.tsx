@@ -36,6 +36,39 @@ export default function ExpertiseGrid() {
                     </Link>
                 ))}
             </StaggerList>
+
+            {/* Momentum Systems Spotlight */}
+            <FadeInWhenVisible delay={0.25} className="mt-6">
+                <Link
+                    href="/momentum-systems"
+                    className="card-hover group flex flex-col justify-between rounded-2xl border border-line bg-surface p-8 transition-all hover:border-ink md:flex-row md:items-center md:p-10"
+                >
+                    <div className="max-w-2xl">
+                        <div className="flex items-center gap-2.5">
+                            <span className="font-heading text-xs font-semibold uppercase tracking-[0.24em] text-muted">
+                                04 · Packaged Growth System
+                            </span>
+                            <span className="rounded-full bg-ink px-2.5 py-0.5 font-heading text-[10px] font-bold text-white">
+                                FOR GROWING BUSINESSES
+                            </span>
+                        </div>
+                        <h3 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
+                            Momentum Systems
+                        </h3>
+                        <p className="mt-1 font-heading text-sm text-ink-soft">
+                            Growth that runs on its own.
+                        </p>
+                        <p className="mt-3 text-sm leading-relaxed text-muted">
+                            The same three disciplines, packaged as an all-in-one growth engine for service businesses. Combines customer portals, automated SMS/email follow-up, and programmatic local SEO into a system that keeps bringing customers back automatically.
+                        </p>
+                    </div>
+                    <div className="mt-6 flex shrink-0 items-center gap-2 font-heading text-sm font-semibold text-ink md:mt-0">
+                        <span className="rounded-none border border-line bg-white px-5 py-2.5 shadow-sm group-hover:border-ink">
+                            Explore Momentum Systems →
+                        </span>
+                    </div>
+                </Link>
+            </FadeInWhenVisible>
         </section>
     );
 }

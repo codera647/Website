@@ -116,14 +116,14 @@ export default function Hero() {
                 ultra-wide screens once container-wide hits its max-width. */}
             <div className="container-wide relative pb-20 pt-32 md:pt-40">
                 <HeroTeamPeek />
-                {/* eyebrow — the three disciplines, immediately visible */}
+                {/* eyebrow — the disciplines & momentum systems, immediately visible */}
                 <motion.p
                     className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted"
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
                 >
-                    AI Automation · Web Development · Generative AI
+                    AI Automation · Web Development · Generative AI · Momentum Systems
                 </motion.p>
 
                 {/* massive wordmark — deliberately NOT animated: this is the LCP
@@ -149,6 +149,21 @@ export default function Hero() {
                         transition={{ duration: 0.6, delay: 0.42 }}
                     >
                         {SUBHEAD}
+                    </motion.p>
+                    <motion.p
+                        className="mt-3 text-sm font-medium text-ink-soft leading-relaxed"
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.48 }}
+                    >
+                        For growing &amp; local businesses: we build{" "}
+                        <Link
+                            href="/momentum-systems"
+                            className="font-semibold text-ink underline underline-offset-4 hover:text-muted transition-colors"
+                        >
+                            Momentum Systems
+                        </Link>{" "}
+                        — the growth engine that keeps bringing customers back on its own.
                     </motion.p>
 
                     <motion.div

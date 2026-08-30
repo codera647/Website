@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
-import ProjectAssistantSketch from "@/components/sections/ProjectAssistantSketch";
+import ProjectChatPanel from "@/components/chat/ProjectChatPanel";
 import { getAllProjects, getProjectBySlug } from "@/lib/data";
 
 export async function generateMetadata({
@@ -34,31 +35,37 @@ export default async function CaseStudyPage({
 
     const suggestedQuestions = [
         `What problem did ${cs.title} solve?`,
-        `What's the tech stack behind it?`,
-        "How long did it take to build?",
-        "What did the client say about it?",
+        `What's the tech stack and architecture?`,
+        `What were the key results or metrics achieved?`,
+        `How was the retrieval and data pipeline designed?`,
     ];
 
     return (
         <main>
-            {/* header — page identity only; the rest of the page is being
-                rebuilt around the project-assistant chatbot (see brief) */}
+            {/* Header */}
             <section className="mx-auto max-w-5xl px-6 pb-12 pt-36 md:pt-44">
                 <FadeInWhenVisible>
                     <Link
                         href="/work"
-                        className="font-heading text-sm text-muted hover:text-ink"
+                        className="font-heading text-sm text-muted hover:text-ink transition-colors"
                     >
                         ← All work
                     </Link>
                     <p className="mt-8 font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
                         {cs.category} · {cs.year}
                     </p>
-                    <h1 className="mt-4 max-w-3xl text-5xl font-bold md:text-6xl">{cs.title}</h1>
-                    <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{cs.summary}</p>
+                    <h1 className="mt-4 max-w-3xl text-5xl font-bold md:text-6xl text-ink">
+                        {cs.title}
+                    </h1>
+                    <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
+                        {cs.summary}
+                    </p>
                     <div className="mt-6 flex flex-wrap gap-2">
                         {cs.tags.map((tag) => (
-                            <span key={tag} className="rounded-none border border-line px-3 py-1 text-xs text-muted">
+                            <span
+                                key={tag}
+                                className="rounded-none border border-line bg-surface px-3 py-1 text-xs text-muted"
+                            >
                                 {tag}
                             </span>
                         ))}
@@ -66,17 +73,117 @@ export default async function CaseStudyPage({
                 </FadeInWhenVisible>
             </section>
 
-            {/* project assistant — design sketch only, not wired up yet */}
-            <section className="mx-auto max-w-5xl px-6 pb-20 md:pb-28">
+            {/* Live Interactive Project Assistant */}
+            <section className="mx-auto max-w-5xl px-6 pb-16 md:pb-24">
                 <FadeInWhenVisible y={32}>
-                    <ProjectAssistantSketch
+                    <ProjectChatPanel
                         projectTitle={cs.title}
+                        projectSlug={cs.slug}
                         suggestedQuestions={suggestedQuestions}
                     />
                 </FadeInWhenVisible>
             </section>
 
-            {/* next project */}
+            {/* Metrics */}
+            {cs.metrics && cs.metrics.length > 0 && (
+                <section className="border-y border-line bg-surface">
+                    <div className="mx-auto max-w-5xl px-6 py-12 md:py-16">
+                        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+                            {cs.metrics.map((m, i) => (
+                                <div key={i} className="border-l border-line pl-4">
+                                    <p className="font-heading text-3xl font-bold md:text-4xl text-ink">
+                                        {m.value}
+                                    </p>
+                                    <p className="mt-2 text-xs font-medium uppercase tracking-wider text-muted">
+                                        {m.label}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* Deep-dive content: Challenge, Solution, Result */}
+            {(cs.challenge || cs.solution || cs.result) && (
+                <section className="mx-auto max-w-5xl px-6 py-16 md:py-24 space-y-16">
+                    {cs.challenge && (
+                        <FadeInWhenVisible>
+                            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+                                <h2 className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+                                    01 / The Challenge
+                                </h2>
+                                <div className="md:col-span-2">
+                                    <p className="text-base md:text-lg leading-relaxed text-ink/90">
+                                        {cs.challenge}
+                                    </p>
+                                </div>
+                            </div>
+                        </FadeInWhenVisible>
+                    )}
+
+                    {cs.solution && (
+                        <FadeInWhenVisible>
+                            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+                                <h2 className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+                                    02 / Architecture & Solution
+                                </h2>
+                                <div className="md:col-span-2">
+                                    <p className="text-base md:text-lg leading-relaxed text-ink/90">
+                                        {cs.solution}
+                                    </p>
+                                </div>
+                            </div>
+                        </FadeInWhenVisible>
+                    )}
+
+                    {cs.result && (
+                        <FadeInWhenVisible>
+                            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+                                <h2 className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+                                    03 / Outcomes & Impact
+                                </h2>
+                                <div className="md:col-span-2">
+                                    <p className="text-base md:text-lg leading-relaxed text-ink/90">
+                                        {cs.result}
+                                    </p>
+                                </div>
+                            </div>
+                        </FadeInWhenVisible>
+                    )}
+                </section>
+            )}
+
+            {/* Images & Diagrams Gallery */}
+            {cs.images && cs.images.length > 0 && (
+                <section className="border-t border-line bg-surface/50">
+                    <div className="mx-auto max-w-5xl px-6 py-16 md:py-24">
+                        <h2 className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-muted mb-8">
+                            Visuals & Architecture
+                        </h2>
+                        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                            {cs.images.map((img, i) => (
+                                <div
+                                    key={i}
+                                    className="overflow-hidden border border-line bg-white shadow-sm"
+                                >
+                                    <div className="relative aspect-[16/10] w-full bg-ink-soft">
+                                        <Image
+                                            src={img}
+                                            alt={`${cs.title} preview ${i + 1}`}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                            className="object-contain p-2"
+                                        />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* Next project */}
             <section className="border-t border-line">
                 <FadeInWhenVisible>
                     <Link href={`/work/${next.slug}`} className="group block">
@@ -85,11 +192,11 @@ export default async function CaseStudyPage({
                                 <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
                                     Next project
                                 </p>
-                                <p className="mt-3 font-heading text-3xl font-bold md:text-4xl">
+                                <p className="mt-3 font-heading text-3xl font-bold md:text-4xl text-ink">
                                     {next.title}
                                 </p>
                             </div>
-                            <span className="font-heading text-3xl transition-transform group-hover:translate-x-2">
+                            <span className="font-heading text-3xl transition-transform group-hover:translate-x-2 text-ink">
                                 →
                             </span>
                         </div>

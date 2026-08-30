@@ -177,10 +177,10 @@ export default function MomentumSystemsPage() {
                         </p>
                     </FadeInWhenVisible>
 
-                    <div className="mt-16 space-y-12">
+                    <div className="mt-16 space-y-8">
                         {PILLARS.map((p, i) => (
                             <FadeInWhenVisible key={p.number} delay={i * 0.1}>
-                                <div className="grid gap-8 rounded-2xl border border-line bg-white p-8 md:p-12 lg:grid-cols-12 lg:gap-12">
+                                <div className="card-hover group grid gap-8 rounded-2xl border border-line bg-white p-8 transition-all hover:border-ink md:p-12 lg:grid-cols-12 lg:gap-12">
                                     <div className="lg:col-span-5 flex flex-col justify-between">
                                         <div>
                                             <span className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-muted">
@@ -193,7 +193,7 @@ export default function MomentumSystemsPage() {
                                                 {p.tagline}
                                             </p>
                                         </div>
-                                        <div className="mt-6 rounded-xl border border-line bg-surface p-4 text-xs leading-relaxed text-muted">
+                                        <div className="mt-6 rounded-xl border border-line bg-surface p-4 text-xs leading-relaxed text-muted transition-colors group-hover:bg-white group-hover:border-ink/20">
                                             <span className="block font-heading font-semibold uppercase tracking-wider text-[11px] text-ink mb-1">
                                                 In Practice (e.g. HVAC / Trades):
                                             </span>
@@ -243,7 +243,7 @@ export default function MomentumSystemsPage() {
 
                     <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                         <FadeInWhenVisible delay={0.05}>
-                            <div className="flex h-full flex-col justify-between rounded-xl border border-line bg-surface p-6">
+                            <div className="card-hover group flex h-full flex-col justify-between rounded-2xl border border-line bg-surface p-7 transition-all hover:border-ink">
                                 <div>
                                     <span className="font-heading text-xs font-bold text-muted">01 / DISCOVERY</span>
                                     <h3 className="mt-3 font-heading text-lg font-bold text-ink">
@@ -253,12 +253,14 @@ export default function MomentumSystemsPage() {
                                         Rank for dozens of service-and-city search queries, capturing local customers who would never find a generic homepage.
                                     </p>
                                 </div>
-                                <span className="mt-6 font-heading text-xs text-ink-soft">→ Feeds into Accounts</span>
+                                <span className="mt-6 font-heading text-xs font-semibold text-ink-soft transition-transform group-hover:translate-x-1">
+                                    → Feeds into Accounts
+                                </span>
                             </div>
                         </FadeInWhenVisible>
 
                         <FadeInWhenVisible delay={0.1}>
-                            <div className="flex h-full flex-col justify-between rounded-xl border border-line bg-surface p-6">
+                            <div className="card-hover group flex h-full flex-col justify-between rounded-2xl border border-line bg-surface p-7 transition-all hover:border-ink">
                                 <div>
                                     <span className="font-heading text-xs font-bold text-muted">02 / CONVERSION</span>
                                     <h3 className="mt-3 font-heading text-lg font-bold text-ink">
@@ -268,12 +270,14 @@ export default function MomentumSystemsPage() {
                                         Converts anonymous visitors into registered accounts with service records, warranties, and saved preferences.
                                     </p>
                                 </div>
-                                <span className="mt-6 font-heading text-xs text-ink-soft">→ Triggers Automation</span>
+                                <span className="mt-6 font-heading text-xs font-semibold text-ink-soft transition-transform group-hover:translate-x-1">
+                                    → Triggers Automation
+                                </span>
                             </div>
                         </FadeInWhenVisible>
 
                         <FadeInWhenVisible delay={0.15}>
-                            <div className="flex h-full flex-col justify-between rounded-xl border border-line bg-surface p-6">
+                            <div className="card-hover group flex h-full flex-col justify-between rounded-2xl border border-line bg-surface p-7 transition-all hover:border-ink">
                                 <div>
                                     <span className="font-heading text-xs font-bold text-muted">03 / RETENTION</span>
                                     <h3 className="mt-3 font-heading text-lg font-bold text-ink">
@@ -283,12 +287,14 @@ export default function MomentumSystemsPage() {
                                         Runs automated seasonal reminders, win-backs, and SMS nudges so customers return on schedule without staff effort.
                                     </p>
                                 </div>
-                                <span className="mt-6 font-heading text-xs text-ink-soft">→ Prompts Reviews</span>
+                                <span className="mt-6 font-heading text-xs font-semibold text-ink-soft transition-transform group-hover:translate-x-1">
+                                    → Prompts Reviews
+                                </span>
                             </div>
                         </FadeInWhenVisible>
 
                         <FadeInWhenVisible delay={0.2}>
-                            <div className="flex h-full flex-col justify-between rounded-xl border border-line bg-surface p-6">
+                            <div className="card-hover group flex h-full flex-col justify-between rounded-2xl border border-line bg-surface p-7 transition-all hover:border-ink">
                                 <div>
                                     <span className="font-heading text-xs font-bold text-muted">04 / REPUTATION</span>
                                     <h3 className="mt-3 font-heading text-lg font-bold text-ink">
@@ -298,7 +304,9 @@ export default function MomentumSystemsPage() {
                                         Happy customers are prompted to leave 5-star Google reviews, strengthening local authority and driving even more organic traffic.
                                     </p>
                                 </div>
-                                <span className="mt-6 font-heading text-xs text-ink-soft">⟳ Loops back to Growth</span>
+                                <span className="mt-6 font-heading text-xs font-semibold text-ink-soft transition-transform group-hover:translate-x-1">
+                                    ⟳ Loops back to Growth
+                                </span>
                             </div>
                         </FadeInWhenVisible>
                     </div>
@@ -320,7 +328,7 @@ export default function MomentumSystemsPage() {
                         </p>
                     </FadeInWhenVisible>
 
-                    <div className="mt-14 overflow-x-auto rounded-2xl border border-line bg-white shadow-sm">
+                    <div className="card-hover mt-14 overflow-x-auto rounded-2xl border border-line bg-white shadow-sm transition-all hover:border-ink">
                         <table className="w-full text-left text-sm">
                             <thead>
                                 <tr className="border-b border-line bg-surface text-xs font-heading uppercase tracking-wider text-muted">
@@ -331,14 +339,14 @@ export default function MomentumSystemsPage() {
                             </thead>
                             <tbody className="divide-y divide-line">
                                 {COMPARISON.map((row, i) => (
-                                    <tr key={i} className="hover:bg-surface/50 transition-colors">
-                                        <td className="p-5 font-heading font-medium text-ink">
+                                    <tr key={i} className="hover:bg-surface/80 transition-colors group cursor-default">
+                                        <td className="p-5 font-heading font-medium text-ink group-hover:text-ink">
                                             {row.feature}
                                         </td>
-                                        <td className="p-5 text-muted">
+                                        <td className="p-5 text-muted group-hover:text-ink-soft">
                                             {row.oldWay}
                                         </td>
-                                        <td className="p-5 font-medium text-ink bg-ink/5">
+                                        <td className="p-5 font-medium text-ink bg-ink/5 group-hover:bg-ink/10 transition-colors">
                                             {row.momentum}
                                         </td>
                                     </tr>
@@ -367,7 +375,7 @@ export default function MomentumSystemsPage() {
                     <div className="mt-14 grid gap-6 md:grid-cols-2">
                         {ICP_ITEMS.map((item, i) => (
                             <FadeInWhenVisible key={i} delay={i * 0.08}>
-                                <div className="h-full rounded-2xl border border-line bg-surface p-8">
+                                <div className="card-hover group h-full rounded-2xl border border-line bg-surface p-8 transition-all hover:border-ink">
                                     <h3 className="font-heading text-xl font-bold text-ink">
                                         {item.title}
                                     </h3>
@@ -423,4 +431,3 @@ export default function MomentumSystemsPage() {
         </main>
     );
 }
-

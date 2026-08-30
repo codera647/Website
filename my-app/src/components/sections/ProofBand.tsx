@@ -10,9 +10,8 @@ import type { Project } from "@/lib/data";
 /**
  * Proof band — every number here is computed straight from the site's
  * own content (case studies + services), not hand-typed marketing
- * copy. If a stat is wrong, the source data is wrong, and fixing the
- * data fixes the claim. Each stat is interactive: hover (or tap, for
- * touch) reveals exactly which systems/clients/tools back the number.
+ * copy. Each stat is interactive: hover (or tap, for touch) reveals
+ * exactly which systems/tools back the number.
  */
 
 interface ProofItem {
@@ -31,7 +30,6 @@ interface ProofStatData {
 
 function buildStats(projects: Project[]): ProofStatData[] {
     const techStack = Array.from(new Set(services.flatMap((s) => s.stack)));
-    const quotedProjects = projects.filter((cs) => cs.quote);
 
     return [
         {
@@ -45,20 +43,6 @@ function buildStats(projects: Project[]): ProofStatData[] {
             proof: projects.map((cs) => ({
                 text: cs.title,
                 sub: cs.category,
-                href: `/work/${cs.slug}`,
-            })),
-        },
-        {
-            to: quotedProjects.length,
-            label:
-                quotedProjects.length === 1
-                    ? "client testimonial on record"
-                    : "client testimonials on record",
-            proofLabel: "the clients",
-            layout: "list",
-            proof: quotedProjects.map((cs) => ({
-                text: cs.quote!.name,
-                sub: cs.quote!.role,
                 href: `/work/${cs.slug}`,
             })),
         },
@@ -162,7 +146,7 @@ export default function ProofBand({ projects }: { projects: Project[] }) {
         <section className="bg-surface">
             <FadeInWhenVisible>
                 <div className="container-wide py-16 md:py-20">
-                    <div className="grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-10">
+                    <div className="mx-auto grid max-w-3xl grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-16">
                         {stats.map((stat) => (
                             <ProofStat key={stat.label} stat={stat} />
                         ))}

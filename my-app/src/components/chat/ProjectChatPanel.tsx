@@ -164,7 +164,7 @@ export default function ProjectChatPanel({
                                             <p>{m.text}</p>
                                         ) : (
                                             <div>
-                                                <MarkdownLite text={m.text} className="space-y-2" />
+                                                <MarkdownLite text={m.text} theme="light" className="space-y-2" />
                                                 {m.sources && m.sources.length > 0 && (
                                                     <div className="mt-3.5 border-t border-line/70 pt-2 flex flex-wrap items-center gap-1.5 text-[11px] text-muted">
                                                         <span className="font-medium uppercase tracking-wider text-[10px]">Sources:</span>

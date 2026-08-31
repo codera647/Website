@@ -150,7 +150,14 @@ export default function SiteChatWidget() {
     const [leadEmail, setLeadEmail] = useState("");
     const [leadSubmitting, setLeadSubmitting] = useState(false);
     const [leadSent, setLeadSent] = useState(false);
+    const [leadError, setLeadError] = useState<string | null>(null);
     const [capturedEmail, setCapturedEmail] = useState("");
+
+    // Holds the full AI-generated recommendation text + tier from the most
+    // recently completed survey, so "email me a copy" can send the actual
+    // report instead of a placeholder string.
+    const [surveyResultText, setSurveyResultText] = useState("");
+    const [surveyRecommendedTier, setSurveyRecommendedTier] = useState("Momentum (Recommended)");
 
     const scrollRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -279,6 +286,13 @@ Please evaluate these requirements and provide your definitive Momentum System T
                         recommendedTier = "Momentum";
                     }
 
+                    // Keep the real report text + tier around so "email me a
+                    // copy" below can send this exact content to the visitor.
+                    setSurveyResultText(ansText);
+                    setSurveyRecommendedTier(recommendedTier);
+                    setLeadSent(false);
+                    setLeadError(null);
+
                     // Automatically dispatch lead notification alert to info@thekinetiq.solutions
                     fetch("/api/chat/survey-lead", {
                         method: "POST",
@@ -303,26 +317,32 @@ Please evaluate these requirements and provide your definitive Momentum System T
         if (!leadEmail.trim() || leadSubmitting) return;
 
         setLeadSubmitting(true);
+        setLeadError(null);
         const emailToSend = leadEmail.trim();
 
         try {
-            await fetch("/api/chat/survey-lead", {
+            const res = await fetch("/api/chat/survey-lead", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     answers: surveyAnswers,
-                    recommendedTier: "Momentum Tier Lead",
+                    recommendedTier: surveyRecommendedTier,
                     userEmail: emailToSend,
-                    summaryNotes: "Lead requested copy of their growth assessment roadmap sent to their email.",
+                    summaryNotes: surveyResultText,
                 }),
             });
+            const data = (await res.json().catch(() => ({ ok: false }))) as { ok: boolean; error?: string };
+
+            if (!res.ok || !data.ok) {
+                setLeadError(data.error ?? "Could not send the report. Please try again.");
+                return;
+            }
+
             setCapturedEmail(emailToSend);
             setLeadSent(true);
             setLeadEmail("");
         } catch {
-            // Still acknowledge to user
-            setCapturedEmail(emailToSend);
-            setLeadSent(true);
+            setLeadError("Could not reach the server. Please try again.");
         } finally {
             setLeadSubmitting(false);
         }
@@ -510,6 +530,11 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                                                         {leadSubmitting ? "Sending…" : "Send Me Copy →"}
                                                                     </button>
                                                                 </form>
+                                                            )}
+                                                            {leadError && !leadSent && (
+                                                                <div className="border border-red-500/30 bg-red-500/10 p-2 text-center text-[11px] font-medium text-red-300">
+                                                                    ⚠ {leadError}
+                                                                </div>
                                                             )}
                                                         </div>
 

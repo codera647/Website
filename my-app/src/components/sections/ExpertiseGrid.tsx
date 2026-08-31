@@ -16,25 +16,62 @@ export default function ExpertiseGrid() {
             </FadeInWhenVisible>
 
             <StaggerList className="mt-14 grid gap-6 md:grid-cols-3" stagger={0.12}>
-                {services.map((service) => (
-                    <Link
-                        key={service.id}
-                        href={`/services#${service.anchor}`}
-                        className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-white p-8"
-                    >
-                        <h3 className="font-heading text-xl font-semibold">{service.title}</h3>
-                        <p className="mt-1 font-heading text-sm text-muted">{service.tagline}</p>
-                        <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">
-                            {service.description}
-                        </p>
-                        <span className="mt-6 font-heading text-sm font-medium text-ink">
-                            Explore{" "}
-                            <span className="inline-block transition-transform group-hover:translate-x-1.5">
-                                →
+                {services.map((service) => {
+                    const isEnterpriseTrack = service.id === "ai-automation" || service.id === "generative-ai";
+
+                    // The AI Automation / Generative AI tiles carry a second
+                    // link (to /ai-engagements), so they can't be a single
+                    // full-card <Link> like Web Development — nested anchors
+                    // aren't valid HTML.
+                    if (isEnterpriseTrack) {
+                        return (
+                            <div
+                                key={service.id}
+                                className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-white p-8"
+                            >
+                                <Link href={`/services#${service.anchor}`} className="flex flex-1 flex-col">
+                                    <h3 className="font-heading text-xl font-semibold">{service.title}</h3>
+                                    <p className="mt-1 font-heading text-sm text-muted">{service.tagline}</p>
+                                    <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">
+                                        {service.description}
+                                    </p>
+                                    <span className="mt-6 font-heading text-sm font-medium text-ink">
+                                        Explore{" "}
+                                        <span className="inline-block transition-transform group-hover:translate-x-1.5">
+                                            →
+                                        </span>
+                                    </span>
+                                </Link>
+                                <Link
+                                    href="/ai-engagements"
+                                    className="mt-4 border-t border-line pt-4 font-heading text-xs font-medium text-muted underline-offset-4 hover:text-ink hover:underline"
+                                >
+                                    Enterprise &amp; custom builds →
+                                </Link>
+                            </div>
+                        );
+                    }
+
+                    return (
+                        <Link
+                            key={service.id}
+                            href={`/services#${service.anchor}`}
+                            className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-white p-8"
+                        >
+                            <h3 className="font-heading text-xl font-semibold">{service.title}</h3>
+                            <p className="mt-1 font-heading text-sm text-muted">{service.tagline}</p>
+                            <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">
+                                {service.description}
+                            </p>
+                            <span className="mt-6 font-heading text-sm font-medium text-ink">
+                                Explore{" "}
+                                <span className="inline-block transition-transform group-hover:translate-x-1.5">
+                                    →
+                                </span>
                             </span>
-                        </span>
-                    </Link>
-                ))}
+                        </Link>
+                    );
+                })}
             </StaggerList>
 
             {/* Momentum Systems Spotlight */}

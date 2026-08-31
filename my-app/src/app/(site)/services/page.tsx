@@ -133,6 +133,15 @@ export default function ServicesPage() {
                                     </span>
                                 ))}
                             </div>
+
+                            {(service.id === "ai-automation" || service.id === "generative-ai") && (
+                                <Link
+                                    href="/ai-engagements"
+                                    className="mt-6 inline-block font-heading text-sm font-semibold text-ink underline-offset-4 hover:underline"
+                                >
+                                    Have a larger process or platform in mind? See engagement options →
+                                </Link>
+                            )}
                         </FadeInWhenVisible>
 
                         <FadeInWhenVisible delay={0.15} y={32}>

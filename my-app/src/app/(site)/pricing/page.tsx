@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import BracketButton from "@/components/motion/BracketButton";
 import FAQAccordion, { type FAQItem } from "@/components/motion/FAQAccordion";
@@ -42,6 +41,8 @@ interface PricingTier {
     tagline: string;
     features: string[];
     ctaText: string;
+    /** Momentum Systems tiers only — points down to the AI Add-Ons section. */
+    crossLinkToAddons?: boolean;
 }
 
 const TIERS: PricingTier[] = [
@@ -64,6 +65,7 @@ const TIERS: PricingTier[] = [
             "Monthly performance report (traffic, leads & reviews)",
         ],
         ctaText: "Claim Foundation Tier",
+        crossLinkToAddons: true,
     },
     {
         id: "momentum",
@@ -87,6 +89,7 @@ const TIERS: PricingTier[] = [
             "Full attribution dashboard (bookings, retention rate, review trend)",
         ],
         ctaText: "Claim Momentum Tier",
+        crossLinkToAddons: true,
     },
     {
         id: "momentum-pro",
@@ -107,6 +110,61 @@ const TIERS: PricingTier[] = [
             "Priority SLA support & dedicated technical account manager",
         ],
         ctaText: "Claim Momentum Pro",
+        crossLinkToAddons: true,
+    },
+];
+
+const ADDON_TIERS: PricingTier[] = [
+    {
+        id: "ai-assist",
+        name: "AI Assist",
+        setupOriginal: "$997",
+        setupFounding: "$497",
+        monthlyOriginal: "$297",
+        monthlyFounding: "$197",
+        tagline: "Pick one automation to take the manual work out of what happens after a booking.",
+        features: [
+            "Pick one automation:",
+            "AI chat widget for lead capture & booking (answers basic questions, books a call/appointment automatically)",
+            "Automated document/invoice data extraction (pulls job details, amounts & dates from paperwork)",
+            "One workflow automation (e.g. auto-notify a technician on a new job, auto-update job status)",
+        ],
+        ctaText: "Add this",
+    },
+    {
+        id: "ai-operations",
+        name: "AI Operations",
+        badge: "Most Popular",
+        isPopular: true,
+        setupOriginal: "$1,997",
+        setupFounding: "$997",
+        monthlyOriginal: "$597",
+        monthlyFounding: "$397",
+        tagline: "Two automations, plus the monitoring to know they're actually working.",
+        features: [
+            "Everything in AI Assist, plus:",
+            "Any two automations from the AI Assist list",
+            "Monthly monitoring & optimization (is the chat widget converting? are automations firing correctly?)",
+            "A simple monthly performance report",
+        ],
+        ctaText: "Add this",
+    },
+    {
+        id: "ai-suite",
+        name: "AI Suite",
+        setupOriginal: "$3,997",
+        setupFounding: "$1,997",
+        monthlyOriginal: "$997",
+        monthlyFounding: "$697",
+        tagline: "Full automation coverage across the business, wired into the tools you already use.",
+        features: [
+            "Everything in AI Operations, plus:",
+            "AI voice receptionist or advanced conversational chat agent",
+            "Multiple workflow automations across the business (dispatch, scheduling, follow-up)",
+            "Integration with existing field-service/CRM software (Housecall Pro, ServiceTitan)",
+            "Custom reporting dashboard",
+        ],
+        ctaText: "Add this",
     },
 ];
 
@@ -141,7 +199,120 @@ const PRICING_FAQS: FAQItem[] = [
         answer:
             "Click any tier's button to schedule a free 30-minute growth audit. We'll examine your current online footprint, demonstrate what the portal and automations look like for your trade, and map out your launch timeline.",
     },
+    {
+        question: "Can I get an AI Add-On without a Momentum Systems plan?",
+        answer:
+            "Yes — these work standalone. If you add Momentum Systems later, you'll get the bundle discount on the setup fee at that point.",
+    },
+    {
+        question: "Do these use my existing phone number / socials, or something new?",
+        answer:
+            "The chat widget installs directly on your existing website — no new site or new number needed. If you add the AI voice receptionist, it forwards from the business number you already have, so customers keep calling the number they know; we don't ask you to port or change it. Automations that post reviews or send follow-ups run through your existing accounts and messaging channels wherever possible.",
+    },
+    {
+        question: "What if I'm not sure which automation I need?",
+        answer:
+            "That's exactly what the initial call is for — we'll look at where you're losing time or missing follow-up and recommend the right one.",
+    },
 ];
+
+/** Reused for both the Momentum Systems tiers and the AI Add-Ons tiers — same card, same price treatment, so Add-Ons read as a continuation of the page rather than a different product. */
+function TierCard({ tier, index }: { tier: PricingTier; index: number }) {
+    return (
+        <FadeInWhenVisible delay={index * 0.1} className="flex">
+            <div
+                className={`card-hover group flex w-full flex-col justify-between rounded-2xl border bg-white p-8 transition-all md:p-10 ${
+                    tier.isPopular ? "relative border-ink shadow-lg ring-1 ring-ink/10" : "border-line"
+                }`}
+            >
+                <div>
+                    {/* Top Header & Optional Badge */}
+                    <div className="flex items-center justify-between gap-2">
+                        <h3 className="font-heading text-2xl font-bold text-ink">{tier.name}</h3>
+                        {tier.badge && (
+                            <span className="rounded-none bg-ink px-2.5 py-1 font-heading text-[10px] font-bold uppercase tracking-wider text-white">
+                                {tier.badge}
+                            </span>
+                        )}
+                    </div>
+
+                    <p className="mt-3 text-xs leading-relaxed text-muted">{tier.tagline}</p>
+
+                    {/* Price Block */}
+                    <div className="mt-8 border-y border-line py-6">
+                        {/* Monthly Fee */}
+                        <div className="flex items-baseline gap-2">
+                            <span className="text-sm text-muted line-through">{tier.monthlyOriginal}</span>
+                            <span className="font-heading text-4xl font-bold text-ink">{tier.monthlyFounding}</span>
+                            <span className="text-xs font-medium text-muted">/ month</span>
+                        </div>
+
+                        {/* Setup Fee */}
+                        <div className="mt-2 flex items-center gap-2 text-xs">
+                            <span className="text-muted">Setup:</span>
+                            <span className="text-muted line-through">{tier.setupOriginal}</span>
+                            <span className="font-heading font-bold text-ink">{tier.setupFounding}</span>
+                            <span className="text-muted/80">(one-time build fee)</span>
+                        </div>
+                    </div>
+
+                    {/* Features List */}
+                    <ul className="mt-8 space-y-3.5 text-xs leading-relaxed text-ink/90">
+                        {tier.features.map((feat, fIdx) => (
+                            <li
+                                key={fIdx}
+                                className={`flex items-start gap-2.5 ${
+                                    feat.startsWith("Everything in") || feat.startsWith("Pick one")
+                                        ? "font-heading font-semibold text-ink border-b border-line pb-2"
+                                        : ""
+                                }`}
+                            >
+                                {!feat.startsWith("Everything in") && !feat.startsWith("Pick one") && (
+                                    <svg
+                                        className="size-4 shrink-0 text-ink mt-0.5"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg>
+                                )}
+                                <span>{feat}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* Action CTA */}
+                <div className="mt-10 pt-6 border-t border-line">
+                    <BracketButton
+                        calLink="abdul-moiz/30min"
+                        className="w-full text-center"
+                        buttonClassName={
+                            tier.isPopular
+                                ? "bg-ink text-white group-hover:bg-ink-soft"
+                                : "bg-surface text-ink group-hover:bg-ink group-hover:text-white"
+                        }
+                    >
+                        {tier.ctaText}
+                    </BracketButton>
+                    {tier.crossLinkToAddons && (
+                        <a
+                            href="#ai-add-ons"
+                            className="mt-3 block text-center text-xs font-medium text-muted underline-offset-4 hover:text-ink hover:underline"
+                        >
+                            Want to add AI automation? See AI Add-Ons below.
+                        </a>
+                    )}
+                </div>
+            </div>
+        </FadeInWhenVisible>
+    );
+}
 
 export default function PricingPage() {
     const pricingSchemas = {
@@ -250,106 +421,7 @@ export default function PricingPage() {
                 <div className="container-wide">
                     <div className="grid gap-8 lg:grid-cols-3 lg:items-stretch">
                         {TIERS.map((tier, i) => (
-                            <FadeInWhenVisible key={tier.id} delay={i * 0.1} className="flex">
-                                <div
-                                    className={`card-hover group flex w-full flex-col justify-between rounded-2xl border bg-white p-8 transition-all md:p-10 ${
-                                        tier.isPopular
-                                            ? "relative border-ink shadow-lg ring-1 ring-ink/10"
-                                            : "border-line"
-                                    }`}
-                                >
-                                    <div>
-                                        {/* Top Header & Optional Badge */}
-                                        <div className="flex items-center justify-between gap-2">
-                                            <h3 className="font-heading text-2xl font-bold text-ink">
-                                                {tier.name}
-                                            </h3>
-                                            {tier.badge && (
-                                                <span className="rounded-none bg-ink px-2.5 py-1 font-heading text-[10px] font-bold uppercase tracking-wider text-white">
-                                                    {tier.badge}
-                                                </span>
-                                            )}
-                                        </div>
-
-                                        <p className="mt-3 text-xs leading-relaxed text-muted">
-                                            {tier.tagline}
-                                        </p>
-
-                                        {/* Price Block */}
-                                        <div className="mt-8 border-y border-line py-6">
-                                            {/* Monthly Fee */}
-                                            <div className="flex items-baseline gap-2">
-                                                <span className="text-sm text-muted line-through">
-                                                    {tier.monthlyOriginal}
-                                                </span>
-                                                <span className="font-heading text-4xl font-bold text-ink">
-                                                    {tier.monthlyFounding}
-                                                </span>
-                                                <span className="text-xs font-medium text-muted">
-                                                    / month
-                                                </span>
-                                            </div>
-
-                                            {/* Setup Fee */}
-                                            <div className="mt-2 flex items-center gap-2 text-xs">
-                                                <span className="text-muted">Setup:</span>
-                                                <span className="text-muted line-through">
-                                                    {tier.setupOriginal}
-                                                </span>
-                                                <span className="font-heading font-bold text-ink">
-                                                    {tier.setupFounding}
-                                                </span>
-                                                <span className="text-muted/80">(one-time build fee)</span>
-                                            </div>
-                                        </div>
-
-                                        {/* Features List */}
-                                        <ul className="mt-8 space-y-3.5 text-xs leading-relaxed text-ink/90">
-                                            {tier.features.map((feat, fIdx) => (
-                                                <li
-                                                    key={fIdx}
-                                                    className={`flex items-start gap-2.5 ${
-                                                        feat.startsWith("Everything in")
-                                                            ? "font-heading font-semibold text-ink border-b border-line pb-2"
-                                                            : ""
-                                                    }`}
-                                                >
-                                                    {!feat.startsWith("Everything in") && (
-                                                        <svg
-                                                            className="size-4 shrink-0 text-ink mt-0.5"
-                                                            viewBox="0 0 20 20"
-                                                            fill="currentColor"
-                                                            aria-hidden="true"
-                                                        >
-                                                            <path
-                                                                fillRule="evenodd"
-                                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                                clipRule="evenodd"
-                                                            />
-                                                        </svg>
-                                                    )}
-                                                    <span>{feat}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    {/* Action CTA */}
-                                    <div className="mt-10 pt-6 border-t border-line">
-                                        <BracketButton
-                                            calLink="abdul-moiz/30min"
-                                            className="w-full text-center"
-                                            buttonClassName={
-                                                tier.isPopular
-                                                    ? "bg-ink text-white group-hover:bg-ink-soft"
-                                                    : "bg-surface text-ink group-hover:bg-ink group-hover:text-white"
-                                            }
-                                        >
-                                            {tier.ctaText}
-                                        </BracketButton>
-                                    </div>
-                                </div>
-                            </FadeInWhenVisible>
+                            <TierCard key={tier.id} tier={tier} index={i} />
                         ))}
                     </div>
 
@@ -387,6 +459,31 @@ export default function PricingPage() {
                             </div>
                         </div>
                     </FadeInWhenVisible>
+                </div>
+            </section>
+
+            {/* 2.5 AI Add-Ons — additive to Momentum Systems, same visual treatment on purpose */}
+            <section id="ai-add-ons" className="scroll-mt-28 border-t border-line bg-white py-20 md:py-28">
+                <div className="container-wide">
+                    <FadeInWhenVisible>
+                        <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
+                            AI Add-Ons
+                        </p>
+                        <h2 className="mt-3 max-w-2xl text-3xl font-bold md:text-4xl text-ink">
+                            Momentum Systems gets customers finding and booking you.
+                        </h2>
+                        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
+                            These add-ons take the manual work out of what happens next. Available
+                            on their own or bundled with any Momentum Systems plan — bundle and
+                            save 10–15% on the setup fee.
+                        </p>
+                    </FadeInWhenVisible>
+
+                    <div className="mt-14 grid gap-8 lg:grid-cols-3 lg:items-stretch">
+                        {ADDON_TIERS.map((tier, i) => (
+                            <TierCard key={tier.id} tier={tier} index={i} />
+                        ))}
+                    </div>
                 </div>
             </section>
 

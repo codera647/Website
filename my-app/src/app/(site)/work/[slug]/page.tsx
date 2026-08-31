@@ -153,6 +153,29 @@ export default async function CaseStudyPage({
                 </section>
             )}
 
+            {/* Cross-link to enterprise engagement track — only for the AI
+                Automation / Generative AI projects that track is scoped for. */}
+            {(cs.category === "AI Automation" || cs.category === "Generative AI") && (
+                <section className="border-t border-line bg-surface">
+                    <div className="mx-auto max-w-5xl px-6 py-14 md:py-16">
+                        <FadeInWhenVisible>
+                            <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
+                                Want something like this?
+                            </p>
+                            <h2 className="mt-3 max-w-xl text-2xl font-bold md:text-3xl text-ink">
+                                Want something like this built for your business?
+                            </h2>
+                            <Link
+                                href="/ai-engagements"
+                                className="mt-5 inline-block rounded-none border border-line bg-white px-6 py-3 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
+                            >
+                                See engagement options →
+                            </Link>
+                        </FadeInWhenVisible>
+                    </div>
+                </section>
+            )}
+
             {/* Next project */}
             <section className="border-t border-line">
                 <FadeInWhenVisible>

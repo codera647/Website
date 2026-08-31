@@ -13,7 +13,7 @@ const BULLET_RE = /^\s*[-*•]\s+/;
 const BLOCKQUOTE_RE = /^\s*>\s+(.+)$/;
 
 const BASE_URL = "https://thekinetiq.solutions";
-const BOOK_CALL_URL = "https://cal.com/abdul-moiz/30min";
+const BOOK_CALL_URL = "https://cal.com/kinetiq-solutions-aznvm5/30min";
 
 function escapeHtml(s: string): string {
     return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");

@@ -290,7 +290,7 @@ function TierCard({ tier, index }: { tier: PricingTier; index: number }) {
                 {/* Action CTA */}
                 <div className="mt-10 pt-6 border-t border-line">
                     <BracketButton
-                        calLink="abdul-moiz/30min"
+                        calLink="kinetiq-solutions-aznvm5/30min"
                         className="w-full text-center"
                         buttonClassName={
                             tier.isPopular
@@ -577,7 +577,7 @@ export default function PricingPage() {
                             Book a free 30-minute growth audit. We&apos;ll evaluate your service territory, show you what a custom Momentum System will look like, and lock in your founding rate.
                         </p>
                         <div className="mt-10">
-                            <BracketButton calLink="abdul-moiz/30min">
+                            <BracketButton calLink="kinetiq-solutions-aznvm5/30min">
                                 Book your free growth audit
                             </BracketButton>
                         </div>

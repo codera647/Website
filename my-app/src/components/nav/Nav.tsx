@@ -133,7 +133,7 @@ export default function Nav() {
                                 />
                             </Link>
                         ))}
-                        <BracketButton calLink="abdul-moiz/30min" className="ml-4">
+                        <BracketButton calLink="kinetiq-solutions-aznvm5/30min" className="ml-4">
                             Let&apos;s talk
                         </BracketButton>
                     </nav>
@@ -199,7 +199,7 @@ export default function Nav() {
                             ))}
                             <div className="pt-6">
                                 <BracketButton
-                                    calLink="abdul-moiz/30min"
+                                    calLink="kinetiq-solutions-aznvm5/30min"
                                     onClick={() => setOpen(false)}
                                     className="w-full text-center"
                                 >

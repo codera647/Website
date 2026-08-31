@@ -179,7 +179,7 @@ export default function Hero() {
                             See our work
                         </Link>
                         <BookCallButton
-                            calLink="abdul-moiz/30min"
+                            calLink="kinetiq-solutions-aznvm5/30min"
                             className="cursor-pointer rounded-none border border-line bg-white px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
                         >
                             Let&apos;s talk

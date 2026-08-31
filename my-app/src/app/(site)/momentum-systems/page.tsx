@@ -225,7 +225,7 @@ export default function MomentumSystemsPage() {
                     </p>
 
                     <div className="mt-10 flex flex-wrap items-center gap-4">
-                        <BracketButton calLink="abdul-moiz/30min">
+                        <BracketButton calLink="kinetiq-solutions-aznvm5/30min">
                             Get your free growth audit
                         </BracketButton>
                         <Link
@@ -530,7 +530,7 @@ export default function MomentumSystemsPage() {
                             Book a free 30-minute growth audit. We will analyze your local search visibility, follow-up gaps, and map out what a custom Momentum System will produce for your business.
                         </p>
                         <div className="mt-10">
-                            <BracketButton calLink="abdul-moiz/30min">
+                            <BracketButton calLink="kinetiq-solutions-aznvm5/30min">
                                 Book your free growth audit
                             </BracketButton>
                         </div>

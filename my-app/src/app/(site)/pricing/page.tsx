@@ -133,8 +133,25 @@ const PRICING_FAQS: FAQItem[] = [
 ];
 
 export default function PricingPage() {
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: PRICING_FAQS.map((faq) => ({
+            "@type": "Question",
+            name: faq.question,
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.answer,
+            },
+        })),
+    };
+
     return (
         <main>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+            />
             {/* 1. Hero Section */}
             <section className="container-wide pb-16 pt-36 md:pb-24 md:pt-44">
                 <FadeInWhenVisible>

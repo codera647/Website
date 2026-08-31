@@ -81,8 +81,34 @@ export default async function RolePage({
         otherRoles = fallbackRoles.filter((r) => r.slug !== slug);
     }
 
+    const jobPostingSchema = {
+        "@context": "https://schema.org",
+        "@type": "JobPosting",
+        title: role.title,
+        description: `${role.summary} ${role.jd_content || ""}`,
+        datePosted: role.posted_date || "2024-01-01",
+        employmentType: role.type === "Contract" ? "CONTRACTOR" : role.type === "Internship" ? "INTERN" : "FULL_TIME",
+        hiringOrganization: {
+            "@type": "Organization",
+            name: "Kinetiq",
+            sameAs: "https://thekinetiq.solutions",
+            logo: "https://thekinetiq.solutions/icon.png",
+        },
+        jobLocationType: "TELECOMMUTE",
+        applicantLocationRequirements: {
+            "@type": "Country",
+            name: "Worldwide",
+        },
+        responsibilities: role.responsibilities.join("; "),
+        skills: role.requirements.join("; "),
+    };
+
     return (
         <main>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jobPostingSchema) }}
+            />
             {/* Header */}
             <section className="mx-auto max-w-4xl px-6 pb-12 pt-36 md:pt-44">
                 <FadeInWhenVisible>

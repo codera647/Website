@@ -43,8 +43,38 @@ export default async function BlogPostPage({
     const { blocks, resources } = parseBlogBody(post.content);
     const related = await getRelatedBlogPosts(slug, 4);
 
+    const blogPostingSchema = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: post.title,
+        description: post.excerpt,
+        datePublished: post.date,
+        dateModified: post.updated_at || post.date,
+        author: {
+            "@type": "Organization",
+            name: "Kinetiq",
+            url: "https://thekinetiq.solutions",
+        },
+        publisher: {
+            "@type": "Organization",
+            name: "Kinetiq",
+            logo: {
+                "@type": "ImageObject",
+                url: "https://thekinetiq.solutions/icon.png",
+            },
+        },
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `https://thekinetiq.solutions/blog/${post.slug}`,
+        },
+    };
+
     return (
         <main>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+            />
             {/* mobile-only back link — the desktop equivalent lives in the sidebar */}
             <div className="container-wide pt-32 md:hidden">
                 <Link href="/blog" className="font-heading text-sm text-muted hover:text-ink">

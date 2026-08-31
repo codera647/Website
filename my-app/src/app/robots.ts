@@ -4,8 +4,8 @@ const BASE_URL = "https://thekinetiq.solutions";
 
 /**
  * Next.js robots.txt generation — produces /robots.txt at build time.
- * Allows all crawlers, points to the sitemap, and blocks /api/ routes
- * (they're JSON endpoints, not pages).
+ * Allows search crawlers, points to the dynamic sitemap, and blocks
+ * /api/ endpoints and /admin/ dashboard to conserve crawl budget.
  */
 export default function robots(): MetadataRoute.Robots {
     return {
@@ -13,10 +13,9 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: "*",
                 allow: "/",
-                disallow: ["/api/"],
+                disallow: ["/api/", "/admin/"],
             },
         ],
         sitemap: `${BASE_URL}/sitemap.xml`,
     };
 }
-

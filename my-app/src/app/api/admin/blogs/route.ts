@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireAuth } from "@/lib/auth";
 import { createBlog, getAllBlogPosts, type BlogInput } from "@/lib/data";
+import { requestGoogleIndexing } from "@/lib/gsc";
 
 /** GET — list all blogs (published + drafts), sorted by date. */
 export async function GET(request: Request) {
@@ -41,6 +42,9 @@ export async function POST(request: Request) {
             content: body.content ?? "",
             published: body.published ?? true,
         });
+        if (blog.published) {
+            requestGoogleIndexing(`/blog/${blog.slug}`).catch(() => {});
+        }
         return NextResponse.json({ ok: true, blog }, { status: 201 });
     } catch (err) {
         const message = err instanceof Error ? err.message : "Failed to create blog.";

@@ -8,6 +8,7 @@ const links = [
     { href: "/admin/projects", label: "Projects" },
     { href: "/admin/blogs", label: "Blogs" },
     { href: "/admin/jobs", label: "Job Openings" },
+    { href: "/admin/seo", label: "SEO & Indexing" },
 ];
 
 export default function AdminSidebar() {

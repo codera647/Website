@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireAuth } from "@/lib/auth";
 import { createJob, getAllJobs, type CreateJobInput } from "@/lib/data";
+import { requestGoogleIndexing } from "@/lib/gsc";
 
 export async function GET(request: Request) {
     const authError = await requireAuth(request);
@@ -47,6 +48,9 @@ export async function POST(request: Request) {
             posted_date: body.posted_date || new Date().toISOString().slice(0, 7),
         });
 
+        if (job.active) {
+            requestGoogleIndexing(`/careers/${job.slug}`).catch(() => {});
+        }
         return NextResponse.json({ ok: true, job }, { status: 201 });
     } catch (err: unknown) {
         const msg = err instanceof Error ? err.message : String(err);

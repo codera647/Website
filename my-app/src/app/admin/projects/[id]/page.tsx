@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import Link from "next/link";
 import ProjectForm from "@/components/admin/ProjectForm";
 import DocumentUploader from "@/components/admin/DocumentUploader";
 import { Button } from "@/components/admin/AdminForm";
@@ -83,6 +84,7 @@ export default function EditProjectPage() {
     const [project, setProject] = useState<Project | null>(null);
     const [notFound, setNotFound] = useState(false);
     const [tab, setTab] = useState<"details" | "documents">("details");
+    const [savedSuccess, setSavedSuccess] = useState(false);
 
     useEffect(() => {
         fetch(`/api/admin/projects/${params.id}`)
@@ -90,7 +92,8 @@ export default function EditProjectPage() {
             .then((data) => {
                 if (data.ok && data.project) setProject(data.project);
                 else setNotFound(true);
-            });
+            })
+            .catch(() => setNotFound(true));
     }, [params.id]);
 
     async function handleSubmit(input: ProjectInput) {
@@ -108,6 +111,8 @@ export default function EditProjectPage() {
             throw new Error(data.error ?? "Failed to update project.");
         }
         setProject(data.project);
+        setSavedSuccess(true);
+        setTimeout(() => setSavedSuccess(false), 3000);
     }
 
     async function handleDelete() {
@@ -118,21 +123,48 @@ export default function EditProjectPage() {
     }
 
     if (notFound) {
-        return <p className="text-sm text-white/50">Project not found.</p>;
+        return (
+            <div>
+                <p className="text-sm text-white/50">Project not found.</p>
+                <Link href="/admin/projects" className="mt-4 inline-block text-xs text-white underline">
+                    ← Return to Projects
+                </Link>
+            </div>
+        );
     }
 
     if (!project) {
-        return <p className="text-sm text-white/50">Loading…</p>;
+        return <p className="text-sm text-white/50">Loading project details…</p>;
     }
 
     return (
         <div>
             <div className="flex flex-wrap items-center justify-between gap-4">
-                <h1 className="font-heading text-2xl font-bold text-white">{project.title}</h1>
-                <Button type="button" variant="danger" onClick={handleDelete}>
-                    Delete project
-                </Button>
+                <div>
+                    <Link href="/admin/projects" className="text-xs text-white/50 hover:text-white">
+                        ← Back to Projects
+                    </Link>
+                    <h1 className="mt-2 font-heading text-2xl font-bold text-white">Edit: {project.title}</h1>
+                </div>
+                <div className="flex items-center gap-3">
+                    <Link
+                        href={`/work/${project.slug}`}
+                        target="_blank"
+                        className="border border-white/15 px-3 py-2 text-xs font-semibold text-white transition-colors hover:border-white/40"
+                    >
+                        View Live ↗
+                    </Link>
+                    <Button type="button" variant="danger" onClick={handleDelete}>
+                        Delete project
+                    </Button>
+                </div>
             </div>
+
+            {savedSuccess && (
+                <div className="mt-6 border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-300">
+                    Project updated successfully.
+                </div>
+            )}
 
             <div className="mt-6 flex gap-1 border-b border-white/10">
                 {(["details", "documents"] as const).map((t) => (
@@ -144,7 +176,7 @@ export default function EditProjectPage() {
                             tab === t ? "border-b-2 border-white text-white" : "text-white/45 hover:text-white/70"
                         }`}
                     >
-                        {t}
+                        {t === "details" ? "Project Information" : "RAG Documents"}
                     </button>
                 ))}
             </div>

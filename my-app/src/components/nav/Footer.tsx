@@ -7,10 +7,11 @@ import type { Project } from "@/lib/data";
 const CONTACT_EMAIL = "info@thekinetiq.solutions";
 const LINKEDIN_URL = "https://www.linkedin.com/company/kinetiq-site/";
 const INSTAGRAM_URL = "https://www.instagram.com/thekinetiq.solutions/";
-// TODO: swap in the real profile URLs once these are live.
+const YOUTUBE_URL = "https://www.youtube.com/@kinetiq-solutions";
+const DISCORD_URL = "https://discord.gg/GJDe5SBJC";
 const FACEBOOK_URL = "#";
-const YOUTUBE_URL = "#";
 const TWITTER_URL = "#";
+
 /** opens Gmail's web compose (logged-in browser tab) instead of the
  *  OS default mail app, pre-addressed to us */
 const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}`;
@@ -56,6 +57,28 @@ const socials = [
         ),
     },
     {
+        href: YOUTUBE_URL,
+        label: "YouTube",
+        icon: (
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-[18px]">
+                <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M21.58 7.2a2.27 2.27 0 0 0-1.6-1.6C18.25 5.2 12 5.2 12 5.2s-6.25 0-7.98.4a2.27 2.27 0 0 0-1.6 1.6A23.7 23.7 0 0 0 2 12a23.7 23.7 0 0 0 .42 4.8c.22.78.82 1.38 1.6 1.6 1.73.4 7.98.4 7.98.4s6.25 0 7.98-.4a2.27 2.27 0 0 0 1.6-1.6c.28-1.58.41-3.19.42-4.8a23.7 23.7 0 0 0-.42-4.8zM10 15.2V8.8l5.5 3.2z"
+                />
+            </svg>
+        ),
+    },
+    {
+        href: DISCORD_URL,
+        label: "Discord",
+        icon: (
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-[18px]">
+                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
+            </svg>
+        ),
+    },
+    {
         href: FACEBOOK_URL,
         label: "Facebook",
         icon: (
@@ -70,19 +93,6 @@ const socials = [
         icon: (
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-[18px]">
                 <path d="M13.6 10.6 20.3 3h-1.6l-5.8 6.6L8.3 3H3l7.3 10.4L3 21h1.6l6.1-7 5 7H21zM11 12.6l-.7-1L4.8 4.2h2.4l4.5 6.4.7 1 5.9 8.4h-2.4L11 12.6z" />
-            </svg>
-        ),
-    },
-    {
-        href: YOUTUBE_URL,
-        label: "YouTube",
-        icon: (
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-[18px]">
-                <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M21.58 7.2a2.27 2.27 0 0 0-1.6-1.6C18.25 5.2 12 5.2 12 5.2s-6.25 0-7.98.4a2.27 2.27 0 0 0-1.6 1.6A23.7 23.7 0 0 0 2 12a23.7 23.7 0 0 0 .42 4.8c.22.78.82 1.38 1.6 1.6 1.73.4 7.98.4 7.98.4s6.25 0 7.98-.4a2.27 2.27 0 0 0 1.6-1.6c.28-1.58.41-3.19.42-4.8a23.7 23.7 0 0 0-.42-4.8zM10 15.2V8.8l5.5 3.2z"
-                />
             </svg>
         ),
     },
@@ -205,7 +215,8 @@ export default function Footer({ featuredProjects }: { featuredProjects: Project
                         </li>
                     </ul>
 
-                    <div className="mt-5 flex items-center gap-3">
+                    {/* Social Media Links */}
+                    <div className="mt-5 flex flex-wrap items-center gap-3">
                         {socials.filter((s) => s.href !== "#").map((social) => (
                             <a
                                 key={social.label}
@@ -213,7 +224,7 @@ export default function Footer({ featuredProjects }: { featuredProjects: Project
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={social.label}
-                                className="flex size-9 items-center justify-center rounded-none border border-line text-ink-soft transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-white"
+                                className="flex size-9 items-center justify-center rounded-none border border-line text-ink-soft transition-all duration-300 hover:border-ink hover:bg-ink hover:text-white hover:-translate-y-0.5 shadow-sm"
                             >
                                 {social.icon}
                             </a>

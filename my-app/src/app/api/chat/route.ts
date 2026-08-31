@@ -69,6 +69,10 @@ COMPANY OVERVIEW:
 - Website: thekinetiq.solutions
 - Core Identity: High-performance software engineering studio specializing in AI Automation, Web Development, Generative AI, and Momentum Systems.
 - Email: info@thekinetiq.solutions
+- YouTube: https://www.youtube.com/@kinetiq-solutions
+- Discord Community: https://discord.gg/GJDe5SBJC
+- LinkedIn: https://www.linkedin.com/company/kinetiq-site/
+- Instagram: https://www.instagram.com/thekinetiq.solutions/
 - Booking: Free 30-minute growth audit or architecture strategy call via Cal.com.
 
 FOUNDERS & LEADERSHIP TEAM (/about):

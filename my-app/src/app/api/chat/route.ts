@@ -69,6 +69,8 @@ COMPANY OVERVIEW:
 - Website: thekinetiq.solutions
 - Core Identity: High-performance software engineering studio specializing in AI Automation, Web Development, Generative AI, and Momentum Systems.
 - Email: info@thekinetiq.solutions
+- Phone / Direct Call: +44 7427 114280 (tel:+447427114280)
+- WhatsApp: +44 7427 114280 (https://wa.me/447427114280)
 - YouTube: https://www.youtube.com/@kinetiq-solutions
 - Discord Community: https://discord.gg/GJDe5SBJC
 - LinkedIn: https://www.linkedin.com/company/kinetiq-site/

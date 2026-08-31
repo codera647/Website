@@ -8,12 +8,31 @@ import ClosingCTA from "@/components/sections/ClosingCTA";
 import { getAllProjects } from "@/lib/data";
 
 export const metadata: Metadata = {
-    title: "About | Kinetiq",
+    title: "About Kinetiq | Engineering Rigor & Production AI Systems",
     description:
-        "Kinetiq is a software house building intelligent systems across agentic AI, automation, and modern engineering, guided by practical problem solving.",
+        "Learn about Kinetiq's engineering philosophy, leadership team (Abdul Moiz & Hammad Sarwar), and our mission to build practical software that pays off in production for businesses in the US, UK, and worldwide.",
+    keywords: [
+        "About Kinetiq",
+        "Kinetiq Software Studio",
+        "Abdul Moiz Kinetiq",
+        "Hammad Sarwar Kinetiq",
+        "Production AI Engineering Studio",
+        "Top Software Development Studio in Pakistan",
+        "Bespoke Software Studio UK US",
+    ],
+    alternates: {
+        canonical: "/about",
+    },
+    openGraph: {
+        title: "About Kinetiq | Engineering Rigor & Production AI Systems",
+        description:
+            "Learn about Kinetiq's engineering philosophy, leadership team, and our mission to build practical software that pays off in production.",
+        url: "https://thekinetiq.solutions/about",
+        siteName: "Kinetiq",
+        type: "website",
+    },
 };
 
-/** Story copy is REAL (from the previous site). Values + process are DRAFT — TODO(user): review. */
 const values = [
     {
         title: "Practical over flashy",
@@ -36,8 +55,31 @@ const values = [
 export default async function AboutPage() {
     const projects = await getAllProjects();
 
+    const aboutSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://thekinetiq.solutions",
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "About",
+                item: "https://thekinetiq.solutions/about",
+            },
+        ],
+    };
+
     return (
         <main>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+            />
             <section className="container-wide pb-16 pt-36 md:pt-44">
                 <FadeInWhenVisible>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">

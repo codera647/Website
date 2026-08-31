@@ -6,13 +6,27 @@ import FAQAccordion, { type FAQItem } from "@/components/motion/FAQAccordion";
 import SurveyTriggerButton from "@/components/chat/SurveyTriggerButton";
 
 export const metadata: Metadata = {
-    title: "Momentum Systems | Kinetiq — Growth Systems for Local Businesses",
+    title: "Momentum Systems | Customer Portals, Automations & Programmatic SEO",
     description:
-        "Stop paying for a website that sits there. Momentum Systems combines a customer portal, automated follow-up, and location-based SEO into one system that brings customers back — built by Kinetiq.",
+        "Transform your online presence into an automated growth engine. Momentum Systems combines authenticated customer portals, automated SMS/email follow-up, and multi-location programmatic SEO into one outcome-priced system — built by Kinetiq for US, UK, and global service businesses.",
+    keywords: [
+        "Customer Portal for HVAC Contractors",
+        "Automated Repeat Booking Software",
+        "Programmatic SEO Agency for Contractors",
+        "Service Business Automation System",
+        "HVAC Customer Retention Platform",
+        "Automated SMS and Review System",
+        "Multi-Location Local SEO Engine",
+        "Contractor Booking Portal Software",
+        "Next.js Customer Portal Development",
+    ],
+    alternates: {
+        canonical: "/momentum-systems",
+    },
     openGraph: {
-        title: "Momentum Systems | Kinetiq",
+        title: "Momentum Systems | Customer Portals, Automations & Programmatic SEO",
         description:
-            "A growth system combining customer identity, automated email/SMS engagement, and programmatic SEO into one outcome-priced engine.",
+            "A packaged growth engine combining customer identity, automated email/SMS engagement, and programmatic SEO into one outcome-priced system.",
         url: "https://thekinetiq.solutions/momentum-systems",
         siteName: "Kinetiq",
         type: "website",
@@ -130,8 +144,66 @@ const MOMENTUM_FAQS: FAQItem[] = [
 ];
 
 export default function MomentumSystemsPage() {
+    const momentumSchemas = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "SoftwareApplication",
+                name: "Momentum Systems",
+                applicationCategory: "BusinessApplication",
+                operatingSystem: "Web",
+                offers: {
+                    "@type": "AggregateOffer",
+                    priceCurrency: "USD",
+                    lowPrice: "497",
+                    highPrice: "1497",
+                    offerCount: "3",
+                },
+                description:
+                    "A turnkey business growth system combining authenticated customer portals, automated email/SMS follow-up, and multi-location programmatic SEO for repeat service businesses.",
+                provider: {
+                    "@type": "Organization",
+                    name: "Kinetiq",
+                    url: "https://thekinetiq.solutions",
+                },
+            },
+            {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                    {
+                        "@type": "ListItem",
+                        position: 1,
+                        name: "Home",
+                        item: "https://thekinetiq.solutions",
+                    },
+                    {
+                        "@type": "ListItem",
+                        position: 2,
+                        name: "Momentum Systems",
+                        item: "https://thekinetiq.solutions/momentum-systems",
+                    },
+                ],
+            },
+            {
+                "@type": "FAQPage",
+                mainEntity: MOMENTUM_FAQS.map((faq) => ({
+                    "@type": "Question",
+                    name: faq.question,
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: faq.answer,
+                    },
+                })),
+            },
+        ],
+    };
+
     return (
         <main>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(momentumSchemas) }}
+            />
             {/* 1. Hero Section */}
             <section className="container-wide pb-20 pt-36 md:pb-28 md:pt-44">
                 <FadeInWhenVisible>

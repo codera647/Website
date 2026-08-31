@@ -7,14 +7,77 @@ import ClosingCTA from "@/components/sections/ClosingCTA";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
-    title: "Services | Kinetiq",
+    title: "AI Automation, Web Development & Generative AI Services | Kinetiq",
     description:
-        "AI automation, web development, and generative AI, designed, built, and shipped by Kinetiq.",
+        "Production-grade engineering services: Agentic AI workflows, custom Next.js web applications, enterprise RAG pipelines, and automated business infrastructure for clients in the US, UK, Pakistan, and worldwide.",
+    keywords: [
+        "AI Automation Services",
+        "Hire AI Automation Agency",
+        "Custom AI Agent Development Studio",
+        "Next.js Web Development Services",
+        "Enterprise RAG Architecture Developers",
+        "Generative AI Consulting Studio",
+        "Full-Stack Web Engineering Agency",
+        "Bespoke Software Engineering UK US",
+    ],
+    alternates: {
+        canonical: "/services",
+    },
+    openGraph: {
+        title: "AI Automation, Web Development & Generative AI Services | Kinetiq",
+        description:
+            "Production-grade engineering services: Agentic AI workflows, custom Next.js web applications, and enterprise RAG pipelines.",
+        url: "https://thekinetiq.solutions/services",
+        siteName: "Kinetiq",
+        type: "website",
+    },
 };
 
 export default function ServicesPage() {
+    const servicesSchema = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                    {
+                        "@type": "ListItem",
+                        position: 1,
+                        name: "Home",
+                        item: "https://thekinetiq.solutions",
+                    },
+                    {
+                        "@type": "ListItem",
+                        position: 2,
+                        name: "Services",
+                        item: "https://thekinetiq.solutions/services",
+                    },
+                ],
+            },
+            ...services.map((s) => ({
+                "@type": "Service",
+                name: s.title,
+                description: s.description,
+                provider: {
+                    "@type": "Organization",
+                    name: "Kinetiq",
+                    url: "https://thekinetiq.solutions",
+                },
+                serviceType: s.title,
+                offers: {
+                    "@type": "Offer",
+                    url: "https://thekinetiq.solutions/services#" + s.anchor,
+                },
+            })),
+        ],
+    };
+
     return (
         <main>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
+            />
             {/* intro */}
             <section className="container-wide pb-10 pt-36 md:pt-44">
                 <FadeInWhenVisible>

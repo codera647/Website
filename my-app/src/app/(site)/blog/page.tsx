@@ -6,16 +6,58 @@ import ClosingCTA from "@/components/sections/ClosingCTA";
 import { getAllBlogPosts } from "@/lib/data";
 
 export const metadata: Metadata = {
-    title: "Blog | Kinetiq",
+    title: "Insights, AI Architectures & Technical Blog | Kinetiq",
     description:
-        "Notes on AI automation, robotics, computer vision, drones, and modern software engineering from the Kinetiq team.",
+        "Deep-dive technical articles on agentic AI workflows, Next.js 15 architectures, RAG systems, and business automation by the Kinetiq engineering team.",
+    keywords: [
+        "Kinetiq Blog",
+        "AI Engineering Articles",
+        "Agentic AI Architecture",
+        "RAG Pipeline Best Practices",
+        "Next.js Development Insights",
+        "Programmatic SEO Guides",
+    ],
+    alternates: {
+        canonical: "/blog",
+    },
+    openGraph: {
+        title: "Insights, AI Architectures & Technical Blog | Kinetiq",
+        description:
+            "Deep-dive technical articles on agentic AI workflows, Next.js architectures, and automation by the Kinetiq engineering team.",
+        url: "https://thekinetiq.solutions/blog",
+        siteName: "Kinetiq",
+        type: "website",
+    },
 };
 
 export default async function BlogPage() {
     const posts = await getAllBlogPosts();
 
+    const blogSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://thekinetiq.solutions",
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "Blog",
+                item: "https://thekinetiq.solutions/blog",
+            },
+        ],
+    };
+
     return (
         <main>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+            />
             <section className="container-wide pb-10 pt-36 md:pt-44">
                 <FadeInWhenVisible>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">

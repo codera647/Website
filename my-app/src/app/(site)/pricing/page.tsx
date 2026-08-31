@@ -6,11 +6,22 @@ import FAQAccordion, { type FAQItem } from "@/components/motion/FAQAccordion";
 import SurveyTriggerButton from "@/components/chat/SurveyTriggerButton";
 
 export const metadata: Metadata = {
-    title: "Pricing | Momentum Systems by Kinetiq",
+    title: "Pricing & Founding Tiers | Momentum Systems by Kinetiq",
     description:
-        "Transparent, software-aligned pricing for Momentum Systems. A low initial build fee plus predictable monthly retention and growth management. Founding client pricing available for the first 10 businesses.",
+        "Transparent, software-aligned pricing for Momentum Systems. Foundation ($497 setup), Momentum ($797 setup), and Momentum Pro ($1,297 setup) with founding setup discounts for US, UK, and global businesses.",
+    keywords: [
+        "Momentum Systems Pricing",
+        "HVAC Software Pricing",
+        "Customer Portal Development Cost",
+        "Service Business Automation Pricing",
+        "Contractor Programmatic SEO Cost",
+        "Founding Client Discount",
+    ],
+    alternates: {
+        canonical: "/pricing",
+    },
     openGraph: {
-        title: "Pricing | Momentum Systems by Kinetiq",
+        title: "Pricing & Founding Tiers | Momentum Systems by Kinetiq",
         description:
             "Predictable, outcome-based pricing for service businesses. Founding pricing discounts available for the first 10 clients.",
         url: "https://thekinetiq.solutions/pricing",
@@ -133,24 +144,45 @@ const PRICING_FAQS: FAQItem[] = [
 ];
 
 export default function PricingPage() {
-    const faqSchema = {
+    const pricingSchemas = {
         "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: PRICING_FAQS.map((faq) => ({
-            "@type": "Question",
-            name: faq.question,
-            acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.answer,
+        "@graph": [
+            {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                    {
+                        "@type": "ListItem",
+                        position: 1,
+                        name: "Home",
+                        item: "https://thekinetiq.solutions",
+                    },
+                    {
+                        "@type": "ListItem",
+                        position: 2,
+                        name: "Pricing",
+                        item: "https://thekinetiq.solutions/pricing",
+                    },
+                ],
             },
-        })),
+            {
+                "@type": "FAQPage",
+                mainEntity: PRICING_FAQS.map((faq) => ({
+                    "@type": "Question",
+                    name: faq.question,
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: faq.answer,
+                    },
+                })),
+            },
+        ],
     };
 
     return (
         <main>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingSchemas) }}
             />
             {/* 1. Hero Section */}
             <section className="container-wide pb-16 pt-36 md:pb-24 md:pt-44">

@@ -7,8 +7,28 @@ import { getAllJobs, type Job } from "@/lib/data";
 import { roles as fallbackRoles } from "@/data/careers";
 
 export const metadata: Metadata = {
-    title: "Careers | Kinetiq",
-    description: "Open roles at Kinetiq, an AI automation, web development, and generative AI studio.",
+    title: "Careers at Kinetiq | Senior Engineering & AI Roles",
+    description:
+        "Join Kinetiq's senior engineering studio. Explore remote open positions for Web Developers, SEO Engineers, and AI Automation specialists across the US, UK, Pakistan, and worldwide.",
+    keywords: [
+        "Kinetiq Careers",
+        "Remote Web Developer Jobs",
+        "SEO Engineer Careers",
+        "AI Automation Engineer Jobs",
+        "Next.js Developer Hiring",
+        "Software House Jobs in Pakistan",
+    ],
+    alternates: {
+        canonical: "/careers",
+    },
+    openGraph: {
+        title: "Careers at Kinetiq | Senior Engineering & AI Roles",
+        description:
+            "Join Kinetiq's senior engineering studio. Explore remote open positions for Web Developers, SEO Engineers, and AI specialists.",
+        url: "https://thekinetiq.solutions/careers",
+        siteName: "Kinetiq",
+        type: "website",
+    },
 };
 
 export default async function CareersPage() {
@@ -22,8 +42,31 @@ export default async function CareersPage() {
     const displayedRoles = jobs.length > 0 ? jobs : fallbackRoles;
     const openRoleTitles = displayedRoles.map((r) => r.title);
 
+    const careersSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://thekinetiq.solutions",
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "Careers",
+                item: "https://thekinetiq.solutions/careers",
+            },
+        ],
+    };
+
     return (
         <main>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(careersSchema) }}
+            />
             <section className="container-wide pb-10 pt-36 md:pt-44">
                 <FadeInWhenVisible>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">

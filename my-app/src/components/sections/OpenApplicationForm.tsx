@@ -18,6 +18,8 @@ import { AnimatePresence, motion } from "framer-motion";
  */
 
 const SUGGESTED_TITLES = [
+    "Web Developer",
+    "SEO Engineer",
     "AI Engineer",
     "Full-stack Developer",
     "Frontend Engineer",

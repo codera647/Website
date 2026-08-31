@@ -3,40 +3,50 @@ import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import StaggerList from "@/components/motion/StaggerList";
 import { RoleCard } from "@/components/sections/RoleCard";
 import OpenApplicationForm from "@/components/sections/OpenApplicationForm";
-import { roles } from "@/data/careers";
+import { getAllJobs, type Job } from "@/lib/data";
+import { roles as fallbackRoles } from "@/data/careers";
 
 export const metadata: Metadata = {
     title: "Careers | Kinetiq",
     description: "Open roles at Kinetiq, an AI automation, web development, and generative AI studio.",
 };
 
-export default function CareersPage() {
+export default async function CareersPage() {
+    let jobs: Job[] = [];
+    try {
+        jobs = await getAllJobs(true);
+    } catch (e) {
+        console.error("Failed to load jobs from D1, using fallback roles:", e);
+    }
+
+    const displayedRoles = jobs.length > 0 ? jobs : fallbackRoles;
+    const openRoleTitles = displayedRoles.map((r) => r.title);
+
     return (
         <main>
             <section className="container-wide pb-10 pt-36 md:pt-44">
                 <FadeInWhenVisible>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
-                        Careers
+                        Careers &amp; Opportunities
                     </p>
-                    <h1 className="mt-4 max-w-2xl text-5xl font-bold md:text-6xl">
+                    <h1 className="mt-4 max-w-2xl font-heading text-5xl font-bold tracking-tight text-ink md:text-6xl">
                         Build what&apos;s next, with us.
                     </h1>
                     <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-                        We&apos;re a small studio that ships real production systems,
-                        not slide decks. If that&apos;s the kind of work you want to
-                        do, see what&apos;s open below.
+                        We&apos;re a high-cadence engineering studio shipping real production systems,
+                        not slide decks. Explore our active openings below or send us an open application.
                     </p>
                 </FadeInWhenVisible>
             </section>
 
-            {roles.length > 0 ? (
+            {displayedRoles.length > 0 ? (
                 <section className="container-wide pb-24 pt-10 md:pb-32">
                     <StaggerList
                         className="grid gap-6 transition-[padding-bottom] duration-500 ease-out md:grid-cols-2 md:has-[:hover]:pb-64"
                         itemClassName="h-full"
                         stagger={0.1}
                     >
-                        {roles.map((role) => (
+                        {displayedRoles.map((role) => (
                             <RoleCard key={role.slug} role={role} />
                         ))}
                     </StaggerList>
@@ -50,8 +60,8 @@ export default function CareersPage() {
                             </p>
                             <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted">
                                 We&apos;re not actively hiring, but we&apos;re always glad
-                                to hear from people doing great work. If that&apos;s you,
-                                drop your CV below. We read every one.
+                                to hear from talented people doing great work. If that&apos;s you,
+                                drop your CV below. We read every application.
                             </p>
                             <a
                                 href="#send-cv"
@@ -73,7 +83,7 @@ export default function CareersPage() {
                             <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-white/45">
                                 Open application
                             </p>
-                            <h2 className="mt-4 text-3xl font-bold text-white md:text-4xl">
+                            <h2 className="mt-4 font-heading text-3xl font-bold text-white md:text-4xl">
                                 Don&apos;t see your role? Send your CV.
                             </h2>
                             <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/60">
@@ -82,7 +92,7 @@ export default function CareersPage() {
                             </p>
                         </div>
                         <div className="mt-10">
-                            <OpenApplicationForm openRoles={roles.map((r) => r.title)} />
+                            <OpenApplicationForm openRoles={openRoleTitles} />
                         </div>
                     </FadeInWhenVisible>
                 </div>

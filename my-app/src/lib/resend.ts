@@ -1,28 +1,35 @@
 import { Resend } from "resend";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 /**
- * Shared Resend client. Reads RESEND_API_KEY lazily (at send time, not
- * at import time) so a missing key surfaces as a clean 500 from the
- * API route instead of crashing the build/dev server on startup.
- *
- * TODO(user): once thekinetiq.solutions is a verified sending domain
- * in Resend, set RESEND_FROM_EMAIL (e.g. "Kinetiq <noreply@thekinetiq.solutions>")
- * for proper deliverability. Until then this falls back to Resend's
- * shared onboarding domain, which works immediately with no setup.
+ * Shared Resend client. Reads RESEND_API_KEY lazily (at send time)
+ * from process.env or Cloudflare context env.
  */
 
 let client: Resend | null = null;
 
-export function getResend(): Resend {
-    const apiKey = process.env.RESEND_API_KEY;
+export function getResend(overrideKey?: string): Resend {
+    let apiKey = overrideKey || process.env.RESEND_API_KEY;
+
+    if (!apiKey) {
+        try {
+            const { env } = getCloudflareContext();
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            apiKey = (env as Record<string, any>)?.RESEND_API_KEY;
+        } catch {
+            // Outside Cloudflare context
+        }
+    }
+
     if (!apiKey) {
         throw new Error(
-            "RESEND_API_KEY is not set. Add it to your .env file to enable email sending."
+            "RESEND_API_KEY is not set. Add it to your environment variables to enable email sending."
         );
     }
+
     if (!client) client = new Resend(apiKey);
     return client;
 }
 
 export const FROM_EMAIL =
-    process.env.RESEND_FROM_EMAIL || "Kinetiq Website <onboarding@resend.dev>";
+    process.env.RESEND_FROM_EMAIL || "Kinetiq Careers <onboarding@resend.dev>";

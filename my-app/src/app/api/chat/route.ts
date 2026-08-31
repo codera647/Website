@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
-import { getAllProjects, getProjectBySlug } from "@/lib/data";
+import { getAllProjects, getProjectBySlug, getAllJobs } from "@/lib/data";
 import { team } from "@/data/team";
 import { services } from "@/data/services";
 import { roles } from "@/data/careers";
@@ -18,7 +18,7 @@ import { roles } from "@/data/careers";
 const PRIMARY_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 const FALLBACK_MODEL = "@cf/meta/llama-3.1-8b-instruct";
 
-function buildSiteKnowledge(): string {
+async function buildSiteKnowledge(): Promise<string> {
     const teamSummary = team
         .map((m) => `• ${m.name} — ${m.title}:\n  ${m.bio || ""}`)
         .join("\n\n");
@@ -30,10 +30,33 @@ function buildSiteKnowledge(): string {
         )
         .join("\n\n");
 
+    let activeJobs: { title: string; type: string; location: string; summary: string; slug: string }[] = [];
+    try {
+        const d1Jobs = await getAllJobs(true);
+        if (d1Jobs.length > 0) {
+            activeJobs = d1Jobs.map((j) => ({
+                title: j.title,
+                type: j.type,
+                location: j.location,
+                summary: j.summary,
+                slug: j.slug,
+            }));
+        }
+    } catch {
+        // Fallback to static
+    }
+
     const careersSummary =
-        roles.length > 0
-            ? roles.map((c) => `• ${c.title} (${c.type} · ${c.location}): ${c.summary}`).join("\n")
-            : "No active public job openings at this exact moment, but we always welcome exploratory conversations from high-caliber engineers.";
+        activeJobs.length > 0
+            ? activeJobs
+                  .map(
+                      (c) =>
+                          `• ${c.title} (${c.type} · ${c.location} · /careers/${c.slug}): ${c.summary}`
+                  )
+                  .join("\n")
+            : roles.length > 0
+            ? roles.map((c) => `• ${c.title} (${c.type} · ${c.location} · /careers/${c.slug}): ${c.summary}`).join("\n")
+            : "No active public job openings at this exact moment, but we always welcome exploratory CV applications via /careers#send-cv.";
 
     return `
 ========================================
@@ -192,7 +215,7 @@ export async function POST(request: Request) {
             );
         }
 
-        const siteKnowledge = buildSiteKnowledge();
+        const siteKnowledge = await buildSiteKnowledge();
         let contextualSystemPrompt = `${BASE_SYSTEM_PROMPT}\n\n${siteKnowledge}`;
         let sourcesList: string[] = ["Kinetiq Site Knowledge Base"];
 

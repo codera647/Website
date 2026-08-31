@@ -7,6 +7,7 @@ const links = [
     { href: "/admin", label: "Dashboard", exact: true },
     { href: "/admin/projects", label: "Projects" },
     { href: "/admin/blogs", label: "Blogs" },
+    { href: "/admin/jobs", label: "Job Openings" },
 ];
 
 export default function AdminSidebar() {

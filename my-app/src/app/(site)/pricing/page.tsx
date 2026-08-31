@@ -185,9 +185,9 @@ const PRICING_FAQS: FAQItem[] = [
             "The initial 3 months is the realistic runway for the system to ramp: programmatic local pages need time to get indexed and rank on Google, and automated follow-ups need a full service cycle to nurture customers and generate repeat bookings. After the first 90 days, you can cancel or pause anytime with zero penalty.",
     },
     {
-        question: "Do I own my data and domain, or is it locked to Kinetiq?",
+        question: "Do I own the website/portal, or is it locked to Kinetiq?",
         answer:
-            "You own 100% of your domain, customer data, and branding assets. We never hold your accounts hostage. If you ever decide to leave, we provide a full export of your data and customer records.",
+            "Your domain is always registered in your name — either your existing one, or a new one we register for you during setup, but it's yours either way. The website and portal run on our infrastructure while you're a customer, same as any hosted software; your domain is what's portable if you ever move on.",
     },
     {
         question: "Can I switch or upgrade tiers later?",
@@ -499,7 +499,7 @@ export default function PricingPage() {
                         </h2>
                     </FadeInWhenVisible>
 
-                    <div className="mt-12 grid gap-6 md:grid-cols-3">
+                    <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                         <FadeInWhenVisible delay={0.05}>
                             <div className="card-hover group h-full rounded-2xl border border-line bg-surface p-8 transition-all hover:border-ink">
                                 <span className="font-heading text-xs font-bold uppercase tracking-wider text-muted">
@@ -538,6 +538,20 @@ export default function PricingPage() {
                                 </h3>
                                 <p className="mt-3 text-xs leading-relaxed text-muted">
                                     Every line of code, automation sequence, and portal view is built by Kinetiq&apos;s internal software team — the same engineers shipping production AI systems for larger clients.
+                                </p>
+                            </div>
+                        </FadeInWhenVisible>
+
+                        <FadeInWhenVisible delay={0.2}>
+                            <div className="card-hover group h-full rounded-2xl border border-line bg-surface p-8 transition-all hover:border-ink">
+                                <span className="font-heading text-xs font-bold uppercase tracking-wider text-muted">
+                                    04 / OWNERSHIP
+                                </span>
+                                <h3 className="mt-3 font-heading text-xl font-bold text-ink">
+                                    You Own Your Domain — Always
+                                </h3>
+                                <p className="mt-3 text-xs leading-relaxed text-muted">
+                                    Your website lives on your own domain, registered in your name, not ours. If you ever leave, you leave with it.
                                 </p>
                             </div>
                         </FadeInWhenVisible>

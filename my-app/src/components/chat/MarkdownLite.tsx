@@ -69,8 +69,11 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
             );
         } else if (match[4] !== undefined && match[5] !== undefined && match[6] !== undefined) {
             // Markdown link / CTA button: [label](url)
-            const label = match[5];
+            const rawLabel = match[5];
             const url = match[6];
+            // Strip any trailing arrows from rawLabel so double arrows never render
+            const cleanLabel = rawLabel.replace(/\s*(?:→|↗|->|-->|>)\s*$/, "").trim();
+
             const isBookingAction =
                 url === "action:book-call" ||
                 url === "#book" ||
@@ -83,14 +86,14 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                         key={key++}
                         type="button"
                         data-cal-link="abdul-moiz/30min"
-                        className={`my-1 inline-flex items-center gap-1.5 rounded-none border px-3 py-1.5 font-heading text-xs font-bold shadow-sm transition-all duration-200 hover:-translate-y-0.5 cursor-pointer ${
+                        className={`my-1 inline-flex items-center gap-2 rounded-none border px-3.5 py-1.5 font-heading text-xs font-bold shadow-sm transition-all duration-200 hover:-translate-y-0.5 cursor-pointer ${
                             isDark
                                 ? "border-white/30 bg-white text-ink hover:bg-white/90 hover:shadow-md"
                                 : "border-ink bg-ink text-white hover:bg-ink-soft hover:shadow-md"
                         }`}
                     >
-                        <span>{label}</span>
-                        <span className="text-[10px]">🗓️</span>
+                        <span>{cleanLabel}</span>
+                        <span className="text-xs">→</span>
                     </button>
                 );
             } else if (url.startsWith("/")) {
@@ -98,14 +101,14 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                     <Link
                         key={key++}
                         href={url}
-                        className={`my-1 inline-flex items-center gap-1.5 rounded-none border px-3 py-1.5 font-heading text-xs font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 ${
+                        className={`group my-1 inline-flex items-center gap-2 rounded-none border px-3.5 py-1.5 font-heading text-xs font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 ${
                             isDark
                                 ? "border-white/20 bg-white/10 text-white hover:border-white hover:bg-white hover:text-ink"
                                 : "border-line bg-surface text-ink hover:border-ink hover:bg-white"
                         }`}
                     >
-                        <span>{label}</span>
-                        <span className="text-[10px] opacity-75">↗</span>
+                        <span>{cleanLabel}</span>
+                        <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5">→</span>
                     </Link>
                 );
             } else {
@@ -121,7 +124,7 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                                 : "text-ink decoration-ink/40 hover:decoration-ink"
                         }`}
                     >
-                        {label} ↗
+                        {cleanLabel} ↗
                     </a>
                 );
             }

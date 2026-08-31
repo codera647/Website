@@ -3,6 +3,7 @@ import Link from "next/link";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import BracketButton from "@/components/motion/BracketButton";
 import FAQAccordion, { type FAQItem } from "@/components/motion/FAQAccordion";
+import SurveyTriggerButton from "@/components/chat/SurveyTriggerButton";
 
 export const metadata: Metadata = {
     title: "Pricing | Momentum Systems by Kinetiq",
@@ -173,6 +174,24 @@ export default function PricingPage() {
                                 Month-to-month after 90 days · No long-term lock-in
                             </span>
                         </div>
+                    </div>
+
+                    {/* 1-Min Assessment Trigger Banner */}
+                    <div className="mt-4 flex flex-col gap-4 rounded-xl border border-line bg-white p-5 sm:flex-row sm:items-center sm:justify-between shadow-sm">
+                        <div className="flex items-center gap-3">
+                            <span className="flex size-8 shrink-0 items-center justify-center rounded-none bg-ink text-white font-heading font-bold text-xs">
+                                🎯
+                            </span>
+                            <div>
+                                <p className="font-heading text-xs font-bold text-ink">
+                                    Not sure which tier fits your business?
+                                </p>
+                                <p className="text-[11px] text-muted">
+                                    Take our 60-second interactive assessment with Motion to receive a tailored tier recommendation.
+                                </p>
+                            </div>
+                        </div>
+                        <SurveyTriggerButton />
                     </div>
                 </FadeInWhenVisible>
             </section>

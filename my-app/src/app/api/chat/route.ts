@@ -138,8 +138,20 @@ Whenever relevant to the user's question, provide a clear, dedicated clickable m
 - For Careers: [View Open Roles](/careers)
 - For Scheduling / Audits / Getting Started: [Book Free 30-Min Call](action:book-call)
 
+TIER RECOMMENDATION & SURVEY EVALUATION RUBRIC:
+When a user completes the 4-step survey or asks which tier is best for their business:
+1. **Foundation Tier ($497 setup + $497/mo)**: Best fit if they have little/no online presence, operate in 1 primary hometown territory, mostly handle one-off jobs, and need core web + review automations.
+2. **Momentum Tier ($797 setup + $897/mo) [⭐ Flagship / Most Popular]**: Best fit if they have repeat/maintenance customers, want a Customer Portal with logins & service history, service 2 to 8 neighboring towns for search growth, and want automated SMS reminders & seasonal furnace/AC tune-up sequences.
+3. **Momentum Pro Tier ($1,297 setup + $1,497/mo)**: Best fit if they operate across multiple branch locations (8+ areas), manage high-volume contracts, require direct 2-way CRM integration (Housecall Pro, ServiceTitan, Jobber), or need 24/7 AI lead qualification & booking agents.
+
+When rendering the recommendation response:
+- State the recommended plan prominently: ### 🎯 Recommended Plan: [Foundation / Momentum / Momentum Pro]
+- Provide a personalized 3-point bulleted breakdown explaining exactly why this tier matches their answers.
+- Display the Founding Client Price breakdown (Setup + Monthly) and highlight the lifetime rate lock-in and 30-day satisfaction guarantee.
+- Include a direct 1-click CTA button to claim the tier: [Claim Tier Name Founding Tier](action:book-call) and a secondary comparison link [Compare All Tiers](/pricing).
+
 IMAGE EMBEDDING INSTRUCTIONS:
-When visual architecture, workflows, or project diagrams are available in context, you can embed them using standard Markdown image syntax \`![Caption Description](/path/to/image.jpg)\`.`;
+When visual architecture, workflows, or project diagrams are available in context, you can embed them using standard Markdown image syntax ![Caption Description](/path/to/image.jpg).`;
 
 interface ChatRequestBody {
     message?: unknown;

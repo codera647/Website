@@ -3,6 +3,7 @@ import Link from "next/link";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import BracketButton from "@/components/motion/BracketButton";
 import FAQAccordion, { type FAQItem } from "@/components/motion/FAQAccordion";
+import SurveyTriggerButton from "@/components/chat/SurveyTriggerButton";
 
 export const metadata: Metadata = {
     title: "Momentum Systems | Kinetiq — Growth Systems for Local Businesses",
@@ -372,15 +373,22 @@ export default function MomentumSystemsPage() {
                                     Ready to see exact setup and monthly fees?
                                 </h3>
                                 <p className="mt-1 text-xs leading-relaxed text-muted">
-                                    Explore our 3 transparent tiers (Foundation, Momentum, Momentum Pro) and limited Founding Client cohort discounts.
+                                    Explore our 3 transparent tiers (Foundation, Momentum, Momentum Pro) or take our 60-second assessment.
                                 </p>
                             </div>
-                            <Link
-                                href="/pricing"
-                                className="inline-block rounded-none bg-ink px-6 py-3 font-heading text-xs font-bold uppercase tracking-wider text-white hover:bg-ink-soft transition-colors shrink-0 shadow-sm"
-                            >
-                                View Pricing &amp; Tiers →
-                            </Link>
+                            <div className="flex flex-wrap items-center gap-3 shrink-0">
+                                <SurveyTriggerButton
+                                    className="rounded-none border border-ink bg-white px-5 py-3 font-heading text-xs font-bold uppercase tracking-wider text-ink hover:bg-ink hover:text-white transition-all cursor-pointer shadow-sm"
+                                >
+                                    Take 1-Min Survey 🎯
+                                </SurveyTriggerButton>
+                                <Link
+                                    href="/pricing"
+                                    className="inline-block rounded-none bg-ink px-6 py-3 font-heading text-xs font-bold uppercase tracking-wider text-white hover:bg-ink-soft transition-colors shadow-sm"
+                                >
+                                    View Pricing &amp; Tiers →
+                                </Link>
+                            </div>
                         </div>
                     </FadeInWhenVisible>
                 </div>

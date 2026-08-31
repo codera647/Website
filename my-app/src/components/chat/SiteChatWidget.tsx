@@ -146,6 +146,12 @@ export default function SiteChatWidget() {
         { questionId: number; title: string; key: string; label: string }[]
     >([]);
 
+    // Lead Capture State
+    const [leadEmail, setLeadEmail] = useState("");
+    const [leadSubmitting, setLeadSubmitting] = useState(false);
+    const [leadSent, setLeadSent] = useState(false);
+    const [capturedEmail, setCapturedEmail] = useState("");
+
     const scrollRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -253,20 +259,72 @@ Please evaluate these requirements and provide your definitive Momentum System T
                 if (!res.ok || !data.ok) {
                     setError(data.error ?? "Could not generate tier recommendation.");
                 } else {
+                    const ansText = data.answer ?? "";
                     setMessages((prev) => [
                         ...prev,
                         {
                             role: "assistant",
-                            text: data.answer ?? "",
+                            text: ansText,
                             isSurveyResult: true,
                         },
                     ]);
+
+                    // Determine recommended tier for the notification
+                    let recommendedTier = "Momentum (Recommended)";
+                    if (ansText.toLowerCase().includes("momentum pro")) {
+                        recommendedTier = "Momentum Pro";
+                    } else if (ansText.toLowerCase().includes("foundation")) {
+                        recommendedTier = "Foundation";
+                    } else if (ansText.toLowerCase().includes("momentum")) {
+                        recommendedTier = "Momentum";
+                    }
+
+                    // Automatically dispatch lead notification alert to info@thekinetiq.solutions
+                    fetch("/api/chat/survey-lead", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            answers: newAnswers,
+                            recommendedTier,
+                            summaryNotes: ansText,
+                        }),
+                    }).catch(() => {});
                 }
             } catch {
                 setError("Could not reach the assistant. Please try again.");
             } finally {
                 setPending(false);
             }
+        }
+    }
+
+    async function handleLeadSubmit(e: React.FormEvent) {
+        e.preventDefault();
+        if (!leadEmail.trim() || leadSubmitting) return;
+
+        setLeadSubmitting(true);
+        const emailToSend = leadEmail.trim();
+
+        try {
+            await fetch("/api/chat/survey-lead", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    answers: surveyAnswers,
+                    recommendedTier: "Momentum Tier Lead",
+                    userEmail: emailToSend,
+                    summaryNotes: "Lead requested copy of their growth assessment roadmap sent to their email.",
+                }),
+            });
+            setCapturedEmail(emailToSend);
+            setLeadSent(true);
+            setLeadEmail("");
+        } catch {
+            // Still acknowledge to user
+            setCapturedEmail(emailToSend);
+            setLeadSent(true);
+        } finally {
+            setLeadSubmitting(false);
         }
     }
 
@@ -421,7 +479,40 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                             <div>
                                                 <MarkdownLite text={m.text} />
                                                 {m.isSurveyResult && (
-                                                    <div className="mt-4 border-t border-white/10 pt-3">
+                                                    <div className="mt-4 space-y-3 border-t border-white/10 pt-3">
+                                                        {/* Optional Email Capture Box */}
+                                                        <div className="rounded-lg border border-white/15 bg-black/40 p-3.5 space-y-2">
+                                                            <p className="font-heading text-[11px] font-bold text-white uppercase tracking-wider">
+                                                                📩 Get this Audit &amp; Proposal in your Inbox
+                                                            </p>
+                                                            <p className="text-[11px] text-white/60">
+                                                                Enter your work email to receive this tier roadmap and growth breakdown:
+                                                            </p>
+                                                            {leadSent ? (
+                                                                <div className="border border-emerald-500/30 bg-emerald-500/10 p-2 text-center text-[11px] font-medium text-emerald-300">
+                                                                    ✓ Strategy roadmap dispatched to {capturedEmail}! Our team will follow up.
+                                                                </div>
+                                                            ) : (
+                                                                <form onSubmit={handleLeadSubmit} className="flex gap-2">
+                                                                    <input
+                                                                        type="email"
+                                                                        value={leadEmail}
+                                                                        onChange={(e) => setLeadEmail(e.target.value)}
+                                                                        placeholder="you@company.com"
+                                                                        required
+                                                                        className="flex-1 rounded-none border border-white/20 bg-white/5 px-2.5 py-1.5 text-xs text-white placeholder-white/40 focus:border-white focus:outline-none"
+                                                                    />
+                                                                    <button
+                                                                        type="submit"
+                                                                        disabled={leadSubmitting}
+                                                                        className="bg-white px-3 py-1.5 font-heading text-[10px] font-bold uppercase tracking-wider text-ink transition-colors hover:bg-white/90 cursor-pointer disabled:opacity-50"
+                                                                    >
+                                                                        {leadSubmitting ? "Sending…" : "Send Me Copy →"}
+                                                                    </button>
+                                                                </form>
+                                                            )}
+                                                        </div>
+
                                                         <button
                                                             type="button"
                                                             onClick={startSurvey}

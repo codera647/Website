@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getResend, FROM_EMAIL } from "@/lib/resend";
 
-const CONTACT_TO = "contact@thekinetiq.solutions";
+const CONTACT_TO = "info@thekinetiq.solutions";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {

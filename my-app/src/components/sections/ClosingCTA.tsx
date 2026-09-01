@@ -17,7 +17,7 @@ export default function ClosingCTA() {
                         A process to automate, a platform to ship, or an idea to
                         prototype. Let&apos;s talk it through.
                     </p>
-                    <BracketButton calLink="kinetiq-solutions-aznvm5/30min" className="mt-10">
+                    <BracketButton calLink="kinetiq-solutions/30min" className="mt-10">
                         Let&apos;s talk
                     </BracketButton>
                 </FadeInWhenVisible>

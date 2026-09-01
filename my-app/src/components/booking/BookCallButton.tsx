@@ -10,7 +10,7 @@ import { getCalApi } from "@calcom/embed-react";
  * embed docs: https://cal.com/docs/embeds
  */
 export default function BookCallButton({
-    calLink = "kinetiq-solutions-aznvm5/30min",
+    calLink = "kinetiq-solutions/30min",
     className,
     children,
 }: {

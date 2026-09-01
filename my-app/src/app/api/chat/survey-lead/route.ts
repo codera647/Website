@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { getResend, FROM_EMAIL } from "@/lib/resend";
+import { getResend, FROM_EMAIL, NO_REPLY_FROM_EMAIL, REPLY_TO_EMAIL } from "@/lib/resend";
 import { renderMarkdownEmailHtml } from "@/lib/emailMarkdown";
 
-const NOTIFY_EMAIL = "info@thekinetiq.solutions";
+const NOTIFY_EMAIL = REPLY_TO_EMAIL;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 interface SurveyAnswerPayload {
@@ -150,7 +150,7 @@ async function sendUserReport(opts: {
                         Want to talk it through? Grab 30 minutes with our team:
                     </p>
                     <a
-                        href="https://cal.com/kinetiq-solutions-aznvm5/30min"
+                        href="https://cal.com/kinetiq-solutions/30min"
                         style="display: inline-block; background: #111113; color: #ffffff; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 4px; text-decoration: none;"
                     >
                         Book a 30-minute call →
@@ -169,12 +169,12 @@ async function sendUserReport(opts: {
         </div>
     `;
 
-    const text = `YOUR MOMENTUM SYSTEM GROWTH ASSESSMENT\n\nRecommended Tier: ${recommendedTier}\n\n${summaryNotes || ""}\n\nBook a call: https://cal.com/kinetiq-solutions-aznvm5/30min\n\nYour responses:\n${buildAnswersText(answers)}\n\n— Kinetiq (${NOTIFY_EMAIL})`;
+    const text = `YOUR MOMENTUM SYSTEM GROWTH ASSESSMENT\n\nRecommended Tier: ${recommendedTier}\n\n${summaryNotes || ""}\n\nBook a call: https://cal.com/kinetiq-solutions/30min\n\nYour responses:\n${buildAnswersText(answers)}\n\n— Kinetiq (${NOTIFY_EMAIL})`;
 
     const { error } = await resend.emails.send({
-        from: FROM_EMAIL,
+        from: NO_REPLY_FROM_EMAIL,
         to: userEmail,
-        replyTo: NOTIFY_EMAIL,
+        replyTo: REPLY_TO_EMAIL,
         subject: `Your Momentum System recommendation: ${recommendedTier}`,
         html,
         text,

@@ -11,6 +11,10 @@ export interface CloudflareEnv {
     AI: Ai;
     ASSETS: Fetcher;
     ADMIN_PASSWORD_HASH: string;
+    /** Leads pipeline — Cal.com webhook only; the daily follow-up job runs as a Supabase Edge Function, not on this Worker. */
+    SUPABASE_URL: string;
+    SUPABASE_SERVICE_ROLE_KEY: string;
+    CAL_WEBHOOK_SECRET: string;
 }
 
 /**

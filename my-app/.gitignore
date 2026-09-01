@@ -53,3 +53,11 @@ next-env.d.ts
 
 implementation_plan.md
 task.md
+
+# supabase CLI local state — machine-specific project link/version cache,
+# never secrets themselves but not meant to be shared across machines
+supabase/.temp
+supabase/.branches
+
+# stray scratch/temp files
+*.tmp

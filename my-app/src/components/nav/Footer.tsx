@@ -209,7 +209,7 @@ export default function Footer({ featuredProjects }: { featuredProjects: Project
                     <ul className="mt-4 space-y-2.5 font-heading text-sm font-medium">
                         <li>
                             <BookCallButton
-                                calLink="kinetiq-solutions-aznvm5/30min"
+                                calLink="kinetiq-solutions/30min"
                                 className="cursor-pointer text-ink font-semibold underline-offset-4 transition-colors duration-300 hover:underline"
                             >
                                 Book a call →

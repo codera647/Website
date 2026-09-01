@@ -67,7 +67,7 @@ export default function EngagementLadder({ tiers }: { tiers: EngagementTier[] })
                                     <p className="mt-1 text-sm font-medium text-ink">{tier.timeline}</p>
                                 </div>
                                 <BracketButton
-                                    calLink="kinetiq-solutions-aznvm5/30min"
+                                    calLink="kinetiq-solutions/30min"
                                     className="mt-1 w-full text-center"
                                     buttonClassName={
                                         tier.badge === "Flagship"

@@ -8,7 +8,7 @@
    font-heading, font-body.
    ============================================================ */
 @theme {
-  /* Inverted palette: charcoal grounds, metallic gold ink. `ink` is
+  /* Inverted palette: charcoal grounds, cool silver ink. `ink` is
      the high-contrast/foreground color and doubles as the fill for inverted
      panels — Nav, Footer, CTA bands, primary buttons — which is why every
      `bg-ink` surface pairs with `text-background` for its text.
@@ -16,8 +16,8 @@
      it off-gold preserves hierarchy against the gold headings. */
   --color-background: #242424;
   --color-surface: #2E2C29;
-  --color-ink: #7E6921;
-  --color-ink-soft: #6E5C1D;
+  --color-ink: #A0A6B4;
+  --color-ink-soft: #8F95A3;
   --color-muted: #A5A296;
   --color-line: #3D3B36;
 

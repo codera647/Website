@@ -370,7 +370,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         inset: 0,
         borderRadius: cardRadius,
         boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
-        background: "#f4f4f5",
+        background: "#EBE9DB",
         backfaceVisibility: "hidden",
         WebkitBackfaceVisibility: "hidden",
     };

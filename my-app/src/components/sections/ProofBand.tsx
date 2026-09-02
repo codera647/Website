@@ -107,7 +107,7 @@ function ProofStat({ stat }: { stat: ProofStatData }) {
                                 <li key={item.text}>
                                     <Link
                                         href={item.href ?? "#"}
-                                        className="flex h-12 items-center justify-between gap-3 rounded-none border border-line bg-white px-4 text-left transition-colors hover:border-ink hover:shadow-[0_8px_20px_-12px_rgba(17,17,19,0.25)]"
+                                        className="flex h-12 items-center justify-between gap-3 rounded-none border border-line bg-[#7a7a7c] px-4 text-left transition-colors hover:border-ink hover:shadow-[0_8px_20px_-12px_rgba(17,17,19,0.25)]"
                                     >
                                         <span className="min-w-0 truncate font-heading text-sm font-semibold text-ink">
                                             {item.text}
@@ -126,7 +126,7 @@ function ProofStat({ stat }: { stat: ProofStatData }) {
                             {stat.proof.map((item) => (
                                 <li
                                     key={item.text}
-                                    className="rounded-none border border-line bg-white px-3.5 py-1.5 text-xs font-medium text-ink-soft"
+                                    className="rounded-none border border-line bg-[#7a7a7c] px-3.5 py-1.5 text-xs font-medium text-ink-soft"
                                 >
                                     {item.text}
                                 </li>

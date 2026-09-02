@@ -16,7 +16,7 @@ export default function EngagementLadder({ tiers }: { tiers: EngagementTier[] })
             {tiers.map((tier, i) => (
                 <FadeInWhenVisible key={tier.id} delay={i * 0.08}>
                     <div
-                        className={`card-hover group rounded-2xl border bg-white p-8 transition-all md:p-10 ${
+                        className={`card-hover group rounded-2xl border bg-[#7a7a7c] p-8 transition-all md:p-10 ${
                             tier.badge === "Flagship" ? "relative border-ink shadow-lg ring-1 ring-ink/10" : "border-line"
                         }`}
                     >

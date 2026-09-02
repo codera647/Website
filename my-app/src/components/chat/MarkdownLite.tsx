@@ -51,7 +51,7 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                         alt={alt || "Visual diagram"}
                         loading="lazy"
                         className={`max-h-[300px] w-full object-contain p-1 ${
-                            isDark ? "bg-black/60" : "bg-white"
+                            isDark ? "bg-black/60" : "bg-[#7a7a7c]"
                         }`}
                     />
                     {alt && (
@@ -59,7 +59,7 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                             className={`block border-t px-3 py-1.5 font-heading text-[11px] ${
                                 isDark
                                     ? "border-white/10 bg-white/5 text-white/75"
-                                    : "border-line bg-white text-muted"
+                                    : "border-line bg-[#7a7a7c] text-muted"
                             }`}
                         >
                             {alt}
@@ -104,7 +104,7 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                         className={`group my-1 inline-flex items-center gap-2 rounded-none border px-3.5 py-1.5 font-heading text-xs font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 ${
                             isDark
                                 ? "border-white/20 bg-white/10 text-white hover:border-white hover:bg-white hover:text-ink"
-                                : "border-line bg-surface text-ink hover:border-ink hover:bg-white"
+                                : "border-line bg-surface text-ink hover:border-ink hover:bg-[#7a7a7c]"
                         }`}
                     >
                         <span>{cleanLabel}</span>
@@ -261,7 +261,7 @@ export default function MarkdownLite({
                             className={`border-t px-3.5 py-1.5 font-heading text-[11px] ${
                                 isDark
                                     ? "border-white/10 bg-white/5 text-white/75"
-                                    : "border-line bg-white text-muted"
+                                    : "border-line bg-[#7a7a7c] text-muted"
                             }`}
                         >
                             {alt}

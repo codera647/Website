@@ -127,7 +127,7 @@ export default function ServicesPage() {
                                 {service.stack.map((tech) => (
                                     <span
                                         key={tech}
-                                        className="rounded-none border border-line bg-white px-3 py-1 text-xs text-muted"
+                                        className="rounded-none border border-line bg-[#7a7a7c] px-3 py-1 text-xs text-muted"
                                     >
                                         {tech}
                                     </span>

@@ -49,7 +49,7 @@ export default function ProcessSection({ title = "From first sketch to productio
                 {process.map((p, i) => (
                     <div
                         key={p.step}
-                        className="card-hover group h-full rounded-2xl border border-line bg-white p-7"
+                        className="card-hover group h-full rounded-2xl border border-line bg-[#7a7a7c] p-7"
                     >
                         <p className="font-heading text-4xl font-bold text-line transition-colors duration-300 group-hover:text-ink">
                             0{i + 1}

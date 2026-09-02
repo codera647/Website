@@ -27,7 +27,7 @@ export default function NotFound() {
                     </Link>
                     <Link
                         href="/work"
-                        className="rounded-none border border-line bg-[#7a7a7c] px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
+                        className="rounded-none border border-line bg-white px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
                     >
                         Explore our work
                     </Link>

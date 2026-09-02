@@ -30,7 +30,7 @@ export function WorkCard({
               which reads as the whole row responding together rather than
               one card overlapping its neighbours.
             */}
-            <div className="relative z-10 flex h-full min-h-[190px] flex-col justify-between overflow-hidden rounded-2xl border border-line bg-[#7a7a7c] p-7 pb-16 transition-colors duration-500 ease-out md:p-8 md:pb-16 md:group-hover:border-ink md:group-hover:bg-ink md:group-hover:shadow-[0_32px_64px_-24px_rgba(17,17,19,0.45)]">
+            <div className="relative z-10 flex h-full min-h-[190px] flex-col justify-between overflow-hidden rounded-2xl border border-line bg-white p-7 pb-16 transition-colors duration-500 ease-out md:p-8 md:pb-16 md:group-hover:border-ink md:group-hover:bg-ink md:group-hover:shadow-[0_32px_64px_-24px_rgba(17,17,19,0.45)]">
                 <div>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.18em] text-muted transition-colors duration-500 ease-out md:group-hover:text-white/50">
                         {category}

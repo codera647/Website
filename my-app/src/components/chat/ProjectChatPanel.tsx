@@ -89,7 +89,7 @@ export default function ProjectChatPanel({
                 {/* Header info */}
                 <div className="border-b border-line pb-5">
                     <div className="flex flex-wrap items-center justify-between gap-3">
-                        <span className="inline-flex items-center gap-2 rounded-none border border-line bg-[#7a7a7c] px-3 py-1 font-heading text-xs font-medium uppercase tracking-[0.14em] text-ink">
+                        <span className="inline-flex items-center gap-2 rounded-none border border-line bg-white px-3 py-1 font-heading text-xs font-medium uppercase tracking-[0.14em] text-ink">
                             <span className="relative flex size-2">
                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                                 <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
@@ -136,7 +136,7 @@ export default function ProjectChatPanel({
                                         key={q}
                                         type="button"
                                         onClick={() => send(q)}
-                                        className="rounded-none border border-line bg-[#7a7a7c] px-4 py-2.5 text-left text-sm text-ink transition-all hover:-translate-y-0.5 hover:border-ink hover:shadow-sm"
+                                        className="rounded-none border border-line bg-white px-4 py-2.5 text-left text-sm text-ink transition-all hover:-translate-y-0.5 hover:border-ink hover:shadow-sm"
                                     >
                                         {q}
                                     </button>
@@ -157,7 +157,7 @@ export default function ProjectChatPanel({
                                         className={
                                             m.role === "user"
                                                 ? "max-w-[85%] rounded-none border border-ink bg-ink px-4 py-3 text-sm text-white"
-                                                : "max-w-[90%] rounded-none border border-line bg-[#7a7a7c] p-4 text-sm leading-relaxed text-ink shadow-sm"
+                                                : "max-w-[90%] rounded-none border border-line bg-white p-4 text-sm leading-relaxed text-ink shadow-sm"
                                         }
                                     >
                                         {m.role === "user" ? (
@@ -191,7 +191,7 @@ export default function ProjectChatPanel({
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0 }}
                                     transition={{ duration: 0.2 }}
-                                    className="flex items-center gap-1.5 rounded-none border border-line bg-[#7a7a7c] px-4 py-3"
+                                    className="flex items-center gap-1.5 rounded-none border border-line bg-white px-4 py-3"
                                 >
                                     <span className="font-heading text-xs text-muted mr-1">Consulting knowledge base</span>
                                     {[0, 1, 2].map((dot) => (
@@ -233,7 +233,7 @@ export default function ProjectChatPanel({
                         onChange={(e) => setInput(e.target.value)}
                         placeholder={`Ask a question about ${projectTitle}…`}
                         disabled={pending}
-                        className="flex-1 rounded-none border border-line bg-[#7a7a7c] px-4 py-3 text-sm text-ink placeholder:text-muted focus:border-ink focus:outline-none transition-colors"
+                        className="flex-1 rounded-none border border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-muted focus:border-ink focus:outline-none transition-colors"
                     />
                     <button
                         type="submit"

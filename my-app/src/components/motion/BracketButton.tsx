@@ -48,13 +48,13 @@ export default function BracketButton({
                     key={corner}
                     aria-hidden="true"
                     className={`pointer-events-none absolute size-2.5 transition-transform duration-300 ease-out ${corner} ${
-                        bracketClassName ?? "border-white/70"
+                        bracketClassName ?? "border-background/70"
                     }`}
                 />
             ))}
             <span
                 className={`flex items-center gap-2.5 rounded-none px-6 py-3 font-heading text-sm font-semibold transition-colors duration-300 ${
-                    buttonClassName ?? "bg-[#F5F3E4] text-ink group-hover:bg-[#F5F3E4]/85"
+                    buttonClassName ?? "bg-background text-ink group-hover:bg-background/85"
                 }`}
             >
                 <span aria-hidden="true" className="size-1.5 shrink-0 bg-current" />

@@ -221,7 +221,7 @@ function TierCard({ tier, index }: { tier: PricingTier; index: number }) {
     return (
         <FadeInWhenVisible delay={index * 0.1} className="flex">
             <div
-                className={`card-hover group flex w-full flex-col justify-between rounded-2xl border bg-[#F5F3E4] p-8 transition-all md:p-10 ${
+                className={`card-hover group flex w-full flex-col justify-between rounded-2xl border bg-background p-8 transition-all md:p-10 ${
                     tier.isPopular ? "relative border-ink shadow-lg ring-1 ring-ink/10" : "border-line"
                 }`}
             >
@@ -230,7 +230,7 @@ function TierCard({ tier, index }: { tier: PricingTier; index: number }) {
                     <div className="flex items-center justify-between gap-2">
                         <h3 className="font-heading text-2xl font-bold text-ink">{tier.name}</h3>
                         {tier.badge && (
-                            <span className="rounded-none bg-ink px-2.5 py-1 font-heading text-[10px] font-bold uppercase tracking-wider text-white">
+                            <span className="rounded-none bg-ink px-2.5 py-1 font-heading text-[10px] font-bold uppercase tracking-wider text-background">
                                 {tier.badge}
                             </span>
                         )}
@@ -294,8 +294,8 @@ function TierCard({ tier, index }: { tier: PricingTier; index: number }) {
                         className="w-full text-center"
                         buttonClassName={
                             tier.isPopular
-                                ? "bg-ink text-white group-hover:bg-ink-soft"
-                                : "bg-surface text-ink group-hover:bg-ink group-hover:text-white"
+                                ? "bg-ink text-background group-hover:bg-ink-soft"
+                                : "bg-surface text-ink group-hover:bg-ink group-hover:text-background"
                         }
                     >
                         {tier.ctaText}
@@ -377,7 +377,7 @@ export default function PricingPage() {
                 <FadeInWhenVisible delay={0.1} className="mt-10">
                     <div className="flex flex-col gap-4 rounded-xl border border-line bg-surface p-6 sm:flex-row sm:items-center sm:justify-between">
                         <div className="flex items-center gap-3">
-                            <span className="flex size-9 shrink-0 items-center justify-center rounded-none bg-ink text-white font-heading font-bold text-xs">
+                            <span className="flex size-9 shrink-0 items-center justify-center rounded-none bg-ink text-background font-heading font-bold text-xs">
                                 10
                             </span>
                             <div>
@@ -397,9 +397,9 @@ export default function PricingPage() {
                     </div>
 
                     {/* 1-Min Assessment Trigger Banner */}
-                    <div className="mt-4 flex flex-col gap-4 rounded-xl border border-line bg-[#F5F3E4] p-5 sm:flex-row sm:items-center sm:justify-between shadow-sm">
+                    <div className="mt-4 flex flex-col gap-4 rounded-xl border border-line bg-background p-5 sm:flex-row sm:items-center sm:justify-between shadow-sm">
                         <div className="flex items-center gap-3">
-                            <span className="flex size-8 shrink-0 items-center justify-center rounded-none bg-ink text-white font-heading font-bold text-xs">
+                            <span className="flex size-8 shrink-0 items-center justify-center rounded-none bg-ink text-background font-heading font-bold text-xs">
                                 🎯
                             </span>
                             <div>
@@ -427,7 +427,7 @@ export default function PricingPage() {
 
                     {/* Add-ons Bar */}
                     <FadeInWhenVisible delay={0.3} className="mt-12">
-                        <div className="rounded-xl border border-line bg-[#F5F3E4] p-6 md:p-8">
+                        <div className="rounded-xl border border-line bg-background p-6 md:p-8">
                             <h4 className="font-heading text-xs font-bold uppercase tracking-[0.2em] text-muted">
                                 Optional System Add-ons
                             </h4>
@@ -463,7 +463,7 @@ export default function PricingPage() {
             </section>
 
             {/* 2.5 AI Add-Ons — additive to Momentum Systems, same visual treatment on purpose */}
-            <section id="ai-add-ons" className="scroll-mt-28 border-t border-line bg-[#F5F3E4] py-20 md:py-28">
+            <section id="ai-add-ons" className="scroll-mt-28 border-t border-line bg-background py-20 md:py-28">
                 <div className="container-wide">
                     <FadeInWhenVisible>
                         <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
@@ -488,7 +488,7 @@ export default function PricingPage() {
             </section>
 
             {/* 3. Risk-Reversal & Guarantee Block */}
-            <section className="border-t border-line bg-[#F5F3E4] py-20 md:py-28">
+            <section className="border-t border-line bg-background py-20 md:py-28">
                 <div className="container-wide">
                     <FadeInWhenVisible>
                         <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
@@ -578,16 +578,16 @@ export default function PricingPage() {
             </section>
 
             {/* 5. Closing CTA */}
-            <section className="bg-ink text-white">
+            <section className="bg-ink text-background">
                 <div className="container-wide py-28 text-center md:py-36">
                     <FadeInWhenVisible>
-                        <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-white/50">
+                        <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-background/50">
                             Ready when you are
                         </p>
                         <h2 className="mx-auto mt-5 max-w-2xl text-4xl font-bold leading-tight md:text-6xl">
                             Lock in your founding client pricing.
                         </h2>
-                        <p className="mx-auto mt-6 max-w-xl text-lg text-white/60">
+                        <p className="mx-auto mt-6 max-w-xl text-lg text-background/60">
                             Book a free 30-minute growth audit. We&apos;ll evaluate your service territory, show you what a custom Momentum System will look like, and lock in your founding rate.
                         </p>
                         <div className="mt-10">

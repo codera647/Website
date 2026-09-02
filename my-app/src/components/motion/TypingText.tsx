@@ -48,7 +48,7 @@ export default function TypingText({ text, active, speed = 16, className }: Prop
             {active && !done && (
                 <span
                     aria-hidden="true"
-                    className="ml-0.5 inline-block h-3.5 w-[2px] -translate-y-[1px] animate-pulse bg-white/50"
+                    className="ml-0.5 inline-block h-3.5 w-[2px] -translate-y-[1px] animate-pulse bg-background/50"
                 />
             )}
         </span>

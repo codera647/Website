@@ -57,7 +57,7 @@ export default function ProjectAssistantSketch({
                     <span className="flex-1 truncate text-sm text-muted">
                         Ask a question about this project…
                     </span>
-                    <span className="flex size-9 shrink-0 items-center justify-center rounded-none bg-ink font-heading text-sm text-white">
+                    <span className="flex size-9 shrink-0 items-center justify-center rounded-none bg-ink font-heading text-sm text-background">
                         →
                     </span>
                 </div>

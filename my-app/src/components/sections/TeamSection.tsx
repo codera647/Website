@@ -13,13 +13,13 @@ export default function TeamSection() {
         <section id="team" className="scroll-mt-24 bg-ink">
             <div className="container-wide py-24 md:py-32">
                 <FadeInWhenVisible>
-                    <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-white/45">
+                    <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-background/45">
                         The people behind it
                     </p>
-                    <h2 className="mt-4 max-w-2xl text-4xl font-bold text-white md:text-5xl">
+                    <h2 className="mt-4 max-w-2xl text-4xl font-bold text-background md:text-5xl">
                         Built by founders, not a sales deck.
                     </h2>
-                    <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/60">
+                    <p className="mt-5 max-w-xl text-lg leading-relaxed text-background/60">
                         A small, hands-on team that stays close to every project — from the
                         first architecture sketch to production monitoring.
                     </p>

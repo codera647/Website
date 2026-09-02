@@ -142,7 +142,7 @@ export default async function AboutPage() {
                     {values.map((v, i) => (
                         <div
                             key={v.title}
-                            className="card-hover group h-full rounded-2xl border border-line bg-[#F5F3E4] p-8"
+                            className="card-hover group h-full rounded-2xl border border-line bg-background p-8"
                         >
                             <p className="font-heading text-sm font-semibold text-muted transition-colors duration-300 group-hover:text-ink">
                                 0{i + 1}

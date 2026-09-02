@@ -18,10 +18,10 @@ export default function BlogCard({ post }: { post: BlogPost }) {
             className="group relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-2xl bg-ink p-7 transition-transform duration-300 ease-out hover:-translate-y-1 md:min-h-[300px] md:p-8"
         >
             <div>
-                <p className="font-heading text-xs font-medium uppercase tracking-[0.22em] text-white/45">
+                <p className="font-heading text-xs font-medium uppercase tracking-[0.22em] text-background/45">
                     {formatMonthYear(post.date)} · {post.category}
                 </p>
-                <h3 className="mt-4 font-heading text-xl font-semibold leading-snug text-white md:text-2xl">
+                <h3 className="mt-4 font-heading text-xl font-semibold leading-snug text-background md:text-2xl">
                     {post.title}
                 </h3>
             </div>
@@ -29,13 +29,13 @@ export default function BlogCard({ post }: { post: BlogPost }) {
             {/* soft glow behind the button, fades in on hover */}
             <span
                 aria-hidden="true"
-                className="pointer-events-none absolute bottom-6 right-6 size-32 rounded-full bg-white/25 opacity-0 blur-3xl transition-opacity duration-500 ease-out group-hover:opacity-100"
+                className="pointer-events-none absolute bottom-6 right-6 size-32 rounded-full bg-background/25 opacity-0 blur-3xl transition-opacity duration-500 ease-out group-hover:opacity-100"
             />
 
             {/* circular button — grows and reveals "Read more" on hover */}
             <span
                 aria-hidden="true"
-                className="relative ml-auto flex size-11 shrink-0 items-center justify-center rounded-full border border-white/30 text-white transition-all duration-500 ease-out group-hover:size-20 group-hover:border-white"
+                className="relative ml-auto flex size-11 shrink-0 items-center justify-center rounded-full border border-background/30 text-background transition-all duration-500 ease-out group-hover:size-20 group-hover:border-background"
             >
                 <span className="absolute font-heading text-lg transition-opacity duration-300 ease-out group-hover:opacity-0">
                     →

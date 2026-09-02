@@ -12,17 +12,17 @@ export function RoleCard({ role }: { role: RoleOrJob }) {
 
     return (
         <Link href={`/careers/${role.slug}`} className="group relative block h-full">
-            <div className="card-hover relative z-10 flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-line bg-[#F5F3E4] p-7 pb-16 transition-all duration-500 ease-out md:p-8 md:pb-16 md:group-hover:absolute md:group-hover:inset-x-0 md:group-hover:top-0 md:group-hover:z-20 md:group-hover:h-auto md:group-hover:border-ink md:group-hover:bg-ink md:group-hover:shadow-[0_32px_64px_-24px_rgba(17,17,19,0.45)]">
+            <div className="card-hover relative z-10 flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-line bg-background p-7 pb-16 transition-all duration-500 ease-out md:p-8 md:pb-16 md:group-hover:absolute md:group-hover:inset-x-0 md:group-hover:top-0 md:group-hover:z-20 md:group-hover:h-auto md:group-hover:border-ink md:group-hover:bg-ink md:group-hover:shadow-[0_32px_64px_-24px_rgba(17,17,19,0.45)]">
                 <div>
                     <div className="flex items-center justify-between gap-2">
-                        <p className="font-heading text-xs font-medium uppercase tracking-[0.18em] text-muted transition-colors duration-500 ease-out md:group-hover:text-white/50">
+                        <p className="font-heading text-xs font-medium uppercase tracking-[0.18em] text-muted transition-colors duration-500 ease-out md:group-hover:text-background/50">
                             {role.department} · {role.location} · {role.type}
                         </p>
-                        <span className="inline-flex items-center rounded-none bg-ink/5 px-2 py-0.5 font-heading text-[10px] font-bold uppercase tracking-wider text-ink transition-colors md:group-hover:bg-white/10 md:group-hover:text-white">
+                        <span className="inline-flex items-center rounded-none bg-ink/5 px-2 py-0.5 font-heading text-[10px] font-bold uppercase tracking-wider text-ink transition-colors md:group-hover:bg-background/10 md:group-hover:text-background">
                             Opening
                         </span>
                     </div>
-                    <h3 className="mt-3 font-heading text-2xl font-semibold text-ink transition-colors duration-500 ease-out md:group-hover:text-white">
+                    <h3 className="mt-3 font-heading text-2xl font-semibold text-ink transition-colors duration-500 ease-out md:group-hover:text-background">
                         {role.title}
                     </h3>
                 </div>
@@ -33,20 +33,20 @@ export function RoleCard({ role }: { role: RoleOrJob }) {
 
                 <div className="hidden md:grid md:grid-rows-[0fr] md:transition-[grid-template-rows] md:duration-500 md:ease-out md:group-hover:grid-rows-[1fr]">
                     <div className="overflow-hidden">
-                        <p className="mt-5 text-sm leading-relaxed text-white/70">
+                        <p className="mt-5 text-sm leading-relaxed text-background/70">
                             {role.summary}
                         </p>
                         {responsibilities.length > 0 && (
                             <ul className="mt-4 space-y-1.5">
                                 {responsibilities.slice(0, 2).map((r) => (
-                                    <li key={r} className="flex gap-2 text-sm text-white/60">
+                                    <li key={r} className="flex gap-2 text-sm text-background/60">
                                         <span aria-hidden="true">·</span>
                                         <span>{r}</span>
                                     </li>
                                 ))}
                             </ul>
                         )}
-                        <span className="mt-6 inline-flex items-center gap-1.5 font-heading text-sm font-semibold text-white">
+                        <span className="mt-6 inline-flex items-center gap-1.5 font-heading text-sm font-semibold text-background">
                             View Job Description &amp; Apply
                             <span className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-1.5">
                                 →

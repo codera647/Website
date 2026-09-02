@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useCallback, useMemo, useState } from "react"
 /**
  * ProfileCard — clean, light-themed team card with subtle 3D tilt.
  *
- * Uses the site's surface color (#f4f4f5) as a solid background.
+ * Uses the site's surface color (#2E2C29) as a solid background.
  * Images are displayed at their natural aspect ratio (no stretching),
  * cropped from below so the face is always visible. No filters,
  * gradients, glitch effects, or overlays — just a clean card.
@@ -370,7 +370,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         inset: 0,
         borderRadius: cardRadius,
         boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
-        background: "#EBE9DB",
+        background: "#2E2C29",
         backfaceVisibility: "hidden",
         WebkitBackfaceVisibility: "hidden",
     };
@@ -443,13 +443,13 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                         <div className="flex-shrink-0 px-5 pt-6 pb-2 text-center">
                             <h3
                                 className="m-0 font-heading text-2xl font-bold"
-                                style={{ color: "#111113" }}
+                                style={{ color: "#F5F3E4" }}
                             >
                                 {name}
                             </h3>
                             <p
                                 className="mt-1 font-heading text-sm font-medium"
-                                style={{ color: "#6b6b70" }}
+                                style={{ color: "#A5A296" }}
                             >
                                 {title}
                             </p>
@@ -482,12 +482,12 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                             className="relative z-[2] mx-3 mb-3 flex flex-shrink-0 items-center justify-between px-3 py-2.5"
                             style={{
                                 borderRadius: "21px",
-                                background: "rgba(17, 17, 19, 0.85)",
+                                background: "rgba(245, 243, 228, 0.92)",
                                 backdropFilter: "blur(12px)",
                             }}
                         >
                             <div className="flex items-center gap-2.5">
-                                <div className="h-9 w-9 flex-shrink-0 overflow-hidden rounded-full border border-white/15">
+                                <div className="h-9 w-9 flex-shrink-0 overflow-hidden rounded-full border border-background/15">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                         className="h-full w-full object-cover"
@@ -498,10 +498,10 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                                     />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-xs font-medium leading-tight text-white/90">
+                                    <span className="text-xs font-medium leading-tight text-background/90">
                                         {name}
                                     </span>
-                                    <span className="text-[11px] leading-tight text-white/50">
+                                    <span className="text-[11px] leading-tight text-background/50">
                                         Available
                                     </span>
                                 </div>
@@ -509,7 +509,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                             <a
                                 href={contactUrl || "#contact"}
                                 onClick={(e) => e.stopPropagation()}
-                                className="rounded-lg border border-white/15 px-3.5 py-1.5 text-xs font-semibold text-white/90 transition-colors duration-200 hover:border-white/40 hover:text-white"
+                                className="rounded-lg border border-background/15 px-3.5 py-1.5 text-xs font-semibold text-background/90 transition-colors duration-200 hover:border-background/40 hover:text-background"
                             >
                                 Contact Me
                             </a>
@@ -528,19 +528,19 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                         <div className="flex-shrink-0 px-6 pt-6 pb-1">
                             <h3
                                 className="m-0 font-heading text-xl font-bold"
-                                style={{ color: "#111113" }}
+                                style={{ color: "#F5F3E4" }}
                             >
                                 {name}
                             </h3>
                             <p
                                 className="mt-1 font-heading text-xs font-medium"
-                                style={{ color: "#6b6b70" }}
+                                style={{ color: "#A5A296" }}
                             >
                                 {title}
                             </p>
                             <div
                                 className="mt-3"
-                                style={{ height: "1px", background: "#e4e4e7" }}
+                                style={{ height: "1px", background: "#3D3B36" }}
                             />
                         </div>
 
@@ -548,7 +548,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                         <div className="flex-1 overflow-y-auto px-6 pt-4 pb-6">
                             <p
                                 className="m-0 font-heading text-sm leading-relaxed"
-                                style={{ color: "#2a2a2e" }}
+                                style={{ color: "#EBE9DB" }}
                             >
                                 {typedBio}
                                 {!typingDone && flipped && (
@@ -557,7 +557,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                                         style={{
                                             width: "2px",
                                             height: "1em",
-                                            background: "#111113",
+                                            background: "#F5F3E4",
                                             marginLeft: "1px",
                                             verticalAlign: "text-bottom",
                                             animation: "cursorBlink 0.7s step-end infinite",
@@ -571,7 +571,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                         <div className="flex-shrink-0 px-6 pb-5 text-center">
                             <span
                                 className="font-heading text-xs font-medium"
-                                style={{ color: "#6b6b70" }}
+                                style={{ color: "#A5A296" }}
                             >
                                 Tap to flip back
                             </span>

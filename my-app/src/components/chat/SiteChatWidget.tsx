@@ -407,20 +407,20 @@ Please evaluate these requirements and provide your definitive Momentum System T
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 16, scale: 0.97 }}
                         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="mb-4 flex h-[34rem] w-[25rem] max-w-[calc(100vw-2.5rem)] flex-col overflow-hidden rounded-2xl border border-white/15 bg-ink shadow-[0_24px_64px_-16px_rgba(0,0,0,0.85)]"
+                        className="mb-4 flex h-[34rem] w-[25rem] max-w-[calc(100vw-2.5rem)] flex-col overflow-hidden rounded-2xl border border-background/15 bg-ink shadow-[0_24px_64px_-16px_rgba(0,0,0,0.85)]"
                     >
                         {/* Header */}
-                        <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-5 py-3.5">
+                        <div className="flex items-center justify-between border-b border-background/10 bg-background/[0.03] px-5 py-3.5">
                             <div className="flex items-center gap-2.5">
                                 <span className="relative flex size-2 shrink-0">
-                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75 duration-1000" />
-                                    <span className="relative inline-flex size-2 rounded-full bg-white" />
+                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-background opacity-75 duration-1000" />
+                                    <span className="relative inline-flex size-2 rounded-full bg-background" />
                                 </span>
                                 <div>
-                                    <p className="font-heading text-sm font-bold text-white leading-none">
+                                    <p className="font-heading text-sm font-bold text-background leading-none">
                                         Motion
                                     </p>
-                                    <p className="mt-1 font-heading text-[11px] text-white/50">
+                                    <p className="mt-1 font-heading text-[11px] text-background/50">
                                         Kinetiq Systems &amp; Tier Advisor
                                     </p>
                                 </div>
@@ -435,7 +435,7 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                             setSurveyAnswers([]);
                                             setError(null);
                                         }}
-                                        className="font-heading text-[11px] text-white/40 hover:text-white transition-colors"
+                                        className="font-heading text-[11px] text-background/40 hover:text-background transition-colors"
                                     >
                                         Reset
                                     </button>
@@ -444,7 +444,7 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                     type="button"
                                     aria-label="Close Motion"
                                     onClick={() => setOpen(false)}
-                                    className="flex size-7 shrink-0 items-center justify-center rounded-none text-white/50 hover:bg-white/10 hover:text-white transition-colors"
+                                    className="flex size-7 shrink-0 items-center justify-center rounded-none text-background/50 hover:bg-background/10 hover:text-background transition-colors"
                                 >
                                     ✕
                                 </button>
@@ -455,7 +455,7 @@ Please evaluate these requirements and provide your definitive Momentum System T
                         <div ref={scrollRef} className="flex-1 space-y-3.5 overflow-y-auto px-4 py-4 text-xs">
                             {messages.length === 0 && (
                                 <div className="space-y-3 py-2">
-                                    <p className="font-heading text-[11px] uppercase tracking-wider text-white/50">
+                                    <p className="font-heading text-[11px] uppercase tracking-wider text-background/50">
                                         Suggested Actions
                                     </p>
                                     <div className="flex flex-col gap-2">
@@ -466,12 +466,12 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                                 onClick={() => send(q)}
                                                 className={`group flex items-center justify-between rounded-none border p-3 text-left text-xs font-medium transition-all ${
                                                     idx === 0
-                                                        ? "border-white/40 bg-white/10 text-white font-semibold shadow-sm hover:bg-white/20 hover:border-white"
-                                                        : "border-white/15 bg-white/[0.04] text-white/80 hover:border-white/40 hover:bg-white/10 hover:text-white"
+                                                        ? "border-background/40 bg-background/10 text-background font-semibold shadow-sm hover:bg-background/20 hover:border-background"
+                                                        : "border-background/15 bg-background/[0.04] text-background/80 hover:border-background/40 hover:bg-background/10 hover:text-background"
                                                 }`}
                                             >
                                                 <span>{q}</span>
-                                                <span className="text-white/40 group-hover:text-white transition-colors">
+                                                <span className="text-background/40 group-hover:text-background transition-colors">
                                                     →
                                                 </span>
                                             </button>
@@ -489,8 +489,8 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                                         className={
                                             m.role === "user"
-                                                ? "ml-auto max-w-[85%] rounded-2xl rounded-br-sm bg-[#F5F3E4] px-4 py-2.5 text-xs font-medium text-ink shadow-sm"
-                                                : "mr-auto max-w-[94%] rounded-2xl rounded-bl-sm border border-white/10 bg-white/[0.07] p-4 text-xs leading-relaxed text-white/95 shadow-sm"
+                                                ? "ml-auto max-w-[85%] rounded-2xl rounded-br-sm bg-background px-4 py-2.5 text-xs font-medium text-ink shadow-sm"
+                                                : "mr-auto max-w-[94%] rounded-2xl rounded-bl-sm border border-background/10 bg-background/[0.07] p-4 text-xs leading-relaxed text-background/95 shadow-sm"
                                         }
                                     >
                                         {m.role === "user" ? (
@@ -499,13 +499,13 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                             <div>
                                                 <MarkdownLite text={m.text} />
                                                 {m.isSurveyResult && (
-                                                    <div className="mt-4 space-y-3 border-t border-white/10 pt-3">
+                                                    <div className="mt-4 space-y-3 border-t border-background/10 pt-3">
                                                         {/* Optional Email Capture Box */}
-                                                        <div className="rounded-lg border border-white/15 bg-black/40 p-3.5 space-y-2">
-                                                            <p className="font-heading text-[11px] font-bold text-white uppercase tracking-wider">
+                                                        <div className="rounded-lg border border-background/15 bg-background/5 p-3.5 space-y-2">
+                                                            <p className="font-heading text-[11px] font-bold text-background uppercase tracking-wider">
                                                                 📩 Get this Audit &amp; Proposal in your Inbox
                                                             </p>
-                                                            <p className="text-[11px] text-white/60">
+                                                            <p className="text-[11px] text-background/60">
                                                                 Enter your work email to receive this tier roadmap and growth breakdown:
                                                             </p>
                                                             {leadSent ? (
@@ -520,12 +520,12 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                                                         onChange={(e) => setLeadEmail(e.target.value)}
                                                                         placeholder="you@company.com"
                                                                         required
-                                                                        className="flex-1 rounded-none border border-white/20 bg-white/5 px-2.5 py-1.5 text-xs text-white placeholder-white/40 focus:border-white focus:outline-none"
+                                                                        className="flex-1 rounded-none border border-background/20 bg-background/5 px-2.5 py-1.5 text-xs text-background placeholder-background/40 focus:border-background focus:outline-none"
                                                                     />
                                                                     <button
                                                                         type="submit"
                                                                         disabled={leadSubmitting}
-                                                                        className="bg-[#F5F3E4] px-3 py-1.5 font-heading text-[10px] font-bold uppercase tracking-wider text-ink transition-colors hover:bg-[#F5F3E4]/90 cursor-pointer disabled:opacity-50"
+                                                                        className="bg-background px-3 py-1.5 font-heading text-[10px] font-bold uppercase tracking-wider text-ink transition-colors hover:bg-background/90 cursor-pointer disabled:opacity-50"
                                                                     >
                                                                         {leadSubmitting ? "Sending…" : "Send Me Copy →"}
                                                                     </button>
@@ -541,7 +541,7 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                                         <button
                                                             type="button"
                                                             onClick={startSurvey}
-                                                            className="inline-flex items-center gap-1.5 font-heading text-[11px] font-semibold text-white/60 hover:text-white transition-colors cursor-pointer"
+                                                            className="inline-flex items-center gap-1.5 font-heading text-[11px] font-semibold text-background/60 hover:text-background transition-colors cursor-pointer"
                                                         >
                                                             <span>↻ Retake Assessment</span>
                                                         </button>
@@ -561,7 +561,7 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                         transition={{ duration: 0.25 }}
                                         className="space-y-2 pt-1"
                                     >
-                                        <p className="font-heading text-[10px] font-semibold uppercase tracking-wider text-white/45">
+                                        <p className="font-heading text-[10px] font-semibold uppercase tracking-wider text-background/45">
                                             Select your answer (or type below):
                                         </p>
                                         <div className="flex flex-col gap-2">
@@ -570,9 +570,9 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                                     key={opt.key}
                                                     type="button"
                                                     onClick={() => handleSurveyChoice(opt)}
-                                                    className="group flex flex-col text-left rounded-lg border border-white/20 bg-white/[0.06] p-3 transition-all duration-200 hover:border-white hover:bg-[#F5F3E4] hover:text-ink cursor-pointer shadow-sm"
+                                                    className="group flex flex-col text-left rounded-lg border border-background/20 bg-background/[0.06] p-3 transition-all duration-200 hover:border-background hover:bg-background hover:text-ink cursor-pointer shadow-sm"
                                                 >
-                                                    <div className="flex items-center justify-between font-heading font-bold text-xs text-white group-hover:text-ink">
+                                                    <div className="flex items-center justify-between font-heading font-bold text-xs text-background group-hover:text-ink">
                                                         <span>
                                                             {opt.key}. {opt.label}
                                                         </span>
@@ -580,7 +580,7 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                                             Select →
                                                         </span>
                                                     </div>
-                                                    <p className="mt-1 text-[11px] text-white/70 group-hover:text-ink/80 leading-normal">
+                                                    <p className="mt-1 text-[11px] text-background/70 group-hover:text-ink/80 leading-normal">
                                                         {opt.desc}
                                                     </p>
                                                 </button>
@@ -597,9 +597,9 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                         exit={{ opacity: 0 }}
                                         transition={{ duration: 0.2 }}
                                         aria-label="Motion is thinking"
-                                        className="mr-auto flex max-w-[85%] items-center gap-2 rounded-2xl rounded-bl-sm border border-white/10 bg-white/[0.07] px-4 py-3"
+                                        className="mr-auto flex max-w-[85%] items-center gap-2 rounded-2xl rounded-bl-sm border border-background/10 bg-background/[0.07] px-4 py-3"
                                     >
-                                        <span className="font-heading text-[11px] text-white/60">
+                                        <span className="font-heading text-[11px] text-background/60">
                                             {surveyStepIndex === null && surveyAnswers.length === 4
                                                 ? "Evaluating your requirements"
                                                 : "Motion is thinking"}
@@ -608,7 +608,7 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                             {[0, 1, 2].map((dot) => (
                                                 <motion.span
                                                     key={dot}
-                                                    className="size-1.5 rounded-full bg-white/80"
+                                                    className="size-1.5 rounded-full bg-background/80"
                                                     animate={{ y: [0, -3, 0], opacity: [0.3, 1, 0.3] }}
                                                     transition={{
                                                         duration: 0.8,
@@ -636,7 +636,7 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                 e.preventDefault();
                                 send(input);
                             }}
-                            className="flex items-center gap-2 border-t border-white/10 bg-white/[0.02] p-3"
+                            className="flex items-center gap-2 border-t border-background/10 bg-background/[0.02] p-3"
                         >
                             <input
                                 ref={inputRef}
@@ -648,13 +648,13 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                         : "Ask about services, systems, pricing…"
                                 }
                                 disabled={pending}
-                                className="flex-1 rounded-none border border-white/15 bg-white/5 px-3.5 py-2 text-xs text-white placeholder:text-white/40 focus:border-white/40 focus:bg-white/10 focus:outline-none transition-colors"
+                                className="flex-1 rounded-none border border-background/15 bg-background/5 px-3.5 py-2 text-xs text-background placeholder:text-background/40 focus:border-background/40 focus:bg-background/10 focus:outline-none transition-colors"
                             />
                             <button
                                 type="submit"
                                 disabled={pending || !input.trim()}
                                 aria-label="Send"
-                                className="flex size-8 shrink-0 items-center justify-center rounded-none bg-[#F5F3E4] font-heading text-xs font-bold text-ink transition-all hover:bg-[#F5F3E4]/90 disabled:opacity-30 cursor-pointer"
+                                className="flex size-8 shrink-0 items-center justify-center rounded-none bg-background font-heading text-xs font-bold text-ink transition-all hover:bg-background/90 disabled:opacity-30 cursor-pointer"
                             >
                                 {pending ? "…" : "→"}
                             </button>
@@ -668,7 +668,7 @@ Please evaluate these requirements and provide your definitive Momentum System T
                 {!open && (
                     <motion.span
                         aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 rounded-none border-2 border-white"
+                        className="pointer-events-none absolute inset-0 rounded-none border-2 border-background"
                         animate={{ scale: [1, 1.35, 1], opacity: [0.7, 0, 0.7] }}
                         transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
                     />
@@ -678,7 +678,7 @@ Please evaluate these requirements and provide your definitive Momentum System T
                     onClick={() => setOpen((o) => !o)}
                     aria-label={open ? "Close Motion" : "Open Motion, the Kinetiq assistant"}
                     aria-expanded={open}
-                    className="relative flex size-13 items-center justify-center rounded-none border-2 border-white bg-ink font-heading text-xs font-bold uppercase tracking-wider text-white shadow-[0_16px_40px_-12px_rgba(0,0,0,0.6)] transition-all hover:scale-105 hover:bg-[#F5F3E4] hover:text-ink cursor-pointer"
+                    className="relative flex size-13 items-center justify-center rounded-none border-2 border-background bg-ink font-heading text-xs font-bold uppercase tracking-wider text-background shadow-[0_16px_40px_-12px_rgba(0,0,0,0.6)] transition-all hover:scale-105 hover:bg-background hover:text-ink cursor-pointer"
                 >
                     {open ? "✕" : "Ask AI"}
                 </button>

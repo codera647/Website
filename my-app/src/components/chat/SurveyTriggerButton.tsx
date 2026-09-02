@@ -9,7 +9,7 @@ interface Props {
 
 export default function SurveyTriggerButton({
     children = "Start 1-Min Assessment →",
-    className = "rounded-none bg-ink px-4 py-2 font-heading text-xs font-bold uppercase tracking-wider text-white hover:bg-ink-soft transition-colors cursor-pointer shrink-0",
+    className = "rounded-none bg-ink px-4 py-2 font-heading text-xs font-bold uppercase tracking-wider text-background hover:bg-ink-soft transition-colors cursor-pointer shrink-0",
 }: Props) {
     function handleClick() {
         if (typeof window !== "undefined") {

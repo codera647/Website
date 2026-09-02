@@ -167,7 +167,7 @@ export default async function CaseStudyPage({
                             </h2>
                             <Link
                                 href="/ai-engagements"
-                                className="mt-5 inline-block rounded-none border border-line bg-[#F5F3E4] px-6 py-3 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
+                                className="mt-5 inline-block rounded-none border border-line bg-background px-6 py-3 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
                             >
                                 See engagement options →
                             </Link>

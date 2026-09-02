@@ -136,11 +136,11 @@ export default function Footer({ featuredProjects }: { featuredProjects: Project
                     <div className="mt-6">
                         <Link
                             href="/momentum-systems"
-                            className="group inline-flex items-center gap-2.5 rounded-none border border-ink bg-ink px-4 py-2.5 font-heading text-xs font-bold uppercase tracking-[0.18em] text-white shadow-sm transition-all duration-300 hover:bg-[#F5F3E4] hover:text-ink hover:border-ink hover:shadow-[0_8px_24px_-12px_rgba(17,17,19,0.35)] hover:-translate-y-0.5"
+                            className="group inline-flex items-center gap-2.5 rounded-none border border-ink bg-ink px-4 py-2.5 font-heading text-xs font-bold uppercase tracking-[0.18em] text-background shadow-sm transition-all duration-300 hover:bg-background hover:text-ink hover:border-ink hover:shadow-[0_8px_24px_-12px_rgba(17,17,19,0.35)] hover:-translate-y-0.5"
                         >
                             <span className="relative flex size-2 shrink-0">
-                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white group-hover:bg-ink opacity-75 duration-1000" />
-                                <span className="relative inline-flex size-2 rounded-full bg-white group-hover:bg-ink transition-colors" />
+                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-background group-hover:bg-ink opacity-75 duration-1000" />
+                                <span className="relative inline-flex size-2 rounded-full bg-background group-hover:bg-ink transition-colors" />
                             </span>
                             <span>Momentum Systems</span>
                             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -256,7 +256,7 @@ export default function Footer({ featuredProjects }: { featuredProjects: Project
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={social.label}
-                                className="flex size-9 items-center justify-center rounded-none border border-line text-ink-soft transition-all duration-300 hover:border-ink hover:bg-ink hover:text-white hover:-translate-y-0.5 shadow-sm"
+                                className="flex size-9 items-center justify-center rounded-none border border-line text-ink-soft transition-all duration-300 hover:border-ink hover:bg-ink hover:text-background hover:-translate-y-0.5 shadow-sm"
                             >
                                 {social.icon}
                             </a>

@@ -66,12 +66,12 @@ function HeroTeamPeek() {
             <Link
                 href="/about#team"
                 aria-label="View the Kinetiq team"
-                className="group flex items-center rounded-full border border-ink-soft/60 bg-ink py-1.5 pl-1.5 pr-1.5 shadow-[0_8px_24px_-16px_rgba(17,17,19,0.5)] backdrop-blur-md transition-colors duration-300 ease-out hover:border-white/40"
+                className="group flex items-center rounded-full border border-ink-soft/60 bg-ink py-1.5 pl-1.5 pr-1.5 shadow-[0_8px_24px_-16px_rgba(17,17,19,0.5)] backdrop-blur-md transition-colors duration-300 ease-out hover:border-background/40"
             >
                 {/* text bar — collapsed to zero width until hover */}
                 <span className="grid grid-cols-[0fr] transition-[grid-template-columns] duration-500 ease-out group-hover:grid-cols-[1fr]">
                     <span className="overflow-hidden">
-                        <span className="flex items-center gap-1 whitespace-nowrap pl-3 pr-2 font-heading text-xs font-semibold text-white">
+                        <span className="flex items-center gap-1 whitespace-nowrap pl-3 pr-2 font-heading text-xs font-semibold text-background">
                             View team
                             <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-x-0.5">
                                 →
@@ -174,13 +174,13 @@ export default function Hero() {
                     >
                         <Link
                             href="/work"
-                            className="rounded-none bg-ink px-7 py-3.5 font-heading text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink-soft hover:shadow-[0_12px_32px_-12px_rgba(0,0,0,0.45)]"
+                            className="rounded-none bg-ink px-7 py-3.5 font-heading text-sm font-semibold text-background transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink-soft hover:shadow-[0_12px_32px_-12px_rgba(0,0,0,0.45)]"
                         >
                             See our work
                         </Link>
                         <BookCallButton
                             calLink="kinetiq-solutions/30min"
-                            className="cursor-pointer rounded-none border border-line bg-[#F5F3E4] px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
+                            className="cursor-pointer rounded-none border border-line bg-background px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
                         >
                             Let&apos;s talk
                         </BookCallButton>
@@ -211,7 +211,7 @@ export default function Hero() {
                         >
                             <Link
                                 href={`/services#${service.anchor}`}
-                                className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-[#F5F3E4] p-6"
+                                className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-background p-6"
                             >
                                 <div className="flex items-center justify-between">
                                     <span className="font-heading text-sm font-semibold text-muted transition-colors group-hover:text-ink">
@@ -249,7 +249,7 @@ export default function Hero() {
                         <Link
                             key={value}
                             href="/about"
-                            className="rounded-none border border-line bg-surface px-4 py-1.5 font-heading text-xs font-medium text-ink-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-ink hover:bg-ink hover:text-white"
+                            className="rounded-none border border-line bg-surface px-4 py-1.5 font-heading text-xs font-medium text-ink-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-ink hover:bg-ink hover:text-background"
                         >
                             {value}
                         </Link>

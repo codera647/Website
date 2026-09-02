@@ -222,10 +222,10 @@ export default async function RolePage({
                                             href={`/api/documents/${doc.r2_key}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group flex items-center justify-between rounded-xl border border-line bg-surface p-4 transition-all hover:border-ink hover:bg-[#F5F3E4] shadow-sm"
+                                            className="group flex items-center justify-between rounded-xl border border-line bg-surface p-4 transition-all hover:border-ink hover:bg-background shadow-sm"
                                         >
                                             <div className="flex items-center gap-3">
-                                                <span className="flex size-9 shrink-0 items-center justify-center rounded-none bg-ink text-white text-xs font-bold font-heading">
+                                                <span className="flex size-9 shrink-0 items-center justify-center rounded-none bg-ink text-background text-xs font-bold font-heading">
                                                     PDF
                                                 </span>
                                                 <div>
@@ -254,13 +254,13 @@ export default async function RolePage({
                 <div className="mx-auto max-w-4xl px-6 py-20 md:py-24">
                     <FadeInWhenVisible>
                         <div className="text-center">
-                            <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-white/45">
+                            <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-background/45">
                                 Apply
                             </p>
-                            <h2 className="mt-4 font-heading text-3xl font-bold text-white md:text-4xl">
+                            <h2 className="mt-4 font-heading text-3xl font-bold text-background md:text-4xl">
                                 Ready to apply for {role.title}?
                             </h2>
-                            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/60">
+                            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-background/60">
                                 Send your CV and a short note on why you&apos;re a fit.
                                 A real person reads every application.
                             </p>

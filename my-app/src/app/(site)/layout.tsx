@@ -35,14 +35,14 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         everything at -z-10 so it stays put while the page scrolls, and
         pointer-events-none so it never intercepts clicks on real content.
         It's only visible wherever a section doesn't paint its own solid
-        background (bg-white/bg-surface/bg-ink etc. still fully cover it,
+        background (bg-background/bg-surface/bg-ink etc. still fully cover it,
         same as any other page background) — mainly the page's own base
         fill and any gaps between sections.
       */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <CursorGrid
           cellSize={64}
-          color="#111113"
+          color="#F5F3E4"
           radius={160}
           falloff="smooth"
           holdTime={350}

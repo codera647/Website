@@ -41,7 +41,7 @@ function AutomationDemo() {
                     <span className="truncate font-heading text-sm text-ink-soft">{step}</span>
                     {i === steps.length - 1 && (
                         <motion.span
-                            className="ml-auto shrink-0 rounded-none bg-ink px-2.5 py-0.5 text-xs font-medium text-white"
+                            className="ml-auto shrink-0 rounded-none bg-ink px-2.5 py-0.5 text-xs font-medium text-background"
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: [0, 1] }}
                             viewport={{ once: false, margin: "-15%" }}
@@ -80,7 +80,7 @@ function CodeDemo() {
                 viewport={{ once: false, margin: "-15%" }}
                 transition={{ duration: 0.4, delay: lines.length * 0.45 + 0.3, ...LOOP }}
             >
-                <span className="flex size-5 items-center justify-center rounded-none bg-ink text-xs text-white">
+                <span className="flex size-5 items-center justify-center rounded-none bg-ink text-xs text-background">
                     ✓
                 </span>
                 Build passed. Deployed to production

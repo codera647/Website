@@ -16,7 +16,7 @@ export default function EngagementLadder({ tiers }: { tiers: EngagementTier[] })
             {tiers.map((tier, i) => (
                 <FadeInWhenVisible key={tier.id} delay={i * 0.08}>
                     <div
-                        className={`card-hover group rounded-2xl border bg-[#F5F3E4] p-8 transition-all md:p-10 ${
+                        className={`card-hover group rounded-2xl border bg-background p-8 transition-all md:p-10 ${
                             tier.badge === "Flagship" ? "relative border-ink shadow-lg ring-1 ring-ink/10" : "border-line"
                         }`}
                     >
@@ -27,7 +27,7 @@ export default function EngagementLadder({ tiers }: { tiers: EngagementTier[] })
                                     {tier.stage}
                                 </p>
                                 {tier.badge && (
-                                    <span className="rounded-none bg-ink px-2.5 py-1 font-heading text-[10px] font-bold uppercase tracking-wider text-white">
+                                    <span className="rounded-none bg-ink px-2.5 py-1 font-heading text-[10px] font-bold uppercase tracking-wider text-background">
                                         {tier.badge}
                                     </span>
                                 )}
@@ -71,8 +71,8 @@ export default function EngagementLadder({ tiers }: { tiers: EngagementTier[] })
                                     className="mt-1 w-full text-center"
                                     buttonClassName={
                                         tier.badge === "Flagship"
-                                            ? "bg-ink text-white group-hover:bg-ink-soft"
-                                            : "bg-surface text-ink group-hover:bg-ink group-hover:text-white"
+                                            ? "bg-ink text-background group-hover:bg-ink-soft"
+                                            : "bg-surface text-ink group-hover:bg-ink group-hover:text-background"
                                     }
                                 >
                                     {tier.ctaText}

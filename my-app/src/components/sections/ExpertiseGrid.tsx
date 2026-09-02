@@ -27,7 +27,7 @@ export default function ExpertiseGrid() {
                         return (
                             <div
                                 key={service.id}
-                                className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-[#F5F3E4] p-8"
+                                className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-background p-8"
                             >
                                 <Link href={`/services#${service.anchor}`} className="flex flex-1 flex-col">
                                     <h3 className="font-heading text-xl font-semibold">{service.title}</h3>
@@ -56,7 +56,7 @@ export default function ExpertiseGrid() {
                         <Link
                             key={service.id}
                             href={`/services#${service.anchor}`}
-                            className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-[#F5F3E4] p-8"
+                            className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-background p-8"
                         >
                             <h3 className="font-heading text-xl font-semibold">{service.title}</h3>
                             <p className="mt-1 font-heading text-sm text-muted">{service.tagline}</p>
@@ -85,7 +85,7 @@ export default function ExpertiseGrid() {
                             <span className="font-heading text-xs font-semibold uppercase tracking-[0.24em] text-muted">
                                 04 · Packaged Growth System
                             </span>
-                            <span className="rounded-full bg-ink px-2.5 py-0.5 font-heading text-[10px] font-bold text-white">
+                            <span className="rounded-full bg-ink px-2.5 py-0.5 font-heading text-[10px] font-bold text-background">
                                 FOR GROWING BUSINESSES
                             </span>
                         </div>
@@ -100,7 +100,7 @@ export default function ExpertiseGrid() {
                         </p>
                     </div>
                     <div className="mt-6 flex shrink-0 items-center gap-2 font-heading text-sm font-semibold text-ink md:mt-0">
-                        <span className="rounded-none border border-line bg-[#F5F3E4] px-5 py-2.5 shadow-sm group-hover:border-ink">
+                        <span className="rounded-none border border-line bg-background px-5 py-2.5 shadow-sm group-hover:border-ink">
                             Explore Momentum Systems →
                         </span>
                     </div>

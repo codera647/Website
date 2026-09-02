@@ -110,7 +110,7 @@ export default function RouteTransitionOverlay() {
                 {TRAIL_OPACITIES.map((op, i) => (
                     <motion.span
                         key={i}
-                        className={`size-8 rounded-full bg-white md:size-10 ${i > 0 ? "-ml-3 md:-ml-4" : ""}`}
+                        className={`size-8 rounded-full bg-background md:size-10 ${i > 0 ? "-ml-3 md:-ml-4" : ""}`}
                         style={{ opacity: op, zIndex: i }}
                         initial={{ scale: 0, opacity: 0 }}
                         animate={
@@ -128,15 +128,15 @@ export default function RouteTransitionOverlay() {
             </div>
 
             <motion.p
-                className="mt-6 font-heading text-xl font-semibold text-white md:text-2xl"
+                className="mt-6 font-heading text-xl font-semibold text-background md:text-2xl"
                 initial={{ opacity: 0, y: 10 }}
                 animate={drawn ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                 transition={{ duration: 0.4, delay: 0.32 }}
             >
-                kinet<span className="text-white/45">iq</span>
+                kinet<span className="text-background/45">iq</span>
             </motion.p>
             <motion.p
-                className="mt-2 font-heading text-[10px] font-medium uppercase tracking-[0.32em] text-white/40"
+                className="mt-2 font-heading text-[10px] font-medium uppercase tracking-[0.32em] text-background/40"
                 initial={{ opacity: 0 }}
                 animate={drawn ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.4, delay: 0.46 }}

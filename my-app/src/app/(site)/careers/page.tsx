@@ -108,7 +108,7 @@ export default async function CareersPage() {
                             </p>
                             <a
                                 href="#send-cv"
-                                className="mt-7 inline-flex items-center gap-1.5 rounded-none bg-ink px-6 py-3 font-heading text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink-soft hover:shadow-[0_12px_32px_-12px_rgba(0,0,0,0.45)]"
+                                className="mt-7 inline-flex items-center gap-1.5 rounded-none bg-ink px-6 py-3 font-heading text-sm font-semibold text-background transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink-soft hover:shadow-[0_12px_32px_-12px_rgba(0,0,0,0.45)]"
                             >
                                 Send your CV
                                 <span aria-hidden="true">↓</span>
@@ -123,13 +123,13 @@ export default async function CareersPage() {
                 <div className="mx-auto max-w-4xl px-6 py-20 md:py-24">
                     <FadeInWhenVisible>
                         <div className="text-center">
-                            <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-white/45">
+                            <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-background/45">
                                 Open application
                             </p>
-                            <h2 className="mt-4 font-heading text-3xl font-bold text-white md:text-4xl">
+                            <h2 className="mt-4 font-heading text-3xl font-bold text-background md:text-4xl">
                                 Don&apos;t see your role? Send your CV.
                             </h2>
-                            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/60">
+                            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-background/60">
                                 Pick one of our openings, or tell us the role you think
                                 we need. A real person reads every application.
                             </p>

@@ -47,7 +47,7 @@ export default function DemoLoop({
     return (
         <div
             ref={ref}
-            className={`overflow-hidden rounded-xl border border-line bg-[#F5F3E4] shadow-[0_24px_64px_-32px_rgba(17,17,19,0.25)] ${className ?? ""}`}
+            className={`overflow-hidden rounded-xl border border-line bg-background shadow-[0_24px_64px_-32px_rgba(17,17,19,0.25)] ${className ?? ""}`}
         >
             {/* window chrome */}
             <div className="flex items-center gap-2 border-b border-line bg-surface px-4 py-2.5">

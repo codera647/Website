@@ -88,19 +88,19 @@ export default function ApplicationForm({ roleTitle }: Props) {
     };
 
     const inputClass =
-        "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3.5 text-white placeholder:text-white/35 focus:border-white/40 focus:outline-none transition-colors";
+        "w-full rounded-xl border border-background/15 bg-background/5 px-4 py-3.5 text-background placeholder:text-background/35 focus:border-background/40 focus:outline-none transition-colors";
 
     if (status === "success") {
         return (
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-10 text-center">
-                <p className="font-heading text-2xl font-semibold text-white">Application sent.</p>
-                <p className="mt-3 text-white/60">
+            <div className="rounded-2xl border border-background/10 bg-background/5 p-10 text-center">
+                <p className="font-heading text-2xl font-semibold text-background">Application sent.</p>
+                <p className="mt-3 text-background/60">
                     Thanks for applying to {roleTitle}. A real person reads every
                     application and will get back to you.
                 </p>
                 <button
                     onClick={() => setStatus("idle")}
-                    className="mt-6 font-heading text-sm font-semibold text-white underline underline-offset-4"
+                    className="mt-6 font-heading text-sm font-semibold text-background underline underline-offset-4"
                 >
                     Submit another application
                 </button>
@@ -112,7 +112,7 @@ export default function ApplicationForm({ roleTitle }: Props) {
         <form onSubmit={handleSubmit} noValidate className="mx-auto max-w-xl space-y-5 text-left">
             <div className="grid gap-5 sm:grid-cols-2">
                 <div>
-                    <label htmlFor="app-name" className="mb-2 block font-heading text-sm font-medium text-white">
+                    <label htmlFor="app-name" className="mb-2 block font-heading text-sm font-medium text-background">
                         Name
                     </label>
                     <input
@@ -127,13 +127,13 @@ export default function ApplicationForm({ roleTitle }: Props) {
                         className={inputClass}
                     />
                     {errors.name && (
-                        <p id="app-name-error" role="alert" className="mt-1.5 text-sm text-white/70">
+                        <p id="app-name-error" role="alert" className="mt-1.5 text-sm text-background/70">
                             {errors.name}
                         </p>
                     )}
                 </div>
                 <div>
-                    <label htmlFor="app-email" className="mb-2 block font-heading text-sm font-medium text-white">
+                    <label htmlFor="app-email" className="mb-2 block font-heading text-sm font-medium text-background">
                         Email
                     </label>
                     <input
@@ -148,7 +148,7 @@ export default function ApplicationForm({ roleTitle }: Props) {
                         className={inputClass}
                     />
                     {errors.email && (
-                        <p id="app-email-error" role="alert" className="mt-1.5 text-sm text-white/70">
+                        <p id="app-email-error" role="alert" className="mt-1.5 text-sm text-background/70">
                             {errors.email}
                         </p>
                     )}
@@ -156,8 +156,8 @@ export default function ApplicationForm({ roleTitle }: Props) {
             </div>
 
             <div>
-                <label htmlFor="app-cv" className="mb-2 block font-heading text-sm font-medium text-white">
-                    CV / resume <span className="text-white/40">(PDF or Word, max 5MB)</span>
+                <label htmlFor="app-cv" className="mb-2 block font-heading text-sm font-medium text-background">
+                    CV / resume <span className="text-background/40">(PDF or Word, max 5MB)</span>
                 </label>
                 <input
                     id="app-cv"
@@ -170,18 +170,18 @@ export default function ApplicationForm({ roleTitle }: Props) {
                     }}
                     aria-invalid={!!errors.cv}
                     aria-describedby={errors.cv ? "app-cv-error" : undefined}
-                    className="block w-full text-sm text-white/70 file:mr-4 file:rounded-none file:border file:border-white/15 file:bg-white/10 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white file:transition-colors hover:file:bg-white/15"
+                    className="block w-full text-sm text-background/70 file:mr-4 file:rounded-none file:border file:border-background/15 file:bg-background/10 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-background file:transition-colors hover:file:bg-background/15"
                 />
                 {errors.cv && (
-                    <p id="app-cv-error" role="alert" className="mt-1.5 text-sm text-white/70">
+                    <p id="app-cv-error" role="alert" className="mt-1.5 text-sm text-background/70">
                         {errors.cv}
                     </p>
                 )}
             </div>
 
             <div>
-                <label htmlFor="app-cover" className="mb-2 block font-heading text-sm font-medium text-white">
-                    Cover letter <span className="text-white/40">(optional)</span>
+                <label htmlFor="app-cover" className="mb-2 block font-heading text-sm font-medium text-background">
+                    Cover letter <span className="text-background/40">(optional)</span>
                 </label>
                 <textarea
                     id="app-cover"
@@ -194,8 +194,8 @@ export default function ApplicationForm({ roleTitle }: Props) {
             </div>
 
             <div>
-                <label htmlFor="app-additional" className="mb-2 block font-heading text-sm font-medium text-white">
-                    Additional information <span className="text-white/40">(optional)</span>
+                <label htmlFor="app-additional" className="mb-2 block font-heading text-sm font-medium text-background">
+                    Additional information <span className="text-background/40">(optional)</span>
                 </label>
                 <textarea
                     id="app-additional"
@@ -208,7 +208,7 @@ export default function ApplicationForm({ roleTitle }: Props) {
             </div>
 
             {status === "error" && serverError && (
-                <p role="alert" className="text-sm font-medium text-white">
+                <p role="alert" className="text-sm font-medium text-background">
                     {serverError}
                 </p>
             )}
@@ -216,7 +216,7 @@ export default function ApplicationForm({ roleTitle }: Props) {
             <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="inline-flex items-center gap-2 rounded-none bg-[#F5F3E4] px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-colors hover:bg-[#F5F3E4]/85 disabled:opacity-60"
+                className="inline-flex items-center gap-2 rounded-none bg-background px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-colors hover:bg-background/85 disabled:opacity-60"
             >
                 {status === "submitting" ? "Sending…" : "Submit application"}
                 {status !== "submitting" && <span aria-hidden="true">→</span>}

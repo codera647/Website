@@ -75,7 +75,7 @@ export default function BrandOutro() {
                             className="inline-block overflow-hidden pb-[0.14em] pr-[0.09em] pt-[0.06em] text-[16vw] leading-none"
                         >
                             <motion.span
-                                className="inline-block cursor-default text-white"
+                                className="inline-block cursor-default text-background"
                                 style={{ textShadow: DOUBLING_SHADOW }}
                                 variants={letterVariant}
                                 whileHover={reduced ? undefined : { y: "-4%", transition: { duration: 0.25 } }}
@@ -87,26 +87,26 @@ export default function BrandOutro() {
                 </motion.p>
             </div>
 
-            <div className="relative border-t border-white/10">
-                <div className="container-wide flex flex-wrap items-center justify-between gap-3 py-6 font-heading text-xs text-white/50">
+            <div className="relative border-t border-background/10">
+                <div className="container-wide flex flex-wrap items-center justify-between gap-3 py-6 font-heading text-xs text-background/50">
                     <p>&copy; {new Date().getFullYear()} Kinetiq. All rights reserved.</p>
-                    <p className="uppercase tracking-[0.28em] text-white/35">Always in motion</p>
+                    <p className="uppercase tracking-[0.28em] text-background/35">Always in motion</p>
                     <div className="flex items-center gap-4">
                         <Link
                             href="/terms"
-                            className="text-white/50 underline-offset-4 hover:text-white hover:underline"
+                            className="text-background/50 underline-offset-4 hover:text-background hover:underline"
                         >
                             Terms
                         </Link>
-                        <span aria-hidden="true" className="h-3 w-px bg-white/15" />
+                        <span aria-hidden="true" className="h-3 w-px bg-background/15" />
                         <Link
                             href="/privacy"
-                            className="text-white/50 underline-offset-4 hover:text-white hover:underline"
+                            className="text-background/50 underline-offset-4 hover:text-background hover:underline"
                         >
                             Privacy
                         </Link>
-                        <span aria-hidden="true" className="h-3 w-px bg-white/15" />
-                        <a href="#main" className="text-white/50 underline-offset-4 hover:text-white hover:underline">
+                        <span aria-hidden="true" className="h-3 w-px bg-background/15" />
+                        <a href="#main" className="text-background/50 underline-offset-4 hover:text-background hover:underline">
                             Back to top
                         </a>
                     </div>

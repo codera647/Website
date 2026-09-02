@@ -127,7 +127,7 @@ export default function ServicesPage() {
                                 {service.stack.map((tech) => (
                                     <span
                                         key={tech}
-                                        className="rounded-none border border-line bg-[#F5F3E4] px-3 py-1 text-xs text-muted"
+                                        className="rounded-none border border-line bg-background px-3 py-1 text-xs text-muted"
                                     >
                                         {tech}
                                     </span>
@@ -152,17 +152,17 @@ export default function ServicesPage() {
             ))}
 
             {/* Momentum Systems Packaged Offering Callout */}
-            <section className="border-t border-line bg-ink text-white py-20 md:py-24">
+            <section className="border-t border-line bg-ink text-background py-20 md:py-24">
                 <div className="container-wide grid gap-8 lg:grid-cols-12 lg:items-center">
                     <div className="lg:col-span-8">
                         <FadeInWhenVisible>
-                            <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-white/50">
+                            <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-background/50">
                                 Packaged Growth Engine
                             </p>
-                            <h2 className="mt-3 font-heading text-3xl font-bold md:text-4xl text-white">
+                            <h2 className="mt-3 font-heading text-3xl font-bold md:text-4xl text-background">
                                 For local &amp; growing businesses: Momentum Systems.
                             </h2>
-                            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70">
+                            <p className="mt-4 max-w-2xl text-base leading-relaxed text-background/70">
                                 We combine all three disciplines — full-stack customer portals, automated email/SMS follow-up, and programmatic local SEO — into a unified, outcome-priced growth engine that keeps bringing customers back automatically.
                             </p>
                         </FadeInWhenVisible>
@@ -171,7 +171,7 @@ export default function ServicesPage() {
                         <FadeInWhenVisible delay={0.1}>
                             <Link
                                 href="/momentum-systems"
-                                className="inline-block rounded-none border border-white/20 bg-[#F5F3E4] px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:bg-[#F5F3E4]/85 hover:-translate-y-0.5 shadow-sm"
+                                className="inline-block rounded-none border border-background/20 bg-background px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:bg-background/85 hover:-translate-y-0.5 shadow-sm"
                             >
                                 Explore Momentum Systems →
                             </Link>

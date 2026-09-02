@@ -8,12 +8,16 @@
    font-heading, font-body.
    ============================================================ */
 @theme {
-  --color-background: #F5F3E4;
-  --color-surface: #EBE9DB;
-  --color-ink: #242424;
-  --color-ink-soft: #3a3a3a;
-  --color-muted: #6b6b70;
-  --color-line: #e4e4e7;
+  /* Inverted palette: charcoal grounds, ivory ink. `ink` remains the
+     high-contrast/foreground color (now ivory) and doubles as the fill for
+     inverted panels — Nav, Footer, CTA bands, primary buttons — which is
+     why every `bg-ink` surface pairs with `text-background` for its text. */
+  --color-background: #242424;
+  --color-surface: #2E2C29;
+  --color-ink: #F5F3E4;
+  --color-ink-soft: #EBE9DB;
+  --color-muted: #A5A296;
+  --color-line: #3D3B36;
 
   --font-heading: var(--font-space-grotesk), ui-sans-serif, sans-serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;

@@ -42,7 +42,7 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                     key={key++}
                     className={`my-2.5 block overflow-hidden rounded-lg border shadow-md ${
                         isDark
-                            ? "border-white/15 bg-black/40"
+                            ? "border-background/15 bg-background/5"
                             : "border-line bg-surface"
                     }`}
                 >
@@ -51,15 +51,15 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                         alt={alt || "Visual diagram"}
                         loading="lazy"
                         className={`max-h-[300px] w-full object-contain p-1 ${
-                            isDark ? "bg-black/60" : "bg-[#F5F3E4]"
+                            isDark ? "bg-background/8" : "bg-background"
                         }`}
                     />
                     {alt && (
                         <span
                             className={`block border-t px-3 py-1.5 font-heading text-[11px] ${
                                 isDark
-                                    ? "border-white/10 bg-white/5 text-white/75"
-                                    : "border-line bg-[#F5F3E4] text-muted"
+                                    ? "border-background/10 bg-background/5 text-background/75"
+                                    : "border-line bg-background text-muted"
                             }`}
                         >
                             {alt}
@@ -88,8 +88,8 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                         onClick={() => window.dispatchEvent(new Event("open-call-modal"))}
                         className={`my-1 inline-flex items-center gap-2 rounded-none border px-3.5 py-1.5 font-heading text-xs font-bold shadow-sm transition-all duration-200 hover:-translate-y-0.5 cursor-pointer ${
                             isDark
-                                ? "border-white/30 bg-[#F5F3E4] text-ink hover:bg-[#F5F3E4]/90 hover:shadow-md"
-                                : "border-ink bg-ink text-white hover:bg-ink-soft hover:shadow-md"
+                                ? "border-background/30 bg-background text-ink hover:bg-background/90 hover:shadow-md"
+                                : "border-ink bg-ink text-background hover:bg-ink-soft hover:shadow-md"
                         }`}
                     >
                         <span>{cleanLabel}</span>
@@ -103,8 +103,8 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                         href={url}
                         className={`group my-1 inline-flex items-center gap-2 rounded-none border px-3.5 py-1.5 font-heading text-xs font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 ${
                             isDark
-                                ? "border-white/20 bg-white/10 text-white hover:border-white hover:bg-[#F5F3E4] hover:text-ink"
-                                : "border-line bg-surface text-ink hover:border-ink hover:bg-[#F5F3E4]"
+                                ? "border-background/20 bg-background/10 text-background hover:border-background hover:bg-background hover:text-ink"
+                                : "border-line bg-surface text-ink hover:border-ink hover:bg-background"
                         }`}
                     >
                         <span>{cleanLabel}</span>
@@ -120,7 +120,7 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                         rel="noopener noreferrer"
                         className={`font-medium underline underline-offset-4 transition-colors ${
                             isDark
-                                ? "text-white decoration-white/40 hover:decoration-white"
+                                ? "text-background decoration-background/40 hover:decoration-background"
                                 : "text-ink decoration-ink/40 hover:decoration-ink"
                         }`}
                     >
@@ -133,7 +133,7 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
             nodes.push(
                 <strong
                     key={key++}
-                    className={`font-semibold ${isDark ? "text-white" : "text-ink"}`}
+                    className={`font-semibold ${isDark ? "text-background" : "text-ink"}`}
                 >
                     {match[8]}
                 </strong>
@@ -145,7 +145,7 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                     key={key++}
                     className={`rounded px-1.5 py-0.5 font-mono text-[0.88em] ${
                         isDark
-                            ? "border border-white/15 bg-white/10 text-white"
+                            ? "border border-background/15 bg-background/10 text-background"
                             : "border border-line bg-surface text-ink"
                     }`}
                 >
@@ -157,7 +157,7 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
             nodes.push(
                 <em
                     key={key++}
-                    className={`italic ${isDark ? "text-white/85" : "text-ink/80"}`}
+                    className={`italic ${isDark ? "text-background/85" : "text-ink/80"}`}
                 >
                     {match[12]}
                 </em>
@@ -219,16 +219,16 @@ export default function MarkdownLite({
                     key={key++}
                     className={`my-3 overflow-hidden rounded-lg border font-mono text-xs shadow-md ${
                         isDark
-                            ? "border-white/15 bg-black/70"
-                            : "border-line bg-ink-soft text-white"
+                            ? "border-background/15 bg-background/10"
+                            : "border-line bg-ink-soft text-background"
                     }`}
                 >
                     {lang && (
-                        <div className="border-b border-white/10 bg-white/5 px-3.5 py-1 text-[10px] uppercase tracking-wider text-white/60">
+                        <div className="border-b border-background/10 bg-background/5 px-3.5 py-1 text-[10px] uppercase tracking-wider text-background/60">
                             {lang}
                         </div>
                     )}
-                    <pre className="overflow-x-auto p-3.5 leading-relaxed text-white/95">
+                    <pre className="overflow-x-auto p-3.5 leading-relaxed text-background/95">
                         <code>{codeLines.join("\n")}</code>
                     </pre>
                 </div>
@@ -245,7 +245,7 @@ export default function MarkdownLite({
                 <figure
                     key={key++}
                     className={`my-3 overflow-hidden rounded-lg border shadow-md ${
-                        isDark ? "border-white/15 bg-black/60" : "border-line bg-surface"
+                        isDark ? "border-background/15 bg-background/8" : "border-line bg-surface"
                     }`}
                 >
                     <div className="flex max-h-[340px] w-full items-center justify-center p-1.5">
@@ -260,8 +260,8 @@ export default function MarkdownLite({
                         <figcaption
                             className={`border-t px-3.5 py-1.5 font-heading text-[11px] ${
                                 isDark
-                                    ? "border-white/10 bg-white/5 text-white/75"
-                                    : "border-line bg-[#F5F3E4] text-muted"
+                                    ? "border-background/10 bg-background/5 text-background/75"
+                                    : "border-line bg-background text-muted"
                             }`}
                         >
                             {alt}
@@ -284,7 +284,7 @@ export default function MarkdownLite({
                         key={key++}
                         className={`mt-4 mb-2 font-heading text-lg font-bold border-b pb-1 ${
                             isDark
-                                ? "text-white border-white/10"
+                                ? "text-background border-background/10"
                                 : "text-ink border-line"
                         }`}
                     >
@@ -296,7 +296,7 @@ export default function MarkdownLite({
                     <h4
                         key={key++}
                         className={`mt-3.5 mb-1.5 font-heading text-base font-bold ${
-                            isDark ? "text-white" : "text-ink"
+                            isDark ? "text-background" : "text-ink"
                         }`}
                     >
                         {parseInline(headingText, isDark)}
@@ -307,7 +307,7 @@ export default function MarkdownLite({
                     <h5
                         key={key++}
                         className={`mt-3 mb-1 font-heading text-sm font-semibold uppercase tracking-wider ${
-                            isDark ? "text-white" : "text-ink"
+                            isDark ? "text-background" : "text-ink"
                         }`}
                     >
                         {parseInline(headingText, isDark)}
@@ -326,7 +326,7 @@ export default function MarkdownLite({
                     key={key++}
                     className={`my-2.5 border-l-2 py-1.5 pl-3 pr-2 text-xs italic ${
                         isDark
-                            ? "border-white/50 bg-white/5 text-white/90"
+                            ? "border-background/50 bg-background/5 text-background/90"
                             : "border-ink bg-surface text-ink/90"
                     }`}
                 >
@@ -348,7 +348,7 @@ export default function MarkdownLite({
                 <ol
                     key={key++}
                     className={`my-2 list-decimal space-y-1.5 pl-5 ${
-                        isDark ? "text-white/90" : "text-ink/90"
+                        isDark ? "text-background/90" : "text-ink/90"
                     }`}
                 >
                     {items.map((it, idx) => (
@@ -372,7 +372,7 @@ export default function MarkdownLite({
                 <ul
                     key={key++}
                     className={`my-2 list-disc space-y-1.5 pl-5 ${
-                        isDark ? "text-white/90" : "text-ink/90"
+                        isDark ? "text-background/90" : "text-ink/90"
                     }`}
                 >
                     {items.map((it, idx) => (
@@ -411,7 +411,7 @@ export default function MarkdownLite({
             <p
                 key={key++}
                 className={`leading-relaxed ${
-                    isDark ? "text-white/90" : "text-ink/90"
+                    isDark ? "text-background/90" : "text-ink/90"
                 }`}
             >
                 {parseInline(paraLines.join(" "), isDark)}

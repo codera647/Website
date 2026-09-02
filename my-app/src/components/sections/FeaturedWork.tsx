@@ -30,12 +30,12 @@ export function WorkCard({
               which reads as the whole row responding together rather than
               one card overlapping its neighbours.
             */}
-            <div className="relative z-10 flex h-full min-h-[190px] flex-col justify-between overflow-hidden rounded-2xl border border-line bg-[#F5F3E4] p-7 pb-16 transition-colors duration-500 ease-out md:p-8 md:pb-16 md:group-hover:border-ink md:group-hover:bg-ink md:group-hover:shadow-[0_32px_64px_-24px_rgba(17,17,19,0.45)]">
+            <div className="relative z-10 flex h-full min-h-[190px] flex-col justify-between overflow-hidden rounded-2xl border border-line bg-background p-7 pb-16 transition-colors duration-500 ease-out md:p-8 md:pb-16 md:group-hover:border-ink md:group-hover:bg-ink md:group-hover:shadow-[0_32px_64px_-24px_rgba(17,17,19,0.45)]">
                 <div>
-                    <p className="font-heading text-xs font-medium uppercase tracking-[0.18em] text-muted transition-colors duration-500 ease-out md:group-hover:text-white/50">
+                    <p className="font-heading text-xs font-medium uppercase tracking-[0.18em] text-muted transition-colors duration-500 ease-out md:group-hover:text-background/50">
                         {category}
                     </p>
-                    <h3 className="mt-3 font-heading text-2xl font-semibold text-ink transition-colors duration-500 ease-out md:group-hover:text-white">
+                    <h3 className="mt-3 font-heading text-2xl font-semibold text-ink transition-colors duration-500 ease-out md:group-hover:text-background">
                         {title}
                     </h3>
                 </div>
@@ -48,18 +48,18 @@ export function WorkCard({
                 {/* hover reveal — md+ only: summary, tags, CTA. 0fr -> 1fr grid-row trick animates height smoothly */}
                 <div className="hidden md:grid md:grid-rows-[0fr] md:transition-[grid-template-rows] md:duration-500 md:ease-out md:group-hover:grid-rows-[1fr]">
                     <div className="overflow-hidden">
-                        <p className="mt-5 text-sm leading-relaxed text-white/70">{summary}</p>
+                        <p className="mt-5 text-sm leading-relaxed text-background/70">{summary}</p>
                         <div className="mt-4 flex flex-wrap gap-2">
                             {tags.slice(0, 3).map((tag) => (
                                 <span
                                     key={tag}
-                                    className="rounded-none border border-white/20 px-2.5 py-1 text-xs text-white/60"
+                                    className="rounded-none border border-background/20 px-2.5 py-1 text-xs text-background/60"
                                 >
                                     {tag}
                                 </span>
                             ))}
                         </div>
-                        <span className="mt-6 inline-flex items-center gap-1.5 font-heading text-sm font-semibold text-white">
+                        <span className="mt-6 inline-flex items-center gap-1.5 font-heading text-sm font-semibold text-background">
                             View project
                             <span className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-1.5">
                                 →

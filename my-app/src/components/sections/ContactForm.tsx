@@ -80,11 +80,11 @@ export default function ContactForm() {
     };
 
     const inputClass =
-        "w-full rounded-xl border border-line bg-white px-4 py-3.5 text-ink placeholder:text-muted/60 focus:border-ink focus:outline-none transition-colors";
+        "w-full rounded-xl border border-line bg-background px-4 py-3.5 text-ink placeholder:text-muted/60 focus:border-ink focus:outline-none transition-colors";
 
     if (status === "success") {
         return (
-            <div className="rounded-2xl border border-line bg-white p-10 text-center">
+            <div className="rounded-2xl border border-line bg-background p-10 text-center">
                 <p className="font-heading text-2xl font-semibold">Message sent.</p>
                 <p className="mt-3 text-muted">
                     Thanks for reaching out. We&apos;ll get back to you within one business day.
@@ -206,7 +206,7 @@ export default function ContactForm() {
             <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="rounded-none bg-ink px-8 py-4 font-heading text-sm font-semibold text-white transition-colors hover:bg-ink-soft disabled:opacity-60"
+                className="rounded-none bg-ink px-8 py-4 font-heading text-sm font-semibold text-background transition-colors hover:bg-ink-soft disabled:opacity-60"
             >
                 {status === "submitting" ? "Sending…" : "Send message"}
             </button>

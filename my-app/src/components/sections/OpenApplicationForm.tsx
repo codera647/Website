@@ -130,7 +130,7 @@ export default function OpenApplicationForm({ openRoles }: Props) {
     };
 
     const inputClass =
-        "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3.5 text-white placeholder:text-white/35 focus:border-white/40 focus:outline-none transition-colors";
+        "w-full rounded-xl border border-background/15 bg-background/5 px-4 py-3.5 text-background placeholder:text-background/35 focus:border-background/40 focus:outline-none transition-colors";
 
     if (status === "success") {
         return (
@@ -138,16 +138,16 @@ export default function OpenApplicationForm({ openRoles }: Props) {
                 initial={{ opacity: 0, scale: 0.97 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="rounded-2xl border border-white/10 bg-white/5 p-10 text-center"
+                className="rounded-2xl border border-background/10 bg-background/5 p-10 text-center"
             >
-                <p className="font-heading text-2xl font-semibold text-white">CV received.</p>
-                <p className="mt-3 text-white/60">
+                <p className="font-heading text-2xl font-semibold text-background">CV received.</p>
+                <p className="mt-3 text-background/60">
                     Thanks for reaching out. A real person reads every application
                     and will get back to you if there&apos;s a fit.
                 </p>
                 <button
                     onClick={() => setStatus("idle")}
-                    className="mt-6 font-heading text-sm font-semibold text-white underline underline-offset-4"
+                    className="mt-6 font-heading text-sm font-semibold text-background underline underline-offset-4"
                 >
                     Send another
                 </button>
@@ -159,7 +159,7 @@ export default function OpenApplicationForm({ openRoles }: Props) {
         <form onSubmit={handleSubmit} noValidate className="mx-auto max-w-xl space-y-5 text-left">
             <div className="grid gap-5 sm:grid-cols-2">
                 <div>
-                    <label htmlFor="open-name" className="mb-2 block font-heading text-sm font-medium text-white">
+                    <label htmlFor="open-name" className="mb-2 block font-heading text-sm font-medium text-background">
                         Name
                     </label>
                     <input
@@ -174,13 +174,13 @@ export default function OpenApplicationForm({ openRoles }: Props) {
                         className={inputClass}
                     />
                     {errors.name && (
-                        <p id="open-name-error" role="alert" className="mt-1.5 text-sm text-white/70">
+                        <p id="open-name-error" role="alert" className="mt-1.5 text-sm text-background/70">
                             {errors.name}
                         </p>
                     )}
                 </div>
                 <div>
-                    <label htmlFor="open-email" className="mb-2 block font-heading text-sm font-medium text-white">
+                    <label htmlFor="open-email" className="mb-2 block font-heading text-sm font-medium text-background">
                         Email
                     </label>
                     <input
@@ -195,7 +195,7 @@ export default function OpenApplicationForm({ openRoles }: Props) {
                         className={inputClass}
                     />
                     {errors.email && (
-                        <p id="open-email-error" role="alert" className="mt-1.5 text-sm text-white/70">
+                        <p id="open-email-error" role="alert" className="mt-1.5 text-sm text-background/70">
                             {errors.email}
                         </p>
                     )}
@@ -204,9 +204,9 @@ export default function OpenApplicationForm({ openRoles }: Props) {
 
             {/* job title combobox: select an opening OR type any title */}
             <div ref={comboRef} className="relative">
-                <label htmlFor="open-title" className="mb-2 block font-heading text-sm font-medium text-white">
+                <label htmlFor="open-title" className="mb-2 block font-heading text-sm font-medium text-background">
                     Job title{" "}
-                    <span className="text-white/40">
+                    <span className="text-background/40">
                         {openRoles.length > 0
                             ? "(pick an opening or type your own)"
                             : "(no openings right now, type the role you want)"}
@@ -238,7 +238,7 @@ export default function OpenApplicationForm({ openRoles }: Props) {
                         tabIndex={-1}
                         aria-label={paneOpen ? "Close suggestions" : "Show suggestions"}
                         onClick={() => setPaneOpen((o) => !o)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-white/45 transition-colors hover:text-white"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-background/45 transition-colors hover:text-background"
                     >
                         <motion.span
                             className="block font-heading text-sm"
@@ -260,9 +260,9 @@ export default function OpenApplicationForm({ openRoles }: Props) {
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: -6, scale: 0.98 }}
                             transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                            className="absolute z-20 mt-2 w-full overflow-hidden rounded-xl border border-white/15 bg-ink shadow-[0_24px_64px_-16px_rgba(0,0,0,0.7)]"
+                            className="absolute z-20 mt-2 w-full overflow-hidden rounded-xl border border-background/15 bg-ink shadow-[0_24px_64px_-16px_rgba(0,0,0,0.7)]"
                         >
-                            <li className="border-b border-white/10 px-4 py-2.5 font-heading text-xs font-medium uppercase tracking-[0.18em] text-white/40">
+                            <li className="border-b border-background/10 px-4 py-2.5 font-heading text-xs font-medium uppercase tracking-[0.18em] text-background/40">
                                 {openRoles.length > 0 ? "Current openings" : "Suggestions"}
                             </li>
                             {filtered.length > 0 ? (
@@ -275,7 +275,7 @@ export default function OpenApplicationForm({ openRoles }: Props) {
                                                 setErrors((er) => ({ ...er, jobTitle: undefined }));
                                                 setPaneOpen(false);
                                             }}
-                                            className="group flex w-full items-center justify-between px-4 py-3 text-left text-sm text-white/75 transition-colors hover:bg-white/10 hover:text-white"
+                                            className="group flex w-full items-center justify-between px-4 py-3 text-left text-sm text-background/75 transition-colors hover:bg-background/10 hover:text-background"
                                         >
                                             {title}
                                             <span
@@ -288,7 +288,7 @@ export default function OpenApplicationForm({ openRoles }: Props) {
                                     </li>
                                 ))
                             ) : (
-                                <li className="px-4 py-3 text-sm text-white/50">
+                                <li className="px-4 py-3 text-sm text-background/50">
                                     No matching opening. Keep typing and we&apos;ll accept
                                     your CV for &ldquo;{fields.jobTitle.trim()}&rdquo; anyway.
                                 </li>
@@ -297,15 +297,15 @@ export default function OpenApplicationForm({ openRoles }: Props) {
                     )}
                 </AnimatePresence>
                 {errors.jobTitle && (
-                    <p id="open-title-error" role="alert" className="mt-1.5 text-sm text-white/70">
+                    <p id="open-title-error" role="alert" className="mt-1.5 text-sm text-background/70">
                         {errors.jobTitle}
                     </p>
                 )}
             </div>
 
             <div>
-                <label htmlFor="open-cv" className="mb-2 block font-heading text-sm font-medium text-white">
-                    CV / resume <span className="text-white/40">(PDF or Word, max 5MB)</span>
+                <label htmlFor="open-cv" className="mb-2 block font-heading text-sm font-medium text-background">
+                    CV / resume <span className="text-background/40">(PDF or Word, max 5MB)</span>
                 </label>
                 <input
                     id="open-cv"
@@ -318,18 +318,18 @@ export default function OpenApplicationForm({ openRoles }: Props) {
                     }}
                     aria-invalid={!!errors.cv}
                     aria-describedby={errors.cv ? "open-cv-error" : undefined}
-                    className="block w-full text-sm text-white/70 file:mr-4 file:rounded-none file:border file:border-white/15 file:bg-white/10 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white file:transition-colors hover:file:bg-white/15"
+                    className="block w-full text-sm text-background/70 file:mr-4 file:rounded-none file:border file:border-background/15 file:bg-background/10 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-background file:transition-colors hover:file:bg-background/15"
                 />
                 {errors.cv && (
-                    <p id="open-cv-error" role="alert" className="mt-1.5 text-sm text-white/70">
+                    <p id="open-cv-error" role="alert" className="mt-1.5 text-sm text-background/70">
                         {errors.cv}
                     </p>
                 )}
             </div>
 
             <div>
-                <label htmlFor="open-message" className="mb-2 block font-heading text-sm font-medium text-white">
-                    Anything else <span className="text-white/40">(optional)</span>
+                <label htmlFor="open-message" className="mb-2 block font-heading text-sm font-medium text-background">
+                    Anything else <span className="text-background/40">(optional)</span>
                 </label>
                 <textarea
                     id="open-message"
@@ -342,7 +342,7 @@ export default function OpenApplicationForm({ openRoles }: Props) {
             </div>
 
             {status === "error" && serverError && (
-                <p role="alert" className="text-sm font-medium text-white">
+                <p role="alert" className="text-sm font-medium text-background">
                     {serverError}
                 </p>
             )}
@@ -350,7 +350,7 @@ export default function OpenApplicationForm({ openRoles }: Props) {
             <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="inline-flex items-center gap-2 rounded-none bg-[#F5F3E4] px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F5F3E4]/85 hover:shadow-[0_12px_32px_-12px_rgba(255,255,255,0.35)] disabled:opacity-60"
+                className="inline-flex items-center gap-2 rounded-none bg-background px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-background/85 hover:shadow-[0_12px_32px_-12px_rgba(0,0,0,0.35)] disabled:opacity-60"
             >
                 {status === "submitting" ? "Sending…" : "Send CV"}
                 {status !== "submitting" && <span aria-hidden="true">→</span>}

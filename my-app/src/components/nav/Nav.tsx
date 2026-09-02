@@ -70,15 +70,15 @@ export default function Nav() {
         <>
             <a
                 href="#main"
-                className="fixed left-4 top-[-56px] z-[60] rounded-none bg-ink px-5 py-2.5 font-heading text-sm font-semibold text-white transition-all focus:top-4"
+                className="fixed left-4 top-[-56px] z-[60] rounded-none bg-ink px-5 py-2.5 font-heading text-sm font-semibold text-background transition-all focus:top-4"
             >
                 Skip to content
             </a>
             <header
                 className={`fixed inset-x-0 top-0 z-50 bg-ink transition-all ${
                     scrolled
-                        ? "border-b border-white/10 shadow-[0_8px_32px_-16px_rgba(0,0,0,0.5)] backdrop-blur-md"
-                        : "border-b border-white/0"
+                        ? "border-b border-background/10 shadow-[0_8px_32px_-16px_rgba(0,0,0,0.5)] backdrop-blur-md"
+                        : "border-b border-background/0"
                 }`}
             >
                 <div className="container-wide flex h-[72px] items-center justify-between">
@@ -86,10 +86,10 @@ export default function Nav() {
                     <div className="flex items-center gap-3 sm:gap-4">
                         <Link
                             href="/"
-                            className="group flex items-baseline font-heading text-[1.7rem] font-bold leading-none tracking-tight text-white transition-opacity hover:opacity-90"
+                            className="group flex items-baseline font-heading text-[1.7rem] font-bold leading-none tracking-tight text-background transition-opacity hover:opacity-90"
                         >
                             kinet
-                            <span className="text-white/45 transition-colors duration-300 group-hover:text-white/70">
+                            <span className="text-background/45 transition-colors duration-300 group-hover:text-background/70">
                                 iq
                             </span>
                             <BrandDots />
@@ -98,11 +98,11 @@ export default function Nav() {
                         {/* Prominent Highlighted Systems block with flashing/pulsing beacon */}
                         <Link
                             href="/momentum-systems"
-                            className="group relative inline-flex items-center gap-1.5 rounded-none border border-white/30 bg-white/[0.08] px-2.5 py-1 text-[11px] font-heading font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-[#F5F3E4] hover:text-ink shadow-[0_0_15px_rgba(255,255,255,0.08)] hover:shadow-[0_0_22px_rgba(255,255,255,0.3)] hover:-translate-y-0.5"
+                            className="group relative inline-flex items-center gap-1.5 rounded-none border border-background/30 bg-background/[0.08] px-2.5 py-1 text-[11px] font-heading font-bold uppercase tracking-[0.16em] text-background backdrop-blur-sm transition-all duration-300 hover:border-background hover:bg-background hover:text-ink shadow-[0_0_15px_rgba(0,0,0,0.08)] hover:shadow-[0_0_22px_rgba(0,0,0,0.3)] hover:-translate-y-0.5"
                         >
                             <span className="relative flex size-2 shrink-0">
-                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75 duration-1000" />
-                                <span className="relative inline-flex size-2 rounded-full bg-white group-hover:bg-ink transition-colors" />
+                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-background opacity-75 duration-1000" />
+                                <span className="relative inline-flex size-2 rounded-full bg-background group-hover:bg-ink transition-colors" />
                             </span>
                             <span className="font-semibold">Systems</span>
                             <span className="text-[9px] opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
@@ -117,15 +117,15 @@ export default function Nav() {
                                 aria-current={isActive(link.href) ? "page" : undefined}
                                 className={`group relative rounded-none px-4 py-2 font-heading text-sm font-medium transition-colors ${
                                     isActive(link.href)
-                                        ? "text-white"
-                                        : "text-white/50 hover:text-white"
+                                        ? "text-background"
+                                        : "text-background/50 hover:text-background"
                                 }`}
                             >
                                 {link.label}
                                 {/* animated underline: grows from center on hover, stays for active */}
                                 <span
                                     aria-hidden="true"
-                                    className={`absolute inset-x-4 -bottom-0.5 h-px origin-center bg-white transition-transform duration-300 ease-out ${
+                                    className={`absolute inset-x-4 -bottom-0.5 h-px origin-center bg-background transition-transform duration-300 ease-out ${
                                         isActive(link.href)
                                             ? "scale-x-100"
                                             : "scale-x-0 group-hover:scale-x-100"
@@ -145,10 +145,10 @@ export default function Nav() {
                         onClick={() => setOpen(!open)}
                     >
                         <span
-                            className={`h-0.5 w-6 bg-white transition-transform ${open ? "translate-y-1 rotate-45" : ""}`}
+                            className={`h-0.5 w-6 bg-background transition-transform ${open ? "translate-y-1 rotate-45" : ""}`}
                         />
                         <span
-                            className={`h-0.5 w-6 bg-white transition-transform ${open ? "-translate-y-1 -rotate-45" : ""}`}
+                            className={`h-0.5 w-6 bg-background transition-transform ${open ? "-translate-y-1 -rotate-45" : ""}`}
                         />
                     </button>
                 </div>
@@ -167,12 +167,12 @@ export default function Nav() {
                             <Link
                                 href="/momentum-systems"
                                 onClick={() => setOpen(false)}
-                                className="group flex items-center justify-between rounded-none border border-white/30 bg-white/[0.08] p-4 text-sm font-heading font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:bg-[#F5F3E4] hover:text-ink transition-all"
+                                className="group flex items-center justify-between rounded-none border border-background/30 bg-background/[0.08] p-4 text-sm font-heading font-bold uppercase tracking-[0.18em] text-background shadow-[0_0_20px_rgba(0,0,0,0.1)] hover:bg-background hover:text-ink transition-all"
                             >
                                 <span className="flex items-center gap-2.5">
                                     <span className="relative flex size-2.5">
-                                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75 duration-1000" />
-                                        <span className="relative inline-flex size-2.5 rounded-full bg-white group-hover:bg-ink transition-colors" />
+                                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-background opacity-75 duration-1000" />
+                                        <span className="relative inline-flex size-2.5 rounded-full bg-background group-hover:bg-ink transition-colors" />
                                     </span>
                                     <span>Momentum Systems</span>
                                 </span>
@@ -189,8 +189,8 @@ export default function Nav() {
                                 >
                                     <Link
                                         href={link.href}
-                                        className={`block border-b border-white/10 py-4 font-heading text-3xl font-bold ${
-                                            isActive(link.href) ? "text-white" : "text-white/45"
+                                        className={`block border-b border-background/10 py-4 font-heading text-3xl font-bold ${
+                                            isActive(link.href) ? "text-background" : "text-background/45"
                                         }`}
                                     >
                                         {link.label}

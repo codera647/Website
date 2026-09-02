@@ -47,7 +47,7 @@ export default function MarkdownEditor({
                     placeholder={"## A heading\n\nA paragraph with **bold** text.\n\n- A bullet\n- Another bullet"}
                 />
             ) : (
-                <div className="max-h-[520px] overflow-y-auto bg-white p-6">
+                <div className="max-h-[520px] overflow-y-auto bg-background p-6">
                     {value.trim() ? (
                         <RichText blocks={blocks} />
                     ) : (

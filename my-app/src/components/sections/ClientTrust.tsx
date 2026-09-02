@@ -44,7 +44,7 @@ export default function ClientTrust() {
                     {testimonials.map((t) => (
                         <figure
                             key={t.name}
-                            className="card-hover group flex h-full flex-col rounded-3xl border border-line bg-[#F5F3E4] p-8 md:p-10"
+                            className="card-hover group flex h-full flex-col rounded-3xl border border-line bg-background p-8 md:p-10"
                         >
                             <span
                                 aria-hidden="true"
@@ -56,7 +56,7 @@ export default function ClientTrust() {
                                 {t.quote}
                             </blockquote>
                             <figcaption className="mt-8 flex items-center gap-4 border-t border-line pt-6">
-                                <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-ink font-heading text-sm font-semibold text-white">
+                                <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-ink font-heading text-sm font-semibold text-background">
                                     {initials(t.name)}
                                 </span>
                                 <div>

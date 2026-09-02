@@ -2,6 +2,7 @@ import Nav from "@/components/nav/Nav";
 import Footer from "@/components/nav/Footer";
 import BrandOutro from "@/components/nav/BrandOutro";
 import SiteChatWidget from "@/components/chat/SiteChatWidget";
+import CallTypeModal from "@/components/booking/CallTypeModal";
 import CursorGrid from "@/components/effects/CursorGrid";
 import RouteTransitionOverlay from "@/components/transitions/RouteTransitionOverlay";
 import { getFeaturedProjects } from "@/lib/data";
@@ -60,6 +61,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       <Footer featuredProjects={featuredProjects} />
       <BrandOutro />
       <SiteChatWidget />
+      <CallTypeModal />
     </>
   );
 }

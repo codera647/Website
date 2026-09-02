@@ -85,7 +85,7 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                     <button
                         key={key++}
                         type="button"
-                        data-cal-link="kinetiq-solutions/30min"
+                        onClick={() => window.dispatchEvent(new Event("open-call-modal"))}
                         className={`my-1 inline-flex items-center gap-2 rounded-none border px-3.5 py-1.5 font-heading text-xs font-bold shadow-sm transition-all duration-200 hover:-translate-y-0.5 cursor-pointer ${
                             isDark
                                 ? "border-white/30 bg-white text-ink hover:bg-white/90 hover:shadow-md"

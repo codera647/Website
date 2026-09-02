@@ -1,17 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
-import { getCalApi } from "@calcom/embed-react";
 
 /**
  * Rectangular CTA with four corner pointers (CURA "Speak with us"
- * reference). Supports both standard Next.js Link navigation and
- * direct Cal.com scheduling popup modal trigger.
+ * reference). Supports both standard Next.js Link navigation and the
+ * sitewide call-booking modal trigger.
  */
 
 interface Props {
     href?: string;
+    /**
+     * Any truthy value opens the "which call do you want" modal
+     * (CallTypeModal, mounted once in the site layout) rather than
+     * jumping straight to a specific Cal.com event — the modal itself
+     * carries the real event links. Kept as a string prop (historically
+     * a literal Cal.com link) so existing call sites don't need to change.
+     */
     calLink?: string;
     children: React.ReactNode;
     className?: string;
@@ -36,19 +41,6 @@ export default function BracketButton({
     bracketClassName,
     onClick,
 }: Props) {
-    useEffect(() => {
-        if (calLink) {
-            (async () => {
-                const cal = await getCalApi();
-                cal("ui", {
-                    styles: { branding: { brandColor: "#111113" } },
-                    hideEventTypeDetails: false,
-                    layout: "month_view",
-                });
-            })();
-        }
-    }, [calLink]);
-
     const innerContent = (
         <>
             {CORNERS.map((corner) => (
@@ -75,8 +67,10 @@ export default function BracketButton({
         return (
             <button
                 type="button"
-                data-cal-link={calLink}
-                onClick={onClick}
+                onClick={() => {
+                    window.dispatchEvent(new Event("open-call-modal"));
+                    onClick?.();
+                }}
                 className={`group relative inline-block cursor-pointer ${className ?? ""}`}
             >
                 {innerContent}

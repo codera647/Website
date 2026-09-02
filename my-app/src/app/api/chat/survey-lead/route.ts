@@ -147,13 +147,19 @@ async function sendUserReport(opts: {
 
                 <div style="margin: 28px 0; padding-top: 20px; border-top: 1px solid #e2e8f0;">
                     <p style="margin: 0 0 12px 0; font-size: 13px; color: #64748b;">
-                        Want to talk it through? Grab 30 minutes with our team:
+                        Want to talk it through? Pick whichever fits:
                     </p>
                     <a
                         href="https://cal.com/kinetiq-solutions/30min"
-                        style="display: inline-block; background: #111113; color: #ffffff; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 4px; text-decoration: none;"
+                        style="display: inline-block; background: #111113; color: #ffffff; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 4px; text-decoration: none; margin-right: 10px;"
                     >
-                        Book a 30-minute call →
+                        30-min Services Overview →
+                    </a>
+                    <a
+                        href="https://cal.com/kinetiq-solutions/project-discussion"
+                        style="display: inline-block; background: #ffffff; color: #111113; font-weight: 700; font-size: 13px; padding: 12px 22px; border-radius: 4px; text-decoration: none; border: 1px solid #111113;"
+                    >
+                        60-min Project Discussion →
                     </a>
                 </div>
 
@@ -169,7 +175,7 @@ async function sendUserReport(opts: {
         </div>
     `;
 
-    const text = `YOUR MOMENTUM SYSTEM GROWTH ASSESSMENT\n\nRecommended Tier: ${recommendedTier}\n\n${summaryNotes || ""}\n\nBook a call: https://cal.com/kinetiq-solutions/30min\n\nYour responses:\n${buildAnswersText(answers)}\n\n— Kinetiq (${NOTIFY_EMAIL})`;
+    const text = `YOUR MOMENTUM SYSTEM GROWTH ASSESSMENT\n\nRecommended Tier: ${recommendedTier}\n\n${summaryNotes || ""}\n\n30-min Services Overview: https://cal.com/kinetiq-solutions/30min\n60-min Project Discussion: https://cal.com/kinetiq-solutions/project-discussion\n\nYour responses:\n${buildAnswersText(answers)}\n\n— Kinetiq (${NOTIFY_EMAIL})`;
 
     const { error } = await resend.emails.send({
         from: NO_REPLY_FROM_EMAIL,

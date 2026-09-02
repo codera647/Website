@@ -1,16 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
-import { getCalApi } from "@calcom/embed-react";
-
 /**
- * Opens a Cal.com scheduling popup on click — no navigation away from the
- * site. Any element with `data-cal-link` is wired up automatically once
- * the Cal.com embed script has loaded (getCalApi() below), per Cal's
- * embed docs: https://cal.com/docs/embeds
+ * Opens the sitewide "which call do you want" modal (CallTypeModal,
+ * mounted once in the site layout) rather than jumping straight to one
+ * Cal.com event. `calLink` is kept as a prop for backward compatibility
+ * with existing call sites but is no longer used directly — the modal
+ * itself carries the real event links.
  */
 export default function BookCallButton({
-    calLink = "kinetiq-solutions/30min",
     className,
     children,
 }: {
@@ -18,19 +15,12 @@ export default function BookCallButton({
     className?: string;
     children: React.ReactNode;
 }) {
-    useEffect(() => {
-        (async () => {
-            const cal = await getCalApi();
-            cal("ui", {
-                styles: { branding: { brandColor: "#111113" } },
-                hideEventTypeDetails: false,
-                layout: "month_view",
-            });
-        })();
-    }, []);
-
     return (
-        <button type="button" data-cal-link={calLink} className={className}>
+        <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event("open-call-modal"))}
+            className={className}
+        >
             {children}
         </button>
     );

@@ -222,7 +222,7 @@ export default async function RolePage({
                                             href={`/api/documents/${doc.r2_key}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group flex items-center justify-between rounded-xl border border-line bg-surface p-4 transition-all hover:border-ink hover:bg-white shadow-sm"
+                                            className="group flex items-center justify-between rounded-xl border border-line bg-surface p-4 transition-all hover:border-ink hover:bg-[#F5F3E4] shadow-sm"
                                         >
                                             <div className="flex items-center gap-3">
                                                 <span className="flex size-9 shrink-0 items-center justify-center rounded-none bg-ink text-white text-xs font-bold font-heading">

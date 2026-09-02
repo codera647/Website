@@ -12,7 +12,7 @@ export function RoleCard({ role }: { role: RoleOrJob }) {
 
     return (
         <Link href={`/careers/${role.slug}`} className="group relative block h-full">
-            <div className="card-hover relative z-10 flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-line bg-white p-7 pb-16 transition-all duration-500 ease-out md:p-8 md:pb-16 md:group-hover:absolute md:group-hover:inset-x-0 md:group-hover:top-0 md:group-hover:z-20 md:group-hover:h-auto md:group-hover:border-ink md:group-hover:bg-ink md:group-hover:shadow-[0_32px_64px_-24px_rgba(17,17,19,0.45)]">
+            <div className="card-hover relative z-10 flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-line bg-[#F5F3E4] p-7 pb-16 transition-all duration-500 ease-out md:p-8 md:pb-16 md:group-hover:absolute md:group-hover:inset-x-0 md:group-hover:top-0 md:group-hover:z-20 md:group-hover:h-auto md:group-hover:border-ink md:group-hover:bg-ink md:group-hover:shadow-[0_32px_64px_-24px_rgba(17,17,19,0.45)]">
                 <div>
                     <div className="flex items-center justify-between gap-2">
                         <p className="font-heading text-xs font-medium uppercase tracking-[0.18em] text-muted transition-colors duration-500 ease-out md:group-hover:text-white/50">

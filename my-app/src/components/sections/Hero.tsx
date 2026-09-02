@@ -180,7 +180,7 @@ export default function Hero() {
                         </Link>
                         <BookCallButton
                             calLink="kinetiq-solutions/30min"
-                            className="cursor-pointer rounded-none border border-line bg-white px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
+                            className="cursor-pointer rounded-none border border-line bg-[#F5F3E4] px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
                         >
                             Let&apos;s talk
                         </BookCallButton>
@@ -211,7 +211,7 @@ export default function Hero() {
                         >
                             <Link
                                 href={`/services#${service.anchor}`}
-                                className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-white p-6"
+                                className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-[#F5F3E4] p-6"
                             >
                                 <div className="flex items-center justify-between">
                                     <span className="font-heading text-sm font-semibold text-muted transition-colors group-hover:text-ink">

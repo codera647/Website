@@ -216,7 +216,7 @@ export default function ApplicationForm({ roleTitle }: Props) {
             <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="inline-flex items-center gap-2 rounded-none bg-white px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-colors hover:bg-white/85 disabled:opacity-60"
+                className="inline-flex items-center gap-2 rounded-none bg-[#F5F3E4] px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-colors hover:bg-[#F5F3E4]/85 disabled:opacity-60"
             >
                 {status === "submitting" ? "Sending…" : "Submit application"}
                 {status !== "submitting" && <span aria-hidden="true">→</span>}

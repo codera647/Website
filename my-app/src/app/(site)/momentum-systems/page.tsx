@@ -236,7 +236,7 @@ export default function MomentumSystemsPage() {
                         </Link>
                         <Link
                             href="#pillars"
-                            className="rounded-none border border-line bg-white px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
+                            className="rounded-none border border-line bg-[#F5F3E4] px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
                         >
                             How it works
                         </Link>
@@ -262,7 +262,7 @@ export default function MomentumSystemsPage() {
                     <div className="mt-16 space-y-8">
                         {PILLARS.map((p, i) => (
                             <FadeInWhenVisible key={p.number} delay={i * 0.1}>
-                                <div className="card-hover group grid gap-8 rounded-2xl border border-line bg-white p-8 transition-all hover:border-ink md:p-12 lg:grid-cols-12 lg:gap-12">
+                                <div className="card-hover group grid gap-8 rounded-2xl border border-line bg-[#F5F3E4] p-8 transition-all hover:border-ink md:p-12 lg:grid-cols-12 lg:gap-12">
                                     <div className="lg:col-span-5 flex flex-col justify-between">
                                         <div>
                                             <span className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-muted">
@@ -275,7 +275,7 @@ export default function MomentumSystemsPage() {
                                                 {p.tagline}
                                             </p>
                                         </div>
-                                        <div className="mt-6 rounded-xl border border-line bg-surface p-4 text-xs leading-relaxed text-muted transition-colors group-hover:bg-white group-hover:border-ink/20">
+                                        <div className="mt-6 rounded-xl border border-line bg-surface p-4 text-xs leading-relaxed text-muted transition-colors group-hover:bg-[#F5F3E4] group-hover:border-ink/20">
                                             <span className="block font-heading font-semibold uppercase tracking-wider text-[11px] text-ink mb-1">
                                                 In Practice (e.g. HVAC / Trades):
                                             </span>
@@ -309,7 +309,7 @@ export default function MomentumSystemsPage() {
             </section>
 
             {/* 3. The Compounding Flywheel Section */}
-            <section className="border-t border-line bg-white py-24 md:py-32">
+            <section className="border-t border-line bg-[#F5F3E4] py-24 md:py-32">
                 <div className="container-wide">
                     <FadeInWhenVisible>
                         <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
@@ -410,7 +410,7 @@ export default function MomentumSystemsPage() {
                         </p>
                     </FadeInWhenVisible>
 
-                    <div className="card-hover mt-14 overflow-x-auto rounded-2xl border border-line bg-white shadow-sm transition-all hover:border-ink">
+                    <div className="card-hover mt-14 overflow-x-auto rounded-2xl border border-line bg-[#F5F3E4] shadow-sm transition-all hover:border-ink">
                         <table className="w-full text-left text-sm">
                             <thead>
                                 <tr className="border-b border-line bg-surface text-xs font-heading uppercase tracking-wider text-muted">
@@ -439,7 +439,7 @@ export default function MomentumSystemsPage() {
 
                     {/* Direct Pricing Link Banner */}
                     <FadeInWhenVisible delay={0.2} className="mt-8">
-                        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-line bg-white p-6 sm:p-8">
+                        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-line bg-[#F5F3E4] p-6 sm:p-8">
                             <div>
                                 <h3 className="font-heading text-lg font-bold text-ink">
                                     Ready to see exact setup and monthly fees?
@@ -450,7 +450,7 @@ export default function MomentumSystemsPage() {
                             </div>
                             <div className="flex flex-wrap items-center gap-3 shrink-0">
                                 <SurveyTriggerButton
-                                    className="rounded-none border border-ink bg-white px-5 py-3 font-heading text-xs font-bold uppercase tracking-wider text-ink hover:bg-ink hover:text-white transition-all cursor-pointer shadow-sm"
+                                    className="rounded-none border border-ink bg-[#F5F3E4] px-5 py-3 font-heading text-xs font-bold uppercase tracking-wider text-ink hover:bg-ink hover:text-white transition-all cursor-pointer shadow-sm"
                                 >
                                     Take 1-Min Survey 🎯
                                 </SurveyTriggerButton>
@@ -467,7 +467,7 @@ export default function MomentumSystemsPage() {
             </section>
 
             {/* 5. Who This Is For */}
-            <section className="border-t border-line bg-white py-24 md:py-32">
+            <section className="border-t border-line bg-[#F5F3E4] py-24 md:py-32">
                 <div className="container-wide">
                     <FadeInWhenVisible>
                         <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">

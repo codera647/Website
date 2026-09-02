@@ -127,7 +127,7 @@ export default function ServicesPage() {
                                 {service.stack.map((tech) => (
                                     <span
                                         key={tech}
-                                        className="rounded-none border border-line bg-white px-3 py-1 text-xs text-muted"
+                                        className="rounded-none border border-line bg-[#F5F3E4] px-3 py-1 text-xs text-muted"
                                     >
                                         {tech}
                                     </span>
@@ -171,7 +171,7 @@ export default function ServicesPage() {
                         <FadeInWhenVisible delay={0.1}>
                             <Link
                                 href="/momentum-systems"
-                                className="inline-block rounded-none border border-white/20 bg-white px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:bg-white/85 hover:-translate-y-0.5 shadow-sm"
+                                className="inline-block rounded-none border border-white/20 bg-[#F5F3E4] px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:bg-[#F5F3E4]/85 hover:-translate-y-0.5 shadow-sm"
                             >
                                 Explore Momentum Systems →
                             </Link>

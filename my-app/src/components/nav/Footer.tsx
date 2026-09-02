@@ -136,7 +136,7 @@ export default function Footer({ featuredProjects }: { featuredProjects: Project
                     <div className="mt-6">
                         <Link
                             href="/momentum-systems"
-                            className="group inline-flex items-center gap-2.5 rounded-none border border-ink bg-ink px-4 py-2.5 font-heading text-xs font-bold uppercase tracking-[0.18em] text-white shadow-sm transition-all duration-300 hover:bg-white hover:text-ink hover:border-ink hover:shadow-[0_8px_24px_-12px_rgba(17,17,19,0.35)] hover:-translate-y-0.5"
+                            className="group inline-flex items-center gap-2.5 rounded-none border border-ink bg-ink px-4 py-2.5 font-heading text-xs font-bold uppercase tracking-[0.18em] text-white shadow-sm transition-all duration-300 hover:bg-[#F5F3E4] hover:text-ink hover:border-ink hover:shadow-[0_8px_24px_-12px_rgba(17,17,19,0.35)] hover:-translate-y-0.5"
                         >
                             <span className="relative flex size-2 shrink-0">
                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white group-hover:bg-ink opacity-75 duration-1000" />

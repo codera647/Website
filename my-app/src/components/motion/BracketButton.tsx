@@ -54,7 +54,7 @@ export default function BracketButton({
             ))}
             <span
                 className={`flex items-center gap-2.5 rounded-none px-6 py-3 font-heading text-sm font-semibold transition-colors duration-300 ${
-                    buttonClassName ?? "bg-white text-ink group-hover:bg-white/85"
+                    buttonClassName ?? "bg-[#F5F3E4] text-ink group-hover:bg-[#F5F3E4]/85"
                 }`}
             >
                 <span aria-hidden="true" className="size-1.5 shrink-0 bg-current" />

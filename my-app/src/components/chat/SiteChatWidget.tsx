@@ -489,7 +489,7 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                                         className={
                                             m.role === "user"
-                                                ? "ml-auto max-w-[85%] rounded-2xl rounded-br-sm bg-white px-4 py-2.5 text-xs font-medium text-ink shadow-sm"
+                                                ? "ml-auto max-w-[85%] rounded-2xl rounded-br-sm bg-[#F5F3E4] px-4 py-2.5 text-xs font-medium text-ink shadow-sm"
                                                 : "mr-auto max-w-[94%] rounded-2xl rounded-bl-sm border border-white/10 bg-white/[0.07] p-4 text-xs leading-relaxed text-white/95 shadow-sm"
                                         }
                                     >
@@ -525,7 +525,7 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                                                     <button
                                                                         type="submit"
                                                                         disabled={leadSubmitting}
-                                                                        className="bg-white px-3 py-1.5 font-heading text-[10px] font-bold uppercase tracking-wider text-ink transition-colors hover:bg-white/90 cursor-pointer disabled:opacity-50"
+                                                                        className="bg-[#F5F3E4] px-3 py-1.5 font-heading text-[10px] font-bold uppercase tracking-wider text-ink transition-colors hover:bg-[#F5F3E4]/90 cursor-pointer disabled:opacity-50"
                                                                     >
                                                                         {leadSubmitting ? "Sending…" : "Send Me Copy →"}
                                                                     </button>
@@ -570,7 +570,7 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                                     key={opt.key}
                                                     type="button"
                                                     onClick={() => handleSurveyChoice(opt)}
-                                                    className="group flex flex-col text-left rounded-lg border border-white/20 bg-white/[0.06] p-3 transition-all duration-200 hover:border-white hover:bg-white hover:text-ink cursor-pointer shadow-sm"
+                                                    className="group flex flex-col text-left rounded-lg border border-white/20 bg-white/[0.06] p-3 transition-all duration-200 hover:border-white hover:bg-[#F5F3E4] hover:text-ink cursor-pointer shadow-sm"
                                                 >
                                                     <div className="flex items-center justify-between font-heading font-bold text-xs text-white group-hover:text-ink">
                                                         <span>
@@ -654,7 +654,7 @@ Please evaluate these requirements and provide your definitive Momentum System T
                                 type="submit"
                                 disabled={pending || !input.trim()}
                                 aria-label="Send"
-                                className="flex size-8 shrink-0 items-center justify-center rounded-none bg-white font-heading text-xs font-bold text-ink transition-all hover:bg-white/90 disabled:opacity-30 cursor-pointer"
+                                className="flex size-8 shrink-0 items-center justify-center rounded-none bg-[#F5F3E4] font-heading text-xs font-bold text-ink transition-all hover:bg-[#F5F3E4]/90 disabled:opacity-30 cursor-pointer"
                             >
                                 {pending ? "…" : "→"}
                             </button>
@@ -678,7 +678,7 @@ Please evaluate these requirements and provide your definitive Momentum System T
                     onClick={() => setOpen((o) => !o)}
                     aria-label={open ? "Close Motion" : "Open Motion, the Kinetiq assistant"}
                     aria-expanded={open}
-                    className="relative flex size-13 items-center justify-center rounded-none border-2 border-white bg-ink font-heading text-xs font-bold uppercase tracking-wider text-white shadow-[0_16px_40px_-12px_rgba(0,0,0,0.6)] transition-all hover:scale-105 hover:bg-white hover:text-ink cursor-pointer"
+                    className="relative flex size-13 items-center justify-center rounded-none border-2 border-white bg-ink font-heading text-xs font-bold uppercase tracking-wider text-white shadow-[0_16px_40px_-12px_rgba(0,0,0,0.6)] transition-all hover:scale-105 hover:bg-[#F5F3E4] hover:text-ink cursor-pointer"
                 >
                     {open ? "✕" : "Ask AI"}
                 </button>

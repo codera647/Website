@@ -51,7 +51,7 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                         alt={alt || "Visual diagram"}
                         loading="lazy"
                         className={`max-h-[300px] w-full object-contain p-1 ${
-                            isDark ? "bg-black/60" : "bg-white"
+                            isDark ? "bg-black/60" : "bg-[#F5F3E4]"
                         }`}
                     />
                     {alt && (
@@ -59,7 +59,7 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                             className={`block border-t px-3 py-1.5 font-heading text-[11px] ${
                                 isDark
                                     ? "border-white/10 bg-white/5 text-white/75"
-                                    : "border-line bg-white text-muted"
+                                    : "border-line bg-[#F5F3E4] text-muted"
                             }`}
                         >
                             {alt}
@@ -88,7 +88,7 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                         onClick={() => window.dispatchEvent(new Event("open-call-modal"))}
                         className={`my-1 inline-flex items-center gap-2 rounded-none border px-3.5 py-1.5 font-heading text-xs font-bold shadow-sm transition-all duration-200 hover:-translate-y-0.5 cursor-pointer ${
                             isDark
-                                ? "border-white/30 bg-white text-ink hover:bg-white/90 hover:shadow-md"
+                                ? "border-white/30 bg-[#F5F3E4] text-ink hover:bg-[#F5F3E4]/90 hover:shadow-md"
                                 : "border-ink bg-ink text-white hover:bg-ink-soft hover:shadow-md"
                         }`}
                     >
@@ -103,8 +103,8 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                         href={url}
                         className={`group my-1 inline-flex items-center gap-2 rounded-none border px-3.5 py-1.5 font-heading text-xs font-semibold shadow-sm transition-all duration-200 hover:-translate-y-0.5 ${
                             isDark
-                                ? "border-white/20 bg-white/10 text-white hover:border-white hover:bg-white hover:text-ink"
-                                : "border-line bg-surface text-ink hover:border-ink hover:bg-white"
+                                ? "border-white/20 bg-white/10 text-white hover:border-white hover:bg-[#F5F3E4] hover:text-ink"
+                                : "border-line bg-surface text-ink hover:border-ink hover:bg-[#F5F3E4]"
                         }`}
                     >
                         <span>{cleanLabel}</span>
@@ -261,7 +261,7 @@ export default function MarkdownLite({
                             className={`border-t px-3.5 py-1.5 font-heading text-[11px] ${
                                 isDark
                                     ? "border-white/10 bg-white/5 text-white/75"
-                                    : "border-line bg-white text-muted"
+                                    : "border-line bg-[#F5F3E4] text-muted"
                             }`}
                         >
                             {alt}

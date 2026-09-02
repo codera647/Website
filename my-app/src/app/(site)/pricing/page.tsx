@@ -221,7 +221,7 @@ function TierCard({ tier, index }: { tier: PricingTier; index: number }) {
     return (
         <FadeInWhenVisible delay={index * 0.1} className="flex">
             <div
-                className={`card-hover group flex w-full flex-col justify-between rounded-2xl border bg-white p-8 transition-all md:p-10 ${
+                className={`card-hover group flex w-full flex-col justify-between rounded-2xl border bg-[#F5F3E4] p-8 transition-all md:p-10 ${
                     tier.isPopular ? "relative border-ink shadow-lg ring-1 ring-ink/10" : "border-line"
                 }`}
             >
@@ -397,7 +397,7 @@ export default function PricingPage() {
                     </div>
 
                     {/* 1-Min Assessment Trigger Banner */}
-                    <div className="mt-4 flex flex-col gap-4 rounded-xl border border-line bg-white p-5 sm:flex-row sm:items-center sm:justify-between shadow-sm">
+                    <div className="mt-4 flex flex-col gap-4 rounded-xl border border-line bg-[#F5F3E4] p-5 sm:flex-row sm:items-center sm:justify-between shadow-sm">
                         <div className="flex items-center gap-3">
                             <span className="flex size-8 shrink-0 items-center justify-center rounded-none bg-ink text-white font-heading font-bold text-xs">
                                 🎯
@@ -427,7 +427,7 @@ export default function PricingPage() {
 
                     {/* Add-ons Bar */}
                     <FadeInWhenVisible delay={0.3} className="mt-12">
-                        <div className="rounded-xl border border-line bg-white p-6 md:p-8">
+                        <div className="rounded-xl border border-line bg-[#F5F3E4] p-6 md:p-8">
                             <h4 className="font-heading text-xs font-bold uppercase tracking-[0.2em] text-muted">
                                 Optional System Add-ons
                             </h4>
@@ -463,7 +463,7 @@ export default function PricingPage() {
             </section>
 
             {/* 2.5 AI Add-Ons — additive to Momentum Systems, same visual treatment on purpose */}
-            <section id="ai-add-ons" className="scroll-mt-28 border-t border-line bg-white py-20 md:py-28">
+            <section id="ai-add-ons" className="scroll-mt-28 border-t border-line bg-[#F5F3E4] py-20 md:py-28">
                 <div className="container-wide">
                     <FadeInWhenVisible>
                         <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
@@ -488,7 +488,7 @@ export default function PricingPage() {
             </section>
 
             {/* 3. Risk-Reversal & Guarantee Block */}
-            <section className="border-t border-line bg-white py-20 md:py-28">
+            <section className="border-t border-line bg-[#F5F3E4] py-20 md:py-28">
                 <div className="container-wide">
                     <FadeInWhenVisible>
                         <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">

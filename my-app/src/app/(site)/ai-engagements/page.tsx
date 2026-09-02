@@ -99,7 +99,7 @@ export default function AiEngagementsPage() {
             </section>
 
             {/* Portfolio proof — grounds the tiers in real, shipped work */}
-            <section className="border-t border-line bg-white py-20 md:py-28">
+            <section className="border-t border-line bg-[#F5F3E4] py-20 md:py-28">
                 <div className="container-wide">
                     <FadeInWhenVisible>
                         <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">

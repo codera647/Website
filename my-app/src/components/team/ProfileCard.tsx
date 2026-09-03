@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useCallback, useMemo, useState } from "react"
 /**
  * ProfileCard — clean, light-themed team card with subtle 3D tilt.
  *
- * Uses the site's surface color (#949AA8) as a solid background.
+ * Uses the site's surface color (#F2F1EC) as a solid background.
  * Images are displayed at their natural aspect ratio (no stretching),
  * cropped from below so the face is always visible. No filters,
  * gradients, glitch effects, or overlays — just a clean card.
@@ -370,7 +370,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         inset: 0,
         borderRadius: cardRadius,
         boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
-        background: "#949AA8",
+        background: "#F2F1EC",
         backfaceVisibility: "hidden",
         WebkitBackfaceVisibility: "hidden",
     };
@@ -449,7 +449,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                             </h3>
                             <p
                                 className="mt-1 font-heading text-sm font-medium"
-                                style={{ color: "#34383F" }}
+                                style={{ color: "#6B6B70" }}
                             >
                                 {title}
                             </p>
@@ -534,13 +534,13 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                             </h3>
                             <p
                                 className="mt-1 font-heading text-xs font-medium"
-                                style={{ color: "#34383F" }}
+                                style={{ color: "#6B6B70" }}
                             >
                                 {title}
                             </p>
                             <div
                                 className="mt-3"
-                                style={{ height: "1px", background: "#8A91A0" }}
+                                style={{ height: "1px", background: "#E5E3DC" }}
                             />
                         </div>
 
@@ -571,7 +571,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                         <div className="flex-shrink-0 px-6 pb-5 text-center">
                             <span
                                 className="font-heading text-xs font-medium"
-                                style={{ color: "#34383F" }}
+                                style={{ color: "#6B6B70" }}
                             >
                                 Tap to flip back
                             </span>

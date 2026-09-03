@@ -350,7 +350,7 @@ export default function OpenApplicationForm({ openRoles }: Props) {
             <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="inline-flex items-center gap-2 rounded-none bg-background px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-background/85 hover:shadow-[0_12px_32px_-12px_rgba(0,0,0,0.35)] disabled:opacity-60"
+                className="inline-flex items-center gap-2 rounded-none bg-background px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-background/85 hover:shadow-[0_12px_32px_-12px_rgba(255,255,255,0.35)] disabled:opacity-60"
             >
                 {status === "submitting" ? "Sending…" : "Send CV"}
                 {status !== "submitting" && <span aria-hidden="true">→</span>}

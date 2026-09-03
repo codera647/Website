@@ -8,19 +8,18 @@
    font-heading, font-body.
    ============================================================ */
 @theme {
-  /* Inverted palette: charcoal grounds, light neutral grey ink. `ink` is
-     the high-contrast/foreground color and doubles as the fill for inverted
-     panels — Nav, Footer, CTA bands, primary buttons — which is why every
-     `bg-ink` surface pairs with `text-background` for its text.
-     `muted` carries body copy and is deliberately dimmer than `ink`, so
-     headings stay dominant. Note it is still warm-toned (#A5A296) from the
-     earlier ivory/gold palette, while `ink` is now neutral. */
-  --color-background: #242424;
-  --color-surface: #2E2C29;
-  --color-ink: #D1D1D1;
-  --color-ink-soft: #BCBCBC;
-  --color-muted: #A5A296;
-  --color-line: #3D3B36;
+  /* Light neutral-grey grounds, charcoal ink. `ink` is the high-contrast
+     foreground color and doubles as the fill for inverted panels — Nav,
+     Footer, CTA bands, primary buttons — which is why every `bg-ink`
+     surface pairs with `text-background` for its text.
+     `muted` carries body copy at a deliberately dimmer weight than `ink`
+     so headings stay dominant; it is tuned to clear AA on `background`. */
+  --color-background: #D1D1D1;
+  --color-surface: #C6C6C6;
+  --color-ink: #242424;
+  --color-ink-soft: #3A3A3A;
+  --color-muted: #555555;
+  --color-line: #B8B8B8;
 
   --font-heading: var(--font-space-grotesk), ui-sans-serif, sans-serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;

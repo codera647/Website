@@ -42,7 +42,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       <div className="pointer-events-none fixed inset-0 -z-10">
         <CursorGrid
           cellSize={64}
-          color="#D1D1D1"
+          color="#242424"
           radius={160}
           falloff="smooth"
           holdTime={350}

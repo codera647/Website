@@ -98,7 +98,7 @@ export default function Nav() {
                         {/* Prominent Highlighted Systems block with flashing/pulsing beacon */}
                         <Link
                             href="/momentum-systems"
-                            className="group relative inline-flex items-center gap-1.5 rounded-none border border-background/30 bg-background/[0.08] px-2.5 py-1 text-[11px] font-heading font-bold uppercase tracking-[0.16em] text-background backdrop-blur-sm transition-all duration-300 hover:border-background hover:bg-background hover:text-ink shadow-[0_0_15px_rgba(0,0,0,0.08)] hover:shadow-[0_0_22px_rgba(0,0,0,0.3)] hover:-translate-y-0.5"
+                            className="group relative inline-flex items-center gap-1.5 rounded-none border border-background/30 bg-background/[0.08] px-2.5 py-1 text-[11px] font-heading font-bold uppercase tracking-[0.16em] text-background backdrop-blur-sm transition-all duration-300 hover:border-background hover:bg-background hover:text-ink shadow-[0_0_15px_rgba(255,255,255,0.08)] hover:shadow-[0_0_22px_rgba(255,255,255,0.3)] hover:-translate-y-0.5"
                         >
                             <span className="relative flex size-2 shrink-0">
                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-background opacity-75 duration-1000" />
@@ -167,7 +167,7 @@ export default function Nav() {
                             <Link
                                 href="/momentum-systems"
                                 onClick={() => setOpen(false)}
-                                className="group flex items-center justify-between rounded-none border border-background/30 bg-background/[0.08] p-4 text-sm font-heading font-bold uppercase tracking-[0.18em] text-background shadow-[0_0_20px_rgba(0,0,0,0.1)] hover:bg-background hover:text-ink transition-all"
+                                className="group flex items-center justify-between rounded-none border border-background/30 bg-background/[0.08] p-4 text-sm font-heading font-bold uppercase tracking-[0.18em] text-background shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:bg-background hover:text-ink transition-all"
                             >
                                 <span className="flex items-center gap-2.5">
                                     <span className="relative flex size-2.5">

@@ -5,9 +5,9 @@ import { services } from "@/data/services";
 import type { Project } from "@/lib/data";
 
 const CONTACT_EMAIL = "info@thekinetiq.solutions";
-const CONTACT_PHONE = "+44 7427 114280";
-const PHONE_CALL_URL = "tel:+447427114280";
-const WHATSAPP_URL = "https://wa.me/447427114280";
+const CONTACT_PHONE = "+1 917 914 8268";
+const PHONE_CALL_URL = "tel:+19179148268";
+const WHATSAPP_URL = "https://wa.me/19179148268";
 const LINKEDIN_URL = "https://www.linkedin.com/company/kinetiq-site/";
 const INSTAGRAM_URL = "https://www.instagram.com/thekinetiq.solutions/";
 const YOUTUBE_URL = "https://www.youtube.com/@kinetiq-solutions";

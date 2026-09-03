@@ -151,7 +151,7 @@ const jsonLdOrganization = {
                 },
             ],
             sameAs: [
-                "https://wa.me/447427114280",
+                "https://wa.me/19179148268",
                 "https://www.linkedin.com/company/kinetiq-site/",
                 "https://www.instagram.com/thekinetiq.solutions/",
                 "https://www.youtube.com/@kinetiq-solutions",
@@ -160,7 +160,7 @@ const jsonLdOrganization = {
             contactPoint: {
                 "@type": "ContactPoint",
                 email: "info@thekinetiq.solutions",
-                telephone: "+44 7427 114280",
+                telephone: "+1 917 914 8268",
                 contactType: "customer service & sales",
                 availableLanguage: ["English", "Urdu"],
             },

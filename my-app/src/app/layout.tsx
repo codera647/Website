@@ -71,12 +71,24 @@ export const metadata: Metadata = {
         title: "Kinetiq | AI Automation, Web Development & Momentum Systems Studio",
         description:
             "High-performance software and AI engineering studio. We build production AI automations, scalable full-stack web platforms, and autonomous growth engines.",
+        // Resolved against metadataBase above. Filename is deliberately
+        // space-free — the previous "Kinetiq - 1.png" would have shipped as
+        // %20-encoded, which some link scrapers mishandle.
+        images: [
+            {
+                url: "/kinetiq-og.png",
+                width: 500,
+                height: 500,
+                alt: "Kinetiq",
+            },
+        ],
     },
     twitter: {
         card: "summary_large_image",
         title: "Kinetiq | AI Automation & Momentum Systems",
         description:
             "Software and AI engineering studio building production systems that generate measurable business outcomes.",
+        images: ["/kinetiq-og.png"],
     },
     other: {
         "geo.region": "US, GB, PK",

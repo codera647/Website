@@ -16,7 +16,7 @@ import { motion, useReducedMotion } from "framer-motion";
  * Recolored to Kinetiq's monochrome palette (ink panel, white mark) and
  * built from our own brand motif — the overlapping "motion trail" of
  * circles that fades from faint to solid, already used in the Hero
- * wordmark's animated dots and public/Kinetiq - 1.png — rather than
+ * wordmark's animated dots and public/kinetiq-og.png — rather than
  * tracing the reference's own logo.
  *
  * Runs once as a boot/loading sequence on first paint (the `visible`

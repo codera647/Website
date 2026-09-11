@@ -1,7 +1,7 @@
 "use client";
 
 import { Children } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface Props {
     children: React.ReactNode;
@@ -36,11 +36,12 @@ export default function StaggerList({
     className,
     itemClassName,
 }: Props) {
+    const reduced = useReducedMotion();
     return (
         <motion.div
             className={className}
             variants={container(stagger, delay)}
-            initial="hidden"
+            initial={reduced ? false : "hidden"}
             whileInView="show"
             viewport={{ once: true, margin: "-64px" }}
         >

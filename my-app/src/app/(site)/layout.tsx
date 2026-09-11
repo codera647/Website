@@ -4,7 +4,6 @@ import BrandOutro from "@/components/nav/BrandOutro";
 import SiteChatWidget from "@/components/chat/SiteChatWidget";
 import CallTypeModal from "@/components/booking/CallTypeModal";
 import CursorGrid from "@/components/effects/CursorGrid";
-import RouteTransitionOverlay from "@/components/transitions/RouteTransitionOverlay";
 import { getFeaturedProjects } from "@/lib/data";
 
 /**
@@ -23,12 +22,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
 
   return (
     <>
-      {/* Loading / route-transition overlay — plays once on first paint,
-          then again on every client-side navigation. See the component
-          for how it was derived from public/refrence_video.mp4. Mounted
-          once here (outside {children}) so App Router swapping the route
-          segment underneath doesn't remount it mid-cycle. */}
-      <RouteTransitionOverlay />
+      {/* Pages paint immediately; the route template supplies a short transition. */}
       {/*
         Site-wide interactive background (React Bits' CursorGrid, ported
         to our monochrome palette — see CursorGrid.tsx). Fixed behind
@@ -48,11 +42,11 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
           holdTime={350}
           fadeDuration={900}
           lineWidth={1}
-          maxOpacity={0.35}
+          maxOpacity={0.12}
           fillOpacity={0}
           gridOpacity={0.035}
           cellRadius={0}
-          clickPulse
+          clickPulse={false}
           pulseSpeed={650}
         />
       </div>

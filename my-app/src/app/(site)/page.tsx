@@ -1,7 +1,6 @@
 import Hero from "@/components/sections/Hero";
 import ProofBand from "@/components/sections/ProofBand";
 import ExpertiseGrid from "@/components/sections/ExpertiseGrid";
-import MarqueeBand from "@/components/sections/MarqueeBand";
 import FeaturedWork from "@/components/sections/FeaturedWork";
 import ClientTrust from "@/components/sections/ClientTrust";
 import FAQ from "@/components/sections/FAQ";
@@ -15,10 +14,9 @@ export default async function Home() {
   return (
     <main>
       <Hero />
-      <ProofBand projects={projects} />
       <ExpertiseGrid />
-      <MarqueeBand />
       <FeaturedWork projects={featuredProjects} />
+      <ProofBand projects={projects} />
       <ClientTrust />
       <FAQ />
       <ClosingCTA />

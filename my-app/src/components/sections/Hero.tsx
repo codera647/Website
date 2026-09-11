@@ -2,259 +2,93 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import BookCallButton from "@/components/booking/BookCallButton";
-import { services } from "@/data/services";
 import { team } from "@/data/team";
 
-const TAGLINE = "Always in motion.";
-const SUBHEAD =
-    "A studio engineering intelligent systems. We deliver AI automation, web development, and generative AI that power what's next.";
-
-/** value keywords surfaced right in the hero (full cards live on /about) */
-const VALUE_CHIPS = [
-    "Practical over flashy",
-    "Engineering rigor",
-    "Transparency",
-    "Always in motion",
+const steps = [
+    { title: "Get found", detail: "Useful local pages connect customers to your services." },
+    { title: "Make booking easy", detail: "A clear path from the first visit to a confirmed appointment." },
+    { title: "Keep the relationship", detail: "Timely reminders, review requests, and reasons to return." },
 ];
 
-/** the three brand motion circles, scaled up for the hero wordmark */
-function HeroDots() {
-    const dots = ["#B5B5B5", "#888888", "#555555"];
-    return (
-        <span
-            aria-hidden="true"
-            className="ml-3 inline-flex items-center gap-2 align-baseline md:ml-5 md:gap-3"
-        >
-            {dots.map((color, i) => (
-                <motion.span
-                    key={color}
-                    className="size-3 rounded-full md:size-5"
-                    style={{ backgroundColor: color }}
-                    animate={{ y: [0, -10, 0], opacity: [0.5, 1, 0.5] }}
-                    transition={{
-                        duration: 1.6,
-                        repeat: Infinity,
-                        delay: i * 0.22,
-                        ease: "easeInOut",
-                    }}
-                />
-            ))}
-        </span>
-    );
-}
-
-/**
- * Small "peek" of the team, pinned to the hero's right margin next to the
- * empty space beside the wordmark. At rest it's just the two avatars,
- * overlapping like a stacked-avatar CTA; on hover a text bar unfurls to
- * their left (grid-template-columns 0fr→1fr — same width-reveal trick the
- * work cards use for height) and the avatars themselves nudge left a touch,
- * so the whole thing reads as "dragging open." Links to the team section
- * on the About page. Desktop-only — there's no equivalent empty space
- * beside the wordmark once it wraps on smaller screens.
- */
-function HeroTeamPeek() {
-    return (
-        <motion.div
-            className="pointer-events-auto absolute right-0 top-40 z-10 hidden lg:top-48 xl:flex"
-            initial={{ opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-        >
-            <Link
-                href="/about#team"
-                aria-label="View the Kinetiq team"
-                className="group flex items-center rounded-full border border-ink-soft/60 bg-ink py-1.5 pl-1.5 pr-1.5 shadow-[0_8px_24px_-16px_rgba(17,17,19,0.5)] backdrop-blur-md transition-colors duration-300 ease-out hover:border-background/40"
-            >
-                {/* text bar — collapsed to zero width until hover */}
-                <span className="grid grid-cols-[0fr] transition-[grid-template-columns] duration-500 ease-out group-hover:grid-cols-[1fr]">
-                    <span className="overflow-hidden">
-                        <span className="flex items-center gap-1 whitespace-nowrap pl-3 pr-2 font-heading text-xs font-semibold text-background">
-                            View team
-                            <span aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-x-0.5">
-                                →
-                            </span>
-                        </span>
-                    </span>
-                </span>
-
-                {/* avatar stack — stays pinned to the margin, drifts left a touch on hover */}
-                <span className="flex -space-x-3 transition-transform duration-500 ease-out group-hover:-translate-x-1">
-                    {team.map((member, i) => (
-                        <span
-                            key={member.name}
-                            className="relative size-11 overflow-hidden rounded-full border-2 border-ink bg-ink-soft shadow-sm ring-1 ring-white/15 transition-transform duration-500 ease-out"
-                            style={{
-                                transitionDelay: `${i * 40}ms`,
-                                zIndex: team.length - i,
-                            }}
-                        >
-                            <Image
-                                src={member.image}
-                                alt={member.name}
-                                fill
-                                sizes="44px"
-                                className="object-cover object-top"
-                            />
-                        </span>
-                    ))}
-                </span>
-            </Link>
-        </motion.div>
-    );
-}
-
 export default function Hero() {
+    const reduced = useReducedMotion();
     return (
         <section className="relative overflow-hidden">
-            {/* relative + the peek's right-0 anchors it to container-wide's own
-                right edge (its padding-box), i.e. the same gutter line every
-                other right-aligned element on the site respects — not the raw
-                viewport edge, which would drift away from the content on
-                ultra-wide screens once container-wide hits its max-width. */}
-            <div className="container-wide relative pb-20 pt-32 md:pt-40">
-                <HeroTeamPeek />
-                {/* eyebrow — the disciplines & momentum systems, immediately visible */}
-                <motion.p
-                    className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted"
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                >
-                    AI Automation · Web Development · Generative AI · Momentum Systems
-                </motion.p>
-
-                {/* massive wordmark — deliberately NOT animated: this is the LCP
-                    element, it must paint immediately; everything around it moves */}
-                <h1 className="mt-6 font-heading text-[clamp(4.5rem,15vw,13rem)] font-bold leading-[0.95] tracking-tight">
-                    kinet<span className="text-muted/70">iq</span>
-                    <HeroDots />
-                </h1>
-
-                <div className="mt-8 max-w-xl">
-                    <motion.p
-                        className="font-heading text-xl font-semibold text-ink md:text-2xl"
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                    >
-                        {TAGLINE}
-                    </motion.p>
-                    <motion.p
-                        className="mt-4 text-lg leading-relaxed text-muted"
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.42 }}
-                    >
-                        {SUBHEAD}
-                    </motion.p>
-                    <motion.p
-                        className="mt-3 text-sm font-medium text-ink-soft leading-relaxed"
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.48 }}
-                    >
-                        For growing &amp; local businesses: we build{" "}
-                        <Link
-                            href="/momentum-systems"
-                            className="font-semibold text-ink underline underline-offset-4 hover:text-muted transition-colors"
-                        >
-                            Momentum Systems
-                        </Link>{" "}
-                        — the growth engine that keeps bringing customers back on its own.
-                    </motion.p>
-
-                    <motion.div
-                        className="mt-8 flex flex-wrap items-center gap-4"
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.55 }}
-                    >
-                        <Link
-                            href="/work"
-                            className="rounded-none bg-ink px-7 py-3.5 font-heading text-sm font-semibold text-background transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink-soft hover:shadow-[0_12px_32px_-12px_rgba(0,0,0,0.45)]"
-                        >
-                            See our work
+            <div className="container-wide pb-16 pt-28 md:pb-20 md:pt-36">
+                <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+                    <div>
+                        <p className="flex items-baseline font-heading text-3xl font-bold tracking-tight">
+                            kinet<span className="text-muted">iq</span>
+                            <span aria-hidden="true" className="ml-3 inline-flex gap-1.5">
+                                {[0, 1, 2].map((i) => (
+                                    <motion.span key={i} className="size-2 rounded-full bg-accent"
+                                        animate={reduced ? { opacity: 1, y: 0 } : { y: [0, -4, 0], opacity: [0.45, 1, 0.45] }}
+                                        transition={{ duration: 2.4, repeat: Infinity, delay: i * 0.25 }} />
+                                ))}
+                            </span>
+                        </p>
+                        <p className="mt-3 font-heading text-sm font-medium text-muted">Always in motion.</p>
+                        <h1 className="mt-7 max-w-3xl text-[clamp(2.5rem,4vw,3.75rem)] font-bold leading-[1.06] tracking-[-0.04em] text-balance">
+                            More bookings.<br />Stronger relationships.<br /><span className="text-accent">Less busywork.</span>
+                        </h1>
+                        <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+                            We connect your website, booking, and follow-up into a Momentum System
+                            that helps your service business get found and bring customers back.
+                        </p>
+                        <div className="mt-8 flex flex-wrap gap-3">
+                            <BookCallButton calLink="kinetiq-solutions/30min" className="button-primary">
+                                Book a discovery call <span aria-hidden="true">↗</span>
+                            </BookCallButton>
+                            <Link href="/work" className="button-secondary">Explore our work <span aria-hidden="true">→</span></Link>
+                        </div>
+                        <Link href="/about#team" className="mt-7 inline-flex min-h-11 items-center gap-3 text-sm text-muted hover:text-ink">
+                            <span className="flex shrink-0 -space-x-2">
+                                {team.map((member) => (
+                                    <Image key={member.name} src={member.image} alt={member.name} width={36} height={36}
+                                        className="size-9 rounded-full border-2 border-background object-cover object-top" />
+                                ))}
+                            </span>
+                            Meet the engineers behind your system <span aria-hidden="true">→</span>
                         </Link>
-                        <BookCallButton
-                            calLink="kinetiq-solutions/30min"
-                            className="cursor-pointer rounded-none border border-line bg-background px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
-                        >
-                            Let&apos;s talk
-                        </BookCallButton>
-                    </motion.div>
+                    </div>
+                    <div className="relative border border-line bg-background p-6 shadow-[0_24px_70px_-45px_rgba(19,19,21,0.35)] md:p-8">
+                        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-5">
+                            <p className="font-heading text-sm font-semibold">The Momentum cycle</p>
+                            <span className="font-heading text-xs uppercase tracking-[0.16em] text-accent">How it connects</span>
+                        </div>
+                        <ol className="mt-6 space-y-6">
+                            {steps.map((step, i) => (
+                                <li key={step.title} className="relative flex gap-4">
+                                    {i < steps.length - 1 && <span aria-hidden="true" className="absolute left-[19px] top-11 h-[calc(100%-12px)] w-px bg-line" />}
+                                    <span className="flex size-10 shrink-0 items-center justify-center border border-accent/20 bg-accent-soft font-heading text-sm font-semibold text-accent">0{i + 1}</span>
+                                    <div className="pb-2">
+                                        <h2 className="text-xl font-semibold">{step.title}</h2>
+                                        <p className="mt-2 text-base leading-relaxed text-muted">{step.detail}</p>
+                                    </div>
+                                </li>
+                            ))}
+                        </ol>
+                        <div className="mt-5 flex items-center gap-3 bg-ink px-5 py-4 text-background">
+                            <span aria-hidden="true" className="text-2xl">↻</span>
+                            <p className="text-sm leading-relaxed">A return visit starts the next cycle.</p>
+                        </div>
+                        <p className="mt-4 text-xs leading-relaxed text-muted">Configured around your services, customers, and chosen plan.</p>
+                    </div>
                 </div>
-
-                {/* core areas — interactive, straight from the hero */}
-                <motion.div
-                    className="mt-16 grid gap-4 md:grid-cols-3"
-                    initial="hidden"
-                    animate="visible"
-                    variants={{
-                        hidden: {},
-                        visible: { transition: { staggerChildren: 0.12, delayChildren: 0.65 } },
-                    }}
-                >
-                    {services.map((service, i) => (
-                        <motion.div
-                            key={service.id}
-                            variants={{
-                                hidden: { opacity: 0, y: 24 },
-                                visible: {
-                                    opacity: 1,
-                                    y: 0,
-                                    transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
-                                },
-                            }}
-                        >
-                            <Link
-                                href={`/services#${service.anchor}`}
-                                className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-background p-6"
-                            >
-                                <div className="flex items-center justify-between">
-                                    <span className="font-heading text-sm font-semibold text-muted transition-colors group-hover:text-ink">
-                                        0{i + 1}
-                                    </span>
-                                    <span
-                                        aria-hidden="true"
-                                        className="font-heading text-lg text-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-ink"
-                                    >
-                                        →
-                                    </span>
-                                </div>
-                                <h2 className="mt-4 font-heading text-lg font-semibold">
-                                    {service.title}
-                                </h2>
-                                <p className="mt-1 font-heading text-sm text-muted">
-                                    {service.tagline}
-                                </p>
-                            </Link>
-                        </motion.div>
-                    ))}
-                </motion.div>
-
-                {/* values strip */}
-                <motion.div
-                    className="mt-12 flex flex-wrap items-center gap-x-3 gap-y-2"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.7, delay: 1.1 }}
-                >
-                    <span className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
-                        What we stand for
-                    </span>
-                    {VALUE_CHIPS.map((value) => (
-                        <Link
-                            key={value}
-                            href="/about"
-                            className="rounded-none border border-line bg-surface px-4 py-1.5 font-heading text-xs font-medium text-ink-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-ink hover:bg-ink hover:text-background"
-                        >
-                            {value}
-                        </Link>
-                    ))}
-                </motion.div>
+                <div className="mt-14 grid border-y border-line md:grid-cols-2">
+                    <Link href="/momentum-systems" className="group py-7 md:pr-8">
+                        <p className="eyebrow">For local &amp; repeat-service businesses</p>
+                        <h2 className="mt-3 flex items-center justify-between gap-3 text-2xl font-semibold">Grow your service business <span aria-hidden="true" className="text-accent">↗</span></h2>
+                        <p className="mt-2 text-base leading-relaxed text-muted">Explore Momentum Systems and practical AI add-ons.</p>
+                    </Link>
+                    <Link href="/ai-engagements" className="group border-t border-line py-7 md:border-l md:border-t-0 md:pl-8">
+                        <p className="eyebrow">For founders &amp; engineering teams</p>
+                        <h2 className="mt-3 flex items-center justify-between gap-3 text-2xl font-semibold">Build custom software or AI <span aria-hidden="true" className="text-accent">↗</span></h2>
+                        <p className="mt-2 text-base leading-relaxed text-muted">Scope a workflow, a research tool, or a complete platform.</p>
+                    </Link>
+                </div>
             </div>
         </section>
     );

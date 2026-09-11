@@ -20,6 +20,9 @@
   --color-ink-soft: #26262A;
   --color-muted: #4A4A50;
   --color-line: #E5E3DC;
+  --color-accent: #3155E7;
+  --color-accent-hover: #2443BF;
+  --color-accent-soft: #EBEFFE;
 
   --font-heading: var(--font-space-grotesk), ui-sans-serif, sans-serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -38,6 +41,7 @@
 
 html {
   overflow-x: hidden;
+  scroll-padding-top: 6rem;
 }
 
 /* ============================================================
@@ -48,7 +52,7 @@ html {
    ============================================================ */
 .container-wide {
   width: 100%;
-  max-width: 120rem;
+  max-width: 96rem;
   margin-inline: auto;
   padding-inline: 1.5rem;
 }
@@ -86,15 +90,15 @@ html {
   inset-inline: 0;
   bottom: 0;
   height: 2px;
-  background: var(--color-ink);
+  background: var(--color-accent);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-hover:hover {
-  transform: translateY(-6px);
-  border-color: var(--color-ink);
+  transform: translateY(-3px);
+  border-color: var(--color-accent);
   box-shadow: 0 20px 48px -24px rgba(0, 0, 0, 0.35);
 }
 
@@ -158,8 +162,83 @@ h4 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  /* per brief §5: marquee moves very slowly instead of scrolling */
   .marquee-track {
-    animation-duration: 400s;
+    animation: none;
+    width: 100%;
   }
+  .marquee-track > div:first-child {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+  .marquee-track > div[aria-hidden="true"] {
+    display: none;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .button-primary, .button-secondary {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.25rem;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: background-color 180ms, border-color 180ms;
+  }
+  .button-primary {
+    background: var(--color-accent);
+    color: #fff;
+    border: 1px solid var(--color-accent);
+  }
+  .button-primary:hover {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+  }
+  .button-secondary {
+    background: var(--color-background);
+    color: var(--color-ink);
+    border: 1px solid var(--color-line);
+  }
+  .button-secondary:hover {
+    border-color: var(--color-ink);
+  }
+}
+
+:where(a, button, input, textarea, select, summary):focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Keep informational copy readable without enlarging compact metadata. */
+main p.text-sm:not(.uppercase):not(.font-heading),
+main p.text-xs:not(.uppercase):not(.font-heading) {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 767px) {
+  main h1 { font-size: clamp(2.25rem, 9vw, 2.75rem); line-height: 1.1; }
+  main h2.text-4xl { font-size: 1.875rem; line-height: 1.2; }
 }

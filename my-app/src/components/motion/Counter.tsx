@@ -45,7 +45,7 @@ export default function Counter({
     return (
         <span ref={ref} className={className}>
             {prefix}
-            {value.toLocaleString()}
+            {(reduced ? to : value).toLocaleString()}
             {suffix}
         </span>
     );

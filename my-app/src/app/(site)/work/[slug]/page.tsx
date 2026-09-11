@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import ProjectChatPanel from "@/components/chat/ProjectChatPanel";
+import ProjectImage from "@/components/sections/ProjectImage";
+import { getProjectPresentation } from "@/data/projectPresentation";
 import { getAllProjects, getProjectBySlug } from "@/lib/data";
 
 export async function generateMetadata({
@@ -27,6 +29,10 @@ export default async function CaseStudyPage({
     const { slug } = await params;
     const cs = await getProjectBySlug(slug);
     if (!cs) notFound();
+    const presentation = getProjectPresentation(cs);
+    const gallery = cs.slug === "synapse"
+        ? ["/synapse/system_architecture.jpg", "/synapse/pipeline_architecture.jpg"]
+        : [...new Set(cs.images)].filter((src) => src !== presentation.image);
 
     const allProjects = await getAllProjects();
     const index = allProjects.findIndex((c) => c.slug === slug);
@@ -57,7 +63,7 @@ export default async function CaseStudyPage({
                         {cs.title}
                     </h1>
                     <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-                        {cs.summary}
+                        {presentation.summary}
                     </p>
                     <div className="mt-6 flex flex-wrap gap-2">
                         {cs.tags.map((tag) => (
@@ -72,16 +78,30 @@ export default async function CaseStudyPage({
                 </FadeInWhenVisible>
             </section>
 
-            {/* Live Interactive Project Assistant */}
-            <section className="mx-auto max-w-5xl px-6 pb-16 md:pb-24">
-                <FadeInWhenVisible y={32}>
-                    <ProjectChatPanel
-                        projectTitle={cs.title}
-                        projectSlug={cs.slug}
-                        suggestedQuestions={suggestedQuestions}
-                    />
-                </FadeInWhenVisible>
+            <section aria-label={`${cs.title} preview`} className="mx-auto max-w-5xl px-6 pb-12">
+                <figure>
+                    <a href={presentation.image || "#"} target="_blank" rel="noopener noreferrer" aria-label={`Open ${cs.title} preview at full size`} className="relative block aspect-video overflow-hidden border border-line bg-surface">
+                        <ProjectImage src={presentation.image} alt={`${cs.title} — ${presentation.imageLabel}`} sizes="(max-width: 1024px) 100vw, 976px" priority />
+                    </a>
+                    <figcaption className="mt-3 text-sm text-muted">{cs.title} · {presentation.imageLabel}. Select the image to view it at full size.</figcaption>
+                </figure>
             </section>
+
+            {cs.slug === "synapse" && <section aria-labelledby="synapse-workflow" className="mx-auto max-w-5xl px-6 pb-16">
+                <h2 id="synapse-workflow" className="text-2xl font-bold md:text-3xl">From documents to verifiable answers.</h2>
+                <ol className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                    {[
+                        ["Bring your documents", "Files are processed into searchable libraries."],
+                        ["Ask a question", "The system plans a search across relevant sources."],
+                        ["Check the evidence", "Retrieved passages are checked and gaps explored."],
+                        ["Trace the answer", "Citations and figures link the response to its sources."],
+                    ].map(([title, description], i) => <li key={title} className="border-t-2 border-accent bg-surface p-5">
+                        <p className="text-sm font-semibold text-accent">0{i + 1}</p>
+                        <h3 className="mt-3 text-lg font-semibold">{title}</h3>
+                        <p className="mt-2 text-base leading-relaxed text-muted">{description}</p>
+                    </li>)}
+                </ol>
+            </section>}
 
             {/* Metrics */}
             {cs.metrics && cs.metrics.length > 0 && (
@@ -155,6 +175,22 @@ export default async function CaseStudyPage({
 
             {/* Cross-link to enterprise engagement track — only for the AI
                 Automation / Generative AI projects that track is scoped for. */}
+            {gallery.length > 0 && <section aria-labelledby="project-gallery" className="mx-auto max-w-5xl px-6 pb-16">
+                <h2 id="project-gallery" className="text-2xl font-bold md:text-3xl">Explore the project in detail.</h2>
+                <div className="mt-6 grid gap-6 sm:grid-cols-2">
+                    {gallery.map((src, i) => <figure key={src}>
+                        <a href={src} target="_blank" rel="noopener noreferrer" aria-label={`Open ${cs.title} project visual ${i + 1} at full size`} className="relative block aspect-video overflow-hidden border border-line bg-surface">
+                            <ProjectImage src={src} alt={`${cs.title} — ${/architecture|pipeline|workflow/i.test(src) ? "architecture or workflow diagram" : "project screenshot"} ${i + 1}`} sizes="(max-width: 640px) 100vw, 480px" />
+                        </a>
+                        <figcaption className="mt-2 text-sm text-muted">{cs.slug === "synapse" ? (i === 0 ? "System architecture" : "Retrieval pipeline") : `Project visual ${i + 1}`} · Open full size ↗</figcaption>
+                    </figure>)}
+                </div>
+            </section>}
+
+            <section className="mx-auto max-w-5xl px-6 pb-16 md:pb-24">
+                <ProjectChatPanel projectTitle={cs.title} projectSlug={cs.slug} suggestedQuestions={suggestedQuestions} />
+            </section>
+
             {(cs.category === "AI Automation" || cs.category === "Generative AI") && (
                 <section className="border-t border-line bg-surface">
                     <div className="mx-auto max-w-5xl px-6 py-14 md:py-16">

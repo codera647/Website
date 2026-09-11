@@ -17,11 +17,11 @@ const inter = Inter({
 export const metadata: Metadata = {
     metadataBase: new URL("https://thekinetiq.solutions"),
     title: {
-        default: "Kinetiq | AI Automation, Web Development & Momentum Systems Studio",
+        default: "Kinetiq | Momentum Systems & Custom AI Engineering",
         template: "%s | Kinetiq",
     },
     description:
-        "Kinetiq is a high-performance software and AI engineering studio. We build production AI automations, scalable Next.js web platforms, and Momentum Systems for businesses across the US, UK, Pakistan, and worldwide.",
+        "More bookings, stronger customer relationships, and less busywork. Kinetiq builds Momentum Systems for service businesses and custom software and AI for engineering teams.",
     keywords: [
         // US & Global High-Intent Targets
         "AI Automation Agency",
@@ -68,9 +68,9 @@ export const metadata: Metadata = {
         alternateLocale: ["en_GB", "en_PK"],
         url: "https://thekinetiq.solutions",
         siteName: "Kinetiq",
-        title: "Kinetiq | AI Automation, Web Development & Momentum Systems Studio",
+        title: "Kinetiq | Momentum Systems & Custom AI Engineering",
         description:
-            "High-performance software and AI engineering studio. We build production AI automations, scalable full-stack web platforms, and autonomous growth engines.",
+            "Connected websites, booking, and follow-up for service businesses. Custom software and AI for founders and engineering teams.",
         // Resolved against metadataBase above. Filename is deliberately
         // space-free — the previous "Kinetiq - 1.png" would have shipped as
         // %20-encoded, which some link scrapers mishandle.

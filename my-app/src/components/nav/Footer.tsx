@@ -15,9 +15,8 @@ const DISCORD_URL = "https://discord.gg/GJDe5SBJC";
 const FACEBOOK_URL = "#";
 const TWITTER_URL = "#";
 
-/** opens Gmail's web compose (logged-in browser tab) instead of the
- *  OS default mail app, pre-addressed to us */
-const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}`;
+/** Open the visitor’s preferred email application. */
+const EMAIL_URL = `mailto:${CONTACT_EMAIL}`;
 
 /**
  * Three topical link columns (Services / Work / Company) instead of one
@@ -27,6 +26,8 @@ const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTA
  * case studies from data/work.ts, so this stays correct as either changes.
  */
 const serviceLinks = [
+    { href: "/pricing#ai-add-ons", label: "AI add-ons" },
+    { href: "/ai-engagements", label: "Custom AI engagements" },
     { href: "/services", label: "Services overview" },
     ...services.map((s) => ({ href: `/services#${s.anchor}`, label: s.title })),
 ];
@@ -123,9 +124,9 @@ export default function Footer({ featuredProjects }: { featuredProjects: Project
                     <p className="font-heading text-2xl font-bold tracking-tight">
                         kinet<span className="text-muted">iq</span>
                     </p>
-                    <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
-                        An AI automation, web development, and generative AI studio building
-                        the software that powers what&apos;s next.
+                    <p className="mt-4 max-w-xs text-base leading-relaxed text-muted">
+                        Connected growth systems for service businesses.
+                        Custom software and AI for ambitious teams.
                     </p>
                     {/* the small brand flourish (brief §2) — the original tagline, kept in motion */}
                     <p className="mt-6 font-heading text-xs uppercase tracking-[0.3em] text-muted">
@@ -139,7 +140,7 @@ export default function Footer({ featuredProjects }: { featuredProjects: Project
                             className="group inline-flex items-center gap-2.5 rounded-none border border-ink bg-ink px-4 py-2.5 font-heading text-xs font-bold uppercase tracking-[0.18em] text-background shadow-sm transition-all duration-300 hover:bg-background hover:text-ink hover:border-ink hover:shadow-[0_8px_24px_-12px_rgba(17,17,19,0.35)] hover:-translate-y-0.5"
                         >
                             <span className="relative flex size-2 shrink-0">
-                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-background group-hover:bg-ink opacity-75 duration-1000" />
+                                <span className="absolute inline-flex h-full w-full rounded-full bg-background group-hover:bg-ink opacity-75 duration-1000" />
                                 <span className="relative inline-flex size-2 rounded-full bg-background group-hover:bg-ink transition-colors" />
                             </span>
                             <span>Momentum Systems</span>
@@ -237,7 +238,7 @@ export default function Footer({ featuredProjects }: { featuredProjects: Project
                         </li>
                         <li>
                             <a
-                                href={GMAIL_COMPOSE_URL}
+                                href={EMAIL_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-ink-soft underline-offset-4 transition-colors duration-300 hover:text-ink hover:underline"

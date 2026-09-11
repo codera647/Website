@@ -62,8 +62,7 @@ function ProofStat({ stat }: { stat: ProofStatData }) {
     return (
         <div
             className="relative"
-            onMouseEnter={() => setOpen(true)}
-            onMouseLeave={() => setOpen(false)}
+
         >
             <button
                 type="button"
@@ -96,6 +95,7 @@ function ProofStat({ stat }: { stat: ProofStatData }) {
             </button>
 
             <div
+                inert={!open}
                 className={`grid transition-[grid-template-rows] duration-500 ease-out ${
                     open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                 }`}
@@ -145,15 +145,14 @@ export default function ProofBand({ projects }: { projects: Project[] }) {
     return (
         <section className="bg-surface">
             <FadeInWhenVisible>
-                <div className="container-wide py-16 md:py-20">
+                <div className="container-wide py-10 md:py-12">
                     <div className="mx-auto grid max-w-3xl grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-16">
                         {stats.map((stat) => (
                             <ProofStat key={stat.label} stat={stat} />
                         ))}
                     </div>
-                    <p className="mt-10 text-center text-xs text-muted/70">
-                        Every figure above is read straight from our case studies.
-                        Nothing is rounded up.
+                    <p className="mt-6 text-center text-sm text-muted">
+                        Explore the projects in our portfolio and the tools behind them.
                     </p>
                 </div>
             </FadeInWhenVisible>

@@ -1,12 +1,10 @@
 import { defineConfig, globalIgnores } from "eslint/config";
-import { FlatCompat } from "@eslint/eslintrc";
-import { fileURLToPath } from "node:url";
-
-// Next.js 15 ships legacy configurations; adapt them to ESLint 9's flat format.
-const compat = new FlatCompat({ baseDirectory: fileURLToPath(new URL(".", import.meta.url)) });
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
 
 const eslintConfig = defineConfig([
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...nextVitals,
+  ...nextTs,
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:
@@ -14,9 +12,6 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
-    ".open-next/**",
-    ".wrangler/**",
-    "cloudflare-env.d.ts",
   ]),
 ]);
 

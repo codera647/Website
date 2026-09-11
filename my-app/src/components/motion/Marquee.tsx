@@ -12,7 +12,7 @@ interface Props {
 /**
  * Infinite horizontal ticker. CSS-animation driven (zero JS per frame);
  * content is duplicated so the loop is seamless. Under reduced motion
- * the content becomes a static wrapping row (see globals.css).
+ * the track crawls very slowly instead of scrolling (see globals.css).
  */
 export default function Marquee({
     children,

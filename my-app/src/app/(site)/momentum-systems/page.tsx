@@ -37,8 +37,8 @@ const PILLARS = [
     {
         number: "01",
         name: "Identity & Access",
-        tagline: "Give customers a reason to return.",
-        what: "Customer portals on Momentum and Momentum Pro put service history and upcoming appointments in one place. Foundation starts with a website and direct booking follow-up, without customer accounts.",
+        tagline: "A real account system, not just pages.",
+        what: "Logins, customer and member portals, and role-based access (customer, staff, admin) built directly into your web presence — using the same authentication and data architecture behind enterprise software.",
         why: "It turns your website from an informational brochure into a destination people return to. Booking history, membership status, equipment records, and recurring appointments live securely behind a login. A returning visitor becomes a recognized, retained customer.",
         practice:
             "An HVAC customer logs in to check past service dates, view furnace model records, and schedule seasonal maintenance in one click instead of calling during busy hours.",
@@ -46,7 +46,7 @@ const PILLARS = [
     {
         number: "02",
         name: "Automated Engagement",
-        tagline: "The right follow-up, at the right time.",
+        tagline: "Email & SMS sequences that run without a human.",
         what: "Event-triggered and scheduled communications — instant booking confirmations, SMS appointment reminders, automated review requests, win-back campaigns, and seasonal maintenance nudges.",
         why: "This is your retention engine. Most service businesses lose customers not from poor workmanship, but from silence. Automated follow-up replaces the manual outreach a busy business owner never has time to do consistently.",
         practice:
@@ -55,9 +55,9 @@ const PILLARS = [
     {
         number: "03",
         name: "Programmatic Growth",
-        tagline: "Help nearby customers find your services.",
+        tagline: "Search-optimized pages generated at scale.",
         what: "Structured, high-intent landing pages engineered systematically for every service and location your business serves (e.g. '[Service] in [City/Town]'), rather than a single generic homepage.",
-        why: "Local service businesses win or lose customers in organic search. Useful pages for your real services and towns help customers find the right information. We monitor visibility and enquiries as the pages develop.",
+        why: "Local service businesses win or lose customers in organic search. A single website ranks for one or two generic terms; a programmatic page set can rank for dozens of high-value service-and-city combinations simultaneously.",
         practice:
             "A contractor serving eight surrounding towns gets eight dedicated, hyper-targeted pages for 'Emergency AC Repair in [Town]', capturing local search volume across the entire territory.",
     },
@@ -71,7 +71,7 @@ const COMPARISON = [
     },
     {
         feature: "Pricing Model",
-        oldWay: "One-time project fee",
+        oldWay: "High one-time fee ($5,000–$15,000 upfront)",
         momentum: "Lower build fee + predictable monthly software fee",
     },
     {
@@ -92,7 +92,7 @@ const COMPARISON = [
     {
         feature: "Proof of Success",
         oldWay: "'Look how nice the design looks'",
-        momentum: "Bookings, repeat visits, and review trends",
+        momentum: "Verifiable numbers: booking lift, lower no-shows, 5-star reviews",
     },
 ];
 
@@ -119,7 +119,7 @@ const MOMENTUM_FAQS: FAQItem[] = [
     {
         question: "Do you just build websites?",
         answer:
-            "A website is the starting point. Foundation includes booking confirmations, review requests, and local visibility for one area. Momentum adds a customer portal, broader follow-up, and local pages for up to eight towns. Momentum Pro adds multi-location scope and AI booking.",
+            "No. A website is only one component of a Momentum System. We combine an authenticated customer portal, automated email/SMS follow-up sequences, and search-optimized programmatic growth pages into a unified engine that produces measurable bookings month after month.",
     },
     {
         question: "How is a Momentum System priced?",
@@ -134,7 +134,7 @@ const MOMENTUM_FAQS: FAQItem[] = [
     {
         question: "Can this integrate with our existing CRM or booking software?",
         answer:
-            "We scope CRM connections with Momentum Pro or AI Suite. Integration depends on your provider’s API access and plan. We confirm compatibility, any provider fees, and the work involved before quoting.",
+            "Yes. We build custom integrations with standard trade and booking platforms (Housecall Pro, ServiceTitan, Jobber, Calendly, Stripe, and custom databases) so your existing operations continue seamlessly.",
     },
     {
         question: "Who builds and maintains our system?",
@@ -205,22 +205,23 @@ export default function MomentumSystemsPage() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(momentumSchemas) }}
             />
             {/* 1. Hero Section */}
-            <section className="container-wide pb-16 pt-32 md:pb-20 md:pt-36">
+            <section className="container-wide pb-20 pt-36 md:pb-28 md:pt-44">
                 <FadeInWhenVisible>
                     <div className="inline-flex items-center gap-2.5 rounded-none border border-line bg-surface px-3.5 py-1.5 font-heading text-xs font-medium uppercase tracking-[0.24em] text-muted shadow-sm">
                         <span className="relative flex size-2">
-                            <span className="absolute inline-flex h-full w-full rounded-full bg-ink opacity-75 duration-1000" />
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ink opacity-75 duration-1000" />
                             <span className="relative inline-flex size-2 rounded-full bg-ink" />
                         </span>
                         Momentum Systems · For Growing Service Businesses
                     </div>
                     <h1 className="mt-6 max-w-4xl font-heading text-5xl font-bold tracking-tight text-ink md:text-7xl">
-                        Turn first bookings into lasting customer relationships.
+                        Stop paying for a website that sits there.
                     </h1>
                     <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
-                        <strong className="font-semibold text-ink">Momentum Systems</strong> connects your website,
-                        bookings, and follow-up so customers can find you, book easily, and return.
-                        Start with Foundation; add a customer portal and wider local reach with Momentum.
+                        We don&apos;t build static brochures. We engineer{" "}
+                        <strong className="font-semibold text-ink">Momentum Systems</strong> — the
+                        unified combination of a customer portal, automated engagement, and
+                        location-based search pages that keeps bringing customers back on its own.
                     </p>
 
                     <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -244,7 +245,7 @@ export default function MomentumSystemsPage() {
             </section>
 
             {/* 2. The Three Pillars Section */}
-            <section id="pillars" className="scroll-mt-24 border-t border-line bg-surface/50 py-16 md:py-24">
+            <section id="pillars" className="scroll-mt-24 border-t border-line bg-surface/50 py-24 md:py-32">
                 <div className="container-wide">
                     <FadeInWhenVisible>
                         <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
@@ -308,7 +309,7 @@ export default function MomentumSystemsPage() {
             </section>
 
             {/* 3. The Compounding Flywheel Section */}
-            <section className="border-t border-line bg-background py-16 md:py-24">
+            <section className="border-t border-line bg-background py-24 md:py-32">
                 <div className="container-wide">
                     <FadeInWhenVisible>
                         <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
@@ -395,7 +396,7 @@ export default function MomentumSystemsPage() {
             </section>
 
             {/* 4. The Business Model Shift (Comparison Table) */}
-            <section className="border-t border-line bg-surface/50 py-16 md:py-24">
+            <section className="border-t border-line bg-surface/50 py-24 md:py-32">
                 <div className="container-wide">
                     <FadeInWhenVisible>
                         <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
@@ -466,17 +467,17 @@ export default function MomentumSystemsPage() {
             </section>
 
             {/* 5. Who This Is For */}
-            <section className="border-t border-line bg-background py-16 md:py-24">
+            <section className="border-t border-line bg-background py-24 md:py-32">
                 <div className="container-wide">
                     <FadeInWhenVisible>
                         <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
-                            Built for your day-to-day
+                            Ideal Client Profile
                         </p>
                         <h2 className="mt-4 max-w-2xl text-4xl font-bold md:text-5xl text-ink">
                             Built specifically for repeat service businesses.
                         </h2>
                         <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
-                            A good fit for owner-led businesses where appointments, repeat customers, and local search matter: home services, wellness studios, salons, tutoring, and other recurring services.
+                            Momentum Systems deliver the highest ROI for established companies where retention, scheduled appointments, and local territory search drive profit.
                         </p>
                     </FadeInWhenVisible>
 
@@ -498,7 +499,7 @@ export default function MomentumSystemsPage() {
             </section>
 
             {/* 6. Momentum FAQ Section */}
-            <section className="border-t border-line bg-surface/50 py-16 md:py-24">
+            <section className="border-t border-line bg-surface/50 py-24 md:py-32">
                 <div className="container-wide max-w-4xl">
                     <FadeInWhenVisible>
                         <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
@@ -519,13 +520,13 @@ export default function MomentumSystemsPage() {
             <section className="bg-ink text-background">
                 <div className="container-wide py-28 text-center md:py-36">
                     <FadeInWhenVisible>
-                        <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-background/75">
+                        <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-background/50">
                             Ready when you are
                         </p>
                         <h2 className="mx-auto mt-5 max-w-2xl text-4xl font-bold leading-tight md:text-6xl">
                             Ready to put your growth in motion?
                         </h2>
-                        <p className="mx-auto mt-6 max-w-xl text-lg text-background/80">
+                        <p className="mx-auto mt-6 max-w-xl text-lg text-background/60">
                             Book a free 30-minute growth audit. We will analyze your local search visibility, follow-up gaps, and map out what a custom Momentum System will produce for your business.
                         </p>
                         <div className="mt-10">

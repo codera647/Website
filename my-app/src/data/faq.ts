@@ -6,11 +6,7 @@ export const faqItems: FAQItem[] = [
     {
         question: "Do you just build websites?",
         answer:
-            "We build connected systems. Foundation starts with a website, booking confirmations, review requests, and local visibility. Momentum adds a customer portal and ongoing engagement. We also build custom software and AI platforms through a separate engagement track.",
-    },
-    {
-        question: "Can I add AI without buying a full Momentum System?",
-        answer: "Yes. AI Assist covers one automation, AI Operations covers two plus monitoring, and AI Suite adds voice or advanced chat, multiple workflows, and CRM integration. They work standalone or alongside Momentum Systems. CRM compatibility and scope are confirmed before quoting.",
+            "No. A website is one piece of what we call a Momentum System — a portal, automated follow-up, and search-optimized growth pages combined into one system that keeps working after launch, not a static page that sits there.",
     },
     {
         question: "How is a Momentum System priced?",
@@ -35,7 +31,7 @@ export const faqItems: FAQItem[] = [
     {
         question: "Can you work with our existing systems and team?",
         answer:
-            "Yes. We regularly integrate with existing databases, APIs, CRMs, and internal tools, and we're comfortable working alongside in-house engineers. Custom engineering engagements include documented handover. Momentum Systems is a managed service on our infrastructure, and your domain remains yours.",
+            "Yes. We regularly integrate with existing databases, APIs, CRMs, and internal tools, and we're comfortable working alongside in-house engineers. Every engagement ends with clean, documented code your team can own.",
     },
     {
         question: "How do you handle confidentiality and data security?",

@@ -1,6 +1,7 @@
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import StaggerList from "@/components/motion/StaggerList";
-import { testimonials } from "@/data/testimonials";
+import Marquee from "@/components/motion/Marquee";
+import { testimonials, testimonialSnippets } from "@/data/testimonials";
 
 /** initials for the avatar badge, e.g. "Hammad Sarwar" -> "HS" */
 function initials(name: string) {
@@ -15,8 +16,17 @@ function initials(name: string) {
 /** Social proof (brief §4 Home #6): fast marquee ticker → full testimonial cards. */
 export default function ClientTrust() {
     return (
-        <section className="bg-surface py-16 md:py-24">
-            <div className="container-wide">
+        <section className="bg-surface py-24 md:py-32">
+            {/* fast snippet ticker */}
+            <Marquee duration={22} className="border-y border-line bg-background py-4">
+                {testimonialSnippets.map((snippet) => (
+                    <span key={snippet} className="mx-8 font-heading text-sm text-muted">
+                        {snippet}
+                    </span>
+                ))}
+            </Marquee>
+
+            <div className="container-wide pt-20">
                 <FadeInWhenVisible>
                     <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
                         Client trust

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import BracketButton from "@/components/motion/BracketButton";
 import FAQAccordion, { type FAQItem } from "@/components/motion/FAQAccordion";
@@ -40,7 +39,6 @@ interface PricingTier {
     monthlyOriginal: string;
     monthlyFounding: string;
     tagline: string;
-    bestFor: string;
     features: string[];
     ctaText: string;
     /** Momentum Systems tiers only — points down to the AI Add-Ons section. */
@@ -50,7 +48,6 @@ interface PricingTier {
 const TIERS: PricingTier[] = [
     {
         id: "foundation",
-        bestFor: "Starting out · One service area · No customer login",
         name: "Foundation",
         setupOriginal: "$1,997",
         setupFounding: "$497",
@@ -62,19 +59,18 @@ const TIERS: PricingTier[] = [
             "Modern, mobile-first website (replacement or new build)",
             "Google Business Profile setup & local optimization",
             "Core automation 01: Instant booking confirmations",
-            "Core automation 02: Post-service review requests",
+            "Core automation 02: Post-service 5-star review requests",
             "Local SEO for 1 primary service territory",
-            "Managed hosting and uptime monitoring",
+            "Monthly managed hosting & 99.9% uptime monitoring",
             "Monthly performance report (traffic, leads & reviews)",
         ],
-        ctaText: "Discuss Foundation",
+        ctaText: "Claim Foundation Tier",
         crossLinkToAddons: true,
     },
     {
         id: "momentum",
-        bestFor: "Established business · Up to 8 towns · Customer portal",
         name: "Momentum",
-        badge: "Recommended · Flagship",
+        badge: "Most Popular · Flagship",
         isPopular: true,
         setupOriginal: "$2,997",
         setupFounding: "$797",
@@ -92,12 +88,11 @@ const TIERS: PricingTier[] = [
             "Monthly 30-min growth strategy call with our engineering lead",
             "Full attribution dashboard (bookings, retention rate, review trend)",
         ],
-        ctaText: "Discuss Momentum",
+        ctaText: "Claim Momentum Tier",
         crossLinkToAddons: true,
     },
     {
         id: "momentum-pro",
-        bestFor: "Multiple locations · AI booking · CRM integration",
         name: "Momentum Pro",
         setupOriginal: "$4,997",
         setupFounding: "$1,297",
@@ -109,12 +104,12 @@ const TIERS: PricingTier[] = [
             "Everything in Momentum, plus:",
             "Unlimited service-area pages & multi-location support",
             "AI-assisted lead qualification & auto-booking chat assistant",
-            "CRM connection, subject to compatible API access and agreed scope",
+            "Direct CRM integration (Housecall Pro, ServiceTitan, Jobber, APIs)",
             "Monthly A/B conversion testing on landing pages & sequences",
             "Advanced real-time analytics & multi-channel attribution",
-            "Priority support and monthly optimization",
+            "Priority SLA support & dedicated technical account manager",
         ],
-        ctaText: "Discuss Momentum Pro",
+        ctaText: "Claim Momentum Pro",
         crossLinkToAddons: true,
     },
 ];
@@ -122,7 +117,6 @@ const TIERS: PricingTier[] = [
 const ADDON_TIERS: PricingTier[] = [
     {
         id: "ai-assist",
-        bestFor: "One specific task · Choose one automation",
         name: "AI Assist",
         setupOriginal: "$997",
         setupFounding: "$297",
@@ -135,13 +129,12 @@ const ADDON_TIERS: PricingTier[] = [
             "Automated document/invoice data extraction (pulls job details, amounts & dates from paperwork)",
             "One workflow automation (e.g. auto-notify a technician on a new job, auto-update job status)",
         ],
-        ctaText: "Discuss this automation",
+        ctaText: "Add this",
     },
     {
         id: "ai-operations",
-        bestFor: "Two automations · Monitoring and optimization",
         name: "AI Operations",
-        badge: "Recommended",
+        badge: "Most Popular",
         isPopular: true,
         setupOriginal: "$1,997",
         setupFounding: "$497",
@@ -149,15 +142,15 @@ const ADDON_TIERS: PricingTier[] = [
         monthlyFounding: "$597",
         tagline: "Two automations, plus the monitoring to know they're actually working.",
         features: [
+            "Everything in AI Assist, plus:",
             "Any two automations from the AI Assist list",
             "Monthly monitoring & optimization (is the chat widget converting? are automations firing correctly?)",
             "A simple monthly performance report",
         ],
-        ctaText: "Discuss this automation",
+        ctaText: "Add this",
     },
     {
         id: "ai-suite",
-        bestFor: "Voice or advanced chat · Workflows · CRM connection",
         name: "AI Suite",
         setupOriginal: "$3,997",
         setupFounding: "$997",
@@ -168,10 +161,10 @@ const ADDON_TIERS: PricingTier[] = [
             "Everything in AI Operations, plus:",
             "AI voice receptionist or advanced conversational chat agent",
             "Multiple workflow automations across the business (dispatch, scheduling, follow-up)",
-            "Field-service/CRM integration, subject to API access and agreed scope",
+            "Integration with existing field-service/CRM software (Housecall Pro, ServiceTitan)",
             "Custom reporting dashboard",
         ],
-        ctaText: "Discuss this automation",
+        ctaText: "Add this",
     },
 ];
 
@@ -179,7 +172,7 @@ const PRICING_FAQS: FAQItem[] = [
     {
         question: "Why is there a setup fee if this is priced like software?",
         answer:
-            "The setup fee covers the custom engineering work — configuring your website, booking workflows, automation, and local pages for the chosen tier. Foundation has no customer login; a customer portal starts with Momentum. The monthly fee covers running, hosting, monitoring, and continuously improving the system after launch.",
+            "The setup fee covers the custom engineering work — building your authenticated portal, configuring your automation sequences, integrating with your booking workflows, and generating your high-intent location pages. The monthly fee covers running, hosting, monitoring, and continuously improving the system after launch.",
     },
     {
         question: "What happens when the founding pricing ends?",
@@ -209,12 +202,12 @@ const PRICING_FAQS: FAQItem[] = [
     {
         question: "Can I get an AI Add-On without a Momentum Systems plan?",
         answer:
-            "Yes. AI add-ons work on their own or alongside a Momentum Systems plan. When bundled, the add-on setup fee is discounted by 10–15%; we confirm the exact scope and discount before you commit.",
+            "Yes — these work standalone. If you add Momentum Systems later, you'll get the bundle discount on the setup fee at that point.",
     },
     {
         question: "Do these use my existing phone number / socials, or something new?",
         answer:
-            "The chat widget installs directly on your existing website — no new site or new number needed. If you add the AI voice receptionist, it forwards from the business number you already have, so customers keep calling the number they know; we don't ask you to port or change it. Automations that request reviews or send follow-ups run through your existing accounts and messaging channels wherever possible.",
+            "The chat widget installs directly on your existing website — no new site or new number needed. If you add the AI voice receptionist, it forwards from the business number you already have, so customers keep calling the number they know; we don't ask you to port or change it. Automations that post reviews or send follow-ups run through your existing accounts and messaging channels wherever possible.",
     },
     {
         question: "What if I'm not sure which automation I need?",
@@ -229,34 +222,33 @@ function TierCard({ tier, index }: { tier: PricingTier; index: number }) {
         <FadeInWhenVisible delay={index * 0.1} className="flex">
             <div
                 className={`card-hover group flex w-full flex-col justify-between rounded-2xl border bg-background p-8 transition-all md:p-10 ${
-                    tier.isPopular ? "relative border-accent shadow-lg ring-1 ring-accent/15" : "border-line"
+                    tier.isPopular ? "relative border-ink shadow-lg ring-1 ring-ink/10" : "border-line"
                 }`}
             >
                 <div>
                     {/* Top Header & Optional Badge */}
-                    <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex items-center justify-between gap-2">
                         <h3 className="font-heading text-2xl font-bold text-ink">{tier.name}</h3>
                         {tier.badge && (
-                            <span className="rounded-none bg-accent px-2.5 py-1 font-heading text-xs font-bold uppercase tracking-wider text-background">
+                            <span className="rounded-none bg-ink px-2.5 py-1 font-heading text-[10px] font-bold uppercase tracking-wider text-background">
                                 {tier.badge}
                             </span>
                         )}
                     </div>
 
-                    <p className="mt-4 text-base leading-relaxed text-muted">{tier.tagline}</p>
-                    <p className="mt-4 border-l-2 border-accent pl-3 text-sm font-medium text-ink">{tier.bestFor}</p>
+                    <p className="mt-3 text-xs leading-relaxed text-muted">{tier.tagline}</p>
 
                     {/* Price Block */}
                     <div className="mt-8 border-y border-line py-6">
                         {/* Monthly Fee */}
-                        <div className="flex flex-wrap items-baseline gap-2">
+                        <div className="flex items-baseline gap-2">
                             <span className="text-sm text-muted line-through">{tier.monthlyOriginal}</span>
                             <span className="font-heading text-4xl font-bold text-ink">{tier.monthlyFounding}</span>
                             <span className="text-xs font-medium text-muted">/ month</span>
                         </div>
 
                         {/* Setup Fee */}
-                        <div className="mt-3 flex flex-wrap items-center gap-2 text-sm">
+                        <div className="mt-2 flex items-center gap-2 text-xs">
                             <span className="text-muted">Setup:</span>
                             <span className="text-muted line-through">{tier.setupOriginal}</span>
                             <span className="font-heading font-bold text-ink">{tier.setupFounding}</span>
@@ -265,7 +257,7 @@ function TierCard({ tier, index }: { tier: PricingTier; index: number }) {
                     </div>
 
                     {/* Features List */}
-                    <ul className="mt-8 space-y-3.5 text-base leading-relaxed text-ink/90">
+                    <ul className="mt-8 space-y-3.5 text-xs leading-relaxed text-ink/90">
                         {tier.features.map((feat, fIdx) => (
                             <li
                                 key={fIdx}
@@ -302,7 +294,7 @@ function TierCard({ tier, index }: { tier: PricingTier; index: number }) {
                         className="w-full text-center"
                         buttonClassName={
                             tier.isPopular
-                                ? "bg-accent text-white group-hover:bg-accent-hover"
+                                ? "bg-ink text-background group-hover:bg-ink-soft"
                                 : "bg-surface text-ink group-hover:bg-ink group-hover:text-background"
                         }
                     >
@@ -368,16 +360,16 @@ export default function PricingPage() {
                 <FadeInWhenVisible>
                     <div className="inline-flex items-center gap-2.5 rounded-none border border-line bg-surface px-3.5 py-1.5 font-heading text-xs font-medium uppercase tracking-[0.24em] text-muted shadow-sm">
                         <span className="relative flex size-2">
-                            <span className="absolute inline-flex h-full w-full rounded-full bg-ink opacity-75 duration-1000" />
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ink opacity-75 duration-1000" />
                             <span className="relative inline-flex size-2 rounded-full bg-ink" />
                         </span>
                         Founding Client Pricing · Limited to First 10 Businesses
                     </div>
                     <h1 className="mt-6 max-w-4xl font-heading text-5xl font-bold tracking-tight text-ink md:text-7xl">
-                        Choose the system your business needs next.
+                        Priced on outcomes, not billable hours.
                     </h1>
                     <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
-                        A one-time setup fee and predictable monthly care. Choose a growth system for your service business, or add practical AI to the tools you already have. All prices are in USD.
+                        A smaller one-time build fee covering custom engineering, plus a predictable monthly fee covering ongoing hosting, automation, and search growth.
                     </p>
                 </FadeInWhenVisible>
 
@@ -390,10 +382,10 @@ export default function PricingPage() {
                             </span>
                             <div>
                                 <p className="font-heading text-sm font-bold text-ink">
-                                    First 10 Momentum Systems clients
+                                    Founding Cohort Slots: Active
                                 </p>
                                 <p className="text-xs text-muted">
-                                    One founding cohort across all three tiers. Ask us about availability; founding rates stay locked while you remain a customer.
+                                    Discounted setup and monthly fees are locked in for life for the first 10 signed clients.
                                 </p>
                             </div>
                         </div>
@@ -424,17 +416,10 @@ export default function PricingPage() {
                 </FadeInWhenVisible>
             </section>
 
-            <section className="container-wide pb-10">
-                <div className="flex flex-wrap items-center justify-between gap-4 border-y border-line py-6">
-                    <p className="text-base text-muted">Building a custom AI product or an enterprise platform?</p>
-                    <Link href="/ai-engagements" className="font-heading text-base font-semibold text-accent underline-offset-4 hover:underline">Explore custom engagements →</Link>
-                </div>
-            </section>
             {/* 2. Three Pricing Tiers */}
             <section className="border-t border-line bg-surface/40 py-20 md:py-28">
                 <div className="container-wide">
-                    <h2 className="mb-8 text-3xl font-bold md:text-4xl">Momentum Systems</h2>
-                    <div className="grid gap-8 xl:grid-cols-3 xl:items-stretch">
+                    <div className="grid gap-8 lg:grid-cols-3 lg:items-stretch">
                         {TIERS.map((tier, i) => (
                             <TierCard key={tier.id} tier={tier} index={i} />
                         ))}
@@ -446,7 +431,7 @@ export default function PricingPage() {
                             <h4 className="font-heading text-xs font-bold uppercase tracking-[0.2em] text-muted">
                                 Optional System Add-ons
                             </h4>
-                            <div className="mt-4 grid gap-4 text-base sm:grid-cols-3 sm:gap-6">
+                            <div className="mt-4 grid gap-4 text-xs sm:grid-cols-3 sm:gap-6">
                                 <div className="border-l-2 border-line pl-3.5">
                                     <p className="font-heading font-semibold text-ink">
                                         Extra Service Area Page
@@ -494,7 +479,7 @@ export default function PricingPage() {
                         </p>
                     </FadeInWhenVisible>
 
-                    <div className="mt-10 grid gap-8 xl:grid-cols-3 xl:items-stretch">
+                    <div className="mt-14 grid gap-8 lg:grid-cols-3 lg:items-stretch">
                         {ADDON_TIERS.map((tier, i) => (
                             <TierCard key={tier.id} tier={tier} index={i} />
                         ))}
@@ -502,9 +487,6 @@ export default function PricingPage() {
                 </div>
             </section>
 
-            <section className="container-wide pb-12">
-                <p className="max-w-3xl border-l-2 border-accent pl-4 text-base leading-relaxed text-muted">CRM integrations require compatible API access on your existing provider’s plan. We confirm access, any provider fees, and the integration scope before quoting. Voice and messaging usage are agreed during scoping.</p>
-            </section>
             {/* 3. Risk-Reversal & Guarantee Block */}
             <section className="border-t border-line bg-background py-20 md:py-28">
                 <div className="container-wide">
@@ -513,7 +495,7 @@ export default function PricingPage() {
                             Our Commitments
                         </p>
                         <h2 className="mt-3 max-w-2xl text-3xl font-bold md:text-4xl text-ink">
-                            Clear commitments. Ongoing support.
+                            Engineered for zero downside.
                         </h2>
                     </FadeInWhenVisible>
 
@@ -599,13 +581,13 @@ export default function PricingPage() {
             <section className="bg-ink text-background">
                 <div className="container-wide py-28 text-center md:py-36">
                     <FadeInWhenVisible>
-                        <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-background/75">
+                        <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-background/50">
                             Ready when you are
                         </p>
                         <h2 className="mx-auto mt-5 max-w-2xl text-4xl font-bold leading-tight md:text-6xl">
                             Lock in your founding client pricing.
                         </h2>
-                        <p className="mx-auto mt-6 max-w-xl text-lg text-background/80">
+                        <p className="mx-auto mt-6 max-w-xl text-lg text-background/60">
                             Book a free 30-minute growth audit. We&apos;ll evaluate your service territory, show you what a custom Momentum System will look like, and lock in your founding rate.
                         </p>
                         <div className="mt-10">

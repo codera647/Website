@@ -1,26 +1,72 @@
 import Link from "next/link";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import StaggerList from "@/components/motion/StaggerList";
-import ProjectImage from "@/components/sections/ProjectImage";
-import { getProjectPresentation } from "@/data/projectPresentation";
 import type { Project } from "@/lib/data";
 
-export function WorkCard(project: Pick<Project, "slug" | "title" | "category" | "summary" | "tags" | "thumbnail">) {
-    const presentation = getProjectPresentation(project);
+export function WorkCard({
+    slug,
+    title,
+    category,
+    summary,
+    tags,
+}: {
+    slug: string;
+    title: string;
+    category: string;
+    summary: string;
+    tags: string[];
+}) {
     return (
-        <Link href={`/work/${project.slug}`} className="card-hover group flex h-full flex-col border border-line bg-background">
-            <div className="relative aspect-[16/10] overflow-hidden border-b border-line bg-surface">
-                <ProjectImage src={presentation.image} alt={`${project.title} — ${presentation.imageLabel}`} sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" />
-            </div>
-            <div className="flex flex-1 flex-col p-6 md:p-7">
-                <p className="eyebrow">{project.category}</p>
-                <h3 className="mt-3 text-2xl font-semibold">{project.title}</h3>
-                <p className="mt-4 flex-1 text-base leading-relaxed text-muted">{presentation.summary}</p>
-                {presentation.capability && <p className="mt-5 border-l-2 border-accent pl-3 text-sm font-medium text-ink">{presentation.capability}</p>}
-                <div className="mt-5 flex flex-wrap gap-2">
-                    {project.tags.slice(0, 2).map((tag) => <span key={tag} className="border border-line px-2.5 py-1 text-xs text-muted">{tag}</span>)}
+        <Link href={`/work/${slug}`} className="group relative block h-full">
+            {/*
+              Grows IN FLOW on hover (no position:absolute detach), via the
+              grid-rows-[0fr]->[1fr] height trick below. Because the card
+              stays a normal grid item, CSS Grid's own row-sizing does the
+              "reposition" work for free: the row the hovered card sits in
+              grows to fit it, which pushes every row after it further down
+              the page — no manual repositioning, and nothing can overlap
+              the row below since that row simply moves. Cards sharing the
+              hovered card's row stretch to match (default grid behaviour),
+              which reads as the whole row responding together rather than
+              one card overlapping its neighbours.
+            */}
+            <div className="relative z-10 flex h-full min-h-[190px] flex-col justify-between overflow-hidden rounded-2xl border border-line bg-background p-7 pb-16 transition-colors duration-500 ease-out md:p-8 md:pb-16 md:group-hover:border-ink md:group-hover:bg-ink md:group-hover:shadow-[0_32px_64px_-24px_rgba(17,17,19,0.45)]">
+                <div>
+                    <p className="font-heading text-xs font-medium uppercase tracking-[0.18em] text-muted transition-colors duration-500 ease-out md:group-hover:text-background/50">
+                        {category}
+                    </p>
+                    <h3 className="mt-3 font-heading text-2xl font-semibold text-ink transition-colors duration-500 ease-out md:group-hover:text-background">
+                        {title}
+                    </h3>
                 </div>
-                <span className="mt-6 flex items-center justify-between border-t border-line pt-4 font-heading text-base font-semibold">View case study <span aria-hidden="true" className="text-accent">↗</span></span>
+
+                {/* always-visible affordance for the compact state; fades out once the reveal panel takes over on hover. */}
+                <span className="absolute bottom-7 right-7 flex size-9 items-center justify-center rounded-none border border-line font-heading text-sm text-muted transition-opacity duration-300 ease-out md:group-hover:opacity-0">
+                    →
+                </span>
+
+                {/* hover reveal — md+ only: summary, tags, CTA. 0fr -> 1fr grid-row trick animates height smoothly */}
+                <div className="hidden md:grid md:grid-rows-[0fr] md:transition-[grid-template-rows] md:duration-500 md:ease-out md:group-hover:grid-rows-[1fr]">
+                    <div className="overflow-hidden">
+                        <p className="mt-5 text-sm leading-relaxed text-background/70">{summary}</p>
+                        <div className="mt-4 flex flex-wrap gap-2">
+                            {tags.slice(0, 3).map((tag) => (
+                                <span
+                                    key={tag}
+                                    className="rounded-none border border-background/20 px-2.5 py-1 text-xs text-background/60"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                        <span className="mt-6 inline-flex items-center gap-1.5 font-heading text-sm font-semibold text-background">
+                            View project
+                            <span className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-1.5">
+                                →
+                            </span>
+                        </span>
+                    </div>
+                </div>
             </div>
         </Link>
     );
@@ -28,19 +74,32 @@ export function WorkCard(project: Pick<Project, "slug" | "title" | "category" | 
 
 export default function FeaturedWork({ projects }: { projects: Project[] }) {
     return (
-        <section className="container-wide py-16 md:py-24">
+        <section className="container-wide py-24 md:py-32">
             <FadeInWhenVisible>
                 <div className="flex flex-wrap items-end justify-between gap-6">
                     <div>
-                        <p className="eyebrow">Selected work</p>
-                        <h2 className="mt-4 text-3xl font-bold md:text-5xl">See what we build.</h2>
-                        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">Explore the interfaces, workflows, and engineering behind our projects.</p>
+                        <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
+                            Selected work
+                        </p>
+                        <h2 className="mt-4 text-4xl font-bold md:text-5xl">Built and shipped.</h2>
                     </div>
-                    <Link href="/work" className="inline-flex min-h-11 items-center font-heading text-base font-semibold text-accent underline-offset-4 hover:underline">All work →</Link>
+                    <Link
+                        href="/work"
+                        className="font-heading text-sm font-semibold text-ink underline-offset-4 hover:underline"
+                    >
+                        All work →
+                    </Link>
                 </div>
             </FadeInWhenVisible>
-            <StaggerList className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3" itemClassName="h-full" stagger={0.08}>
-                {projects.map((project) => <WorkCard key={project.slug} {...project} />)}
+
+            <StaggerList
+                className="mt-14 grid gap-6 md:grid-cols-3"
+                itemClassName="h-full"
+                stagger={0.12}
+            >
+                {projects.map((cs) => (
+                    <WorkCard key={cs.slug} {...cs} />
+                ))}
             </StaggerList>
         </section>
     );

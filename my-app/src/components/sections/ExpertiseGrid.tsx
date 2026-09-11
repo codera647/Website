@@ -1,40 +1,111 @@
 import Link from "next/link";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
-
-const pillars = [
-    { title: "A place customers return to", description: "Give customers access to their service history and upcoming appointments. Customer portals are included with Momentum and Momentum Pro.", label: "Customer access" },
-    { title: "Follow-up that gets done", description: "Confirm bookings and request reviews automatically. Add reminders, seasonal nudges, and win-back messages as your system grows.", label: "Automated engagement" },
-    { title: "Visibility where you work", description: "Help nearby customers find the right service with useful local pages, built around the towns and territories you actually serve.", label: "Local search" },
-];
+import StaggerList from "@/components/motion/StaggerList";
+import { services } from "@/data/services";
 
 export default function ExpertiseGrid() {
     return (
-        <section className="bg-ink text-background">
-            <div className="container-wide py-16 md:py-24">
-                <FadeInWhenVisible>
-                    <div className="grid gap-6 lg:grid-cols-2 lg:gap-16">
-                        <div>
-                            <p className="eyebrow text-background/75">Momentum Systems</p>
-                            <h2 className="mt-4 max-w-xl text-3xl font-bold leading-tight md:text-5xl">One connected system.<br />Built around your business.</h2>
-                        </div>
-                        <p className="max-w-xl self-end text-lg leading-relaxed text-background/80">For trades, wellness studios, and other appointment-driven businesses. Start with the essentials, then connect customer access, follow-up, and local visibility as you grow.</p>
-                    </div>
-                    <div className="mt-12 grid gap-8 md:grid-cols-3">
-                        {pillars.map((pillar, i) => (
-                            <div key={pillar.title} className="border-t border-background/25 pt-6">
-                                <p className="font-heading text-sm text-background/70">0{i + 1} / {pillar.label}</p>
-                                <h3 className="mt-5 text-2xl font-semibold">{pillar.title}</h3>
-                                <p className="mt-4 text-base leading-relaxed text-background/80">{pillar.description}</p>
+        <section className="container-wide py-24 md:py-32">
+            <FadeInWhenVisible>
+                <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-muted">
+                    What we do
+                </p>
+                <h2 className="mt-4 max-w-lg text-4xl font-bold md:text-5xl">
+                    Three disciplines, one team.
+                </h2>
+            </FadeInWhenVisible>
+
+            <StaggerList className="mt-14 grid gap-6 md:grid-cols-3" stagger={0.12}>
+                {services.map((service) => {
+                    const isEnterpriseTrack = service.id === "ai-automation" || service.id === "generative-ai";
+
+                    // The AI Automation / Generative AI tiles carry a second
+                    // link (to /ai-engagements), so they can't be a single
+                    // full-card <Link> like Web Development — nested anchors
+                    // aren't valid HTML.
+                    if (isEnterpriseTrack) {
+                        return (
+                            <div
+                                key={service.id}
+                                className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-background p-8"
+                            >
+                                <Link href={`/services#${service.anchor}`} className="flex flex-1 flex-col">
+                                    <h3 className="font-heading text-xl font-semibold">{service.title}</h3>
+                                    <p className="mt-1 font-heading text-sm text-muted">{service.tagline}</p>
+                                    <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">
+                                        {service.description}
+                                    </p>
+                                    <span className="mt-6 font-heading text-sm font-medium text-ink">
+                                        Explore{" "}
+                                        <span className="inline-block transition-transform group-hover:translate-x-1.5">
+                                            →
+                                        </span>
+                                    </span>
+                                </Link>
+                                <Link
+                                    href="/ai-engagements"
+                                    className="mt-4 border-t border-line pt-4 font-heading text-xs font-medium text-muted underline-offset-4 hover:text-ink hover:underline"
+                                >
+                                    Enterprise &amp; custom builds →
+                                </Link>
                             </div>
-                        ))}
+                        );
+                    }
+
+                    return (
+                        <Link
+                            key={service.id}
+                            href={`/services#${service.anchor}`}
+                            className="card-hover group flex h-full flex-col rounded-2xl border border-line bg-background p-8"
+                        >
+                            <h3 className="font-heading text-xl font-semibold">{service.title}</h3>
+                            <p className="mt-1 font-heading text-sm text-muted">{service.tagline}</p>
+                            <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">
+                                {service.description}
+                            </p>
+                            <span className="mt-6 font-heading text-sm font-medium text-ink">
+                                Explore{" "}
+                                <span className="inline-block transition-transform group-hover:translate-x-1.5">
+                                    →
+                                </span>
+                            </span>
+                        </Link>
+                    );
+                })}
+            </StaggerList>
+
+            {/* Momentum Systems Spotlight */}
+            <FadeInWhenVisible delay={0.25} className="mt-6">
+                <Link
+                    href="/momentum-systems"
+                    className="card-hover group flex flex-col justify-between rounded-2xl border border-line bg-surface p-8 transition-all hover:border-ink md:flex-row md:items-center md:p-10"
+                >
+                    <div className="max-w-2xl">
+                        <div className="flex items-center gap-2.5">
+                            <span className="font-heading text-xs font-semibold uppercase tracking-[0.24em] text-muted">
+                                04 · Packaged Growth System
+                            </span>
+                            <span className="rounded-full bg-ink px-2.5 py-0.5 font-heading text-[10px] font-bold text-background">
+                                FOR GROWING BUSINESSES
+                            </span>
+                        </div>
+                        <h3 className="mt-3 font-heading text-2xl font-bold text-ink md:text-3xl">
+                            Momentum Systems
+                        </h3>
+                        <p className="mt-1 font-heading text-sm text-ink-soft">
+                            Growth that runs on its own.
+                        </p>
+                        <p className="mt-3 text-sm leading-relaxed text-muted">
+                            The same three disciplines, packaged as an all-in-one growth engine for service businesses. Combines customer portals, automated SMS/email follow-up, and programmatic local SEO into a system that keeps bringing customers back automatically.
+                        </p>
                     </div>
-                    <div className="mt-10 flex flex-wrap items-center gap-6 border-t border-background/20 pt-8">
-                        <Link href="/momentum-systems" className="button-primary">Explore Momentum Systems <span aria-hidden="true">→</span></Link>
-                        <Link href="/pricing#ai-add-ons" className="inline-flex min-h-11 items-center font-heading text-base font-medium underline-offset-4 hover:underline">Already have a website? Explore AI add-ons →</Link>
-                        <Link href="/services" className="inline-flex min-h-11 items-center text-base text-background/80 underline-offset-4 hover:underline">Our engineering capabilities →</Link>
+                    <div className="mt-6 flex shrink-0 items-center gap-2 font-heading text-sm font-semibold text-ink md:mt-0">
+                        <span className="rounded-none border border-line bg-background px-5 py-2.5 shadow-sm group-hover:border-ink">
+                            Explore Momentum Systems →
+                        </span>
                     </div>
-                </FadeInWhenVisible>
-            </div>
+                </Link>
+            </FadeInWhenVisible>
         </section>
     );
 }

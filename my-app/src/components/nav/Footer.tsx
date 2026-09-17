@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/nav/SiteLink";
 import FooterMaps from "@/components/nav/FooterMaps";
 import BookCallButton from "@/components/booking/BookCallButton";
 import { services } from "@/data/services";
@@ -19,13 +19,6 @@ const TWITTER_URL = "#";
  *  OS default mail app, pre-addressed to us */
 const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}`;
 
-/**
- * Three topical link columns (Services / Work / Company) instead of one
- * flat sitemap list — same idea as a typical agency footer (lots of
- * scannable, categorized links), built from our own real content rather
- * than copied labels: service anchors from data/services.ts and actual
- * case studies from data/work.ts, so this stays correct as either changes.
- */
 const serviceLinks = [
     { href: "/services", label: "Services overview" },
     ...services.map((s) => ({ href: `/services#${s.anchor}`, label: s.title })),
@@ -36,6 +29,11 @@ const companyLinks = [
     { href: "/about", label: "About Kinetiq" },
     { href: "/blog", label: "Blog" },
     { href: "/careers", label: "Careers" },
+];
+
+const systemLinks = [
+    { href: "/momentum-systems", label: "Momentum Systems" },
+    { href: "/stratum-systems", label: "Stratum Systems" },
 ];
 
 const socials = [
@@ -110,15 +108,10 @@ const socials = [
     },
 ];
 
-export default function Footer({ featuredProjects }: { featuredProjects: Project[] }) {
-    const workLinks = [
-        ...featuredProjects.slice(0, 4).map((c) => ({ href: `/work/${c.slug}`, label: c.title })),
-        { href: "/work", label: "All work" },
-    ];
-
+export default function Footer({ featuredProjects }: { featuredProjects?: Project[] }) {
     return (
         <footer className="border-t border-line bg-surface">
-            <div className="container-wide grid gap-x-8 gap-y-14 py-16 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.85fr_0.85fr_0.85fr_1fr] md:py-20">
+            <div className="container-wide grid gap-x-8 gap-y-14 py-16 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.9fr_0.9fr_1fr] md:py-20">
                 <div className="sm:col-span-2 lg:col-span-1">
                     <p className="font-heading text-2xl font-bold tracking-tight">
                         kinet<span className="text-muted">iq</span>
@@ -132,20 +125,21 @@ export default function Footer({ featuredProjects }: { featuredProjects: Project
                         ⟳ always in motion
                     </p>
 
-                    {/* Prominent Systems Block Button in Footer */}
-                    <div className="mt-6 flex flex-col items-start gap-3">
-                        <Link
-                            href="/momentum-systems"
-                            className="group inline-flex items-center gap-2.5 rounded-none border border-ink bg-ink px-4 py-2.5 font-heading text-xs font-bold uppercase tracking-[0.18em] text-background shadow-sm transition-all duration-300 hover:bg-background hover:text-ink hover:border-ink hover:shadow-[0_8px_24px_-12px_rgba(17,17,19,0.35)] hover:-translate-y-0.5"
-                        >
-                            <span className="relative flex size-2 shrink-0">
-                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-background group-hover:bg-ink opacity-75 duration-1000" />
-                                <span className="relative inline-flex size-2 rounded-full bg-background group-hover:bg-ink transition-colors" />
-                            </span>
-                            <span>Momentum Systems</span>
-                            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
-                        </Link>
-                        <Link href="/stratum-systems" className="group inline-flex items-center gap-2.5 border border-ink bg-ink px-4 py-2.5 font-heading text-xs font-bold uppercase tracking-[0.18em] text-background transition-colors hover:bg-background hover:text-ink"><span aria-hidden="true" className="size-2 shrink-0 border border-current" /><span>Stratum Systems</span><span aria-hidden="true">→</span></Link>
+                    <div className="mt-6 flex w-full max-w-64 flex-col gap-3">
+                        {systemLinks.map((system) => (
+                            <Link
+                                key={system.href}
+                                href={system.href}
+                                className="group flex h-14 w-full items-center gap-2.5 rounded-none border border-ink bg-ink px-4 py-2.5 font-heading text-xs font-bold uppercase tracking-[0.18em] text-background shadow-sm transition-all duration-300 hover:bg-background hover:text-ink hover:border-ink hover:shadow-[0_8px_24px_-12px_rgba(17,17,19,0.35)] motion-safe:hover:-translate-y-0.5"
+                            >
+                                <span aria-hidden="true" className="relative flex size-2 shrink-0">
+                                    <span className="absolute inline-flex h-full w-full rounded-full bg-background opacity-75 duration-1000 motion-safe:animate-ping group-hover:bg-ink" />
+                                    <span className="relative inline-flex size-2 rounded-full bg-background transition-colors group-hover:bg-ink" />
+                                </span>
+                                <span className="min-w-0 flex-1">{system.label}</span>
+                                <span aria-hidden="true" className="inline-block shrink-0 transition-transform duration-300 motion-safe:group-hover:translate-x-1">→</span>
+                            </Link>
+                        ))}
                     </div>
                 </div>
 
@@ -155,24 +149,6 @@ export default function Footer({ featuredProjects }: { featuredProjects: Project
                     </p>
                     <ul className="mt-4 space-y-2.5">
                         {serviceLinks.map((link) => (
-                            <li key={link.href}>
-                                <Link
-                                    href={link.href}
-                                    className="font-heading text-sm font-medium text-ink-soft underline-offset-4 transition-colors duration-300 hover:text-ink hover:underline"
-                                >
-                                    {link.label}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
-
-                <nav aria-label="Work">
-                    <p className="font-heading text-xs font-medium uppercase tracking-[0.24em] text-muted">
-                        Work
-                    </p>
-                    <ul className="mt-4 space-y-2.5">
-                        {workLinks.map((link) => (
                             <li key={link.href}>
                                 <Link
                                     href={link.href}

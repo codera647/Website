@@ -5,6 +5,7 @@ import FAQAccordion from "@/components/motion/FAQAccordion";
 import StratumArchitecture from "@/components/systems/StratumArchitecture";
 import StratumAuditButton from "@/components/systems/StratumAuditButton";
 import StratumPricingCard from "@/components/pricing/StratumPricingCard";
+import { systemPageStyles as styles } from "@/components/systems/systemPageStyles";
 import {
   stratumPillars,
   stratumLifecycle,
@@ -52,6 +53,33 @@ const production = [
   "Built to improve and scale",
 ];
 
+const pillarDetails = [
+  {
+    tagline: "The technical foundation.",
+    lifecycle: "Blueprint → Build",
+    why: "A deliberate foundation keeps data access, integrations and responsibilities clear before development begins.",
+  },
+  {
+    tagline: "The right approach for the problem.",
+    lifecycle: "Build → Validate",
+    why: "The business requirement determines the AI approach, with quality measured against defined success criteria.",
+  },
+  {
+    tagline: "Dependable after deployment.",
+    lifecycle: "Deploy → Evolve",
+    why: "Operational control makes the system maintainable as data, providers and real-world usage change.",
+  },
+];
+const comparisonDimensions = [
+  "Readiness",
+  "Intelligence",
+  "Quality",
+  "Deployment",
+  "Visibility",
+  "Failure handling",
+  "Scalability",
+];
+
 function SectionIntro({
   eyebrow,
   heading,
@@ -63,17 +91,9 @@ function SectionIntro({
 }) {
   return (
     <FadeInWhenVisible>
-      <p className="font-heading text-xs uppercase tracking-[0.24em] text-muted">
-        {eyebrow}
-      </p>
-      <h2 className="mt-4 max-w-4xl font-heading text-4xl font-bold tracking-tight md:text-5xl">
-        {heading}
-      </h2>
-      {children && (
-        <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted">
-          {children}
-        </p>
-      )}
+      <p className={styles.eyebrow}>{eyebrow}</p>
+      <h2 className={styles.heading}>{heading}</h2>
+      {children && <p className={styles.description}>{children}</p>}
     </FadeInWhenVisible>
   );
 }
@@ -128,40 +148,46 @@ export default function StratumPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <section className="container-wide grid items-center gap-14 pb-24 pt-36 md:pb-32 md:pt-44 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
-        <FadeInWhenVisible>
-          <p className="font-heading text-xs uppercase tracking-[0.24em] text-muted">
-            A Kinetiq Production AI System
-          </p>
-          <h1 className="mt-6 font-heading text-5xl font-bold tracking-tight sm:text-6xl xl:text-7xl">
-            Stratum Systems
-          </h1>
-          <p className="mt-6 max-w-2xl font-heading text-2xl font-medium leading-snug md:text-3xl">
-            Production intelligence, engineered layer by layer.
-          </p>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-            We design, build and operate dependable AI systems that move beyond
-            prototypes and perform inside real businesses, real products and
-            real workflows.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-6">
-            <StratumAuditButton />
-            <a
-              href="#stratum-process"
-              className="inline-flex min-h-12 items-center gap-3 font-heading text-sm font-semibold underline underline-offset-4"
-            >
-              Explore How It Works <span aria-hidden="true">↓</span>
-            </a>
-          </div>
-          <p className="mt-8 max-w-lg text-sm leading-relaxed text-muted">
-            Custom AI engineering for startups, software companies and data-rich
-            businesses.
-          </p>
-        </FadeInWhenVisible>
-        <StratumArchitecture />
+      <section className={styles.hero}>
+        <div className="grid items-start gap-12 lg:grid-cols-12">
+          <FadeInWhenVisible className="lg:col-span-7">
+            <div className={styles.heroBadge}>
+              <span className="relative flex size-2" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ink opacity-75 duration-1000" />
+                <span className="relative inline-flex size-2 rounded-full bg-ink" />
+              </span>
+              A Kinetiq Production AI System
+            </div>
+            <h1 className={styles.heroTitle}>Stratum Systems</h1>
+            <p className="mt-6 max-w-2xl font-heading text-2xl font-medium leading-snug text-ink md:text-3xl">
+              Production intelligence, engineered layer by layer.
+            </p>
+            <p className={styles.heroDescription}>
+              We design, build and operate dependable AI systems that move
+              beyond prototypes and perform inside real businesses, real
+              products and real workflows.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <StratumAuditButton />
+              <Link href="/pricing#stratum" className={styles.primaryLink}>
+                View Pricing &amp; Tiers →
+              </Link>
+              <a href="#stratum-process" className={styles.secondaryLink}>
+                Explore How It Works
+              </a>
+            </div>
+            <p className="mt-8 max-w-lg text-sm leading-relaxed text-muted">
+              Custom AI engineering for startups, software companies and
+              data-rich businesses.
+            </p>
+          </FadeInWhenVisible>
+          <FadeInWhenVisible delay={0.1} className="lg:col-span-5">
+            <StratumArchitecture />
+          </FadeInWhenVisible>
+        </div>
       </section>
 
-      <section className="border-y border-line bg-surface py-24 md:py-32">
+      <section className={styles.surfaceSection}>
         <div className="container-wide">
           <SectionIntro
             eyebrow="From prototype to production"
@@ -171,82 +197,119 @@ export default function StratumPage() {
             deployment through deliberate architecture, evaluation, integration
             and operational control.
           </SectionIntro>
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {[
-              { name: "Prototype", items: prototype },
-              { name: "Production System", items: production },
-            ].map((column, i) => (
-              <div
-                key={column.name}
-                className={`border p-7 sm:p-10 ${i ? "border-ink bg-background" : "border-line"}`}
-              >
-                <div className="flex items-center justify-between border-b border-line pb-6">
-                  <h3 className="font-heading text-2xl font-bold">
-                    {column.name}
-                  </h3>
-                  <span
-                    aria-hidden="true"
-                    className="font-heading text-xs text-muted"
-                  >
-                    {i ? "02 / Dependable" : "01 / Experimental"}
-                  </span>
-                </div>
-                <ul className="mt-6 space-y-4 text-sm leading-relaxed">
-                  {column.items.map((item) => (
-                    <li
-                      key={item}
-                      className={`flex gap-3 ${i ? "text-ink" : "text-muted"}`}
+          <div className={styles.comparison}>
+            <div
+              className="overflow-x-auto"
+              tabIndex={0}
+              role="region"
+              aria-label="Prototype and production system comparison"
+            >
+              <table className="w-full min-w-[640px] text-left text-sm">
+                <thead>
+                  <tr className="border-b border-line bg-surface text-xs font-heading uppercase tracking-wider text-muted">
+                    <th scope="col" className="p-5 font-semibold">
+                      Dimension
+                    </th>
+                    <th scope="col" className="p-5 font-semibold text-muted/80">
+                      Prototype
+                    </th>
+                    <th
+                      scope="col"
+                      className="p-5 font-semibold text-ink bg-ink/5"
                     >
-                      <span aria-hidden="true">{i ? "✓" : "—"}</span>
-                      {item}
-                    </li>
+                      Production System
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-line">
+                  {prototype.map((item, i) => (
+                    <tr
+                      key={item}
+                      className="hover:bg-surface/80 transition-colors group cursor-default"
+                    >
+                      <th
+                        scope="row"
+                        className="p-5 font-heading font-medium text-ink group-hover:text-ink"
+                      >
+                        {comparisonDimensions[i]}
+                      </th>
+                      <td className="p-5 text-muted group-hover:text-ink-soft">
+                        {item}
+                      </td>
+                      <td className="p-5 font-medium text-ink bg-ink/5 group-hover:bg-ink/10 transition-colors">
+                        {production[i]}
+                      </td>
+                    </tr>
                   ))}
-                </ul>
-              </div>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="stratum-pillars"
+        className={`${styles.surfaceSection} scroll-mt-24`}
+      >
+        <div className="container-wide">
+          <SectionIntro
+            eyebrow="The Three Pillars"
+            heading="Architecture. Intelligence. Operations."
+          >
+            Every layer serves the same goal: a system your team can depend on.
+          </SectionIntro>
+          <div className="mt-16 space-y-8">
+            {stratumPillars.map((pillar, i) => (
+              <FadeInWhenVisible key={pillar.name} delay={i * 0.1}>
+                <article className={styles.pillarCard}>
+                  <div className="lg:col-span-5 flex flex-col justify-between">
+                    <div>
+                      <span className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+                        Pillar 0{i + 1}
+                      </span>
+                      <h3 className="mt-2 font-heading text-2xl font-bold text-ink md:text-3xl">
+                        {pillar.name}
+                      </h3>
+                      <p className="mt-2 font-heading text-sm font-medium text-ink-soft">
+                        {pillarDetails[i].tagline}
+                      </p>
+                    </div>
+                    <div className={styles.practicePanel}>
+                      <span className="block font-heading font-semibold uppercase tracking-wider text-[11px] text-ink mb-1">
+                        Connected lifecycle stages
+                      </span>
+                      {pillarDetails[i].lifecycle}
+                    </div>
+                  </div>
+                  <div className="lg:col-span-7 space-y-6 lg:border-l lg:border-line lg:pl-12">
+                    <div>
+                      <h4 className="font-heading text-xs uppercase tracking-wider text-muted font-semibold">
+                        What It Is
+                      </h4>
+                      <p className="mt-2 text-sm leading-relaxed text-ink/90">
+                        {pillar.description}
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-heading text-xs uppercase tracking-wider text-muted font-semibold">
+                        Why It Matters
+                      </h4>
+                      <p className="mt-2 text-sm leading-relaxed text-ink/90">
+                        {pillarDetails[i].why}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </FadeInWhenVisible>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="container-wide py-24 md:py-32">
-        <SectionIntro
-          eyebrow="Three connected pillars"
-          heading="Architecture. Intelligence. Operations."
-        >
-          Every layer serves the same goal: a system your team can depend on.
-        </SectionIntro>
-        <div className="mt-12 grid border border-line md:grid-cols-3">
-          {stratumPillars.map((pillar, i) => (
-            <FadeInWhenVisible
-              key={pillar.name}
-              delay={i * 0.1}
-              className="relative border-b border-line p-7 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0 sm:p-10"
-            >
-              <span className="font-heading text-xs text-muted">
-                0{i + 1} / STRATUM
-              </span>
-              <h3 className="mt-7 font-heading text-2xl font-bold">
-                {pillar.name}
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-muted">
-                {pillar.description}
-              </p>
-              {i < 2 && (
-                <span
-                  aria-hidden="true"
-                  className="absolute -right-3 top-12 z-10 hidden bg-background px-1 text-muted md:block"
-                >
-                  →
-                </span>
-              )}
-            </FadeInWhenVisible>
-          ))}
-        </div>
-      </section>
-
       <section
         id="stratum-process"
-        className="scroll-mt-28 border-y border-line bg-stratum-surface py-24 md:py-32"
+        className={`${styles.lightSection} scroll-mt-24`}
       >
         <div className="container-wide">
           <SectionIntro
@@ -256,27 +319,28 @@ export default function StratumPage() {
             Five stages, with validation built into the journey. We define the
             system before we build it, then improve it through real usage.
           </SectionIntro>
-          <ol className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-5">
+          <ol className="mt-16 grid gap-6 sm:grid-cols-2 xl:grid-cols-5">
             {stratumLifecycle.map((stage, i) => (
               <li key={stage.name}>
-                <FadeInWhenVisible
-                  delay={i * 0.08}
-                  className="h-full border-t border-ink/30 pt-6"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-heading text-3xl font-bold text-muted/60">
-                      0{i + 1}
+                <FadeInWhenVisible delay={0.05 + i * 0.05} className="h-full">
+                  <article className={styles.workflowCard}>
+                    <div>
+                      <span className="font-heading text-xs font-bold text-muted">
+                        0{i + 1} / {stage.name.toUpperCase()}
+                      </span>
+                      <h3 className="mt-3 font-heading text-lg font-bold text-ink">
+                        {stage.name}
+                      </h3>
+                      <p className="mt-3 text-xs leading-relaxed text-muted">
+                        {stage.description}
+                      </p>
+                    </div>
+                    <span className="mt-6 font-heading text-xs font-semibold text-ink-soft transition-transform group-hover:translate-x-1">
+                      {i === 4
+                        ? "⟳ Improve through real usage"
+                        : `→ ${stratumLifecycle[i + 1].name}`}
                     </span>
-                    <span aria-hidden="true" className="text-muted">
-                      {i === 4 ? "↺" : "→"}
-                    </span>
-                  </div>
-                  <h3 className="mt-6 font-heading text-xl font-bold">
-                    {stage.name}
-                  </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-muted">
-                    {stage.description}
-                  </p>
+                  </article>
                 </FadeInWhenVisible>
               </li>
             ))}
@@ -284,46 +348,48 @@ export default function StratumPage() {
         </div>
       </section>
 
-      <section className="container-wide py-24 md:py-32">
-        <SectionIntro
-          eyebrow="What we build"
-          heading="The right intelligence for the problem."
-        >
-          From retrieval and agents to predictive models and computer vision,
-          the use case determines the approach.
-        </SectionIntro>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-          {stratumCapabilities.map((capability, i) => (
-            <FadeInWhenVisible
-              key={capability.name}
-              delay={(i % 4) * 0.06}
-              className="h-full"
-            >
-              <article className="h-full border border-line bg-surface p-7">
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  className="size-8 text-ink"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.2"
-                  strokeLinejoin="round"
-                >
-                  <path d={capability.icon} />
-                </svg>
-                <h3 className="mt-6 font-heading text-xl font-semibold leading-snug">
-                  {capability.name}
-                </h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted">
-                  {capability.description}
-                </p>
-              </article>
-            </FadeInWhenVisible>
-          ))}
+      <section className={styles.lightSection}>
+        <div className="container-wide">
+          <SectionIntro
+            eyebrow="What we build"
+            heading="The right intelligence for the problem."
+          >
+            From retrieval and agents to predictive models and computer vision,
+            the use case determines the approach.
+          </SectionIntro>
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+            {stratumCapabilities.map((capability, i) => (
+              <FadeInWhenVisible
+                key={capability.name}
+                delay={(i % 4) * 0.08}
+                className="h-full"
+              >
+                <article className={styles.contentCard}>
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    className="size-8 text-ink"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.2"
+                    strokeLinejoin="round"
+                  >
+                    <path d={capability.icon} />
+                  </svg>
+                  <h3 className="mt-6 font-heading text-xl font-bold text-ink">
+                    {capability.name}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted">
+                    {capability.description}
+                  </p>
+                </article>
+              </FadeInWhenVisible>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="border-y border-line bg-surface py-24 md:py-32">
+      <section className={styles.surfaceSection}>
         <div className="container-wide">
           <SectionIntro
             eyebrow="Example Systems"
@@ -333,61 +399,64 @@ export default function StratumPage() {
             results. Your Blueprint determines what is feasible for your data
             and requirements.
           </SectionIntro>
-          <ul className="mt-12 grid gap-x-12 md:grid-cols-2">
+          <ul className="mt-14 grid gap-6 md:grid-cols-2">
             {stratumExamples.map((example, i) => (
-              <li
-                key={example}
-                className="flex items-start gap-5 border-t border-line py-6"
-              >
-                <span className="pt-1 font-heading text-xs text-muted">
-                  0{i + 1}
-                </span>
-                <h3 className="font-heading text-lg font-medium leading-relaxed">
-                  {example}
-                </h3>
+              <li key={example}>
+                <FadeInWhenVisible delay={(i % 2) * 0.08} className="h-full">
+                  <article className={styles.contentCard}>
+                    <span className="font-heading text-xs font-bold text-muted">
+                      0{i + 1} / EXAMPLE SYSTEM
+                    </span>
+                    <h3 className="mt-3 font-heading text-xl font-bold text-ink">
+                      {example}
+                    </h3>
+                  </article>
+                </FadeInWhenVisible>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section className="container-wide py-24 md:py-32">
-        <SectionIntro
-          eyebrow="Who Stratum is for"
-          heading="For teams building beyond the chatbot."
-        />
-        <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {stratumAudiences.map((audience) => (
-            <li
-              key={audience}
-              className="flex items-start gap-4 border border-line p-6 text-base leading-relaxed"
+      <section className={styles.lightSection}>
+        <div className="container-wide">
+          <SectionIntro
+            eyebrow="Who Stratum is for"
+            heading="For teams building beyond the chatbot."
+          />
+          <ul className="mt-14 grid gap-6 md:grid-cols-2">
+            {stratumAudiences.map((audience, i) => (
+              <li key={audience}>
+                <FadeInWhenVisible delay={i * 0.08} className="h-full">
+                  <article className={styles.contentCard}>
+                    <h3 className="font-heading text-xl font-bold text-ink">
+                      {audience}
+                    </h3>
+                  </article>
+                </FadeInWhenVisible>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-10 max-w-4xl border-l-2 border-ink pl-6 text-sm leading-relaxed text-muted">
+            Stratum is not intended for companies looking only for a basic
+            website chatbot, simple content generation or a disconnected no-code
+            automation. Those requirements may be better addressed through{" "}
+            <Link
+              href="/pricing#ai-add-ons"
+              className="font-medium text-ink underline underline-offset-4"
             >
-              <span aria-hidden="true" className="text-muted">
-                ↗
-              </span>
-              {audience}
-            </li>
-          ))}
-        </ul>
-        <p className="mt-10 max-w-4xl border-l-2 border-ink pl-6 text-sm leading-relaxed text-muted">
-          Stratum is not intended for companies looking only for a basic website
-          chatbot, simple content generation or a disconnected no-code
-          automation. Those requirements may be better addressed through{" "}
-          <Link
-            href="/pricing#ai-add-ons"
-            className="font-medium text-ink underline underline-offset-4"
-          >
-            Momentum’s AI capabilities
-          </Link>
-          .
-        </p>
-        <p className="mt-8 max-w-3xl text-sm leading-relaxed text-muted">
-          Momentum builds the engine that grows the business. Stratum builds the
-          intelligence that powers the product and its operations.
-        </p>
+              Momentum’s AI capabilities
+            </Link>
+            .
+          </p>
+          <p className="mt-8 max-w-3xl text-sm leading-relaxed text-muted">
+            Momentum builds the engine that grows the business. Stratum builds
+            the intelligence that powers the product and its operations.
+          </p>
+        </div>
       </section>
 
-      <section className="border-y border-line bg-surface py-24 md:py-32">
+      <section className={styles.surfaceSection}>
         <div className="container-wide">
           <SectionIntro
             eyebrow="Implementation plans · USD"
@@ -397,44 +466,65 @@ export default function StratumPage() {
             complete payment is credited toward implementation when you proceed
             within 30 days.
           </SectionIntro>
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {stratumTiers.map((tier) => (
-              <StratumPricingCard key={tier.id} tier={tier} preview />
+          <div className="mt-14 grid gap-8 lg:grid-cols-3 lg:items-stretch">
+            {stratumTiers.map((tier, index) => (
+              <StratumPricingCard
+                key={tier.id}
+                tier={tier}
+                index={index}
+                preview
+              />
             ))}
           </div>
           <p className="mt-8 max-w-3xl text-sm leading-relaxed text-muted">
             {stratumDeliveryNote}
           </p>
-          <Link
-            href="/pricing#stratum"
-            className="mt-6 inline-flex min-h-12 items-center gap-4 font-heading text-base font-semibold underline underline-offset-4"
-          >
-            Explore Stratum Pricing <span aria-hidden="true">→</span>
-          </Link>
+          <FadeInWhenVisible delay={0.2} className="mt-8">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-line bg-background p-6 sm:p-8">
+              <div>
+                <h3 className="font-heading text-lg font-bold text-ink">
+                  Ready to see your implementation and operations scope?
+                </h3>
+                <p className="mt-1 text-xs leading-relaxed text-muted">
+                  Explore Stratum Launch, Production and Scale, starting with a
+                  Blueprint.
+                </p>
+              </div>
+              <Link
+                href="/pricing#stratum"
+                className="inline-block shrink-0 rounded-none bg-ink px-6 py-3 font-heading text-xs font-bold uppercase tracking-wider text-background hover:bg-ink-soft transition-colors shadow-sm"
+              >
+                Explore Stratum Pricing →
+              </Link>
+            </div>
+          </FadeInWhenVisible>
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-6 py-24 md:py-32">
-        <SectionIntro eyebrow="FAQ" heading="Before we build." />
-        <FAQAccordion items={stratumFAQs} className="mt-12" />
+      <section className={styles.surfaceSection}>
+        <div className="container-wide max-w-4xl">
+          <SectionIntro
+            eyebrow="Questions & Answers"
+            heading="Before we build."
+          />
+          <FAQAccordion items={stratumFAQs} className="mt-12" />
+        </div>
       </section>
 
-      <section className="bg-ink py-24 text-background md:py-32">
-        <div className="container-wide">
+      <section className={styles.closing}>
+        <div className={styles.closingContainer}>
           <FadeInWhenVisible>
-            <p className="font-heading text-xs uppercase tracking-[0.24em] text-background/60">
-              Stratum Systems by Kinetiq
-            </p>
-            <h2 className="mt-6 max-w-4xl font-heading text-4xl font-bold tracking-tight md:text-6xl">
+            <p className={styles.closingEyebrow}>Stratum Systems by Kinetiq</p>
+            <h2 className={styles.closingHeading}>
               Ready to move your AI system beyond the prototype?
             </h2>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-background/70">
+            <p className={styles.closingDescription}>
               Start with a Stratum Blueprint and leave with a practical
               architecture, implementation roadmap and clearly defined path to
               production.
             </p>
             <div className="mt-10">
-              <StratumAuditButton dark />
+              <StratumAuditButton />
             </div>
           </FadeInWhenVisible>
         </div>

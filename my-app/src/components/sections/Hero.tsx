@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/nav/SiteLink";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import BookCallButton from "@/components/booking/BookCallButton";
@@ -173,10 +173,10 @@ export default function Hero() {
                         transition={{ duration: 0.6, delay: 0.55 }}
                     >
                         <Link
-                            href="/work"
+                            href="/services"
                             className="rounded-none bg-ink px-7 py-3.5 font-heading text-sm font-semibold text-background transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink-soft hover:shadow-[0_12px_32px_-12px_rgba(0,0,0,0.45)]"
                         >
-                            See our work
+                            Explore services
                         </Link>
                         <BookCallButton
                             calLink="kinetiq-solutions/30min"

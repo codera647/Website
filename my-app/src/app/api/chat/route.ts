@@ -135,7 +135,6 @@ SITEMAP DIRECTORY:
 - Momentum Systems: /momentum-systems
 - Pricing & Tiers: /pricing
 - Services Overview: /services
-- Selected Work & Case Studies: /work
 - About Kinetiq & Leadership: /about
 - Careers & Open Roles: /careers
 - Blog: /blog
@@ -161,8 +160,6 @@ Whenever relevant to the user's question, provide a clear, dedicated clickable m
 - For Momentum Systems: [Explore Momentum Systems](/momentum-systems)
 - For Pricing / Cost / Plans: [View Pricing & Tiers](/pricing)
 - For Core Services: [Explore Our Services](/services)
-- For Case Studies & Work: [See Selected Work](/work)
-- For a specific project: [View Case Study](/work/project-slug)
 - For About & Leadership: [About Kinetiq & Leadership](/about)
 - For Careers: [View Open Roles](/careers)
 - For Scheduling / Audits / Getting Started: [Book Free 30-Min Call](action:book-call)

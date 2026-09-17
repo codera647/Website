@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import Counter from "@/components/motion/Counter";
 import { services } from "@/data/services";
@@ -43,7 +42,6 @@ function buildStats(projects: Project[]): ProofStatData[] {
             proof: projects.map((cs) => ({
                 text: cs.title,
                 sub: cs.category,
-                href: `/work/${cs.slug}`,
             })),
         },
         {
@@ -105,10 +103,7 @@ function ProofStat({ stat }: { stat: ProofStatData }) {
                         <ul className="mx-auto mt-5 flex w-full max-w-[280px] flex-col gap-2">
                             {stat.proof.map((item) => (
                                 <li key={item.text}>
-                                    <Link
-                                        href={item.href ?? "#"}
-                                        className="flex h-12 items-center justify-between gap-3 rounded-none border border-line bg-background px-4 text-left transition-colors hover:border-ink hover:shadow-[0_8px_20px_-12px_rgba(17,17,19,0.25)]"
-                                    >
+                                    <div className="flex h-12 items-center justify-between gap-3 rounded-none border border-line bg-background px-4 text-left">
                                         <span className="min-w-0 truncate font-heading text-sm font-semibold text-ink">
                                             {item.text}
                                         </span>
@@ -117,7 +112,7 @@ function ProofStat({ stat }: { stat: ProofStatData }) {
                                                 {item.sub}
                                             </span>
                                         )}
-                                    </Link>
+                                    </div>
                                 </li>
                             ))}
                         </ul>

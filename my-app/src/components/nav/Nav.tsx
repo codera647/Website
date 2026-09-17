@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/nav/SiteLink";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
@@ -10,7 +10,7 @@ import BracketButton from "@/components/motion/BracketButton";
 const links = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
-  { href: "/work", label: "Work" },
+  { href: "/#systems", label: "Systems" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/careers", label: "Careers" },
@@ -95,7 +95,11 @@ export default function Nav() {
   }, [open]);
 
   const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+    href === "/#systems"
+      ? systemLinks.some((link) => pathname === link.href)
+      : href === "/"
+        ? pathname === "/"
+        : pathname.startsWith(href);
 
   return (
     <>
@@ -113,7 +117,7 @@ export default function Nav() {
         }`}
       >
         <div className="container-wide flex h-[72px] items-center justify-between">
-          {/* Brand wordmark + Prominent Highlighted Systems Block */}
+          {/* Brand wordmark */}
           <div className="flex items-center gap-3 sm:gap-4">
             <Link
               href="/"
@@ -125,34 +129,36 @@ export default function Nav() {
               </span>
               <BrandDots />
             </Link>
-
-            <SystemsMenu />
           </div>
 
           <nav aria-label="Main" className="hidden items-center gap-1 xl:flex">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={isActive(link.href) ? "page" : undefined}
-                className={`group relative rounded-none px-4 py-2 font-heading text-sm font-medium transition-colors ${
-                  isActive(link.href)
-                    ? "text-background"
-                    : "text-background/50 hover:text-background"
-                }`}
-              >
-                {link.label}
-                {/* animated underline: grows from center on hover, stays for active */}
-                <span
-                  aria-hidden="true"
-                  className={`absolute inset-x-4 -bottom-0.5 h-px origin-center bg-background transition-transform duration-300 ease-out ${
+            {links.map((link) =>
+              link.label === "Systems" ? (
+                <SystemsMenu key={link.href} />
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={isActive(link.href) ? "page" : undefined}
+                  className={`group relative rounded-none px-4 py-2 font-heading text-sm font-medium transition-colors ${
                     isActive(link.href)
-                      ? "scale-x-100"
-                      : "scale-x-0 group-hover:scale-x-100"
+                      ? "text-background"
+                      : "text-background/50 hover:text-background"
                   }`}
-                />
-              </Link>
-            ))}
+                >
+                  {link.label}
+                  {/* animated underline: grows from center on hover, stays for active */}
+                  <span
+                    aria-hidden="true"
+                    className={`absolute inset-x-4 -bottom-0.5 h-px origin-center bg-background transition-transform duration-300 ease-out ${
+                      isActive(link.href)
+                        ? "scale-x-100"
+                        : "scale-x-0 group-hover:scale-x-100"
+                    }`}
+                  />
+                </Link>
+              ),
+            )}
             <BracketButton calLink="kinetiq-solutions/30min" className="ml-4">
               Let&apos;s talk
             </BracketButton>
@@ -196,25 +202,6 @@ export default function Nav() {
             >
               Close menu <span aria-hidden="true">×</span>
             </button>
-            <nav
-              aria-label="Mobile systems"
-              className="mb-5 border-y border-background/20 py-3"
-            >
-              <p className="px-3 py-2 font-heading text-xs uppercase tracking-widest text-background/60">
-                Systems
-              </p>
-              {systemLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="flex min-h-12 items-center justify-between px-3 py-3 font-heading text-base font-semibold text-background hover:bg-background/10"
-                >
-                  {link.label}
-                  <span aria-hidden="true">→</span>
-                </Link>
-              ))}
-            </nav>
             <nav aria-label="Mobile" className="space-y-2">
               {links.map((link, i) => (
                 <motion.div
@@ -234,6 +221,25 @@ export default function Nav() {
                   >
                     {link.label}
                   </Link>
+                  {link.label === "Systems" && (
+                    <ul className="space-y-1 border-b border-background/10 py-2">
+                      {systemLinks.map((system) => (
+                        <li key={system.href}>
+                          <Link
+                            href={system.href}
+                            onClick={() => setOpen(false)}
+                            aria-current={
+                              pathname === system.href ? "page" : undefined
+                            }
+                            className={`flex min-h-12 items-center justify-between px-3 py-3 font-heading text-base font-medium transition-colors ${pathname === system.href ? "text-background" : "text-background/60 hover:text-background"}`}
+                          >
+                            {system.label}
+                            <span aria-hidden="true">→</span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </motion.div>
               ))}
               <div className="pt-6">

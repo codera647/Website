@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, type ReactNode } from "react";
-import Link from "next/link";
+import Link from "@/components/nav/SiteLink";
 import { getCalApi } from "@calcom/embed-react";
 
 /**
@@ -113,7 +113,7 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                 );
             } else {
                 nodes.push(
-                    <a
+                    <Link
                         key={key++}
                         href={url}
                         target="_blank"
@@ -125,7 +125,7 @@ function parseInline(text: string, isDark: boolean): ReactNode[] {
                         }`}
                     >
                         {cleanLabel} ↗
-                    </a>
+                    </Link>
                 );
             }
         } else if (match[7] !== undefined) {

@@ -26,6 +26,7 @@ export const systemLinks = [
 export default function SystemsMenu() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const active = systemLinks.some((link) => pathname === link.href);
   const id = useId();
   const container = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
@@ -51,7 +52,7 @@ export default function SystemsMenu() {
   return (
     <div
       ref={container}
-      className="relative hidden xl:block"
+      className="relative"
       onBlur={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
       }}
@@ -62,10 +63,23 @@ export default function SystemsMenu() {
         aria-expanded={open}
         aria-controls={id}
         onClick={() => setOpen(!open)}
-        className="flex min-h-11 items-center gap-3 border border-background/30 bg-background/5 px-4 font-heading text-xs font-semibold uppercase tracking-[0.14em] text-background hover:bg-background/10"
+        className={`group relative flex items-center gap-1.5 rounded-none px-4 py-2 font-heading text-sm font-medium transition-colors ${active || open ? "text-background" : "text-background/50 hover:text-background"}`}
       >
-        <span aria-hidden="true" className="size-1.5 bg-background" />
-        Systems<span aria-hidden="true">{open ? "−" : "+"}</span>
+        Systems
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 12 12"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.2"
+          className={`size-3 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+        >
+          <path d="m3 4.5 3 3 3-3" />
+        </svg>
+        <span
+          aria-hidden="true"
+          className={`absolute inset-x-4 -bottom-0.5 h-px origin-center bg-background transition-transform duration-300 ease-out ${active || open ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
+        />
       </button>
       {open && (
         <nav

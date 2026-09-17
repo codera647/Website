@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PricingSystemSelector from "@/components/pricing/PricingSystemSelector";
 import StratumPricing from "@/components/pricing/StratumPricing";
+import { PricingCardFrame, PricingCardAction, PricingFeatures } from "@/components/pricing/PricingCard";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import BracketButton from "@/components/motion/BracketButton";
 import FAQAccordion, { type FAQItem } from "@/components/motion/FAQAccordion";
@@ -221,98 +222,57 @@ const PRICING_FAQS: FAQItem[] = [
 /** Reused for both the Momentum Systems tiers and the AI Add-Ons tiers — same card, same price treatment, so Add-Ons read as a continuation of the page rather than a different product. */
 function TierCard({ tier, index }: { tier: PricingTier; index: number }) {
     return (
-        <FadeInWhenVisible delay={index * 0.1} className="flex">
-            <div
-                className={`card-hover group flex w-full flex-col justify-between rounded-2xl border bg-background p-8 transition-all md:p-10 ${
-                    tier.isPopular ? "relative border-ink shadow-lg ring-1 ring-ink/10" : "border-line"
-                }`}
-            >
-                <div>
-                    {/* Top Header & Optional Badge */}
-                    <div className="flex items-center justify-between gap-2">
-                        <h3 className="font-heading text-2xl font-bold text-ink">{tier.name}</h3>
-                        {tier.badge && (
-                            <span className="rounded-none bg-ink px-2.5 py-1 font-heading text-[10px] font-bold uppercase tracking-wider text-background">
-                                {tier.badge}
-                            </span>
-                        )}
-                    </div>
-
-                    <p className="mt-3 text-xs leading-relaxed text-muted">{tier.tagline}</p>
-
-                    {/* Price Block */}
-                    <div className="mt-8 border-y border-line py-6">
-                        {/* Monthly Fee */}
-                        <div className="flex items-baseline gap-2">
-                            <span className="text-sm text-muted line-through">{tier.monthlyOriginal}</span>
-                            <span className="font-heading text-4xl font-bold text-ink">{tier.monthlyFounding}</span>
-                            <span className="text-xs font-medium text-muted">/ month</span>
-                        </div>
-
-                        {/* Setup Fee */}
-                        <div className="mt-2 flex items-center gap-2 text-xs">
-                            <span className="text-muted">Setup:</span>
-                            <span className="text-muted line-through">{tier.setupOriginal}</span>
-                            <span className="font-heading font-bold text-ink">{tier.setupFounding}</span>
-                            <span className="text-muted/80">(one-time build fee)</span>
-                        </div>
-                    </div>
-
-                    {/* Features List */}
-                    <ul className="mt-8 space-y-3.5 text-xs leading-relaxed text-ink/90">
-                        {tier.features.map((feat, fIdx) => (
-                            <li
-                                key={fIdx}
-                                className={`flex items-start gap-2.5 ${
-                                    feat.startsWith("Everything in") || feat.startsWith("Pick one")
-                                        ? "font-heading font-semibold text-ink border-b border-line pb-2"
-                                        : ""
-                                }`}
-                            >
-                                {!feat.startsWith("Everything in") && !feat.startsWith("Pick one") && (
-                                    <svg
-                                        className="size-4 shrink-0 text-ink mt-0.5"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                        aria-hidden="true"
-                                    >
-                                        <path
-                                            fillRule="evenodd"
-                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                            clipRule="evenodd"
-                                        />
-                                    </svg>
-                                )}
-                                <span>{feat}</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-                {/* Action CTA */}
-                <div className="mt-10 pt-6 border-t border-line">
-                    <BracketButton
-                        calLink="kinetiq-solutions/30min"
-                        className="w-full text-center"
-                        buttonClassName={
-                            tier.isPopular
-                                ? "bg-ink text-background group-hover:bg-ink-soft"
-                                : "bg-surface text-ink group-hover:bg-ink group-hover:text-background"
-                        }
-                    >
-                        {tier.ctaText}
-                    </BracketButton>
-                    {tier.crossLinkToAddons && (
-                        <a
-                            href="#ai-add-ons"
-                            className="mt-3 block text-center text-xs font-medium text-muted underline-offset-4 hover:text-ink hover:underline"
-                        >
-                            Want to add AI automation? See AI Add-Ons below.
-                        </a>
+        <PricingCardFrame index={index} popular={tier.isPopular}>
+            <div>
+                {/* Top Header & Optional Badge */}
+                <div className="flex items-center justify-between gap-2">
+                    <h3 className="font-heading text-2xl font-bold text-ink">{tier.name}</h3>
+                    {tier.badge && (
+                        <span className="rounded-none bg-ink px-2.5 py-1 font-heading text-[10px] font-bold uppercase tracking-wider text-background">
+                            {tier.badge}
+                        </span>
                     )}
                 </div>
+
+                <p className="mt-3 text-xs leading-relaxed text-muted">{tier.tagline}</p>
+
+                {/* Price Block */}
+                <div className="mt-8 border-y border-line py-6">
+                    {/* Monthly Fee */}
+                    <div className="flex items-baseline gap-2">
+                        <span className="text-sm text-muted line-through">{tier.monthlyOriginal}</span>
+                        <span className="font-heading text-4xl font-bold text-ink">{tier.monthlyFounding}</span>
+                        <span className="text-xs font-medium text-muted">/ month</span>
+                    </div>
+
+                    {/* Setup Fee */}
+                    <div className="mt-2 flex items-center gap-2 text-xs">
+                        <span className="text-muted">Setup:</span>
+                        <span className="text-muted line-through">{tier.setupOriginal}</span>
+                        <span className="font-heading font-bold text-ink">{tier.setupFounding}</span>
+                        <span className="text-muted/80">(one-time build fee)</span>
+                    </div>
+                </div>
+
+                {/* Features List */}
+                <PricingFeatures features={tier.features} />
             </div>
-        </FadeInWhenVisible>
+
+            {/* Action CTA */}
+            <div className="mt-10 pt-6 border-t border-line">
+                <PricingCardAction popular={tier.isPopular}>
+                    {tier.ctaText}
+                </PricingCardAction>
+                {tier.crossLinkToAddons && (
+                    <a
+                        href="#ai-add-ons"
+                        className="mt-3 block text-center text-xs font-medium text-muted underline-offset-4 hover:text-ink hover:underline"
+                    >
+                        Want to add AI automation? See AI Add-Ons below.
+                    </a>
+                )}
+            </div>
+        </PricingCardFrame>
     );
 }
 

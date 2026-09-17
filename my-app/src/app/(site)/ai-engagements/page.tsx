@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/nav/SiteLink";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import FAQAccordion from "@/components/motion/FAQAccordion";
 import EngagementLadder from "@/components/sections/EngagementLadder";
@@ -117,10 +117,10 @@ export default function AiEngagementsPage() {
                             engagements are how each of those started.
                         </p>
                         <Link
-                            href="/work"
+                            href="/services"
                             className="mt-6 inline-block font-heading text-sm font-semibold text-ink underline-offset-4 hover:underline"
                         >
-                            See the full portfolio →
+                            Explore our services →
                         </Link>
                     </FadeInWhenVisible>
                 </div>

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/nav/SiteLink";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import StaggerList from "@/components/motion/StaggerList";
 import type { Project } from "@/lib/data";

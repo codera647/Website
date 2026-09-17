@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import Link from "@/components/nav/SiteLink";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import ProjectChatPanel from "@/components/chat/ProjectChatPanel";
 import { getAllProjects, getProjectBySlug } from "@/lib/data";

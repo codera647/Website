@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/nav/SiteLink";
 
 /**
  * Custom 404 page — branded "not found" experience that matches the
@@ -26,10 +26,10 @@ export default function NotFound() {
                         Back to home
                     </Link>
                     <Link
-                        href="/work"
+                        href="/services"
                         className="rounded-none border border-line bg-background px-7 py-3.5 font-heading text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-ink"
                     >
-                        Explore our work
+                        Explore services
                     </Link>
                 </div>
             </div>

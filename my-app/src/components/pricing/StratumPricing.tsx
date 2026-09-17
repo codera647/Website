@@ -7,14 +7,16 @@ import {
   stratumPricingNote,
   stratumDeliveryNote,
 } from "@/data/stratum";
-import StratumPricingCard, { PricingFeatures } from "./StratumPricingCard";
+import StratumPricingCard from "./StratumPricingCard";
+import { PricingFeatures, pricingCardClassName } from "./PricingCard";
+import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import StratumAuditButton from "@/components/systems/StratumAuditButton";
 
 export default function StratumPricing() {
   return (
     <section
       id="stratum"
-      className="scroll-mt-28 border-t border-line py-24 md:py-32"
+      className="scroll-mt-28 border-t border-line bg-surface/40 py-20 md:py-28"
       aria-labelledby="stratum-pricing-heading"
     >
       <div className="container-wide">
@@ -38,46 +40,48 @@ export default function StratumPricing() {
         >
           Explore Stratum Systems <span aria-hidden="true">↗</span>
         </Link>
-        <article
-          id="stratum-blueprint"
-          className="mt-12 grid scroll-mt-28 gap-8 border border-ink bg-stratum-surface p-6 sm:p-8 lg:grid-cols-[1fr_1.2fr] lg:gap-16 lg:p-10"
-        >
-          <div>
-            <p className="font-heading text-xs uppercase tracking-[0.18em] text-muted">
-              01 / Every implementation starts here
-            </p>
-            <h3 className="mt-4 font-heading text-3xl font-bold">
-              Stratum Blueprint
-            </h3>
-            <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted">
-              {stratumBlueprint.description}
-            </p>
-            <p className="mt-6 text-sm text-muted">
-              <span className="sr-only">Standard price: </span>
-              <s>{stratumBlueprint.standard} one-time</s>
-            </p>
-            <p className="mt-1 font-heading text-4xl font-bold">
-              <span className="sr-only">Founding price: </span>
-              {stratumBlueprint.founding}
-              <span className="ml-2 font-body text-sm font-normal text-muted">
-                one-time
-              </span>
-            </p>
-            <p className="mt-4 text-sm">
-              Estimated delivery: <strong>{stratumBlueprint.delivery}</strong>
-            </p>
-            <div className="mt-8">
-              <StratumAuditButton />
+        <FadeInWhenVisible className="mt-12">
+          <article
+            id="stratum-blueprint"
+            className={`${pricingCardClassName()} scroll-mt-28 gap-8 lg:grid lg:grid-cols-[1fr_1.2fr] lg:gap-16`}
+          >
+            <div>
+              <p className="font-heading text-xs uppercase tracking-[0.18em] text-muted">
+                01 / Every implementation starts here
+              </p>
+              <h3 className="mt-4 font-heading text-2xl font-bold text-ink">
+                Stratum Blueprint
+              </h3>
+              <p className="mt-3 max-w-lg text-xs leading-relaxed text-muted">
+                {stratumBlueprint.description}
+              </p>
+              <p className="mt-6 text-sm text-muted">
+                <span className="sr-only">Standard price: </span>
+                <s>{stratumBlueprint.standard} one-time</s>
+              </p>
+              <p className="mt-1 font-heading text-4xl font-bold">
+                <span className="sr-only">Founding price: </span>
+                {stratumBlueprint.founding}
+                <span className="ml-2 font-body text-sm font-normal text-muted">
+                  one-time
+                </span>
+              </p>
+              <p className="mt-4 text-sm">
+                Estimated delivery: <strong>{stratumBlueprint.delivery}</strong>
+              </p>
+              <div className="mt-8">
+                <StratumAuditButton pricing />
+              </div>
             </div>
-          </div>
-          <div>
-            <PricingFeatures features={stratumBlueprint.features} />
-            <p className="mt-7 border-t border-ink/20 pt-5 text-sm leading-relaxed">
-              <strong>Blueprint credit. </strong>
-              {stratumBlueprint.credit}
-            </p>
-          </div>
-        </article>
+            <div>
+              <PricingFeatures features={stratumBlueprint.features} />
+              <p className="mt-7 border-t border-line pt-5 text-xs leading-relaxed text-muted">
+                <strong>Blueprint credit. </strong>
+                {stratumBlueprint.credit}
+              </p>
+            </div>
+          </article>
+        </FadeInWhenVisible>
         <div className="mb-8 mt-16">
           <p className="font-heading text-xs uppercase tracking-[0.18em] text-muted">
             02 / Implementation
@@ -90,9 +94,9 @@ export default function StratumPricing() {
             Standard prices are crossed out.
           </p>
         </div>
-        <div className="grid gap-6 lg:grid-cols-3">
-          {stratumTiers.map((tier) => (
-            <StratumPricingCard key={tier.id} tier={tier} />
+        <div className="grid gap-8 lg:grid-cols-3 lg:items-stretch">
+          {stratumTiers.map((tier, index) => (
+            <StratumPricingCard key={tier.id} tier={tier} index={index} />
           ))}
         </div>
         <section
@@ -140,17 +144,22 @@ export default function StratumPricing() {
           <p>{stratumPricingNote}</p>
           <p>{stratumDeliveryNote}</p>
         </div>
-        <div className="mt-12 flex flex-col gap-6 border border-line bg-surface p-7 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h3 className="font-heading text-xl font-bold">
+        <div className="mt-12 bg-ink px-8 py-28 text-center text-background md:px-10 md:py-36">
+          <FadeInWhenVisible>
+            <p className="font-heading text-xs font-medium uppercase tracking-[0.28em] text-background/50">
+              Ready when you are
+            </p>
+            <h3 className="mx-auto mt-5 max-w-2xl text-4xl font-bold leading-tight md:text-6xl">
               Define your system before development.
             </h3>
-            <p className="mt-2 text-sm text-muted">
+            <p className="mx-auto mt-6 max-w-xl text-lg text-background/60">
               Start with a practical architecture and a fixed-price
               implementation proposal.
             </p>
-          </div>
-          <StratumAuditButton className="shrink-0" />
+            <div className="mt-10">
+              <StratumAuditButton />
+            </div>
+          </FadeInWhenVisible>
         </div>
       </div>
     </section>

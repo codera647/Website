@@ -51,7 +51,7 @@ export default function SystemsOverview() {
           >
             <Link
               href={system.href}
-              className={`group flex h-full flex-col border border-line p-7 transition-colors hover:border-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink sm:p-10 ${i ? "bg-stratum-surface" : "bg-surface"}`}
+              className="card-hover group flex h-full flex-col border border-line bg-surface p-7 text-ink transition-all hover:border-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink sm:p-10"
             >
               <div className="flex items-center justify-between gap-4">
                 <p className="font-heading text-xs uppercase tracking-[0.18em] text-muted">
@@ -81,7 +81,7 @@ export default function SystemsOverview() {
               <h3 className="mt-8 font-heading text-3xl font-bold tracking-tight">
                 {system.name}
               </h3>
-              <p className="mt-4 text-lg leading-relaxed text-ink">
+              <p className="mt-4 text-lg leading-relaxed text-ink md:min-h-[3.25em]">
                 {system.purpose}
               </p>
               <p className="mb-8 mt-4 max-w-xl text-sm leading-relaxed text-muted">

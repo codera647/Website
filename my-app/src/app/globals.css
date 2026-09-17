@@ -20,6 +20,7 @@
   --color-ink-soft: #26262A;
   --color-muted: #4A4A50;
   --color-line: #E5E3DC;
+  --color-stratum-surface: #ECECEF;
 
   --font-heading: var(--font-space-grotesk), ui-sans-serif, sans-serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -38,6 +39,26 @@
 
 html {
   overflow-x: hidden;
+}
+
+/* Clear keyboard focus on both light surfaces and the charcoal navigation. */
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.stratum-architecture {
+  background-image: linear-gradient(#FAF9F608 1px, transparent 1px), linear-gradient(90deg, #FAF9F608 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.stratum-plane { animation: stratum-layer-in 700ms ease-out both; }
+.stratum-data-flow { animation: stratum-data-flow 5s linear infinite; }
+@keyframes stratum-layer-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes stratum-data-flow { to { stroke-dashoffset: -48; } }
+@media (prefers-reduced-motion: reduce) {
+  .stratum-plane, .stratum-data-flow { animation: none; }
+  .stratum-page *, .stratum-page *::before, .stratum-page *::after { scroll-behavior: auto; }
 }
 
 /* ============================================================

@@ -1,4 +1,5 @@
 import Hero from "@/components/sections/Hero";
+import SystemsOverview from "@/components/systems/SystemsOverview";
 import ProofBand from "@/components/sections/ProofBand";
 import ExpertiseGrid from "@/components/sections/ExpertiseGrid";
 import MarqueeBand from "@/components/sections/MarqueeBand";
@@ -15,6 +16,7 @@ export default async function Home() {
   return (
     <main>
       <Hero />
+      <SystemsOverview />
       <ProofBand projects={projects} />
       <ExpertiseGrid />
       <MarqueeBand />

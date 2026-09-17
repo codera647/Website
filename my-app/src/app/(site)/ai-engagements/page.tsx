@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import FAQAccordion from "@/components/motion/FAQAccordion";
 import EngagementLadder from "@/components/sections/EngagementLadder";
@@ -115,12 +116,12 @@ export default function AiEngagementsPage() {
                             generative image pipeline. Custom AI Platform and Automation Build
                             engagements are how each of those started.
                         </p>
-                        <a
+                        <Link
                             href="/work"
                             className="mt-6 inline-block font-heading text-sm font-semibold text-ink underline-offset-4 hover:underline"
                         >
                             See the full portfolio →
-                        </a>
+                        </Link>
                     </FadeInWhenVisible>
                 </div>
             </section>

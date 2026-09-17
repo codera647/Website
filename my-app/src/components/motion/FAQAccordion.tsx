@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 export interface FAQItem {
     question: string;
@@ -17,6 +17,7 @@ interface Props {
 export default function FAQAccordion({ items, className }: Props) {
     const [open, setOpen] = useState<number | null>(0);
     const baseId = useId();
+    const reducedMotion = useReducedMotion();
 
     return (
         <div className={`divide-y divide-line border-y border-line ${className ?? ""}`}>
@@ -39,7 +40,7 @@ export default function FAQAccordion({ items, className }: Props) {
                             <motion.span
                                 aria-hidden="true"
                                 animate={{ rotate: isOpen ? 45 : 0 }}
-                                transition={{ duration: 0.25 }}
+                                transition={{ duration: reducedMotion ? 0 : 0.25 }}
                                 className="shrink-0 text-2xl font-light text-muted"
                             >
                                 +
@@ -51,10 +52,10 @@ export default function FAQAccordion({ items, className }: Props) {
                                     id={panelId}
                                     role="region"
                                     aria-labelledby={buttonId}
-                                    initial={{ height: 0, opacity: 0 }}
+                                    initial={reducedMotion ? false : { height: 0, opacity: 0 }}
                                     animate={{ height: "auto", opacity: 1 }}
                                     exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.35, ease: [0.21, 0.47, 0.32, 0.98] }}
+                                    transition={{ duration: reducedMotion ? 0 : 0.35, ease: [0.21, 0.47, 0.32, 0.98] }}
                                     className="overflow-hidden"
                                 >
                                     <p className="max-w-2xl pb-6 leading-relaxed text-muted">

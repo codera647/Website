@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface Props {
     children: React.ReactNode;
@@ -21,13 +21,14 @@ export default function FadeInWhenVisible({
     once = true,
     className,
 }: Props) {
+    const reducedMotion = useReducedMotion();
     return (
         <motion.div
             className={className}
-            initial={{ opacity: 0, y }}
+            initial={reducedMotion ? false : { opacity: 0, y }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once, margin: "-64px" }}
-            transition={{ duration: 0.7, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
+            transition={{ duration: reducedMotion ? 0 : 0.7, delay: reducedMotion ? 0 : delay, ease: [0.21, 0.47, 0.32, 0.98] }}
         >
             {children}
         </motion.div>

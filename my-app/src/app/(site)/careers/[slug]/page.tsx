@@ -12,7 +12,7 @@ export async function generateMetadata({
     params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
     const { slug } = await params;
-    let job = await getJobBySlug(slug).catch(() => null);
+    const job = await getJobBySlug(slug).catch(() => null);
     if (!job) {
         const fallback = fallbackRoles.find((r) => r.slug === slug);
         if (fallback) {

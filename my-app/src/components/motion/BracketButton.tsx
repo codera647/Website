@@ -18,6 +18,7 @@ interface Props {
      * a literal Cal.com link) so existing call sites don't need to change.
      */
     calLink?: string;
+    bookingIntent?: "stratum";
     children: React.ReactNode;
     className?: string;
     buttonClassName?: string;
@@ -35,6 +36,7 @@ const CORNERS = [
 export default function BracketButton({
     href,
     calLink,
+    bookingIntent,
     children,
     className,
     buttonClassName,
@@ -68,7 +70,9 @@ export default function BracketButton({
             <button
                 type="button"
                 onClick={() => {
-                    window.dispatchEvent(new Event("open-call-modal"));
+                    window.dispatchEvent(bookingIntent
+                        ? new CustomEvent("open-call-modal", { detail: { intent: bookingIntent } })
+                        : new Event("open-call-modal"));
                     onClick?.();
                 }}
                 className={`group relative inline-block cursor-pointer ${className ?? ""}`}

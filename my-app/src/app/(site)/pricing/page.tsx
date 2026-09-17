@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import PricingSystemSelector from "@/components/pricing/PricingSystemSelector";
+import StratumPricing from "@/components/pricing/StratumPricing";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import BracketButton from "@/components/motion/BracketButton";
 import FAQAccordion, { type FAQItem } from "@/components/motion/FAQAccordion";
 import SurveyTriggerButton from "@/components/chat/SurveyTriggerButton";
 
 export const metadata: Metadata = {
-    title: "Pricing & Founding Tiers | Momentum Systems by Kinetiq",
+    title: "Momentum & Stratum Systems Pricing | Kinetiq",
     description:
-        "Transparent, software-aligned pricing for Momentum Systems. Foundation ($497 setup), Momentum ($797 setup), and Momentum Pro ($1,297 setup) with founding setup discounts for US, UK, and global businesses.",
+        "Explore Momentum growth infrastructure and Stratum production AI pricing. Compare founding implementation and monthly plans, starting with a $497 Stratum Blueprint.",
     keywords: [
         "Momentum Systems Pricing",
         "HVAC Software Pricing",
@@ -20,9 +22,9 @@ export const metadata: Metadata = {
         canonical: "/pricing",
     },
     openGraph: {
-        title: "Pricing & Founding Tiers | Momentum Systems by Kinetiq",
+        title: "Momentum & Stratum Systems Pricing | Kinetiq",
         description:
-            "Predictable, outcome-based pricing for service businesses. Founding pricing discounts available for the first 10 clients.",
+            "Two systems, two business outcomes. Compare Momentum growth infrastructure and Stratum production AI implementation and operations plans.",
         url: "https://thekinetiq.solutions/pricing",
         siteName: "Kinetiq",
         type: "website",
@@ -355,8 +357,17 @@ export default function PricingPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingSchemas) }}
             />
-            {/* 1. Hero Section */}
-            <section className="container-wide pb-16 pt-36 md:pb-24 md:pt-44">
+            <section className="container-wide pb-12 pt-36 md:pt-44">
+                <p className="font-heading text-xs uppercase tracking-[0.24em] text-muted">Systems by Kinetiq · Pricing</p>
+                <h1 className="mt-5 max-w-4xl font-heading text-4xl font-bold tracking-tight md:text-6xl">Two systems. Two different business outcomes.</h1>
+                <div className="mt-7 grid max-w-4xl gap-5 text-base leading-relaxed text-muted md:grid-cols-2">
+                    <p><strong className="font-heading text-ink">Momentum:</strong> Build the infrastructure that attracts, converts and manages customers.</p>
+                    <p><strong className="font-heading text-ink">Stratum:</strong> Build the AI intelligence that powers products, decisions and operations.</p>
+                </div>
+                <PricingSystemSelector />
+            </section>
+            {/* Momentum content and prices are preserved below. */}
+            <section id="momentum" className="container-wide scroll-mt-28 pb-16 pt-12 md:pb-24">
                 <FadeInWhenVisible>
                     <div className="inline-flex items-center gap-2.5 rounded-none border border-line bg-surface px-3.5 py-1.5 font-heading text-xs font-medium uppercase tracking-[0.24em] text-muted shadow-sm">
                         <span className="relative flex size-2">
@@ -365,9 +376,9 @@ export default function PricingPage() {
                         </span>
                         Founding Client Pricing · Limited to First 10 Businesses
                     </div>
-                    <h1 className="mt-6 max-w-4xl font-heading text-5xl font-bold tracking-tight text-ink md:text-7xl">
+                    <h2 className="mt-6 max-w-4xl font-heading text-5xl font-bold tracking-tight text-ink md:text-7xl">
                         Priced on outcomes, not billable hours.
-                    </h1>
+                    </h2>
                     <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
                         A smaller one-time build fee covering custom engineering, plus a predictable monthly fee covering ongoing hosting, automation, and search growth.
                     </p>
@@ -598,6 +609,7 @@ export default function PricingPage() {
                     </FadeInWhenVisible>
                 </div>
             </section>
+            <StratumPricing />
         </main>
     );
 }

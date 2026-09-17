@@ -133,7 +133,7 @@ export default function Footer({ featuredProjects }: { featuredProjects: Project
                     </p>
 
                     {/* Prominent Systems Block Button in Footer */}
-                    <div className="mt-6">
+                    <div className="mt-6 flex flex-col items-start gap-3">
                         <Link
                             href="/momentum-systems"
                             className="group inline-flex items-center gap-2.5 rounded-none border border-ink bg-ink px-4 py-2.5 font-heading text-xs font-bold uppercase tracking-[0.18em] text-background shadow-sm transition-all duration-300 hover:bg-background hover:text-ink hover:border-ink hover:shadow-[0_8px_24px_-12px_rgba(17,17,19,0.35)] hover:-translate-y-0.5"
@@ -145,6 +145,7 @@ export default function Footer({ featuredProjects }: { featuredProjects: Project
                             <span>Momentum Systems</span>
                             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
                         </Link>
+                        <Link href="/stratum-systems" className="group inline-flex items-center gap-2.5 border border-ink bg-ink px-4 py-2.5 font-heading text-xs font-bold uppercase tracking-[0.18em] text-background transition-colors hover:bg-background hover:text-ink"><span aria-hidden="true" className="size-2 shrink-0 border border-current" /><span>Stratum Systems</span><span aria-hidden="true">→</span></Link>
                     </div>
                 </div>
 

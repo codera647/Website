@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import FadeInWhenVisible from "@/components/motion/FadeInWhenVisible";
 import Counter from "@/components/motion/Counter";
 import { services } from "@/data/services";
@@ -9,22 +8,12 @@ import type { Project } from "@/lib/data";
 /**
  * Proof band — every number here is computed straight from the site's
  * own content (case studies + services), not hand-typed marketing
- * copy. Each stat is interactive: hover (or tap, for touch) reveals
- * exactly which systems/tools back the number.
+ * copy. Stats stay static on hover and tap.
  */
-
-interface ProofItem {
-    text: string;
-    sub?: string;
-    href?: string;
-}
 
 interface ProofStatData {
     to: number;
     label: string;
-    proofLabel: string;
-    layout: "list" | "chips";
-    proof: ProofItem[];
 }
 
 function buildStats(projects: Project[]): ProofStatData[] {
@@ -37,99 +26,24 @@ function buildStats(projects: Project[]): ProofStatData[] {
                 projects.length === 1
                     ? "system shipped to production"
                     : "systems shipped to production",
-            proofLabel: "the systems",
-            layout: "list",
-            proof: projects.map((cs) => ({
-                text: cs.title,
-                sub: cs.category,
-            })),
         },
         {
             to: techStack.length,
             label: "technologies in active use",
-            proofLabel: "the stack",
-            layout: "chips",
-            proof: techStack.map((tech) => ({ text: tech })),
         },
     ];
 }
 
 function ProofStat({ stat }: { stat: ProofStatData }) {
-    const [open, setOpen] = useState(false);
-
     return (
-        <div
-            className="relative"
-            onMouseEnter={() => setOpen(true)}
-            onMouseLeave={() => setOpen(false)}
-        >
-            <button
-                type="button"
-                onClick={() => setOpen((o) => !o)}
-                aria-expanded={open}
-                className="group w-full text-center"
-            >
-                <Counter
-                    to={stat.to}
-                    className="font-heading text-5xl font-bold md:text-6xl"
-                />
-                <p className="mt-2 text-sm uppercase tracking-[0.14em] text-muted">
-                    {stat.label}
-                </p>
-                <span
-                    className={`mt-3 inline-flex items-center gap-1 text-xs font-medium transition-colors group-hover:text-ink ${
-                        open ? "text-ink" : "text-muted/70"
-                    }`}
-                >
-                    see {stat.proofLabel}
-                    <span
-                        aria-hidden="true"
-                        className={`inline-block transition-transform duration-300 ${
-                            open ? "rotate-180" : ""
-                        }`}
-                    >
-                        &#8595;
-                    </span>
-                </span>
-            </button>
-
-            <div
-                className={`grid transition-[grid-template-rows] duration-500 ease-out ${
-                    open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                }`}
-            >
-                <div className="overflow-hidden">
-                    {stat.layout === "list" ? (
-                        <ul className="mx-auto mt-5 flex w-full max-w-[280px] flex-col gap-2">
-                            {stat.proof.map((item) => (
-                                <li key={item.text}>
-                                    <div className="flex h-12 items-center justify-between gap-3 rounded-none border border-line bg-background px-4 text-left">
-                                        <span className="min-w-0 truncate font-heading text-sm font-semibold text-ink">
-                                            {item.text}
-                                        </span>
-                                        {item.sub && (
-                                            <span className="shrink-0 text-xs text-muted">
-                                                {item.sub}
-                                            </span>
-                                        )}
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    ) : (
-                        <ul className="mx-auto mt-5 flex max-w-xs flex-wrap justify-center gap-2">
-                            {stat.proof.map((item) => (
-                                <li
-                                    key={item.text}
-                                    className="rounded-none border border-line bg-background px-3.5 py-1.5 text-xs font-medium text-ink-soft"
-                                >
-                                    {item.text}
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
-            </div>
+        <div className="w-full text-center">
+            <Counter
+                to={stat.to}
+                className="font-heading text-5xl font-bold md:text-6xl"
+            />
+            <p className="mt-2 text-sm uppercase tracking-[0.14em] text-muted">
+                {stat.label}
+            </p>
         </div>
     );
 }

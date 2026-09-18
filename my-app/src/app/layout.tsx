@@ -152,13 +152,13 @@ const jsonLdOrganization = {
                 {
                     "@type": "Person",
                     name: "Abdul Moiz",
-                    jobTitle: "CEO & CTO",
+                    jobTitle: "AI/ML Team Lead",
                     url: "https://thekinetiq.solutions/about",
                 },
                 {
                     "@type": "Person",
                     name: "Hammad Sarwar",
-                    jobTitle: "COO & CMO",
+                    jobTitle: "CEO",
                     url: "https://thekinetiq.solutions/about",
                 },
             ],
